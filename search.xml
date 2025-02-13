@@ -1,114 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>Hello World</title>
-    <url>/2025/02/14/hello-world/</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-]]></content>
-  </entry>
-  <entry>
-    <title>寒假科研(持续更新中)</title>
-    <url>/2025/02/14/%E5%AF%92%E5%81%87%E7%A7%91%E7%A0%94-%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0%E4%B8%AD/</url>
-    <content><![CDATA[<p>[toc]</p>
-<h1 id="2-10"><a href="#2-10" class="headerlink" title="2.10"></a>2.10</h1><h2 id="探索路线"><a href="#探索路线" class="headerlink" title="探索路线"></a>探索路线</h2><p>本来想法是如何从一张带有很多标注（文字、线、锚点等）的图中剥离出原图，其实反过来也可以把图片中的人为添加的噪声去掉，这样一样可以得到一张比较原始的图片。因此这条路线可以被描述为：</p>
-<ul>
-<li><p>文本与标注检测：利用 OCR 或语义分割方法检测并定位标注文字及线条。</p>
-</li>
-<li><p>文本与标注去除：利用图像修复、边缘检测、形态学操作等方法去除标注部分。</p>
-</li>
-<li><p>原图恢复：基于神经网络（如 GAN）或传统方法（如边缘检测+填充）恢复设备原图。</p>
-</li>
-<li><p>边缘检测与噪声去除</p>
-</li>
-<li><p>逆文本检测</p>
-</li>
-</ul>
-<p>除此之外，也发现了有算法可以直接进行边缘检测，提取出边界和线段，观察效果大致看出其实也已经顺带把文字给去掉。也就是说 <strong>边缘检测</strong> 也可以作为一个去噪的方法。</p>
-<h2 id="已读论文"><a href="#已读论文" class="headerlink" title="已读论文"></a>已读论文</h2><h3 id="文本检测及去除"><a href="#文本检测及去除" class="headerlink" title="文本检测及去除"></a>文本检测及去除</h3><p>目前主要是文本的检测与去除相对成熟，具体论文如下</p>
-<ul>
-<li><strong>TPFNet: A Novel Text In-painting Transformer for Text Removal</strong></li>
-</ul>
-<p><a href="https://arxiv.org/pdf/2210.14461">TPFNet-Neaul2022</a></p>
-<p><a href="https://github.com/CandleLabAI/TPFNet">TPFNet-Github</a></p>
-<p><img src="/./%E5%AF%92%E5%81%87%E7%A7%91%E7%A0%94-%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0%E4%B8%AD.assets/image-20250210160346938-1739480040432-1.png" alt="image-20250210160346938"></p>
-<p>此为效果，但是对于去除中文是否同样有效存疑（或者可不可以先引入一个翻译图片中的中文为英文并输出之后再使用该算法）</p>
-<ul>
-<li><strong>EnsNet: Ensconce Text in the Wild</strong></li>
-</ul>
-<p><a href="https://ojs.aaai.org/index.php/AAAI/article/view/3859">EnsNet-AAAI2023</a></p>
-<p><a href="https://github.com/HCIILAB/Scene-Text-Removal">EnsNet-Github</a></p>
-<p>这个个人感觉比上面的好，因为他们已经提供了相对完整的部署过程以及他们训练好的权重也可以下载，效果也很好见下图</p>
-<p><img src="/./%E5%AF%92%E5%81%87%E7%A7%91%E7%A0%94-%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0%E4%B8%AD.assets/image-20250210161544607-1739480040433-9.png" alt="image-20250210161544607"></p>
-<p>此为效果，但是对于去除中文是否同样有效存疑（或者可不可以先引入一个翻译图片中的中文为英文并输出之后再使用该算法）</p>
-<h3 id="标注检测与去除"><a href="#标注检测与去除" class="headerlink" title="标注检测与去除"></a>标注检测与去除</h3><p>这块目前想到三种路线，第一种是噪声去除与修复，算法通过检测像素块颜色差距 or 别的方式得到修复后图片，具体如下(但感觉效果可能非常一般，因为我们的图片主要呈黑白状，色块差异不显著)</p>
-<p><a href="https://openaccess.thecvf.com/content_cvpr_2018/papers/Ulyanov_Deep_Image_Prior_CVPR_2018_paper.pdf">Deep Image Prior-CVPR2018</a></p>
-<p><img src="/./%E5%AF%92%E5%81%87%E7%A7%91%E7%A0%94-%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0%E4%B8%AD.assets/image-20250210173333934-1739480040433-3.png" alt="image-20250210173333934"></p>
-<p><strong>DeepErase Weakly Supervised Ink Artifact Removal in Document Text Images</strong>, 这个是基于字去掉线，与第三章有点像，不知道是否也可以作为可行方案</p>
-<p><a href="https://arxiv.org/pdf/1910.07070v3">DeepErase-2020IEEE&#x2F;WACV</a></p>
-<p><img src="/./%E5%AF%92%E5%81%87%E7%A7%91%E7%A0%94-%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0%E4%B8%AD.assets/image-20250210174544756-1739480040433-2.png" alt="image-20250210174544756"></p>
-<p>第二种是边缘检测，相当于原图片收到了标注线一定程度的遮挡，现在根据遮挡复原出原图，具体如下：</p>
-<p><strong>EdgeConnect</strong>: Structure Guided Image Inpainting using Edge Prediction</p>
-<p><a href="https://arxiv.org/pdf/1901.00212">EdgeConnect-2019IEEE&#x2F;ICCVW</a></p>
-<p><img src="/./%E5%AF%92%E5%81%87%E7%A7%91%E7%A0%94-%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0%E4%B8%AD.assets/image-20250210174257891-1739480040433-6.png" alt="image-20250210174257891"></p>
-<p>第三种，逆文本检测，相当于借助取【去字】的补集的思路，去字的逻辑是先把字提取出来，随后与原图一起丢进去训练，最后实现在原图去字的效果。现在我们想要保留的恰恰是 [<strong>字</strong>]，也就是说将字换成已经弄出来的结构图，随后修改去字代码，实现从原图中保留 <strong>字</strong>，这里就是我们需要的结构图。同时也可以忽略本来分开的先去字再去点线的思路，直接一步到位。</p>
-<p>具体借鉴论文如下：</p>
-<p><a href="https://arxiv.org/pdf/1910.07070v3">DeepErase-2020IEEE&#x2F;WACV</a></p>
-<p><img src="/./%E5%AF%92%E5%81%87%E7%A7%91%E7%A0%94-%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0%E4%B8%AD.assets/image-20250210174544756-1739480040433-2.png" alt="image-20250210174544756"></p>
-<ul>
-<li><strong>TPFNet: A Novel Text In-painting Transformer for Text Removal</strong></li>
-</ul>
-<p><a href="https://arxiv.org/pdf/2210.14461">TPFNet-ICDAR2023</a></p>
-<p><a href="https://github.com/CandleLabAI/TPFNet">TPFNet-Github</a></p>
-<p><img src="/./%E5%AF%92%E5%81%87%E7%A7%91%E7%A0%94-%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0%E4%B8%AD.assets/image-20250210160346938-1739480040432-1.png" alt="image-20250210160346938"></p>
-<p>下面是其提供的运行示例对比：</p>
-<p><img src="/./%E5%AF%92%E5%81%87%E7%A7%91%E7%A0%94-%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0%E4%B8%AD.assets/3772cddab09ed7cb56b90f46bbb9624-1739480040433-10.png" alt="3772cddab09ed7cb56b90f46bbb9624"></p>
-<p>这是我们需要的效果对比：</p>
-<p><img src="/./%E5%AF%92%E5%81%87%E7%A7%91%E7%A0%94-%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0%E4%B8%AD.assets/c7edd070e9bf4ff71f40f37f41aed7b-1739480040433-5.png" alt="c7edd070e9bf4ff71f40f37f41aed7b"></p>
-<h3 id="图片中转英"><a href="#图片中转英" class="headerlink" title="*图片中转英"></a>*图片中转英</h3><p><a href="https://chatgpt.com/share/67a9ce0f-78c4-8010-b9c0-438966597f75">与 chatgpt 的问答</a></p>
-<h1 id="2-12"><a href="#2-12" class="headerlink" title="2.12"></a>2.12</h1><h2 id="边缘检测具体探索"><a href="#边缘检测具体探索" class="headerlink" title="边缘检测具体探索"></a>边缘检测具体探索</h2><h3 id="Occlusion-Free-Scene-Recovery-via-Neural-Radiance-Fields"><a href="#Occlusion-Free-Scene-Recovery-via-Neural-Radiance-Fields" class="headerlink" title="Occlusion-Free Scene Recovery via Neural Radiance Fields"></a>Occlusion-Free Scene Recovery via Neural Radiance Fields</h3><p><a href="https://cvpr.thecvf.com/media/cvpr-2023/Slides/22880.pdf">NeRF-CVPR2023</a></p>
-<p><a href="https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=10204900">paper</a></p>
-<p><a href="https://freebutuselesssoul.github.io/occnerf/">code</a></p>
-<p><img src="/./%E5%AF%92%E5%81%87%E7%A7%91%E7%A0%94-%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0%E4%B8%AD.assets/image-20250212160911351-1739480040433-4.png" alt="image-20250212160911351"></p>
-<p>其中 f 是原图，a 是打标图，e 是该模型实现效果图</p>
-<p><img src="/./%E5%AF%92%E5%81%87%E7%A7%91%E7%A0%94-%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0%E4%B8%AD.assets/image-20250212161014716-1739480040433-7.png" alt="image-20250212161014716"></p>
-<h3 id="Generative-Image-Inpainting-with-Segmentation-Confusion-Adversarial-Training-and-Contrastive-Learning"><a href="#Generative-Image-Inpainting-with-Segmentation-Confusion-Adversarial-Training-and-Contrastive-Learning" class="headerlink" title="Generative Image Inpainting with Segmentation Confusion Adversarial Training and Contrastive Learning"></a>Generative Image Inpainting with Segmentation Confusion Adversarial Training and Contrastive Learning</h3><p><a href="https://ojs.aaai.org/index.php/AAAI/article/view/25502/25274">AAAI2023</a></p>
-<p>这篇论文采用了 <strong>SCAT 和对比学习</strong> 的方法，感觉看下来边缘检测整体思路都是一样的，就是在换着技术路线提升准确度</p>
-<p><img src="/./%E5%AF%92%E5%81%87%E7%A7%91%E7%A0%94-%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0%E4%B8%AD.assets/image-20250212163134758-1739480040434-12.png" alt="image-20250212163134758"></p>
-<h3 id="Improving-Image-Inpainting-via-Adversarial-Collaborative-Training"><a href="#Improving-Image-Inpainting-via-Adversarial-Collaborative-Training" class="headerlink" title="Improving Image Inpainting via Adversarial Collaborative Training"></a>Improving Image Inpainting via Adversarial Collaborative Training</h3><p><a href="https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=10814057">对抗性协作网络 AdvColabNet-IEEE&#x2F;Transactions on Multimedia2024</a></p>
-<p>这篇文章提出了一个新思路，就是在修补好之后再引入一个修补纠错机制进一步提升性能</p>
-<p><img src="/./%E5%AF%92%E5%81%87%E7%A7%91%E7%A0%94-%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0%E4%B8%AD.assets/image-20250212164855265-1739480040433-8.png" alt="image-20250212164855265"></p>
-<h3 id="Minutes-to-Seconds-Speeded-up-DDPM-based-Image-Inpainting-with-Coarse-to-Fine-Sampling"><a href="#Minutes-to-Seconds-Speeded-up-DDPM-based-Image-Inpainting-with-Coarse-to-Fine-Sampling" class="headerlink" title="Minutes to Seconds: Speeded-up DDPM-based Image Inpainting with Coarse-to-Fine Sampling"></a>Minutes to Seconds: Speeded-up DDPM-based Image Inpainting with Coarse-to-Fine Sampling</h3><p><a href="https://arxiv.org/pdf/2407.05875">IEEE&#x2F;ICME2024</a></p>
-<p>[Github](<a href="https://github.com/linghuyuhangyuan/M2S">linghuyuhangyuan&#x2F;M2S: Official PyTorch Code and Models of “Minutes to Seconds: Speeded-up DDPM-based Image Inpainting with Coarse-to-Fine Sampling”, ICME 2024</a>)</p>
-<p>该方法基于 repaint 思路（基于去噪扩散概率模型 （DDPM） 的方法），主要是加快了速度提升了性能</p>
-<p><img src="/./%E5%AF%92%E5%81%87%E7%A7%91%E7%A0%94-%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0%E4%B8%AD.assets/image-20250212165716257-1739480040433-11.png" alt="image-20250212165716257"></p>
-<h3 id="MuGE-Multiple-Granularity-Edge-Detection-凌海滨老师"><a href="#MuGE-Multiple-Granularity-Edge-Detection-凌海滨老师" class="headerlink" title="MuGE: Multiple Granularity Edge Detection(凌海滨老师)"></a>MuGE: Multiple Granularity Edge Detection(凌海滨老师)</h3><p><a href="https://openaccess.thecvf.com/content/CVPR2024/papers/Zhou_MuGE_Multiple_Granularity_Edge_Detection_CVPR_2024_paper.pdf">MuGE-CVPR2024</a></p>
-<p><a href="https://github.com/ZhouCX117/UAED_MuGE">Github</a></p>
-<p>该方法主要是在已经做好边缘检测的基础上提供更多细节信息，相当于若是采用了别的办法只能得到模糊轮廓而电器内部信息忽略时可以采用该方法，看看提供的多种情况有没有合适的</p>
-<p><img src="/./%E5%AF%92%E5%81%87%E7%A7%91%E7%A0%94-%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0%E4%B8%AD.assets/image-20250212170543015-1739480040434-13.png" alt="image-20250212170543015"></p>
-<p><img src="/./%E5%AF%92%E5%81%87%E7%A7%91%E7%A0%94-%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0%E4%B8%AD.assets/image-20250212170634850-1739480040434-14.png" alt="image-20250212170634850"></p>
-<h3 id="Large-Occluded-Human-Image-Completion-via-Image-Prior-Cooperating"><a href="#Large-Occluded-Human-Image-Completion-via-Image-Prior-Cooperating" class="headerlink" title="Large Occluded Human Image Completion via Image-Prior Cooperating"></a>Large Occluded Human Image Completion via Image-Prior Cooperating</h3><p>主要与背景修复相关，略</p>
-<p>AAAI-2023</p>
-]]></content>
-      <categories>
-        <category>科研</category>
-      </categories>
-      <tags>
-        <tag>寒假科研</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>算法基础课(持续更新中)</title>
     <url>/2025/02/14/%E7%AE%97%E6%B3%95%E5%9F%BA%E7%A1%80%E8%AF%BE-%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0%E4%B8%AD/</url>
     <content><![CDATA[<h1 id="算法基础课"><a href="#算法基础课" class="headerlink" title="算法基础课"></a>算法基础课</h1><p>[TOC]</p>
@@ -236,6 +128,114 @@
       <tags>
         <tag>ACWing</tag>
         <tag>Code</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Hello World</title>
+    <url>/2025/02/14/hello-world/</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+]]></content>
+  </entry>
+  <entry>
+    <title>寒假科研(持续更新中)</title>
+    <url>/2025/02/14/%E5%AF%92%E5%81%87%E7%A7%91%E7%A0%94-%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0%E4%B8%AD/</url>
+    <content><![CDATA[<p>[toc]</p>
+<h1 id="2-10"><a href="#2-10" class="headerlink" title="2.10"></a>2.10</h1><h2 id="探索路线"><a href="#探索路线" class="headerlink" title="探索路线"></a>探索路线</h2><p>本来想法是如何从一张带有很多标注（文字、线、锚点等）的图中剥离出原图，其实反过来也可以把图片中的人为添加的噪声去掉，这样一样可以得到一张比较原始的图片。因此这条路线可以被描述为：</p>
+<ul>
+<li><p>文本与标注检测：利用 OCR 或语义分割方法检测并定位标注文字及线条。</p>
+</li>
+<li><p>文本与标注去除：利用图像修复、边缘检测、形态学操作等方法去除标注部分。</p>
+</li>
+<li><p>原图恢复：基于神经网络（如 GAN）或传统方法（如边缘检测+填充）恢复设备原图。</p>
+</li>
+<li><p>边缘检测与噪声去除</p>
+</li>
+<li><p>逆文本检测</p>
+</li>
+</ul>
+<p>除此之外，也发现了有算法可以直接进行边缘检测，提取出边界和线段，观察效果大致看出其实也已经顺带把文字给去掉。也就是说 <strong>边缘检测</strong> 也可以作为一个去噪的方法。</p>
+<h2 id="已读论文"><a href="#已读论文" class="headerlink" title="已读论文"></a>已读论文</h2><h3 id="文本检测及去除"><a href="#文本检测及去除" class="headerlink" title="文本检测及去除"></a>文本检测及去除</h3><p>目前主要是文本的检测与去除相对成熟，具体论文如下</p>
+<ul>
+<li><strong>TPFNet: A Novel Text In-painting Transformer for Text Removal</strong></li>
+</ul>
+<p><a href="https://arxiv.org/pdf/2210.14461">TPFNet-Neaul2022</a></p>
+<p><a href="https://github.com/CandleLabAI/TPFNet">TPFNet-Github</a></p>
+<p><img src="/./%E5%AF%92%E5%81%87%E7%A7%91%E7%A0%94-%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0%E4%B8%AD.assets/image-20250210160346938-1739480040432-1.png" alt="image-20250210160346938"></p>
+<p>此为效果，但是对于去除中文是否同样有效存疑（或者可不可以先引入一个翻译图片中的中文为英文并输出之后再使用该算法）</p>
+<ul>
+<li><strong>EnsNet: Ensconce Text in the Wild</strong></li>
+</ul>
+<p><a href="https://ojs.aaai.org/index.php/AAAI/article/view/3859">EnsNet-AAAI2023</a></p>
+<p><a href="https://github.com/HCIILAB/Scene-Text-Removal">EnsNet-Github</a></p>
+<p>这个个人感觉比上面的好，因为他们已经提供了相对完整的部署过程以及他们训练好的权重也可以下载，效果也很好见下图</p>
+<p><img src="/./%E5%AF%92%E5%81%87%E7%A7%91%E7%A0%94-%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0%E4%B8%AD.assets/image-20250210161544607-1739480040433-9.png" alt="image-20250210161544607"></p>
+<p>此为效果，但是对于去除中文是否同样有效存疑（或者可不可以先引入一个翻译图片中的中文为英文并输出之后再使用该算法）</p>
+<h3 id="标注检测与去除"><a href="#标注检测与去除" class="headerlink" title="标注检测与去除"></a>标注检测与去除</h3><p>这块目前想到三种路线，第一种是噪声去除与修复，算法通过检测像素块颜色差距 or 别的方式得到修复后图片，具体如下(但感觉效果可能非常一般，因为我们的图片主要呈黑白状，色块差异不显著)</p>
+<p><a href="https://openaccess.thecvf.com/content_cvpr_2018/papers/Ulyanov_Deep_Image_Prior_CVPR_2018_paper.pdf">Deep Image Prior-CVPR2018</a></p>
+<p><img src="/./%E5%AF%92%E5%81%87%E7%A7%91%E7%A0%94-%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0%E4%B8%AD.assets/image-20250210173333934-1739480040433-3.png" alt="image-20250210173333934"></p>
+<p><strong>DeepErase Weakly Supervised Ink Artifact Removal in Document Text Images</strong>, 这个是基于字去掉线，与第三章有点像，不知道是否也可以作为可行方案</p>
+<p><a href="https://arxiv.org/pdf/1910.07070v3">DeepErase-2020IEEE&#x2F;WACV</a></p>
+<p><img src="/./%E5%AF%92%E5%81%87%E7%A7%91%E7%A0%94-%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0%E4%B8%AD.assets/image-20250210174544756-1739480040433-2.png" alt="image-20250210174544756"></p>
+<p>第二种是边缘检测，相当于原图片收到了标注线一定程度的遮挡，现在根据遮挡复原出原图，具体如下：</p>
+<p><strong>EdgeConnect</strong>: Structure Guided Image Inpainting using Edge Prediction</p>
+<p><a href="https://arxiv.org/pdf/1901.00212">EdgeConnect-2019IEEE&#x2F;ICCVW</a></p>
+<p><img src="/./%E5%AF%92%E5%81%87%E7%A7%91%E7%A0%94-%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0%E4%B8%AD.assets/image-20250210174257891-1739480040433-6.png" alt="image-20250210174257891"></p>
+<p>第三种，逆文本检测，相当于借助取【去字】的补集的思路，去字的逻辑是先把字提取出来，随后与原图一起丢进去训练，最后实现在原图去字的效果。现在我们想要保留的恰恰是 [<strong>字</strong>]，也就是说将字换成已经弄出来的结构图，随后修改去字代码，实现从原图中保留 <strong>字</strong>，这里就是我们需要的结构图。同时也可以忽略本来分开的先去字再去点线的思路，直接一步到位。</p>
+<p>具体借鉴论文如下：</p>
+<p><a href="https://arxiv.org/pdf/1910.07070v3">DeepErase-2020IEEE&#x2F;WACV</a></p>
+<p><img src="/./%E5%AF%92%E5%81%87%E7%A7%91%E7%A0%94-%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0%E4%B8%AD.assets/image-20250210174544756-1739480040433-2.png" alt="image-20250210174544756"></p>
+<ul>
+<li><strong>TPFNet: A Novel Text In-painting Transformer for Text Removal</strong></li>
+</ul>
+<p><a href="https://arxiv.org/pdf/2210.14461">TPFNet-ICDAR2023</a></p>
+<p><a href="https://github.com/CandleLabAI/TPFNet">TPFNet-Github</a></p>
+<p><img src="/./%E5%AF%92%E5%81%87%E7%A7%91%E7%A0%94-%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0%E4%B8%AD.assets/image-20250210160346938-1739480040432-1.png" alt="image-20250210160346938"></p>
+<p>下面是其提供的运行示例对比：</p>
+<p><img src="/./%E5%AF%92%E5%81%87%E7%A7%91%E7%A0%94-%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0%E4%B8%AD.assets/3772cddab09ed7cb56b90f46bbb9624-1739480040433-10.png" alt="3772cddab09ed7cb56b90f46bbb9624"></p>
+<p>这是我们需要的效果对比：</p>
+<p><img src="/./%E5%AF%92%E5%81%87%E7%A7%91%E7%A0%94-%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0%E4%B8%AD.assets/c7edd070e9bf4ff71f40f37f41aed7b-1739480040433-5.png" alt="c7edd070e9bf4ff71f40f37f41aed7b"></p>
+<h3 id="图片中转英"><a href="#图片中转英" class="headerlink" title="*图片中转英"></a>*图片中转英</h3><p><a href="https://chatgpt.com/share/67a9ce0f-78c4-8010-b9c0-438966597f75">与 chatgpt 的问答</a></p>
+<h1 id="2-12"><a href="#2-12" class="headerlink" title="2.12"></a>2.12</h1><h2 id="边缘检测具体探索"><a href="#边缘检测具体探索" class="headerlink" title="边缘检测具体探索"></a>边缘检测具体探索</h2><h3 id="Occlusion-Free-Scene-Recovery-via-Neural-Radiance-Fields"><a href="#Occlusion-Free-Scene-Recovery-via-Neural-Radiance-Fields" class="headerlink" title="Occlusion-Free Scene Recovery via Neural Radiance Fields"></a>Occlusion-Free Scene Recovery via Neural Radiance Fields</h3><p><a href="https://cvpr.thecvf.com/media/cvpr-2023/Slides/22880.pdf">NeRF-CVPR2023</a></p>
+<p><a href="https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=10204900">paper</a></p>
+<p><a href="https://freebutuselesssoul.github.io/occnerf/">code</a></p>
+<p><img src="/./%E5%AF%92%E5%81%87%E7%A7%91%E7%A0%94-%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0%E4%B8%AD.assets/image-20250212160911351-1739480040433-4.png" alt="image-20250212160911351"></p>
+<p>其中 f 是原图，a 是打标图，e 是该模型实现效果图</p>
+<p><img src="/./%E5%AF%92%E5%81%87%E7%A7%91%E7%A0%94-%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0%E4%B8%AD.assets/image-20250212161014716-1739480040433-7.png" alt="image-20250212161014716"></p>
+<h3 id="Generative-Image-Inpainting-with-Segmentation-Confusion-Adversarial-Training-and-Contrastive-Learning"><a href="#Generative-Image-Inpainting-with-Segmentation-Confusion-Adversarial-Training-and-Contrastive-Learning" class="headerlink" title="Generative Image Inpainting with Segmentation Confusion Adversarial Training and Contrastive Learning"></a>Generative Image Inpainting with Segmentation Confusion Adversarial Training and Contrastive Learning</h3><p><a href="https://ojs.aaai.org/index.php/AAAI/article/view/25502/25274">AAAI2023</a></p>
+<p>这篇论文采用了 <strong>SCAT 和对比学习</strong> 的方法，感觉看下来边缘检测整体思路都是一样的，就是在换着技术路线提升准确度</p>
+<p><img src="/./%E5%AF%92%E5%81%87%E7%A7%91%E7%A0%94-%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0%E4%B8%AD.assets/image-20250212163134758-1739480040434-12.png" alt="image-20250212163134758"></p>
+<h3 id="Improving-Image-Inpainting-via-Adversarial-Collaborative-Training"><a href="#Improving-Image-Inpainting-via-Adversarial-Collaborative-Training" class="headerlink" title="Improving Image Inpainting via Adversarial Collaborative Training"></a>Improving Image Inpainting via Adversarial Collaborative Training</h3><p><a href="https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=10814057">对抗性协作网络 AdvColabNet-IEEE&#x2F;Transactions on Multimedia2024</a></p>
+<p>这篇文章提出了一个新思路，就是在修补好之后再引入一个修补纠错机制进一步提升性能</p>
+<p><img src="/./%E5%AF%92%E5%81%87%E7%A7%91%E7%A0%94-%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0%E4%B8%AD.assets/image-20250212164855265-1739480040433-8.png" alt="image-20250212164855265"></p>
+<h3 id="Minutes-to-Seconds-Speeded-up-DDPM-based-Image-Inpainting-with-Coarse-to-Fine-Sampling"><a href="#Minutes-to-Seconds-Speeded-up-DDPM-based-Image-Inpainting-with-Coarse-to-Fine-Sampling" class="headerlink" title="Minutes to Seconds: Speeded-up DDPM-based Image Inpainting with Coarse-to-Fine Sampling"></a>Minutes to Seconds: Speeded-up DDPM-based Image Inpainting with Coarse-to-Fine Sampling</h3><p><a href="https://arxiv.org/pdf/2407.05875">IEEE&#x2F;ICME2024</a></p>
+<p>[Github](<a href="https://github.com/linghuyuhangyuan/M2S">linghuyuhangyuan&#x2F;M2S: Official PyTorch Code and Models of “Minutes to Seconds: Speeded-up DDPM-based Image Inpainting with Coarse-to-Fine Sampling”, ICME 2024</a>)</p>
+<p>该方法基于 repaint 思路（基于去噪扩散概率模型 （DDPM） 的方法），主要是加快了速度提升了性能</p>
+<p><img src="/./%E5%AF%92%E5%81%87%E7%A7%91%E7%A0%94-%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0%E4%B8%AD.assets/image-20250212165716257-1739480040433-11.png" alt="image-20250212165716257"></p>
+<h3 id="MuGE-Multiple-Granularity-Edge-Detection-凌海滨老师"><a href="#MuGE-Multiple-Granularity-Edge-Detection-凌海滨老师" class="headerlink" title="MuGE: Multiple Granularity Edge Detection(凌海滨老师)"></a>MuGE: Multiple Granularity Edge Detection(凌海滨老师)</h3><p><a href="https://openaccess.thecvf.com/content/CVPR2024/papers/Zhou_MuGE_Multiple_Granularity_Edge_Detection_CVPR_2024_paper.pdf">MuGE-CVPR2024</a></p>
+<p><a href="https://github.com/ZhouCX117/UAED_MuGE">Github</a></p>
+<p>该方法主要是在已经做好边缘检测的基础上提供更多细节信息，相当于若是采用了别的办法只能得到模糊轮廓而电器内部信息忽略时可以采用该方法，看看提供的多种情况有没有合适的</p>
+<p><img src="/./%E5%AF%92%E5%81%87%E7%A7%91%E7%A0%94-%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0%E4%B8%AD.assets/image-20250212170543015-1739480040434-13.png" alt="image-20250212170543015"></p>
+<p><img src="/./%E5%AF%92%E5%81%87%E7%A7%91%E7%A0%94-%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0%E4%B8%AD.assets/image-20250212170634850-1739480040434-14.png" alt="image-20250212170634850"></p>
+<h3 id="Large-Occluded-Human-Image-Completion-via-Image-Prior-Cooperating"><a href="#Large-Occluded-Human-Image-Completion-via-Image-Prior-Cooperating" class="headerlink" title="Large Occluded Human Image Completion via Image-Prior Cooperating"></a>Large Occluded Human Image Completion via Image-Prior Cooperating</h3><p>主要与背景修复相关，略</p>
+<p>AAAI-2023</p>
+]]></content>
+      <categories>
+        <category>科研</category>
+      </categories>
+      <tags>
+        <tag>寒假科研</tag>
       </tags>
   </entry>
 </search>
