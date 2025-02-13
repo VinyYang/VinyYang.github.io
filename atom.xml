@@ -24,11 +24,20 @@
     <updated>2025-02-13T20:54:12.251Z</updated>
     
     
-      
-      
     <summary type="html">&lt;p&gt;[toc]&lt;/p&gt;
-&lt;h1 id=&quot;2-10&quot;&gt;&lt;a href=&quot;#2-10&quot; class=&quot;headerlink&quot; title=&quot;2.10&quot;&gt;&lt;/a&gt;2.10&lt;/h1&gt;&lt;h2 id=&quot;探索路线&quot;&gt;&lt;a href=&quot;#探索路线&quot; class=&quot;headerlink&quot; tit</summary>
-      
+&lt;h1 id=&quot;2-10&quot;&gt;&lt;a href=&quot;#2-10&quot; class=&quot;headerlink&quot; title=&quot;2.10&quot;&gt;&lt;/a&gt;2.10&lt;/h1&gt;&lt;h2 id=&quot;探索路线&quot;&gt;&lt;a href=&quot;#探索路线&quot; class=&quot;headerlink&quot; title=&quot;探索路线&quot;&gt;&lt;/a&gt;探索路线&lt;/h2&gt;&lt;p&gt;本来想法是如何从一张带有很多标注（文字、线、锚点等）的图中剥离出原图，其实反过来也可以把图片中的人为添加的噪声去掉，这样一样可以得到一张比较原始的图片。因此这条路线可以被描述为：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;文本与标注检测：利用 OCR 或语义分割方法检测并定位标注文字及线条。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;文本与标注去除：利用图像修复、边缘检测、形态学操作等方法去除标注部分。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;原图恢复：基于神经网络（如 GAN）或传统方法（如边缘检测+填充）恢复设备原图。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;边缘检测与噪声去除&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;逆文本检测&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;</summary>
     
     
     
@@ -47,11 +56,8 @@
     <updated>2025-02-13T20:53:17.311Z</updated>
     
     
-      
-      
     <summary type="html">&lt;h1 id=&quot;算法基础课&quot;&gt;&lt;a href=&quot;#算法基础课&quot; class=&quot;headerlink&quot; title=&quot;算法基础课&quot;&gt;&lt;/a&gt;算法基础课&lt;/h1&gt;&lt;p&gt;[TOC]&lt;/p&gt;
-&lt;h2 id=&quot;基础算法（一）&quot;&gt;&lt;a href=&quot;#基础算法（一）&quot; class=&quot;heade</summary>
-      
+&lt;h2 id=&quot;基础算法（一）&quot;&gt;&lt;a href=&quot;#基础算法（一）&quot; class=&quot;headerlink&quot; title=&quot;基础算法（一）&quot;&gt;&lt;/a&gt;基础算法（一）&lt;/h2&gt;&lt;h3 id=&quot;快速排序&quot;&gt;&lt;a href=&quot;#快速排序&quot; class=&quot;headerlink&quot; title=&quot;快速排序&quot;&gt;&lt;/a&gt;快速排序&lt;/h3&gt;&lt;figure class=&quot;highlight c++&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;type&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;quick_sort&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(&lt;span class=&quot;type&quot;&gt;int&lt;/span&gt; q[],&lt;span class=&quot;type&quot;&gt;int&lt;/span&gt; l,&lt;span class=&quot;type&quot;&gt;int&lt;/span&gt; r)&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;&lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt;(l&amp;gt;=r)&lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;type&quot;&gt;int&lt;/span&gt; i=l&lt;span class=&quot;number&quot;&gt;-1&lt;/span&gt;,j=r&lt;span class=&quot;number&quot;&gt;+1&lt;/span&gt;,x=q[l+r&amp;gt;&amp;gt;&lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;];&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;while&lt;/span&gt;(i&amp;lt;j)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;keyword&quot;&gt;do&lt;/span&gt; i++;&lt;span class=&quot;keyword&quot;&gt;while&lt;/span&gt;(q[i]&amp;lt;x);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;keyword&quot;&gt;do&lt;/span&gt; j--;&lt;span class=&quot;keyword&quot;&gt;while&lt;/span&gt;(q[j]&amp;gt;x);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;built_in&quot;&gt;quick_sort&lt;/span&gt;(q,l,j);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;built_in&quot;&gt;quick_sort&lt;/span&gt;(q,j&lt;span class=&quot;number&quot;&gt;+1&lt;/span&gt;,r);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;</summary>
     
     
     
@@ -72,10 +78,10 @@
     <updated>2025-02-13T17:43:45.655Z</updated>
     
     
-      
-      
-    <summary type="html">&lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.io/docs/&quot;&gt;documentation&lt;/a&gt; for</summary>
-      
+    <summary type="html">&lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.io/docs/&quot;&gt;documentation&lt;/a&gt; for more info. If you get any problems when using Hexo, you can find the answer in &lt;a href=&quot;https://hexo.io/docs/troubleshooting.html&quot;&gt;troubleshooting&lt;/a&gt; or you can ask me on &lt;a href=&quot;https://github.com/hexojs/hexo/issues&quot;&gt;GitHub&lt;/a&gt;.&lt;/p&gt;
+&lt;h2 id=&quot;Quick-Start&quot;&gt;&lt;a href=&quot;#Quick-Start&quot; class=&quot;headerlink&quot; title=&quot;Quick Start&quot;&gt;&lt;/a&gt;Quick Start&lt;/h2&gt;&lt;h3 id=&quot;Create-a-new-post&quot;&gt;&lt;a href=&quot;#Create-a-new-post&quot; class=&quot;headerlink&quot; title=&quot;Create a new post&quot;&gt;&lt;/a&gt;Create a new post&lt;/h3&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;$ hexo new &lt;span class=&quot;string&quot;&gt;&amp;quot;My New Post&amp;quot;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+
+&lt;p&gt;More info: &lt;a href=&quot;https://hexo.io/docs/writing.html&quot;&gt;Writing&lt;/a&gt;&lt;/p&gt;</summary>
     
     
     
