@@ -839,6 +839,11 @@ pre code {
 .post-body .note.danger h6 {
   color: #d9534f;
 }
+.pdfobject-container iframe,
+.pdfobject-container embed {
+  height: 500px;
+  width: 100%;
+}
 .post-body .tabs {
   margin-bottom: 20px;
 }
@@ -1260,7 +1265,7 @@ pre code {
     vertical-align: middle;
   }
   .links-of-author a::before {
-    background: #fff;
+    background: #bf21df;
     display: inline-block;
     margin-right: 3px;
     transform: translateY(-2px);
@@ -2688,6 +2693,14 @@ header.header {
     position: sticky;
     top: 12px;
   }
+  .sidebar a {
+    border-bottom-color: #fff;
+    color: #fff;
+  }
+  .sidebar a:hover {
+    border-bottom-color: $FFFFFF;
+    color: #fff;
+  }
   .sidebar-toggle {
     display: none;
   }
@@ -2853,4 +2866,17 @@ header.header {
 .giscus {
   max-width: unset;
   box-sizing: border-box;
+}
+.sidebar-inner.sidebar-overview-active.animated.fadeInUp {
+  background: url("/images/sidebar-bg.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+::selection {
+  background: #dfa710;
+  color: #f7f7f7;
+}
+#menu > li.menu-item-active > a {
+  color: #dfa710;
 }
