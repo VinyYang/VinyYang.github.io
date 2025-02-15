@@ -1265,7 +1265,7 @@ pre code {
     vertical-align: middle;
   }
   .links-of-author a::before {
-    background: #bf21df;
+    background: #ffa40b;
     display: inline-block;
     margin-right: 3px;
     transform: translateY(-2px);
@@ -2693,14 +2693,6 @@ header.header {
     position: sticky;
     top: 12px;
   }
-  .sidebar a {
-    border-bottom-color: #fff;
-    color: #fff;
-  }
-  .sidebar a:hover {
-    border-bottom-color: $FFFFFF;
-    color: #fff;
-  }
   .sidebar-toggle {
     display: none;
   }
@@ -2868,7 +2860,7 @@ header.header {
   box-sizing: border-box;
 }
 .sidebar-inner.sidebar-overview-active.animated.fadeInUp {
-  background: url("/images/sidebar-bg.png");
+  background: url("/images/sidebar-bg1.png");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -2879,4 +2871,55 @@ header.header {
 }
 #menu > li.menu-item-active > a {
   color: #dfa710;
+}
+.site-description {
+  color: #fff;
+  font-weight: bold;
+}
+.site-author-name {
+  color: #fff;
+}
+span {
+  color: #000;
+}
+span.site-state-item-name {
+  color: #ff79fb;
+  font-weight: bold;
+}
+span.site-state-item-count {
+  color: #fff;
+}
+/* 修改 GitHub 链接 */
+a[href^="https://github.com"] {
+  color: #fff; /* 设置字体颜色为白色 */
+  text-decoration: none; /* 可选：移除下划线 */
+}
+a[href^="mailto:"] {
+  color: #fff; /* 设置字体颜色为白色 */
+  text-decoration: none; /* 可选：移除下划线 */
+}
+a[href^="mailto:"] i.fa {
+  color: #fff; /* 设置图标颜色为白色 */
+}
+a[href^="https://github.com"] i.fab {
+  color: #fff; /* 设置图标颜色为白色 */
+}
+/* 修改 WeChat 链接 */
+a[href^="/images/wechat.png"] {
+  color: #fff; /* 设置字体颜色为白色 */
+  text-decoration: none; /* 可选：移除下划线 */
+}
+a[href^="/images/wechat.png"] i.fab {
+  color: #fff; /* 设置图标颜色为白色 */
+}
+/* 修改 QQ 链接 */
+a[href^="/images/qq.png"] {
+  color: #fff; /* 设置字体颜色为白色 */
+  text-decoration: none; /* 可选：移除下划线 */
+}
+a[href^="/images/qq.png"] i.fab {
+  color: #fff; /* 设置图标颜色为白色 */
+}
+.posts-expand.post-title-link {
+  color: #141414;
 }
