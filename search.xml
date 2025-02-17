@@ -153,11 +153,9 @@
 <p>即可实时查看网页</p>
 <h1 id="插入图片操作"><a href="#插入图片操作" class="headerlink" title="插入图片操作"></a>插入图片操作</h1><p>在hexo&#x2F;blog&#x2F;source（反正不是themes目录下的source）新建一个文件夹picture（名字任意），插入图片前先把图片复制到这，然后再从这复制去md文件里即可</p>
 <p>如下面这张图最后路径显示是</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">![屏幕截图 2025-02-17 171856](./如何用hexo新建文件并上传.assets/屏幕截图 2025-02-17 171856.png)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">![屏幕截图 2025-02-17 171856](./如何用hexo新建文件并上传.assets/屏幕截图 2025-02-17 171856-1739786286761-1.png)</span><br></pre></td></tr></table></figure>
 
-
-
-<p>![屏幕截图 2025-02-17 171856](.&#x2F;如何用hexo新建文件并上传.assets&#x2F;屏幕截图 2025-02-17 171856.png)</p>
+<p>![屏幕截图 2025-02-17 171856](.&#x2F;如何用hexo新建文件并上传.assets&#x2F;屏幕截图 2025-02-17 171856-1739786286761-1.png)</p>
 ]]></content>
       <categories>
         <category>博客维护</category>
