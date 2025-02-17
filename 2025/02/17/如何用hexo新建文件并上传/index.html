@@ -22,24 +22,27 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"vinyyang.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.22.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":true,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":true,"comments":{"style":"tabs","active":"giscus","storage":true,"lazyload":false,"nav":null,"activeClass":"giscus"},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="陌上花开，可缓缓归矣。">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Viny Yang与CS的邂逅">
-<meta property="og:url" content="https://vinyyang.github.io/tags/%E5%AF%92%E5%81%87%E7%A7%91%E7%A0%94/index.html">
+    <meta name="description" content="hexo（博主采用next主题）日常维护教程">
+<meta property="og:type" content="article">
+<meta property="og:title" content="如何用hexo新建文件并上传">
+<meta property="og:url" content="https://vinyyang.github.io/2025/02/17/%E5%A6%82%E4%BD%95%E7%94%A8hexo%E6%96%B0%E5%BB%BA%E6%96%87%E4%BB%B6%E5%B9%B6%E4%B8%8A%E4%BC%A0/index.html">
 <meta property="og:site_name" content="Viny Yang与CS的邂逅">
-<meta property="og:description" content="陌上花开，可缓缓归矣。">
+<meta property="og:description" content="hexo（博主采用next主题）日常维护教程">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2025-02-17T08:37:32.000Z">
+<meta property="article:modified_time" content="2025-02-17T09:20:03.360Z">
 <meta property="article:author" content="Viny Yang">
+<meta property="article:tag" content="博客维护">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="https://vinyyang.github.io/tags/%E5%AF%92%E5%81%87%E7%A7%91%E7%A0%94/">
+<link rel="canonical" href="https://vinyyang.github.io/2025/02/17/%E5%A6%82%E4%BD%95%E7%94%A8hexo%E6%96%B0%E5%BB%BA%E6%96%87%E4%BB%B6%E5%B9%B6%E4%B8%8A%E4%BC%A0/">
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":false,"lang":"zh-CN","comments":"","permalink":"","path":"tags/寒假科研/index.html","title":""}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://vinyyang.github.io/2025/02/17/%E5%A6%82%E4%BD%95%E7%94%A8hexo%E6%96%B0%E5%BB%BA%E6%96%87%E4%BB%B6%E5%B9%B6%E4%B8%8A%E4%BC%A0/","path":"2025/02/17/如何用hexo新建文件并上传/","title":"如何用hexo新建文件并上传"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>标签: 寒假科研 | Viny Yang与CS的邂逅</title>
+<title>如何用hexo新建文件并上传 | Viny Yang与CS的邂逅</title>
   
 
   <script src="/js/third-party/analytics/baidu-analytics.js"></script>
@@ -129,7 +132,7 @@
   
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-overview-active">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           文章目录
@@ -142,6 +145,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BF%AE%E6%94%B9scaffolds-post-md%EF%BC%88%E9%BB%98%E8%AE%A4%E6%A0%87%E9%A2%98%E6%96%87%E4%BB%B6%EF%BC%89"><span class="nav-number">1.</span> <span class="nav-text">修改scaffolds&#x2F;post.md（默认标题文件）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%96%B0%E5%BB%BAmd%E6%96%87%E4%BB%B6"><span class="nav-number">2.</span> <span class="nav-text">新建md文件</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8B%E6%96%B0%E5%BB%BA%E6%96%87%E4%BB%B6"><span class="nav-number">3.</span> <span class="nav-text">查看新建文件</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AE%8C%E5%96%84%E6%A0%87%E9%A2%98%E5%AF%B9%E5%BA%94%E4%BF%A1%E6%81%AF%EF%BC%8C%E5%A1%AB%E5%86%99md"><span class="nav-number">4.</span> <span class="nav-text">完善标题对应信息，填写md</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9C%A8blog%E7%9B%AE%E5%BD%95%E4%B8%8B%EF%BC%88%E5%9B%A0%E4%BA%BA%E8%80%8C%E5%BC%82%EF%BC%89%E6%89%93%E5%BC%80git-bash"><span class="nav-number">5.</span> <span class="nav-text">在blog目录下（因人而异）打开git bash</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%8F%92%E5%85%A5%E5%9B%BE%E7%89%87%E6%93%8D%E4%BD%9C"><span class="nav-number">6.</span> <span class="nav-text">插入图片操作</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -234,51 +238,211 @@
 
     </div>
 
-    <div class="main-inner tag posts-collapse">
+    <div class="main-inner post posts-expand">
 
 
   
+
+
+<div class="post-block">
   
   
-  <div class="post-block">
-    <div class="post-content">
-      <div class="collection-title">
-        <h1 class="collection-header">寒假科研
-          <small>标签</small>
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://vinyyang.github.io/2025/02/17/%E5%A6%82%E4%BD%95%E7%94%A8hexo%E6%96%B0%E5%BB%BA%E6%96%87%E4%BB%B6%E5%B9%B6%E4%B8%8A%E4%BC%A0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Viny Yang">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Viny Yang与CS的邂逅">
+      <meta itemprop="description" content="陌上花开，可缓缓归矣。">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="如何用hexo新建文件并上传 | Viny Yang与CS的邂逅">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          如何用hexo新建文件并上传
         </h1>
-      </div>
 
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
       
-    <div class="collection-year">
-      <span class="collection-header">2025</span>
+
+      <time title="创建时间：2025-02-17 16:37:32 / 修改时间：17:20:03" itemprop="dateCreated datePublished" datetime="2025-02-17T16:37:32+08:00">2025-02-17</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%8D%9A%E5%AE%A2%E7%BB%B4%E6%8A%A4/" itemprop="url" rel="index"><span itemprop="name">博客维护</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+  <div style="padding-left: 8px;">
+    <span class="post-meta-divider" style="padding-right: 8px;">|</span>
+    <i class="fa fa-thumbtack"></i>
+    <font color=purple style="font-weight: bold; padding-left: 4px;"> 置顶 </font>
+  </div>
+
+
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>652</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>1 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p>hexo（博主采用next主题）日常维护教程</p>
+<h1 id="修改scaffolds-post-md（默认标题文件）"><a href="#修改scaffolds-post-md（默认标题文件）" class="headerlink" title="修改scaffolds&#x2F;post.md（默认标题文件）"></a>修改scaffolds&#x2F;post.md（默认标题文件）</h1><p>注意修改时不要把中文加进去，在此只起到注释作用</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">title: &#123;&#123; title &#125;&#125;</span><br><span class="line">date: &#123;&#123; date &#125;&#125;</span><br><span class="line">tags:([1,2]设置同时属于不同类别可以这样)</span><br><span class="line">categories:</span><br><span class="line">top:(表示置顶情况，不置顶不填即可数字大小代表置顶顺序，数字越大排序越前)</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="新建md文件"><a href="#新建md文件" class="headerlink" title="新建md文件"></a>新建md文件</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo new/hexo n &quot;文件名&quot;</span><br></pre></td></tr></table></figure>
+
+<h1 id="查看新建文件"><a href="#查看新建文件" class="headerlink" title="查看新建文件"></a>查看新建文件</h1><p>进入目录是source&#x2F;_posts</p>
+<h1 id="完善标题对应信息，填写md"><a href="#完善标题对应信息，填写md" class="headerlink" title="完善标题对应信息，填写md"></a>完善标题对应信息，填写md</h1><p>也就是刚才上面那堆东西</p>
+<h1 id="在blog目录下（因人而异）打开git-bash"><a href="#在blog目录下（因人而异）打开git-bash" class="headerlink" title="在blog目录下（因人而异）打开git bash"></a>在blog目录下（因人而异）打开git bash</h1><p>输入</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo clean</span><br><span class="line">hexo g -d</span><br></pre></td></tr></table></figure>
+
+<p>即可上传</p>
+<p>输入</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo s</span><br></pre></td></tr></table></figure>
+
+<p>即可实时查看网页</p>
+<h1 id="插入图片操作"><a href="#插入图片操作" class="headerlink" title="插入图片操作"></a>插入图片操作</h1><p>在hexo&#x2F;blog&#x2F;source（反正不是themes目录下的source）新建一个文件夹picture（名字任意），插入图片前先把图片复制到这，然后再从这复制去md文件里即可</p>
+<p>如下面这张图最后路径显示是</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">![屏幕截图 2025-02-17 171856](./如何用hexo新建文件并上传.assets/屏幕截图 2025-02-17 171856.png)</span><br></pre></td></tr></table></figure>
+
+
+
+<p>![屏幕截图 2025-02-17 171856](.&#x2F;如何用hexo新建文件并上传.assets&#x2F;屏幕截图 2025-02-17 171856.png)</p>
+
     </div>
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2025-02-14T04:44:39+08:00"
-              content="2025-02-14">
-          02-14
-        </time>
+    
+    
+    
+
+    <footer class="post-footer"><script src="//sdk.jinrishici.com/v2/browser/jinrishici.js"></script>
+<script>
+  jinrishici.load((result) => {
+    let jrsc = document.getElementById('jrsc');
+    const data = result.data;
+    let author = data.origin.author;
+    let title = '《' + data.origin.title + '》';
+    let content = data.content.substr(0, data.content.length - 1);
+    let dynasty = data.origin.dynasty.substr(0, data.origin.dynasty.length - 1);
+    jrsc.innerText = content + ' @ ' + dynasty + '·' + author + title;
+  });
+</script>
+<div style="text-align: center"><span id="jrsc" >正在加载今日诗词....</span></div>
+          <div class="reward-container">
+  <div>请我一杯咖啡吧！</div>
+  <button>
+    赞赏
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="/images/wechatpay.png" alt="Viny Yang 微信">
+        <span>微信</span>
+      </div>
+      <div>
+        <img src="/images/alipay.png" alt="Viny Yang 支付宝">
+        <span>支付宝</span>
       </div>
 
-      <div class="post-title">
-          <a class="post-title-link" href="/2025/02/14/%E5%AF%92%E5%81%87%E7%A7%91%E7%A0%94-%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0%E4%B8%AD/" itemprop="url">
-            <span itemprop="name">寒假科研(持续更新中)</span>
-          </a>
-      </div>
+  </div>
+</div>
 
-      
-    </header>
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>Viny Yang
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://vinyyang.github.io/2025/02/17/%E5%A6%82%E4%BD%95%E7%94%A8hexo%E6%96%B0%E5%BB%BA%E6%96%87%E4%BB%B6%E5%B9%B6%E4%B8%8A%E4%BC%A0/" title="如何用hexo新建文件并上传">https://vinyyang.github.io/2025/02/17/如何用hexo新建文件并上传/</a>
+  </li>
+  <li class="post-copyright-license">
+      <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/%E5%8D%9A%E5%AE%A2%E7%BB%B4%E6%8A%A4/" rel="tag"><i class="fa fa-tag"></i> 博客维护</a>
+          </div>
+
+        
+  <div class="social-like a2a_kit a2a_kit_size_32 a2a_default_style">
+    <a class="a2a_dd" target="_blank" rel="noopener" href="https://www.addtoany.com/share"></a>
+      <a class="a2a_button_wechat"></a>
+  </div>
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2025/02/14/%E5%AF%92%E5%81%87%E7%A7%91%E7%A0%94-%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0%E4%B8%AD/" rel="prev" title="寒假科研(持续更新中)">
+                  <i class="fa fa-angle-left"></i> 寒假科研(持续更新中)
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
   </article>
+</div>
 
-    </div>
+
+
+
+
+
+    
+  
+  <div class="comments giscus-container">
   </div>
   
   
-  
-
 </div>
   </main>
 
