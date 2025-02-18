@@ -1,45 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>如何用hexo新建文件并上传/如何用hexo插入图片（next主题）</title>
-    <url>/hexo-maintanance/</url>
-    <content><![CDATA[<p>hexo（博主采用next主题）日常维护教程</p>
-<h1 id="修改scaffolds-post-md（默认标题文件）"><a href="#修改scaffolds-post-md（默认标题文件）" class="headerlink" title="修改scaffolds&#x2F;post.md（默认标题文件）"></a>修改scaffolds&#x2F;post.md（默认标题文件）</h1><p>注意修改时不要把中文加进去，在此只起到注释作用</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">title: &#123;&#123; title &#125;&#125;</span><br><span class="line">date: &#123;&#123; date &#125;&#125;</span><br><span class="line">tags:([1,2]设置同时属于不同类别可以这样)</span><br><span class="line">categories:</span><br><span class="line">top:(表示置顶情况，不置顶不填即可数字大小代表置顶顺序，数字越大排序越前)</span><br></pre></td></tr></table></figure>
-
-
-
-<h1 id="新建md文件"><a href="#新建md文件" class="headerlink" title="新建md文件"></a>新建md文件</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">hexo new/hexo n &quot;文件名&quot;</span><br></pre></td></tr></table></figure>
-
-<h1 id="查看新建文件"><a href="#查看新建文件" class="headerlink" title="查看新建文件"></a>查看新建文件</h1><p>进入目录是source&#x2F;_posts</p>
-<h1 id="完善标题对应信息，填写md"><a href="#完善标题对应信息，填写md" class="headerlink" title="完善标题对应信息，填写md"></a>完善标题对应信息，填写md</h1><p>也就是刚才上面那堆东西</p>
-<h1 id="在blog目录下（因人而异）打开git-bash"><a href="#在blog目录下（因人而异）打开git-bash" class="headerlink" title="在blog目录下（因人而异）打开git bash"></a>在blog目录下（因人而异）打开git bash</h1><p>输入</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">hexo clean</span><br><span class="line">hexo g -d</span><br></pre></td></tr></table></figure>
-
-<p>即可上传</p>
-<p>输入</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">hexo s</span><br></pre></td></tr></table></figure>
-
-<p>即可实时查看网页</p>
-<h1 id="插入图片操作（图片和md文件最好均为英文名）"><a href="#插入图片操作（图片和md文件最好均为英文名）" class="headerlink" title="插入图片操作（图片和md文件最好均为英文名）"></a>插入图片操作（图片和md文件最好均为英文名）</h1><h2 id="下插件"><a href="#下插件" class="headerlink" title="下插件"></a>下插件</h2><p>见<a href="https://github.com/yiyungent/hexo-asset-img">yiyungent&#x2F;hexo-asset-img：🍰 Hexo 本地图片插件。|Hexo 本地图片插件：转换图片相对路径为asset_img</a></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm install hexo-asset-img --save</span><br><span class="line">或者</span><br><span class="line">npm install git://github.com/yiyungent/hexo-asset-img.git#main</span><br></pre></td></tr></table></figure>
-
-<h2 id="修改host-config-yml"><a href="#修改host-config-yml" class="headerlink" title="修改host&#x2F;_config.yml"></a>修改host&#x2F;_config.yml</h2><p>permalink控制了永久域名的样式</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1.post_asset_folder: true</span><br><span class="line">2.permalink: :title/（我的自带了日期导致图片一直不行:year/:month/:date/:title/）</span><br></pre></td></tr></table></figure>
-
-<h2 id="直接粘贴图片"><a href="#直接粘贴图片" class="headerlink" title="直接粘贴图片"></a>直接粘贴图片</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">![1](./hexo-maintanance/1.png)</span><br></pre></td></tr></table></figure>
-
-<p>上面是下面图片的路径。能看到下面的图片就能说明这个方法就是成功的。</p>
-<p><img src="/./hexo-maintanance/1.png" alt="1"></p>
-]]></content>
-      <categories>
-        <category>博客维护</category>
-      </categories>
-      <tags>
-        <tag>博客维护</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>算法基础课(持续更新中)</title>
     <url>/algorithm_learning/</url>
     <content><![CDATA[<p>算法基础课</p>
@@ -167,6 +128,45 @@
       </categories>
       <tags>
         <tag>ACWing</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>如何用hexo新建文件并上传/如何用hexo插入图片（next主题）</title>
+    <url>/hexo-maintanance/</url>
+    <content><![CDATA[<p>hexo（博主采用next主题）日常维护教程</p>
+<h1 id="修改scaffolds-post-md（默认标题文件）"><a href="#修改scaffolds-post-md（默认标题文件）" class="headerlink" title="修改scaffolds&#x2F;post.md（默认标题文件）"></a>修改scaffolds&#x2F;post.md（默认标题文件）</h1><p>注意修改时不要把中文加进去，在此只起到注释作用</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">title: &#123;&#123; title &#125;&#125;</span><br><span class="line">date: &#123;&#123; date &#125;&#125;</span><br><span class="line">tags:([1,2]设置同时属于不同类别可以这样)</span><br><span class="line">categories:</span><br><span class="line">top:(表示置顶情况，不置顶不填即可数字大小代表置顶顺序，数字越大排序越前)</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="新建md文件"><a href="#新建md文件" class="headerlink" title="新建md文件"></a>新建md文件</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">hexo new/hexo n &quot;文件名&quot;</span><br></pre></td></tr></table></figure>
+
+<h1 id="查看新建文件"><a href="#查看新建文件" class="headerlink" title="查看新建文件"></a>查看新建文件</h1><p>进入目录是source&#x2F;_posts</p>
+<h1 id="完善标题对应信息，填写md"><a href="#完善标题对应信息，填写md" class="headerlink" title="完善标题对应信息，填写md"></a>完善标题对应信息，填写md</h1><p>也就是刚才上面那堆东西</p>
+<h1 id="在blog目录下（因人而异）打开git-bash"><a href="#在blog目录下（因人而异）打开git-bash" class="headerlink" title="在blog目录下（因人而异）打开git bash"></a>在blog目录下（因人而异）打开git bash</h1><p>输入</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">hexo clean</span><br><span class="line">hexo g -d</span><br></pre></td></tr></table></figure>
+
+<p>即可上传</p>
+<p>输入</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">hexo s</span><br></pre></td></tr></table></figure>
+
+<p>即可实时查看网页</p>
+<h1 id="插入图片操作（图片和md文件最好均为英文名）"><a href="#插入图片操作（图片和md文件最好均为英文名）" class="headerlink" title="插入图片操作（图片和md文件最好均为英文名）"></a>插入图片操作（图片和md文件最好均为英文名）</h1><h2 id="下插件"><a href="#下插件" class="headerlink" title="下插件"></a>下插件</h2><p>见<a href="https://github.com/yiyungent/hexo-asset-img">yiyungent&#x2F;hexo-asset-img：🍰 Hexo 本地图片插件。|Hexo 本地图片插件：转换图片相对路径为asset_img</a></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm install hexo-asset-img --save</span><br><span class="line">或者</span><br><span class="line">npm install git://github.com/yiyungent/hexo-asset-img.git#main</span><br></pre></td></tr></table></figure>
+
+<h2 id="修改host-config-yml"><a href="#修改host-config-yml" class="headerlink" title="修改host&#x2F;_config.yml"></a>修改host&#x2F;_config.yml</h2><p>permalink控制了永久域名的样式</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1.post_asset_folder: true</span><br><span class="line">2.permalink: :title/（我的自带了日期导致图片一直不行:year/:month/:date/:title/）</span><br></pre></td></tr></table></figure>
+
+<h2 id="直接粘贴图片"><a href="#直接粘贴图片" class="headerlink" title="直接粘贴图片"></a>直接粘贴图片</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">![1](./hexo-maintanance/1.png)</span><br></pre></td></tr></table></figure>
+
+<p>上面是下面图片的路径。能看到下面的图片就能说明这个方法就是成功的。</p>
+<p><img src="/./hexo-maintanance/1.png" alt="1"></p>
+]]></content>
+      <categories>
+        <category>博客维护</category>
+      </categories>
+      <tags>
+        <tag>博客维护</tag>
       </tags>
   </entry>
 </search>
