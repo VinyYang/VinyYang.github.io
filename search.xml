@@ -160,6 +160,13 @@
 
 <p>上面是下面图片的路径。能看到下面的图片就能说明这个方法就是成功的。</p>
 <p><img src="/./hexo_maintanance/1.png" alt="1"></p>
+<h1><span id="实现侧边栏标题全展开">实现侧边栏标题全展开</span></h1><p>有些文件目录很长，不全展开不方便看。可以修改<code>blog\themes\next\source\css\_common\outline\sidebar\sidebar-toc.styl</code></p>
+<p>文件，查找修改<code>.nav-child</code>对应代码：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">.<span class="property">nav</span> &#123;</span><br><span class="line">  <span class="keyword">if</span> (not hexo-<span class="title function_">config</span>(<span class="string">&#x27;toc.expand_all&#x27;</span>)) &#123;</span><br><span class="line">    .<span class="property">nav</span>-child &#123;</span><br><span class="line">      --<span class="attr">height</span>: auto;          <span class="comment">/* 取消高度限制 */</span></span><br><span class="line">      <span class="attr">height</span>: auto;            <span class="comment">/* 启用自动高度适应内容 */</span></span><br><span class="line">      <span class="attr">opacity</span>: <span class="number">1</span>;              <span class="comment">/* 取消透明度隐藏 */</span></span><br><span class="line">      <span class="attr">overflow</span>: visible;       <span class="comment">/* 允许内容溢出显示 */</span></span><br><span class="line">      transition-<span class="attr">property</span>: opacity;  <span class="comment">/* 仅保留透明度过渡 */</span></span><br><span class="line">      <span class="attr">visibility</span>: visible;     <span class="comment">/* 确保元素可见 */</span></span><br><span class="line">      <span class="attr">transition</span>: $transition-ease;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>原配置为：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">原配置--<span class="attr">height</span>: <span class="number">0</span>;</span><br><span class="line"><span class="attr">height</span>: <span class="number">0</span>;</span><br><span class="line"><span class="attr">opacity</span>: <span class="number">0</span>;</span><br><span class="line"><span class="attr">overflow</span>: hidden;</span><br><span class="line">transition-<span class="attr">property</span>: height, opacity, visibility;</span><br><span class="line"><span class="attr">transition</span>: $transition-ease;</span><br><span class="line"><span class="attr">visibility</span>: hidden;</span><br></pre></td></tr></table></figure>
+
 ]]></content>
       <categories>
         <category>博客维护</category>
