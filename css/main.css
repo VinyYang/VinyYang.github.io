@@ -1349,7 +1349,7 @@ pre code {
     vertical-align: middle;
   }
   .links-of-author a::before {
-    background: #ffffc2;
+    background: #05bff2;
     display: inline-block;
     margin-right: 3px;
     transform: translateY(-2px);
@@ -3006,6 +3006,15 @@ a[href^="/images/qq.png"] {
   text-decoration: none;
 }
 a[href^="/images/qq.png"] i.fab {
+  color: #fff;
+}
+a[href="https://hongyiyoung.github.io/"] {
+  color: #fff;
+  text-decoration: none;
+  overflow: visible;
+  text-overflow: clip;
+}
+a[href="https://hongyiyoung.github.io/"] i.fa-user {
   color: #fff;
 }
 .wechat-image {
