@@ -1349,7 +1349,7 @@ pre code {
     vertical-align: middle;
   }
   .links-of-author a::before {
-    background: #472f88;
+    background: #1a2222;
     display: inline-block;
     margin-right: 3px;
     transform: translateY(-2px);
@@ -2980,18 +2980,18 @@ span.site-state-item-name {
 span.site-state-item-count {
   color: #fff;
 }
-a[href^="https://github.com/VinyYang"] {
+a[href^="https://github.com/vinyyang"] {
   color: #fff;
   text-decoration: none;
 }
-a[href^="https://github.com/VinyYang"] i.fab {
+a[href^="https://github.com/vinyyang"] i.fab {
   color: #fff;
 }
-a[href^="mailto:"] {
+a[href^="mailto:yhy520@email.swu.edu.cn"] {
   color: #fff;
   text-decoration: none;
 }
-a[href^="mailto:"] i.fa {
+a[href^="mailto:yhy520@email.swu.edu.cn"] i.fa {
   color: #fff;
 }
 a[href^="/images/wechat.png"] {
@@ -3006,15 +3006,6 @@ a[href^="/images/qq.png"] {
   text-decoration: none;
 }
 a[href^="/images/qq.png"] i.fab {
-  color: #fff;
-}
-a[href="https://hongyiyoung.github.io/"] {
-  color: #fff;
-  text-decoration: none;
-  overflow: visible;
-  text-overflow: clip;
-}
-a[href="https://hongyiyoung.github.io/"] i.fa-user {
   color: #fff;
 }
 .wechat-image {
