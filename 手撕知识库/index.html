@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancyapps-ui/5.0.31/fancybox/fancybox.css" integrity="sha256-gkQVf8UKZgQ0HyuxL/VnacadJ+D2Kox2TCEBuNQg5+w=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/themes/blue/pace-theme-minimal.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous"></script>
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"vinyyang.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.22.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":true,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":true,"comments":{"style":"tabs","active":"giscus","storage":true,"lazyload":false,"nav":null,"activeClass":"giscus"},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="手撕论文知识库">
+<meta property="og:type" content="article">
+<meta property="og:title" content="手撕论文知识库">
+<meta property="og:url" content="https://vinyyang.github.io/%E6%89%8B%E6%92%95%E7%9F%A5%E8%AF%86%E5%BA%93/index.html">
+<meta property="og:site_name" content="Viny Yang与CS的邂逅">
+<meta property="og:description" content="手撕论文知识库">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://vinyyang.github.io/%E6%89%8B%E6%92%95%E7%9F%A5%E8%AF%86%E5%BA%93/image-20250219032451598.png">
+<meta property="article:published_time" content="2025-02-18T18:38:36.000Z">
+<meta property="article:modified_time" content="2025-02-18T20:38:54.269Z">
+<meta property="article:author" content="Viny Yang">
+<meta property="article:tag" content="科研知识积累">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://vinyyang.github.io/%E6%89%8B%E6%92%95%E7%9F%A5%E8%AF%86%E5%BA%93/image-20250219032451598.png">
+
+
+<link rel="canonical" href="https://vinyyang.github.io/%E6%89%8B%E6%92%95%E7%9F%A5%E8%AF%86%E5%BA%93/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://vinyyang.github.io/%E6%89%8B%E6%92%95%E7%9F%A5%E8%AF%86%E5%BA%93/","path":"手撕知识库/","title":"手撕论文知识库"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>手撕论文知识库 | Viny Yang与CS的邂逅</title>
+  
+
+  <script src="/js/third-party/analytics/baidu-analytics.js"></script>
+  <script async src="https://hm.baidu.com/hm.js?7d748fca465d5b9edd218c485f0a2579"></script>
+
+
+
+
+
+
+<script src="//sdk.jinrishici.com/v2/browser/jinrishici.js"></script>
+<script>
+  jinrishici.load((result) => {
+    let jrsc = document.getElementById('jrsc');
+    const data = result.data;
+    let author = data.origin.author;
+    let title = '《' + data.origin.title + '》';
+    let content = data.content.substr(0, data.content.length - 1);
+    let dynasty = data.origin.dynasty.substr(0, data.origin.dynasty.length - 1);
+    jrsc.innerText = content + ' @ ' + dynasty + '·' + author + title;
+  });
+</script>
+<div style="text-align: center"><span id="jrsc" >正在加载今日诗词....</span></div>
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="Viny Yang与CS的邂逅" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Viny Yang与CS的邂逅</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">虽千万人吾往矣</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-guestbook"><a href="/guestbook/" rel="section"><i class="fa fa-book fa-fw"></i>留言板</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="搜索..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text">手撕论文知识库</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-number">1.1.</span> <span class="nav-text">Torch</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-number">1.1.1.</span> <span class="nav-text">什么是torch</span></a></li><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-number">1.1.2.</span> <span class="nav-text">torch常用函数和功能</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link"><span class="nav-number">1.1.2.1.</span> <span class="nav-text">张量</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link"><span class="nav-number">1.1.2.1.1.</span> <span class="nav-text">什么是张量</span></a></li><li class="nav-item nav-level-5"><a class="nav-link"><span class="nav-number">1.1.2.1.2.</span> <span class="nav-text">张量的维度</span></a></li><li class="nav-item nav-level-5"><a class="nav-link"><span class="nav-number">1.1.2.1.3.</span> <span class="nav-text">张量相关函数</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link"><span class="nav-number">1.1.2.2.</span> <span class="nav-text">自动求导</span></a></li><li class="nav-item nav-level-4"><a class="nav-link"><span class="nav-number">1.1.2.3.</span> <span class="nav-text">神经网络</span></a></li><li class="nav-item nav-level-4"><a class="nav-link"><span class="nav-number">1.1.2.4.</span> <span class="nav-text">优化器和损失函数</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-number">1.2.</span> <span class="nav-text">OS操作系统接口模块</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Viny Yang"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">Viny Yang</p>
+  <div class="site-description" itemprop="description">陌上花开，可缓缓归矣。</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">4</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/VinyYang" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;VinyYang" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:yhy520@email.swu.edu.cn" title="E-Mail → mailto:yhy520@email.swu.edu.cn" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/images/wechat.png" title="Wechat → &#x2F;images&#x2F;wechat.png" rel="noopener me"><i class="fab fa-weixin fa-fw"></i>Wechat</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/images/qq.png" title="QQ → &#x2F;images&#x2F;qq.png" rel="noopener me"><i class="fab fa-qq fa-fw"></i>QQ</a>
+      </span>
+  </div>
+  <div class="cc-license animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdnjs.cloudflare.com/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/small/by_nc_sa.svg" alt="Creative Commons"></a>
+  </div>
+
+        </div>
+      </div>
+        <div class="back-to-top animated" role="button" aria-label="返回顶部">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+    </div>
+
+    
+    <div class="sidebar-inner sidebar-blogroll">
+      <div class="links-of-blogroll animated">
+        <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+          链接
+        </div>
+        <ul class="links-of-blogroll-list">
+            <li class="links-of-blogroll-item">
+              <a href="https://zhuanlan.zhihu.com/p/618864711" title="https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;618864711" rel="noopener" target="_blank">配置主题</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://zhuanlan.zhihu.com/p/671308695" title="https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;671308695" rel="noopener" target="_blank">重新部署</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://copilot.github.com/" title="https:&#x2F;&#x2F;copilot.github.com&#x2F;" rel="noopener" target="_blank">Copilot</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://chat.deepseek.com/" title="https:&#x2F;&#x2F;chat.deepseek.com&#x2F;" rel="noopener" target="_blank">DeepSeek</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://chatgpt.com/" title="https:&#x2F;&#x2F;chatgpt.com&#x2F;" rel="noopener" target="_blank">ChatGPT</a>
+            </li>
+        </ul>
+      </div>
+    </div>
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://vinyyang.github.io/%E6%89%8B%E6%92%95%E7%9F%A5%E8%AF%86%E5%BA%93/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Viny Yang">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Viny Yang与CS的邂逅">
+      <meta itemprop="description" content="陌上花开，可缓缓归矣。">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="手撕论文知识库 | Viny Yang与CS的邂逅">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          手撕论文知识库
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2025-02-19 02:38:36 / 修改时间：04:38:54" itemprop="dateCreated datePublished" datetime="2025-02-19T02:38:36+08:00">2025-02-19</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%A7%91%E7%A0%94/" itemprop="url" rel="index"><span itemprop="name">科研</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+  <div style="padding-left: 8px;">
+    <span class="post-meta-divider" style="padding-right: 8px;">|</span>
+    <i class="fa fa-thumbtack"></i>
+    <font color=purple style="font-weight: bold; padding-left: 4px;"> 置顶 </font>
+  </div>
+
+
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>7.9k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>14 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p>手撕论文知识库</p>
+<h1><span id="手撕论文知识库">手撕论文知识库</span></h1><h2><span id="torch">Torch</span></h2><h3><span id="什么是torch">什么是torch</span></h3><p>Torch 是 PyTorch 深度学习框架的核心库，具备强大的功能与广泛的用途。它提供了丰富的张量操作，可在 CPU 或 GPU 上高效计算，能轻松处理各类数据；其自动求导机制极大简化了深度学习中梯度计算与反向传播的过程，让模型训练更为便捷。借助<code>torch.nn</code>模块可方便构建如 CNN、RNN 等复杂神经网络架构，<code>torch.optim</code>模块提供多种优化算法用于模型参数更新。此外，Torch 还支持预训练模型的使用与微调，结合可视化工具能助力监控训练过程，广泛应用于图像、自然语言处理、推荐系统等诸多领域。</p>
+<h3><span id="torch常用函数和功能">torch常用函数和功能</span></h3><h4><span id="张量">张量</span></h4><h5><span id="什么是张量">什么是张量</span></h5><p>张量是多维数组的泛化表示，可理解为一个多维的数据容器，零维张量是标量，一维张量是向量，二维张量是矩阵，三维及以上则是更高阶的张量。在深度学习里，使用张量是因为它能够高效地表示和处理大量的数据，像图像可表示为三维张量（高度、宽度、通道数），视频可表示为四维张量（帧数、高度、宽度、通道数）。并且，深度学习框架（如 PyTorch）针对张量运算进行了高度优化，能利用 GPU 等硬件加速计算，张量还能自然地支持自动求导机制，方便进行模型训练时的梯度计算和参数更新。</p>
+<p>张量是 PyTorch 中最基础的数据结构，类似于 NumPy 的多维数组，但它可以在 GPU 上进行加速计算，并且支持自动求导等深度学习所需的特性。</p>
+<h5><span id="张量的维度">张量的维度</span></h5><p>维度（也称为轴）是指张量在某个方向上的延伸。可以将维度理解为数据组织的一个方向或一个层次，类似于在地理坐标系统中，经度和纬度分别代表了不同的方向，张量的每个维度也代表了数据的一个特定方向的排列。维度的数量被称为张量的阶（rank），零阶张量是标量（一个单独的数值），一阶张量是向量（一维数组），二阶张量是矩阵（二维数组），三阶及以上的张量则用于表示更复杂的数据结构。</p>
+<p><strong>注：维度从0开始算起，比如对于二阶张量，维度0代表行，维度1代表列</strong></p>
+<p><strong>另：维度排列遵循（$a_n$, $a_{n-1}$, …, $a_1$）的形式，数字越前代表越高维的堆叠。比如<code>torch.zeros((2, 3, 4, 5))</code>，那就是两个三维（三层）的4x5矩阵叠在一起</strong></p>
+<p><strong>1.零阶张量（标量）</strong></p>
+<p>零阶张量只有一个数值，它没有方向的概念，维度数量为 0。例如这里的 <code>scalar</code> 就是一个零阶张量，它代表一个单一的数值，不涉及方向或多个元素的排列。</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch</span><br><span class="line">scalar = torch.tensor(<span class="number">5</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;标量的维度数量:&quot;</span>, scalar.dim()) </span><br></pre></td></tr></table></figure>
+
+<p><strong>2.一阶张量（向量）</strong></p>
+<p>一阶张量可以看作是一个向量，它有一个维度。这个维度代表了向量中元素的排列方向，向量的长度就是这个维度的大小。例如<code>vector</code> 是一个一阶张量，维度数量为 1，该维度的大小为 4，表示向量中有 4 个元素。</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">vector = torch.tensor([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>])</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;向量的维度数量:&quot;</span>, vector.dim()) </span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;向量在该维度的大小:&quot;</span>, vector.size(<span class="number">0</span>)) </span><br></pre></td></tr></table></figure>
+
+<p><strong>3.二阶张量（矩阵）</strong></p>
+<p>二阶张量是一个矩阵，有两个维度，通常称为行和列。第一个维度代表矩阵的行方向，第二个维度代表矩阵的列方向。例如<code>matrix</code> 是一个 2 行 3 列的矩阵，第一个维度的大小为 2 表示有 2 行，第二个维度的大小为 3 表示有 3 列。</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">matrix = torch.tensor([[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>], [<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>]])</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;矩阵的维度数量:&quot;</span>, matrix.dim()) </span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;矩阵第一个维度（行）的大小:&quot;</span>, matrix.size(<span class="number">0</span>)) </span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;矩阵第二个维度（列）的大小:&quot;</span>, matrix.size(<span class="number">1</span>)) </span><br></pre></td></tr></table></figure>
+
+<p><strong>4.高阶张量（图像、视频等）</strong></p>
+<p>对于三阶及以上的张量，维度的含义更加丰富，通常与具体的数据类型和应用场景相关。</p>
+<p><strong>图像数据</strong>：在处理图像时，通常使用三阶张量。例如，一张彩色图像可以表示为一个形状为 <code>(高度, 宽度, 通道数)</code> 的三阶张量。这里的第一个维度代表图像的高度方向，第二个维度代表图像的宽度方向，第三个维度代表图像的通道（如 RGB 三个通道）。</p>
+<p><code>image = torch.randn(224, 224, 3)</code> 这行代码能够随机生成一个形状为 <code>(224, 224, 3)</code> 的张量来模拟图像的三通道数值。</p>
+<p>由于 <code>torch.randn()</code> 生成的是服从标准正态分布的随机数，这些数值可能为负数，也可能超出了常见图像像素值的范围（通常是 0 - 255 或者 0 - 1）。在实际的图像处理任务中，如果需要模拟真实图像，可能需要对这些随机值进行进一步的处理，例如通过归一化或裁剪操作将其限制在合适的范围内。</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">image = torch.randn(<span class="number">224</span>, <span class="number">224</span>, <span class="number">3</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;图像张量的维度数量:&quot;</span>, image.dim()) </span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;图像高度维度的大小:&quot;</span>, image.size(<span class="number">0</span>)) </span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;图像宽度维度的大小:&quot;</span>, image.size(<span class="number">1</span>)) </span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;图像通道维度的大小:&quot;</span>, image.size(<span class="number">2</span>)) </span><br></pre></td></tr></table></figure>
+
+<p><img src="/./%E6%89%8B%E6%92%95%E7%9F%A5%E8%AF%86%E5%BA%93/image-20250219032451598.png" alt="image-20250219032451598"></p>
+<p><strong>视频数据</strong>：视频可以看作是一系列的图像帧，因此可以用四阶张量表示，形状通常为 <code>(帧数, 高度, 宽度, 通道数)</code>。第一个维度代表视频中的帧数，其余维度与图像张量的含义相同。</p>
+<p>*<strong>5.通道</strong></p>
+<p>通道指图像中特定类型信息的集合，图像可含一个或多个通道，各通道存储图像某方面特征数据。像单通道存亮度，RGB 三通道分别存红、绿、蓝颜色信息，四通道还多了透明度通道，以此组合完整呈现图像。</p>
+<p>通道能实现颜色表示与混合，如 RGB 三通道通过不同数值组合呈现丰富色彩；可用于特征提取与分析，不同通道提供不同特征，助力图像分析和目标识别；还能用于图像合成与特效制作，借助透明度通道可控制图像透明效果实现合成。</p>
+<p>在图片里，灰度图用单通道呈现黑白影像；彩色照片靠 RGB 三通道展示多彩画面；PNG 图片利用四通道含透明度信息实现图像融合。视频是连续的图片帧，同样利用通道来呈现色彩、进行特效处理，如影视中常见的抠图合成场景就借助了通道特性。</p>
+<h5><span id="张量相关函数">张量相关函数</span></h5><p><strong>1.创建</strong></p>
+<ul>
+<li><p>创建张量<code>torch.tensor()</code></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch</span><br><span class="line">data = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</span><br><span class="line">tensor = torch.tensor(data)</span><br></pre></td></tr></table></figure></li>
+</ul>
+<p>当你有现有的数据存储在 Python 列表或 NumPy 数组中，并且需要将其输入到 PyTorch 模型进行计算时使用。例如，在加载数据集后，将数据转换为张量形式以便后续处理。</p>
+<p>从数据存储的角度来看，<code>tensor</code> 存储了 Python 列表 <code>data</code> 中的元素 <code>[1, 2, 3]</code>。它将这些数据以一种高效的、适合计算机处理的方式组织起来，存储在内存中。在这个例子中，<code>tensor</code> 是一个一维张量，形状为 <code>(3,)</code>，这意味着它包含 3 个元素。</p>
+<p>在数学运算方面，<code>tensor</code> 可以参与各种数学运算，如加法、乘法、矩阵乘法等。PyTorch 为张量提供了丰富的数学运算函数，这些运算可以在 CPU 或 GPU 上高效执行。</p>
+<p>在深度学习的上下文中，<code>tensor</code> 是模型输入、输出以及参数的基本表示形式。例如，在一个简单的全连接神经网络中，输入数据会被转换为张量输入到网络中，网络的权重和偏置也是以张量的形式存储和更新的。在上述例子中，<code>tensor</code> 可以作为一个简单的输入数据示例，如果要构建一个神经网络处理这个输入，可能会进行如下操作（以下是一个简单示例）：</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"><span class="keyword">import</span> torch.nn <span class="keyword">as</span> nn</span><br><span class="line"></span><br><span class="line"><span class="comment"># 定义一个简单的全连接层</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">SimpleNet</span>(nn.Module):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="built_in">super</span>(SimpleNet, <span class="variable language_">self</span>).__init__()</span><br><span class="line">        <span class="variable language_">self</span>.fc = nn.Linear(<span class="number">3</span>, <span class="number">1</span>)  <span class="comment"># 输入维度为 3，输出维度为 1</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">forward</span>(<span class="params">self, x</span>):</span><br><span class="line">        <span class="keyword">return</span> <span class="variable language_">self</span>.fc(x)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建模型实例</span></span><br><span class="line">model = SimpleNet()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 准备输入数据</span></span><br><span class="line">data = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</span><br><span class="line">tensor = torch.tensor(data, dtype=torch.float32).unsqueeze(<span class="number">0</span>)  <span class="comment"># 转换为适合输入模型的形状</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 进行前向传播</span></span><br><span class="line">output = model(tensor)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;模型输出:&quot;</span>, output)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>创建全零张量<code>torch.zeros()</code></p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">zeros_tensor = torch.zeros((<span class="number">2</span>, <span class="number">3</span>))</span><br></pre></td></tr></table></figure></li>
+</ul>
+<p>常用于初始化某些变量，如在初始化神经网络的偏置项时，可使用全零张量。另外，在需要填充零值进行数据预处理或占位时也会用到。</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">创建的全零张量：</span><br><span class="line">tensor([[<span class="number">0.</span>, <span class="number">0.</span>, <span class="number">0.</span>],</span><br><span class="line">        [<span class="number">0.</span>, <span class="number">0.</span>, <span class="number">0.</span>]])</span><br><span class="line">张量的形状： torch.Size([<span class="number">2</span>, <span class="number">3</span>])</span><br></pre></td></tr></table></figure>
+
+<p>传入的参数 <code>(2, 3)</code>对应创建的 <code>zeros_tensor</code> 是一个 2 行 3 列的二维张量。如果使用 <code>torch.zeros((2, 3, 4))</code> 这样的代码，那么创建的就是一个三维张量，其中 <code>2</code> 表示最外层维度的大小（可以想象成有 2 个二维矩阵堆叠在一起），<code>3</code> 表示每个二维矩阵的行数，<code>4</code> 表示每个二维矩阵的列数。依此类推，对于更高维的张量，每个数字都代表对应维度上的大小。相当于高是2，行是3，列是4</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">创建的全零张量：</span><br><span class="line">tensor([[[<span class="number">0.</span>, <span class="number">0.</span>, <span class="number">0.</span>, <span class="number">0.</span>],</span><br><span class="line">         [<span class="number">0.</span>, <span class="number">0.</span>, <span class="number">0.</span>, <span class="number">0.</span>],</span><br><span class="line">         [<span class="number">0.</span>, <span class="number">0.</span>, <span class="number">0.</span>, <span class="number">0.</span>]],</span><br><span class="line"></span><br><span class="line">        [[<span class="number">0.</span>, <span class="number">0.</span>, <span class="number">0.</span>, <span class="number">0.</span>],</span><br><span class="line">         [<span class="number">0.</span>, <span class="number">0.</span>, <span class="number">0.</span>, <span class="number">0.</span>],</span><br><span class="line">         [<span class="number">0.</span>, <span class="number">0.</span>, <span class="number">0.</span>, <span class="number">0.</span>]]])</span><br><span class="line">张量的形状： torch.Size([<span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>])</span><br></pre></td></tr></table></figure>
+
+<p>如果是<code>torch.zeros((2, 3, 4, 5))</code>，那就是两个三维（三层）的4x5矩阵叠在一起，数字越前就代表越高维的堆叠。</p>
+<ul>
+<li><p>创建全一张量**<code>torch.ones()</code>**</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ones_tensor = torch.ones((<span class="number">2</span>, <span class="number">3</span>))</span><br></pre></td></tr></table></figure></li>
+</ul>
+<p>与 <code>torch.zeros()</code> 类似，可用于初始化特定变量。在一些归一化操作或需要特定初始值为 1 的场景中会使用。</p>
+<ul>
+<li><p>创建指定形状的随机张量，元素值在[0 , 1)之间**<code>torch.rand()</code>**</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">random_tensor = torch.rand((<span class="number">2</span>, <span class="number">3</span>))</span><br></pre></td></tr></table></figure></li>
+</ul>
+<p>在初始化神经网络的权重时，随机初始化是常见的做法，可使用 <code>torch.rand()</code> 生成初始权重张量。</p>
+<p><strong>2.操作</strong></p>
+<ul>
+<li><p><strong><code>torch.cat()</code></strong>：用于在指定维度上拼接多个张量。</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">a = torch.tensor([[<span class="number">1</span>, <span class="number">2</span>], [<span class="number">3</span>, <span class="number">4</span>]])</span><br><span class="line">b = torch.tensor([[<span class="number">5</span>, <span class="number">6</span>], [<span class="number">7</span>, <span class="number">8</span>]])</span><br><span class="line">c = torch.cat((a, b), dim=<span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+
+<p>当需要将多个张量合并为一个更大的张量时使用。例如，在处理多模态数据时，将不同模态的特征张量拼接在一起。</p>
+<p><code>torch.cat((a, b), dim=1)</code> 表示在维度 1（列方向）上对张量 <code>a</code> 和 <code>b</code> 进行拼接。可以看到，拼接后的张量 <code>c</code> 是将 <code>a</code> 和 <code>b</code> 的列进行了合并，行数不变，列数变为原来两个张量列数之和。在处理多模态数据时，比如一个模态的数据特征用张量 <code>a</code> 表示，另一个模态的数据特征用张量 <code>b</code> 表示，通过这种拼接操作可以将不同模态的特征合并在一起，方便后续的处理。</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">张量 a：</span><br><span class="line">tensor([[<span class="number">1</span>, <span class="number">2</span>],</span><br><span class="line">        [<span class="number">3</span>, <span class="number">4</span>]])</span><br><span class="line">张量 b：</span><br><span class="line">tensor([[<span class="number">5</span>, <span class="number">6</span>],</span><br><span class="line">        [<span class="number">7</span>, <span class="number">8</span>]])</span><br><span class="line">拼接后的张量 c：</span><br><span class="line">tensor([[<span class="number">1</span>, <span class="number">2</span>, <span class="number">5</span>, <span class="number">6</span>],</span><br><span class="line">        [<span class="number">3</span>, <span class="number">4</span>, <span class="number">7</span>, <span class="number">8</span>]])</span><br></pre></td></tr></table></figure>
+
+<p>在二维张量的语境下，维度 0 代表行方向。<code>torch.cat((a, b), dim=0)</code> 会将张量 <code>b</code> 按行的顺序拼接到张量 <code>a</code> 的下方，拼接后的张量列数不变，行数为原来两个张量行数之和。在实际应用中，若 <code>a</code> 和 <code>b</code> 分别表示两组样本数据，在维度 0 上拼接就相当于将这两组样本合并成一组更大的样本集。</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">张量 a：</span><br><span class="line">tensor([[<span class="number">1</span>, <span class="number">2</span>],</span><br><span class="line">        [<span class="number">3</span>, <span class="number">4</span>]])</span><br><span class="line">张量 b：</span><br><span class="line">tensor([[<span class="number">5</span>, <span class="number">6</span>],</span><br><span class="line">        [<span class="number">7</span>, <span class="number">8</span>]])</span><br><span class="line">在维度 <span class="number">0</span> 上拼接后的张量 c：</span><br><span class="line">tensor([[<span class="number">1</span>, <span class="number">2</span>],</span><br><span class="line">        [<span class="number">3</span>, <span class="number">4</span>],</span><br><span class="line">        [<span class="number">5</span>, <span class="number">6</span>],</span><br><span class="line">        [<span class="number">7</span>, <span class="number">8</span>]])</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong><code>torch.reshape()</code></strong>：改变张量的形状。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">x = torch.tensor([1, 2, 3, 4])</span><br><span class="line">reshaped_x = torch.reshape(x, (2, 2))</span><br></pre></td></tr></table></figure>
+
+<p>在神经网络中，不同层之间的数据形状可能需要进行调整，使用 <code>torch.reshape()</code> 可以方便地改变张量形状以满足层的输入要求。</p>
+<p><code>torch.reshape(x, (2, 2))</code> 是将一维张量 <code>x</code> 重塑为二维张量 <code>reshaped_x</code>，形状为 <code>(2, 2)</code>。在神经网络中，不同层之间的数据形状可能不匹配，例如某一层的输出是一维向量，而后续层需要二维矩阵作为输入，这时就可以使用 <code>torch.reshape()</code> 来调整数据的形状，使其满足层的输入要求。</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">原始张量 x：</span><br><span class="line">tensor([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>])</span><br><span class="line">重塑后的张量 reshaped_x：</span><br><span class="line">tensor([[<span class="number">1</span>, <span class="number">2</span>],</span><br><span class="line">        [<span class="number">3</span>, <span class="number">4</span>]])</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong><code>torch.transpose()</code></strong>：交换张量的两个维度。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">x = torch.tensor([[1, 2], [3, 4]])</span><br><span class="line">transposed_x = torch.transpose(x, 0, 1)</span><br></pre></td></tr></table></figure>
+
+<p>在矩阵运算中，有时需要对矩阵进行转置操作。在图像处理中，可能需要调整图像张量的维度顺序。</p>
+<p><code>torch.transpose(x, 0, 1)</code> 表示交换张量 <code>x</code> 的第 0 维和第 1 维。在这个二维矩阵的例子中，就是对矩阵进行了转置操作，原来的行变成了列，列变成了行。在矩阵运算中，矩阵转置是一个常见的操作，例如在计算矩阵乘法时可能需要对矩阵进行转置。在图像处理中，图像张量的维度顺序可能需要调整，比如将 <code>(高度, 宽度, 通道数)</code> 调整为 <code>(通道数, 高度, 宽度)</code> 以适应某些模型的输入要求，这时就可以使用 <code>torch.transpose()</code> 来实现。</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">原始张量 x：</span><br><span class="line">tensor([[<span class="number">1</span>, <span class="number">2</span>],</span><br><span class="line">        [<span class="number">3</span>, <span class="number">4</span>]])</span><br><span class="line">转置后的张量 transposed_x：</span><br><span class="line">tensor([[<span class="number">1</span>, <span class="number">3</span>],</span><br><span class="line">        [<span class="number">2</span>, <span class="number">4</span>]])</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h4><span id="自动求导">自动求导</span></h4><p><code>requires_grad</code> 和 <code>backward()</code></p>
+<p>设置张量的 <code>requires_grad=True</code> 来跟踪其操作，使用 <code>backward()</code> 计算梯度。</p>
+<p>在深度学习模型训练中，需要计算损失函数关于模型参数的梯度，以便使用优化算法更新参数。通过设置参数张量的 <code>requires_grad=True</code>，可以利用自动求导机制自动计算梯度。</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">x = torch.tensor([<span class="number">2.0</span>], requires_grad=<span class="literal">True</span>)</span><br><span class="line">y = x ** <span class="number">2</span></span><br><span class="line">y.backward()</span><br><span class="line"><span class="built_in">print</span>(x.grad)  <span class="comment"># 输出 4.0</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h4><span id="神经网络">神经网络</span></h4><p>1.<code>torch.nn.Linear</code>定义全连接层。全连接层常用于多层感知机（MLP）中，用于将输入特征映射到输出特征。</p>
+<p>输入张量 <code>input_tensor = torch.randn(1, 10)</code> ，形状为 <code>(1, 10)</code>，这里的 <code>1</code> 表示样本数量为 1，<code>10</code> 表示每个样本具有 10 个特征，这与全连接层定义的输入维度 <code>in_features = 10</code> 相匹配。可以把维度理解为10个特征，因此<code>torch.randn(1, 10)</code>就是一个10维向量（有10个数对应10个特征）</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch.nn <span class="keyword">as</span> nn</span><br><span class="line"></span><br><span class="line">linear_layer = nn.Linear(<span class="number">10</span>, <span class="number">5</span>)  <span class="comment"># 输入维度为 10，输出维度为 5</span></span><br><span class="line">input_tensor = torch.randn(<span class="number">1</span>, <span class="number">10</span>)</span><br><span class="line">output = linear_layer(input_tensor)</span><br></pre></td></tr></table></figure>
+
+
+
+<p>2.<code>torch.nn.Conv2d</code>定义二维卷积层。在计算机视觉领域，卷积层广泛应用于图像分类、目标检测、语义分割等任务中，用于提取图像的特征。</p>
+<p>①<code>out_channels = 16</code> 的含义</p>
+<ul>
+<li><strong>输出通道的数量</strong>：<code>out_channels</code> 表示卷积层输出特征图的通道数量。在卷积神经网络（CNN）中，卷积层通过一系列卷积核在输入特征图上滑动进行卷积操作，每个卷积核会生成一个对应的输出特征图。这里 <code>out_channels = 16</code> 意味着该卷积层使用了 16 个不同的卷积核，每个卷积核会对输入特征图进行卷积计算，最终会输出 16 个特征图，这些特征图共同构成了卷积层的输出，且输出的通道数为 16。</li>
+<li><strong>特征提取的多样性</strong>：不同的卷积核可以学习到输入图像的不同特征，例如边缘、纹理、颜色等。通过设置多个输出通道，卷积层能够从输入图像中提取多种不同类型的特征，从而丰富了模型对图像特征的表达能力。在后续的网络层中，这些提取到的特征会被进一步处理和组合，用于完成图像分类、目标检测等任务。</li>
+</ul>
+<p>②<code>kernel_size = 3</code> 的含义</p>
+<ul>
+<li><strong>卷积核的大小</strong>：<code>kernel_size</code> 定义了卷积核的尺寸。<code>kernel_size = 3</code> 表示使用的是一个 3x3 的卷积核。卷积核是一个小的二维矩阵，在卷积操作中，它会在输入特征图上逐行逐列地滑动，与输入特征图的对应区域进行元素相乘并求和，从而得到输出特征图的一个元素。</li>
+<li><strong>特征感受野</strong>：卷积核的大小决定了卷积层的感受野，即输出特征图上的一个元素受到输入特征图上多大区域的影响。一个 3x3 的卷积核意味着输出特征图上的每个元素是由输入特征图上一个 3x3 的区域计算得到的，它能够捕捉到输入图像中 3x3 邻域内的局部特征。较大的卷积核可以捕捉到更大范围的特征，但同时也会增加模型的参数数量和计算量；较小的卷积核则更侧重于捕捉局部细节特征，并且计算效率更高。</li>
+</ul>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">conv_layer = nn.Conv2d(in_channels=<span class="number">3</span>, out_channels=<span class="number">16</span>, kernel_size=<span class="number">3</span>)</span><br><span class="line">input_image = torch.randn(<span class="number">1</span>, <span class="number">3</span>, <span class="number">224</span>, <span class="number">224</span>)  <span class="comment"># 假设输入为 1 张 3 通道、224x224 的图像</span></span><br><span class="line">output = conv_layer(input_image)</span><br></pre></td></tr></table></figure>
+
+
+
+<p>3.<code>torch.nn.ReLU</code>定义 ReLU 激活函数层。激活函数用于引入非线性，使得神经网络能够学习更复杂的函数。ReLU 是一种常用的激活函数，在许多神经网络架构中都有应用。</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">relu = nn.ReLU()</span><br><span class="line">input_tensor = torch.randn(<span class="number">1</span>, <span class="number">10</span>)</span><br><span class="line">output = relu(input_tensor)</span><br></pre></td></tr></table></figure>
+
+
+
+<h4><span id="优化器和损失函数">优化器和损失函数</span></h4><p>1.<code>torch.optim.SGD</code>定义随机梯度下降优化器。在模型训练过程中，需要使用优化器来更新模型的参数。SGD 是一种基本的优化算法，适用于大多数场景。</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch.optim <span class="keyword">as</span> optim</span><br><span class="line"></span><br><span class="line">model = nn.Linear(<span class="number">10</span>, <span class="number">5</span>)</span><br><span class="line">optimizer = optim.SGD(model.parameters(), lr=<span class="number">0.01</span>)</span><br></pre></td></tr></table></figure>
+
+<p>2.<code>torch.nn.MSELoss</code>定义均方误差损失函数。均方误差损失函数常用于回归问题，用于衡量预测值与真实值之间的差异。</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">criterion = nn.MSELoss()</span><br><span class="line">predictions = torch.randn(<span class="number">1</span>, <span class="number">5</span>)</span><br><span class="line">targets = torch.randn(<span class="number">1</span>, <span class="number">5</span>)</span><br><span class="line">loss = criterion(predictions, targets)</span><br></pre></td></tr></table></figure>
+
+<p>3.<code>torch.nn.CrossEntropyLoss</code>定义交叉熵损失函数。交叉熵损失函数常用于分类问题，用于衡量模型输出的概率分布与真实标签之间的差异。</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">criterion = nn.CrossEntropyLoss()</span><br><span class="line">logits = torch.randn(<span class="number">1</span>, <span class="number">5</span>)</span><br><span class="line">targets = torch.tensor([<span class="number">1</span>])</span><br><span class="line">loss = criterion(logits, targets)</span><br></pre></td></tr></table></figure>
+
+<h2><span id="os操作系统接口模块">OS操作系统接口模块</span></h2>
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer"><script src="//sdk.jinrishici.com/v2/browser/jinrishici.js"></script>
+<script>
+  jinrishici.load((result) => {
+    let jrsc = document.getElementById('jrsc');
+    const data = result.data;
+    let author = data.origin.author;
+    let title = '《' + data.origin.title + '》';
+    let content = data.content.substr(0, data.content.length - 1);
+    let dynasty = data.origin.dynasty.substr(0, data.origin.dynasty.length - 1);
+    jrsc.innerText = content + ' @ ' + dynasty + '·' + author + title;
+  });
+</script>
+<div style="text-align: center"><span id="jrsc" >正在加载今日诗词....</span></div>
+          <div class="reward-container">
+  <div>请我一杯咖啡吧！</div>
+  <button>
+    赞赏
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="/images/wechatpay.png" alt="Viny Yang 微信">
+        <span>微信</span>
+      </div>
+      <div>
+        <img src="/images/alipay.png" alt="Viny Yang 支付宝">
+        <span>支付宝</span>
+      </div>
+
+  </div>
+</div>
+
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>Viny Yang
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://vinyyang.github.io/%E6%89%8B%E6%92%95%E7%9F%A5%E8%AF%86%E5%BA%93/" title="手撕论文知识库">https://vinyyang.github.io/手撕知识库/</a>
+  </li>
+  <li class="post-copyright-license">
+      <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/%E7%A7%91%E7%A0%94%E7%9F%A5%E8%AF%86%E7%A7%AF%E7%B4%AF/" rel="tag"><i class="fa fa-tag"></i> 科研知识积累</a>
+          </div>
+
+        
+  <div class="social-like a2a_kit a2a_kit_size_32 a2a_default_style">
+    <a class="a2a_dd" target="_blank" rel="noopener" href="https://www.addtoany.com/share"></a>
+      <a class="a2a_button_wechat"></a>
+  </div>
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/%E6%89%8B%E6%92%95nerfmm/" rel="prev" title="手撕OCC-NeRF:Occlusion-Free Scene Recovery via Neural Radiance Fields">
+                  <i class="fa fa-angle-left"></i> 手撕OCC-NeRF:Occlusion-Free Scene Recovery via Neural Radiance Fields
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    
+  
+  <div class="comments giscus-container">
+  </div>
+  
+  
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Viny Yang</span>
+  </div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">18k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">32 分钟</span>
+  </span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+<!-- 网站运行时间的设置 -->
+<span id="timeDate">载入天数...</span>
+<span id="times">载入时分秒...</span>
+<script>
+    var now = new Date();
+    function createtime() {
+        var grt= new Date("03/01/2023 10:00:00"); //此处修改你的建站时间或者网站上线时间
+        now.setTime(now.getTime()+250);
+        days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days);
+        hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours);
+        if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+        mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;}
+        seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+        snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;}
+        document.getElementById("timeDate").innerHTML = "本站已安全运行 "+dnum+" 天 ";
+        document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒.";
+    }
+setInterval("createtime()",250);
+</script>
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="reading-progress-bar"></div>
+
+  <a href="https://github.com/VinyYang" class="github-corner" title="在 GitHub 上关注我" aria-label="在 GitHub 上关注我" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancyapps-ui/5.0.31/fancybox/fancybox.umd.js" integrity="sha256-a+H7FYzJv6oU2hfsfDGM2Ohw/cR9v+hPfxHCLdmCrE8=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pangu/4.0.7/pangu.min.js" integrity="sha256-j+yj56cdEY2CwkVtGyz18fNybFGpMGJ8JxG3GSyO2+I=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+  <script class="next-config" data-name="pdf" type="application/json">{"object_url":{"url":"https://cdnjs.cloudflare.com/ajax/libs/pdfobject/2.3.0/pdfobject.min.js","integrity":"sha256-JJZNsid68vnh3/zyj0lY9BN5ynxVX/12XgOa1TlaYN0="},"url":"/lib/pdf/web/viewer.html"}</script>
+  <script src="/js/third-party/tags/pdf.js"></script>
+
+  <script class="next-config" data-name="mermaid" type="application/json">{"enable":true,"theme":{"light":"default","dark":"dark"},"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mermaid/11.4.0/mermaid.min.js","integrity":"sha256-G8ouPAnw4zzMbnAenHnVz6h9XpKbNdOkrqTh7AadyHs="}}</script>
+  <script src="/js/third-party/tags/mermaid.js"></script>
+
+
+  <script src="/js/third-party/fancybox.js"></script>
+
+  <script src="/js/third-party/pace.js"></script>
+
+  <script src="/js/third-party/addtoany.js"></script>
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"all","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+<script class="next-config" data-name="giscus" type="application/json">{"enable":true,"repo":"VinyYang/VinyYang.github.io","repo_id":"R_kgDON5FgxA","category":"Announcements","category_id":"DIC_kwDON5FgxM4Cm-MG","mapping":"pathname","strict":0,"reactions_enabled":1,"emit_metadata":0,"theme":"light","lang":"zh-CN","crossorigin":"anonymous","input_position":"bottom","loading":"lazy"}</script>
+
+<script>
+document.addEventListener('page:loaded', () => {
+  if (!CONFIG.page.comments) return;
+
+  NexT.utils.loadComments('.giscus-container')
+    .then(() => NexT.utils.getScript('https://giscus.app/client.js', {
+      attributes: {
+        async                   : true,
+        crossOrigin             : 'anonymous',
+        'data-repo'             : CONFIG.giscus.repo,
+        'data-repo-id'          : CONFIG.giscus.repo_id,
+        'data-category'         : CONFIG.giscus.category,
+        'data-category-id'      : CONFIG.giscus.category_id,
+        'data-mapping'          : CONFIG.giscus.mapping,
+        'data-strict'           : CONFIG.giscus.strict,
+        'data-reactions-enabled': CONFIG.giscus.reactions_enabled,
+        'data-emit-metadata'    : CONFIG.giscus.emit_metadata,
+        'data-theme'            : CONFIG.giscus.theme,
+        'data-lang'             : CONFIG.giscus.lang,
+        'data-input-position'   : CONFIG.giscus.input_position,
+        'data-loading'          : CONFIG.giscus.loading
+      },
+      parentNode: document.querySelector('.giscus-container')
+    }));
+});
+</script>
+
+</body>
+</html>

@@ -6,7 +6,7 @@
   <link href="https://vinyyang.github.io/atom.xml" rel="self"/>
   
   <link href="https://vinyyang.github.io/"/>
-  <updated>2025-02-18T17:15:55.450Z</updated>
+  <updated>2025-02-18T20:38:54.269Z</updated>
   <id>https://vinyyang.github.io/</id>
   
   <author>
@@ -15,6 +15,44 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>手撕论文知识库</title>
+    <link href="https://vinyyang.github.io/%E6%89%8B%E6%92%95%E7%9F%A5%E8%AF%86%E5%BA%93/"/>
+    <id>https://vinyyang.github.io/%E6%89%8B%E6%92%95%E7%9F%A5%E8%AF%86%E5%BA%93/</id>
+    <published>2025-02-18T18:38:36.000Z</published>
+    <updated>2025-02-18T20:38:54.269Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;手撕论文知识库&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="科研" scheme="https://vinyyang.github.io/categories/%E7%A7%91%E7%A0%94/"/>
+    
+    
+    <category term="科研知识积累" scheme="https://vinyyang.github.io/tags/%E7%A7%91%E7%A0%94%E7%9F%A5%E8%AF%86%E7%A7%AF%E7%B4%AF/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>手撕OCC-NeRF:Occlusion-Free Scene Recovery via Neural Radiance Fields</title>
+    <link href="https://vinyyang.github.io/%E6%89%8B%E6%92%95nerfmm/"/>
+    <id>https://vinyyang.github.io/%E6%89%8B%E6%92%95nerfmm/</id>
+    <published>2025-02-18T18:26:47.000Z</published>
+    <updated>2025-02-18T20:39:04.267Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;复现论文：OCC-NeRF: Occlusion-Free Scene Recovery via Neural Radiance Fields&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="科研" scheme="https://vinyyang.github.io/categories/%E7%A7%91%E7%A0%94/"/>
+    
+    
+    <category term="论文复现" scheme="https://vinyyang.github.io/tags/%E8%AE%BA%E6%96%87%E5%A4%8D%E7%8E%B0/"/>
+    
+  </entry>
   
   <entry>
     <title>如何用hexo新建文件并上传/如何用hexo插入图片（next主题）</title>
@@ -40,7 +78,7 @@
     <link href="https://vinyyang.github.io/algorithm_learning/"/>
     <id>https://vinyyang.github.io/algorithm_learning/</id>
     <published>2025-02-13T20:42:29.000Z</published>
-    <updated>2025-02-17T09:11:09.641Z</updated>
+    <updated>2025-02-18T20:39:14.188Z</updated>
     
     
     <summary type="html">&lt;p&gt;算法基础课&lt;/p&gt;</summary>
