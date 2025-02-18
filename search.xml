@@ -132,7 +132,7 @@
   </entry>
   <entry>
     <title>如何用hexo新建文件并上传/如何用hexo插入图片（next主题）</title>
-    <url>/hexo-maintanance/</url>
+    <url>/hexo_maintanance/</url>
     <content><![CDATA[<p>hexo（博主采用next主题）日常维护教程</p>
 <h1 id="修改scaffolds-post-md（默认标题文件）"><a href="#修改scaffolds-post-md（默认标题文件）" class="headerlink" title="修改scaffolds&#x2F;post.md（默认标题文件）"></a>修改scaffolds&#x2F;post.md（默认标题文件）</h1><p>注意修改时不要把中文加进去，在此只起到注释作用</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">title: &#123;&#123; title &#125;&#125;</span><br><span class="line">date: &#123;&#123; date &#125;&#125;</span><br><span class="line">tags:([1,2]设置同时属于不同类别可以这样)</span><br><span class="line">categories:</span><br><span class="line">top:(表示置顶情况，不置顶不填即可数字大小代表置顶顺序，数字越大排序越前)</span><br></pre></td></tr></table></figure>
