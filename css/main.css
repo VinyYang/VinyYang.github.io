@@ -1349,7 +1349,7 @@ pre code {
     vertical-align: middle;
   }
   .links-of-author a::before {
-    background: #1a2222;
+    background: #5d83ff;
     display: inline-block;
     margin-right: 3px;
     transform: translateY(-2px);
@@ -2980,11 +2980,11 @@ span.site-state-item-name {
 span.site-state-item-count {
   color: #fff;
 }
-a[href^="https://github.com/vinyyang"] {
+a[href="https://github.com/VinyYang"]:not([href^="mailto"]):not([href^="/images/"]) {
   color: #fff;
   text-decoration: none;
 }
-a[href^="https://github.com/vinyyang"] i.fab {
+a[href="https://github.com/VinyYang"] i.fab {
   color: #fff;
 }
 a[href^="mailto:yhy520@email.swu.edu.cn"] {
@@ -2994,14 +2994,14 @@ a[href^="mailto:yhy520@email.swu.edu.cn"] {
 a[href^="mailto:yhy520@email.swu.edu.cn"] i.fa {
   color: #fff;
 }
-a[href^="/images/wechat.png"] {
+a[href^="/images/wechat.png"]:not([href^="mailto"]):not([href^="https://github.com"]) {
   color: #fff;
   text-decoration: none;
 }
 a[href^="/images/wechat.png"] i.fab {
   color: #fff;
 }
-a[href^="/images/qq.png"] {
+a[href^="/images/qq.png"]:not([href^="mailto"]):not([href^="https://github.com"]) {
   color: #fff;
   text-decoration: none;
 }
