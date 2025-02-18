@@ -2,7 +2,7 @@
 <search>
   <entry>
     <title>算法基础课(持续更新中)</title>
-    <url>/vinyyang/algorithm_learning/</url>
+    <url>/algorithm_learning/</url>
     <content><![CDATA[<p>算法基础课</p>
 <p>(置顶加一行top，数字控制top顺序)</p>
 <h1 id="算法基础课"><a href="#算法基础课" class="headerlink" title="算法基础课"></a>算法基础课</h1><h2 id="基础算法（一）"><a href="#基础算法（一）" class="headerlink" title="基础算法（一）"></a>基础算法（一）</h2><h3 id="快速排序"><a href="#快速排序" class="headerlink" title="快速排序"></a>快速排序</h3><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">quick_sort</span><span class="params">(<span class="type">int</span> q[],<span class="type">int</span> l,<span class="type">int</span> r)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(l&gt;=r)<span class="keyword">return</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="type">int</span> i=l<span class="number">-1</span>,j=r<span class="number">+1</span>,x=q[l+r&gt;&gt;<span class="number">1</span>];</span><br><span class="line">    <span class="keyword">while</span>(i&lt;j)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">do</span> i++;<span class="keyword">while</span>(q[i]&lt;x);</span><br><span class="line">        <span class="keyword">do</span> j--;<span class="keyword">while</span>(q[j]&gt;x);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">quick_sort</span>(q,l,j);</span><br><span class="line">    <span class="built_in">quick_sort</span>(q,j<span class="number">+1</span>,r);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -132,7 +132,7 @@
   </entry>
   <entry>
     <title>如何用hexo新建文件并上传/如何用hexo插入图片（next主题）</title>
-    <url>/vinyyang/hexo-maintanance/</url>
+    <url>/hexo-maintanance/</url>
     <content><![CDATA[<p>hexo（博主采用next主题）日常维护教程</p>
 <h1 id="修改scaffolds-post-md（默认标题文件）"><a href="#修改scaffolds-post-md（默认标题文件）" class="headerlink" title="修改scaffolds&#x2F;post.md（默认标题文件）"></a>修改scaffolds&#x2F;post.md（默认标题文件）</h1><p>注意修改时不要把中文加进去，在此只起到注释作用</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">title: &#123;&#123; title &#125;&#125;</span><br><span class="line">date: &#123;&#123; date &#125;&#125;</span><br><span class="line">tags:([1,2]设置同时属于不同类别可以这样)</span><br><span class="line">categories:</span><br><span class="line">top:(表示置顶情况，不置顶不填即可数字大小代表置顶顺序，数字越大排序越前)</span><br></pre></td></tr></table></figure>
