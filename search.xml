@@ -160,7 +160,7 @@
 <h2 id="直接粘贴图片"><a href="#直接粘贴图片" class="headerlink" title="直接粘贴图片"></a>直接粘贴图片</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">![1](./hexo-maintanance/1.png)</span><br></pre></td></tr></table></figure>
 
 <p>上面是下面图片的路径。能看到下面的图片就能说明这个方法就是成功的。</p>
-<p><img src="/vinyyang/./hexo-maintanance/1.png" alt="1"></p>
+<p><img src="/./hexo-maintanance/1.png" alt="1"></p>
 ]]></content>
       <categories>
         <category>博客维护</category>
