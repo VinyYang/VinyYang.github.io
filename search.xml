@@ -153,10 +153,9 @@
 <p>即可实时查看网页</p>
 <h1 id="插入图片操作"><a href="#插入图片操作" class="headerlink" title="插入图片操作"></a>插入图片操作</h1><h2 id="下插件"><a href="#下插件" class="headerlink" title="下插件"></a>下插件</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm install hexo-renderer-marked</span><br></pre></td></tr></table></figure>
 
-<p><img src="/.io//image-20250218223208601.png" alt="image-20250218223208601"></p>
 <h2 id="修改-config-yml"><a href="#修改-config-yml" class="headerlink" title="修改_config.yml"></a>修改_config.yml</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">post_asset_folder: true</span><br><span class="line">marked:</span><br><span class="line">  prependRoot: true</span><br><span class="line">  postAsset: true</span><br></pre></td></tr></table></figure>
 
-<p>![屏幕截图 2025-02-18 223201](.&#x2F;如何用hexo新建文件并上传&#x2F;屏幕截图 2025-02-18 223201.png)</p>
+<p><img src="/.io//1-1739889653195-1.png" alt="1"></p>
 ]]></content>
       <categories>
         <category>博客维护</category>
