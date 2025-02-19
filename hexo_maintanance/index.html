@@ -385,19 +385,7 @@
     
     
 
-    <footer class="post-footer"><script src="//sdk.jinrishici.com/v2/browser/jinrishici.js"></script>
-<script>
-  jinrishici.load((result) => {
-    let jrsc = document.getElementById('jrsc');
-    const data = result.data;
-    let author = data.origin.author;
-    let title = '《' + data.origin.title + '》';
-    let content = data.content.substr(0, data.content.length - 1);
-    let dynasty = data.origin.dynasty.substr(0, data.origin.dynasty.length - 1);
-    jrsc.innerText = content + ' @ ' + dynasty + '·' + author + title;
-  });
-</script>
-<div style="text-align: center"><span id="jrsc" >正在加载今日诗词....</span></div>
+    <footer class="post-footer">
           <div class="reward-container">
   <div>请我一杯咖啡吧！</div>
   <button>
@@ -489,13 +477,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">18k</span>
+    <span title="站点总字数">24k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">33 分钟</span>
+    <span title="站点阅读时长">44 分钟</span>
   </span>
 </div>
 <div class="busuanzi-count">
