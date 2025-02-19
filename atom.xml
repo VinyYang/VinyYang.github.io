@@ -6,7 +6,7 @@
   <link href="https://vinyyang.github.io/atom.xml" rel="self"/>
   
   <link href="https://vinyyang.github.io/"/>
-  <updated>2025-02-19T13:07:09.008Z</updated>
+  <updated>2025-02-19T16:36:18.129Z</updated>
   <id>https://vinyyang.github.io/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="https://vinyyang.github.io/%E6%89%8B%E6%92%95%E7%9F%A5%E8%AF%86%E5%BA%93/"/>
     <id>https://vinyyang.github.io/%E6%89%8B%E6%92%95%E7%9F%A5%E8%AF%86%E5%BA%93/</id>
     <published>2025-02-18T18:38:36.000Z</published>
-    <updated>2025-02-19T13:07:09.008Z</updated>
+    <updated>2025-02-19T16:36:18.129Z</updated>
     
     
     <summary type="html">&lt;p&gt;手撕论文知识库&lt;/p&gt;</summary>
@@ -40,10 +40,10 @@
     <link href="https://vinyyang.github.io/%E6%89%8B%E6%92%95nerfmm/"/>
     <id>https://vinyyang.github.io/%E6%89%8B%E6%92%95nerfmm/</id>
     <published>2025-02-18T18:26:47.000Z</published>
-    <updated>2025-02-19T13:49:57.710Z</updated>
+    <updated>2025-02-19T16:36:38.094Z</updated>
     
     
-    <summary type="html">&lt;p&gt;复现论文：OCC-NeRF: Occlusion-Free Scene Recovery via Neural Radiance Fields&lt;/p&gt;</summary>
+    <summary type="html">&lt;p&gt;链接：&lt;a href=&quot;https://freebutuselesssoul.github.io/occnerf/&quot;&gt;OCC-NeRF: Occlusion-Free Scene Recovery via Neural Radiance Fields&lt;/a&gt;&lt;/p&gt;</summary>
     
     
     
@@ -78,10 +78,10 @@
     <link href="https://vinyyang.github.io/algorithm_learning/"/>
     <id>https://vinyyang.github.io/algorithm_learning/</id>
     <published>2025-02-13T20:42:29.000Z</published>
-    <updated>2025-02-18T20:39:14.188Z</updated>
+    <updated>2025-02-19T16:36:43.502Z</updated>
     
     
-    <summary type="html">&lt;p&gt;算法基础课&lt;/p&gt;</summary>
+    <summary type="html">&lt;h2 id=&quot;基础算法（一）&quot;&gt;&lt;a href=&quot;#基础算法（一）&quot; class=&quot;headerlink&quot; title=&quot;基础算法（一）&quot;&gt;&lt;/a&gt;基础算法（一）&lt;/h2&gt;</summary>
     
     
     

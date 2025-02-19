@@ -1349,7 +1349,7 @@ pre code {
     vertical-align: middle;
   }
   .links-of-author a::before {
-    background: #ffffa7;
+    background: #7ff;
     display: inline-block;
     margin-right: 3px;
     transform: translateY(-2px);
@@ -3001,16 +3001,16 @@ h2.post-title::before {
   content: "" !important;
   counter-increment: none !important;
 }
-/* 多级标题计数器系统 */
-body {
+/* 多级标题计数器系统（从 article 元素开始初始化 h2 计数器） */
+article {
   counter-reset: h2;
 }
 h1 {
-  counter-reset: h2; /* 重置二级标题计数器 */
   font-size: 2.2em;
   margin: 1.8em 0 1em;
   padding-bottom: 0.3em;
   border-bottom: 2px solid #eee;
+  counter-reset: none !important;
 }
 h2 {
   counter-reset: h3;
@@ -3036,7 +3036,7 @@ h6 {
   font-size: 1.1em;
   margin: 0.8em 0 0.4em;
 }
-/* 自动编号生成规则（排除h1） */
+/* 自动编号生成规则（排除 h1） */
 h2::before {
   counter-increment: h2;
   content: counter(h2) ". ";
@@ -3057,7 +3057,7 @@ h6::before {
   counter-increment: h6;
   content: counter(h2) "." counter(h3) "." counter(h4) "." counter(h5) "." counter(h6) ". ";
 }
-/* 编号颜色控制（不影响h1） */
+/* 编号颜色控制（不影响 h1） */
 h2::before,
 h3::before,
 h4::before,
