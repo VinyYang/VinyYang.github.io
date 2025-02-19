@@ -2935,28 +2935,29 @@ header.header {
   max-width: unset;
   box-sizing: border-box;
 }
+/* 侧边栏背景样式 */
 .sidebar-inner.sidebar-overview-active.animated.fadeInUp {
   background: url("/images/sidebar-bg1.png");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
 }
+/* 文本选中样式 */
 ::selection {
   background: #dfa710;
   color: #f7f7f7;
 }
+/* 菜单激活项样式 */
 #menu > li.menu-item-active > a {
   color: #dfa710;
 }
+/* 站点信息相关样式 */
 .site-description {
   color: #fff;
   font-weight: bold;
 }
 .site-author-name {
   color: #fff;
-}
-span {
-  color: #000;
 }
 span.site-state-item-name {
   color: #ff79fb;
@@ -2965,34 +2966,22 @@ span.site-state-item-name {
 span.site-state-item-count {
   color: #fff;
 }
-a[href="https://github.com/VinyYang"]:not([href^="mailto"]):not([href^="/images/"]) {
+/* 社交链接通用样式 */
+a[href="https://github.com/VinyYang"],
+a[href^="mailto:yhy520@email.swu.edu.cn"],
+a[href^="/images/wechat.png"],
+a[href^="/images/qq.png"] {
   color: #fff;
   text-decoration: none;
 }
-a[href="https://github.com/VinyYang"] i.fab {
-  color: #fff;
-}
-a[href^="mailto:yhy520@email.swu.edu.cn"] {
-  color: #fff;
-  text-decoration: none;
-}
-a[href^="mailto:yhy520@email.swu.edu.cn"] i.fa {
-  color: #fff;
-}
-a[href^="/images/wechat.png"]:not([href^="mailto"]):not([href^="https://github.com"]) {
-  color: #fff;
-  text-decoration: none;
-}
-a[href^="/images/wechat.png"] i.fab {
-  color: #fff;
-}
-a[href^="/images/qq.png"]:not([href^="mailto"]):not([href^="https://github.com"]) {
-  color: #fff;
-  text-decoration: none;
-}
+/* 图标颜色继承 */
+a[href="https://github.com/VinyYang"] i.fab,
+a[href^="mailto:yhy520@email.swu.edu.cn"] i.fa,
+a[href^="/images/wechat.png"] i.fab,
 a[href^="/images/qq.png"] i.fab {
-  color: #fff;
+  color: inherit;
 }
+/* 微信图片交互效果 */
 .wechat-image {
   display: block;
   -webkit-user-select: none;
@@ -3000,4 +2989,98 @@ a[href^="/images/qq.png"] i.fab {
   cursor: pointer;
   background-color: #e6e6e6;
   transition: background-color 300ms;
+}
+/* 精准排除特定标题的计数器 */
+h1.site-title,
+h2.post-title {
+  counter-reset: none !important;
+  border-bottom: none !important;
+}
+h1.site-title::before,
+h2.post-title::before {
+  content: "" !important;
+  counter-increment: none !important;
+}
+/* 多级标题计数器系统 */
+body {
+  counter-reset: h2;
+}
+h1 {
+  counter-reset: h2; /* 重置二级标题计数器 */
+  font-size: 2.2em;
+  margin: 1.8em 0 1em;
+  padding-bottom: 0.3em;
+  border-bottom: 2px solid #eee;
+}
+h2 {
+  counter-reset: h3;
+  font-size: 1.8em;
+  margin: 1.6em 0 1em;
+}
+h3 {
+  counter-reset: h4;
+  font-size: 1.6em;
+  margin: 1.4em 0 0.8em;
+}
+h4 {
+  counter-reset: h5;
+  font-size: 1.4em;
+  margin: 1.2em 0 0.6em;
+}
+h5 {
+  counter-reset: h6;
+  font-size: 1.2em;
+  margin: 1em 0 0.5em;
+}
+h6 {
+  font-size: 1.1em;
+  margin: 0.8em 0 0.4em;
+}
+/* 自动编号生成规则（排除h1） */
+h2::before {
+  counter-increment: h2;
+  content: counter(h2) ". ";
+}
+h3::before {
+  counter-increment: h3;
+  content: counter(h2) "." counter(h3) ". ";
+}
+h4::before {
+  counter-increment: h4;
+  content: counter(h2) "." counter(h3) "." counter(h4) ". ";
+}
+h5::before {
+  counter-increment: h5;
+  content: counter(h2) "." counter(h3) "." counter(h4) "." counter(h5) ". ";
+}
+h6::before {
+  counter-increment: h6;
+  content: counter(h2) "." counter(h3) "." counter(h4) "." counter(h5) "." counter(h6) ". ";
+}
+/* 编号颜色控制（不影响h1） */
+h2::before,
+h3::before,
+h4::before,
+h5::before,
+h6::before {
+  color: #c0504d;
+  margin-right: 0.5em;
+}
+/* 移动端适配优化 */
+@media (max-width: 768px) {
+  h2 {
+    font-size: 1.6em;
+  }
+  h3 {
+    font-size: 1.4em;
+  }
+  h4 {
+    font-size: 1.3em;
+  }
+  h5 {
+    font-size: 1.15em;
+  }
+  h6 {
+    font-size: 1.05em;
+  }
 }
