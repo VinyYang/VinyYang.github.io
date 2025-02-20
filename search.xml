@@ -225,7 +225,9 @@
 
 <h2 id="utils"><a href="#utils" class="headerlink" title="utils"></a>utils</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">├── utils/  # 工具文件夹</span><br><span class="line">│   ├── align_traj.py  # 轨迹对齐脚本文件，用于对不同轨迹数据进行对齐操作</span><br><span class="line">│   ├── comp_ate.py  # 计算绝对轨迹误差（Absolute Trajectory Error, ATE）的脚本文件</span><br><span class="line">│   ├── comp_ray_dir.py  # 计算光线方向的脚本文件，常用于计算机视觉和三维重建中的光线追踪等场景</span><br><span class="line">│   ├── lie_group_helper.py  # 李群相关辅助函数的脚本文件，李群在机器人运动学、计算机视觉中的位姿表示等方面有应用</span><br><span class="line">│   ├── pos_enc.py  # 位置编码脚本文件，在深度学习模型（如NeRF）中用于对位置信息进行编码</span><br><span class="line">│   ├── pose_utils.py  # 位姿处理工具脚本文件，包含处理相机位姿或物体位姿的相关函数</span><br><span class="line">│   ├── split_dataset.py  # 数据集划分脚本文件，用于将数据集划分为训练集、验证集和测试集等</span><br><span class="line">│   ├── training_utils.py  # 训练辅助工具脚本文件，包含训练模型时常用的工具函数，如学习率调整、损失函数计算等</span><br><span class="line">│   ├── vgg.py  # VGG网络相关脚本文件，可能包含VGG模型的定义、加载预训练权重等操作</span><br><span class="line">│   ├── vis_cam_traj.py  # 可视化相机轨迹的脚本文件，用于将相机在三维空间中的运动轨迹进行可视化展示</span><br><span class="line">│   └── volume_op.py  # 体操作脚本文件，在三维重建、体渲染等场景中对三维体数据进行操作</span><br></pre></td></tr></table></figure>
 
-<h3 id="align-traj-py"><a href="#align-traj-py" class="headerlink" title="align_traj.py"></a>align_traj.py</h3>]]></content>
+
+
+]]></content>
       <categories>
         <category>科研</category>
       </categories>
