@@ -31,7 +31,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://vinyyang.github.io/%E6%89%8B%E6%92%95%E7%9F%A5%E8%AF%86%E5%BA%93/image-20250219032451598.png">
 <meta property="article:published_time" content="2025-02-18T18:38:36.000Z">
-<meta property="article:modified_time" content="2025-02-20T15:12:32.022Z">
+<meta property="article:modified_time" content="2025-02-21T18:05:17.691Z">
 <meta property="article:author" content="Viny Yang">
 <meta property="article:tag" content="科研知识积累">
 <meta name="twitter:card" content="summary">
@@ -159,7 +159,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E9%A1%B9%E7%9B%AE%E4%BB%A3%E7%A0%81%E7%9B%AE%E5%BD%95%E5%85%A8%E8%A7%88%E5%8F%8A%E8%A7%A3%E6%9E%90"><span class="nav-number">1.</span> <span class="nav-text">深度学习项目代码目录全览及解析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PyTorch"><span class="nav-number">2.</span> <span class="nav-text">PyTorch</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AFtorch"><span class="nav-number">2.1.</span> <span class="nav-text">什么是torch</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#torch%E5%B8%B8%E7%94%A8%E5%87%BD%E6%95%B0%E5%92%8C%E5%8A%9F%E8%83%BD"><span class="nav-number">2.2.</span> <span class="nav-text">torch常用函数和功能</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BC%A0%E9%87%8F"><span class="nav-number">2.2.1.</span> <span class="nav-text">张量</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E5%BC%A0%E9%87%8F"><span class="nav-number">2.2.1.1.</span> <span class="nav-text">什么是张量</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%BC%A0%E9%87%8F%E7%9A%84%E7%BB%B4%E5%BA%A6"><span class="nav-number">2.2.1.2.</span> <span class="nav-text">张量的维度</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%BC%A0%E9%87%8F%E7%9B%B8%E5%85%B3%E5%87%BD%E6%95%B0"><span class="nav-number">2.2.1.3.</span> <span class="nav-text">张量相关函数</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%87%AA%E5%8A%A8%E6%B1%82%E5%AF%BC"><span class="nav-number">2.2.2.</span> <span class="nav-text">自动求导</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%EF%BC%88%E9%9C%80%E8%A6%81%E6%9B%B4%E5%85%B7%E4%BD%93%EF%BC%8C%E6%9C%89%E5%BE%88%E5%A4%9A%E4%B8%AA%EF%BC%89nn-module"><span class="nav-number">2.2.3.</span> <span class="nav-text">神经网络（需要更具体，有很多个）nn.module</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BC%98%E5%8C%96%E5%99%A8%E5%92%8C%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0"><span class="nav-number">2.2.4.</span> <span class="nav-text">优化器和损失函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%A2%84%E8%AE%AD%E7%BB%83%E6%A8%A1%E5%9E%8B%EF%BC%88torchvision-models%EF%BC%89"><span class="nav-number">2.2.5.</span> <span class="nav-text">预训练模型（torchvision.models）</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#OS%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%8E%A5%E5%8F%A3%E6%A8%A1%E5%9D%97"><span class="nav-number">3.</span> <span class="nav-text">OS操作系统接口模块</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Numpy"><span class="nav-number">4.</span> <span class="nav-text">Numpy</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E9%A1%B9%E7%9B%AE%E4%BB%A3%E7%A0%81%E7%9B%AE%E5%BD%95%E5%85%A8%E8%A7%88%E5%8F%8A%E8%A7%A3%E6%9E%90"><span class="nav-number">1.</span> <span class="nav-text">深度学习项目代码目录全览及解析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E6%9E%B6%E6%9E%84%E6%80%BB%E8%A7%88"><span class="nav-number">2.</span> <span class="nav-text">深度学习&#x2F;神经网络架构总览</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PyTorch"><span class="nav-number">3.</span> <span class="nav-text">PyTorch</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AFtorch"><span class="nav-number">3.1.</span> <span class="nav-text">什么是torch</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#torch%E5%B8%B8%E7%94%A8%E5%87%BD%E6%95%B0%E5%92%8C%E5%8A%9F%E8%83%BD"><span class="nav-number">3.2.</span> <span class="nav-text">torch常用函数和功能</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BC%A0%E9%87%8F"><span class="nav-number">3.2.1.</span> <span class="nav-text">张量</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E5%BC%A0%E9%87%8F"><span class="nav-number">3.2.1.1.</span> <span class="nav-text">什么是张量</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%BC%A0%E9%87%8F%E7%9A%84%E7%BB%B4%E5%BA%A6"><span class="nav-number">3.2.1.2.</span> <span class="nav-text">张量的维度</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%BC%A0%E9%87%8F%E7%9B%B8%E5%85%B3%E5%87%BD%E6%95%B0"><span class="nav-number">3.2.1.3.</span> <span class="nav-text">张量相关函数</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%87%AA%E5%8A%A8%E6%B1%82%E5%AF%BC"><span class="nav-number">3.2.2.</span> <span class="nav-text">自动求导</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%89%8D%E5%90%91%E4%BC%A0%E6%92%AD%EF%BC%88Forward-Propagation%EF%BC%89"><span class="nav-number">3.2.2.1.</span> <span class="nav-text">前向传播（Forward Propagation）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%8F%8D%E5%90%91%E4%BC%A0%E6%92%AD%EF%BC%88Backward-Propagation%EF%BC%89"><span class="nav-number">3.2.2.2.</span> <span class="nav-text">反向传播（Backward Propagation）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E8%AE%A1%E7%AE%97%E5%9B%BE%E4%B8%8E%E6%A2%AF%E5%BA%A6%E8%BF%BD%E8%B8%AA%EF%BC%88%E5%8F%AF%E7%95%A5%E8%BF%87%EF%BC%89"><span class="nav-number">3.2.2.3.</span> <span class="nav-text">计算图与梯度追踪（可略过）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%A2%AF%E5%BA%A6%E6%8E%A7%E5%88%B6%EF%BC%88%E5%8F%AF%E7%95%A5%E8%BF%87%EF%BC%89"><span class="nav-number">3.2.2.4.</span> <span class="nav-text">梯度控制（可略过）</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%B1%82"><span class="nav-number">3.2.3.</span> <span class="nav-text">神经网络层</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%A0%B8%E5%BF%83%E5%9F%BA%E7%B1%BB-nn-Module"><span class="nav-number">3.2.3.1.</span> <span class="nav-text">核心基类 nn.Module</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E6%A8%A1%E5%9E%8B%E7%BB%A7%E6%89%BF%E6%96%B9%E6%B3%95"><span class="nav-number">3.2.3.1.1.</span> <span class="nav-text">自定义模型继承方法</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E7%BD%91%E7%BB%9C%E5%B1%82-Layers"><span class="nav-number">3.2.3.2.</span> <span class="nav-text">网络层 (Layers)</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#%E5%9F%BA%E7%A1%80%E5%B1%82"><span class="nav-number">3.2.3.2.1.</span> <span class="nav-text">基础层</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E5%8D%B7%E7%A7%AF%E5%B1%82"><span class="nav-number">3.2.3.2.2.</span> <span class="nav-text">卷积层</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E5%BE%AA%E7%8E%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%B1%82"><span class="nav-number">3.2.3.2.3.</span> <span class="nav-text">循环神经网络层</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#Transformer-%E7%9B%B8%E5%85%B3%E5%B1%82"><span class="nav-number">3.2.3.2.4.</span> <span class="nav-text">Transformer 相关层</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E5%BD%92%E4%B8%80%E5%8C%96%E5%B1%82"><span class="nav-number">3.2.3.2.5.</span> <span class="nav-text">归一化层</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0"><span class="nav-number">3.2.3.2.6.</span> <span class="nav-text">激活函数</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E6%B1%A0%E5%8C%96%E5%B1%82"><span class="nav-number">3.2.3.2.7.</span> <span class="nav-text">池化层</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#Dropout-%E5%B1%82"><span class="nav-number">3.2.3.2.8.</span> <span class="nav-text">Dropout 层</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E5%B5%8C%E5%85%A5%E5%B1%82"><span class="nav-number">3.2.3.2.9.</span> <span class="nav-text">嵌入层</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E7%A8%80%E7%96%8F%E5%B1%82"><span class="nav-number">3.2.3.2.10.</span> <span class="nav-text">稀疏层</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E8%A7%86%E8%A7%89%E4%B8%93%E7%94%A8%E5%B1%82"><span class="nav-number">3.2.3.2.11.</span> <span class="nav-text">视觉专用层</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%A8%A1%E5%9E%8B%E5%AE%B9%E5%99%A8"><span class="nav-number">3.2.3.3.</span> <span class="nav-text">模型容器</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BC%98%E5%8C%96%E5%99%A8%E5%92%8C%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0"><span class="nav-number">3.2.4.</span> <span class="nav-text">优化器和损失函数</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%BC%98%E5%8C%96%E5%99%A8%EF%BC%88Optimizers%EF%BC%89"><span class="nav-number">3.2.4.1.</span> <span class="nav-text">优化器（Optimizers）</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-4-%E4%BC%98%E5%8C%96%E5%99%A8%E5%92%8C%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0-%F0%9F%94%A5-%E9%87%8D%E7%82%B9%E6%89%A9%E5%B1%95"><span class="nav-number">3.2.5.</span> <span class="nav-text">.2.4 优化器和损失函数 🔥 重点扩展</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E4%BC%98%E5%8C%96%E5%99%A8%EF%BC%9F"><span class="nav-number">3.2.5.0.1.</span> <span class="nav-text">什么是优化器？</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E7%BB%8F%E5%85%B8%E4%BC%98%E5%8C%96%E5%99%A8"><span class="nav-number">3.2.5.0.2.</span> <span class="nav-text">经典优化器</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E5%AD%A6%E4%B9%A0%E7%8E%87%E8%B0%83%E5%BA%A6"><span class="nav-number">3.2.5.0.3.</span> <span class="nav-text">学习率调度</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%A2%84%E8%AE%AD%E7%BB%83%E6%A8%A1%E5%9E%8B%EF%BC%88torchvision-models%EF%BC%89%E4%B8%8E%E8%BF%81%E7%A7%BB%E5%AD%A6%E4%B9%A0"><span class="nav-number">3.2.6.</span> <span class="nav-text">预训练模型（torchvision.models）与迁移学习</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-4-%E4%BC%98%E5%8C%96%E5%99%A8%E5%92%8C%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0-%F0%9F%94%A5-%E9%87%8D%E7%82%B9%E6%89%A9%E5%B1%95-1"><span class="nav-number">3.2.7.</span> <span class="nav-text">.2.4 优化器和损失函数 🔥 重点扩展</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89%E6%A8%A1%E5%9E%8B"><span class="nav-number">3.2.7.1.</span> <span class="nav-text">计算机视觉模型</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#%E7%BB%8F%E5%85%B8-CNN-%E6%9E%B6%E6%9E%84%EF%BC%88%E9%80%9A%E8%BF%87-torchvision-models%EF%BC%89"><span class="nav-number">3.2.7.1.1.</span> <span class="nav-text">经典 CNN 架构（通过 torchvision.models）</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#Transformer-%E6%A8%A1%E5%9E%8B"><span class="nav-number">3.2.7.1.2.</span> <span class="nav-text">Transformer 模型</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86%E6%A8%A1%E5%9E%8B"><span class="nav-number">3.2.7.2.</span> <span class="nav-text">自然语言处理模型</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#%E9%A2%84%E8%AE%AD%E7%BB%83%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%EF%BC%88%E9%80%9A%E8%BF%87-transformers-%E5%BA%93%EF%BC%89"><span class="nav-number">3.2.7.2.1.</span> <span class="nav-text">预训练语言模型（通过 transformers 库）</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E8%BF%81%E7%A7%BB%E5%AD%A6%E4%B9%A0%E7%AD%96%E7%95%A5"><span class="nav-number">3.2.7.3.</span> <span class="nav-text">迁移学习策略</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#%E7%89%B9%E5%BE%81%E6%8F%90%E5%8F%96%EF%BC%88%E5%86%BB%E7%BB%93%E9%83%A8%E5%88%86%E5%B1%82%EF%BC%89"><span class="nav-number">3.2.7.3.1.</span> <span class="nav-text">特征提取（冻结部分层）</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E5%BE%AE%E8%B0%83%EF%BC%88Fine-tuning%EF%BC%89"><span class="nav-number">3.2.7.3.2.</span> <span class="nav-text">微调（Fine-tuning）</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E9%A2%84%E8%AE%AD%E7%BB%83%E7%89%B9%E5%BE%81%EF%BC%88%E5%A6%82-CLIP%EF%BC%89"><span class="nav-number">3.2.7.3.3.</span> <span class="nav-text">使用预训练特征（如 CLIP）</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E7%AE%A1%E9%81%93-Data-Pipeline"><span class="nav-number">3.2.8.</span> <span class="nav-text">数据管道 (Data Pipeline)</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E9%9B%86%E7%B1%BB-Dataset"><span class="nav-number">3.2.8.1.</span> <span class="nav-text">数据集类 Dataset</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E5%8A%A0%E8%BD%BD%E5%99%A8-DataLoader"><span class="nav-number">3.2.8.2.</span> <span class="nav-text">数据加载器 DataLoader</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E5%A2%9E%E5%BC%BA-torchvision-transforms"><span class="nav-number">3.2.8.3.</span> <span class="nav-text">数据增强&#96;&#96;torchvision.transforms&#96;</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A8%A1%E5%9E%8B%E9%83%A8%E7%BD%B2%E4%B8%8E%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96"><span class="nav-number">3.2.9.</span> <span class="nav-text">模型部署与性能优化</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#TorchScript-%E6%A8%A1%E5%9E%8B%E5%AF%BC%E5%87%BA"><span class="nav-number">3.2.9.1.</span> <span class="nav-text">TorchScript 模型导出</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#ONNX-%E6%A0%BC%E5%BC%8F%E8%BD%AC%E6%8D%A2"><span class="nav-number">3.2.9.2.</span> <span class="nav-text">ONNX 格式转换</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%B7%B7%E5%90%88%E7%B2%BE%E5%BA%A6%E8%AE%AD%E7%BB%83-torch-cuda-amp"><span class="nav-number">3.2.9.3.</span> <span class="nav-text">混合精度训练 (torch.cuda.amp)</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#OS%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%8E%A5%E5%8F%A3%E6%A8%A1%E5%9D%97"><span class="nav-number">4.</span> <span class="nav-text">OS操作系统接口模块</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Numpy"><span class="nav-number">5.</span> <span class="nav-text">Numpy</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -293,7 +293,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-02-20 23:12:32" itemprop="dateModified" datetime="2025-02-20T23:12:32+08:00">2025-02-20</time>
+      <time title="修改时间：2025-02-22 02:05:17" itemprop="dateModified" datetime="2025-02-22T02:05:17+08:00">2025-02-22</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -326,14 +326,14 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>10k</span>
+      <span>15k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>19 分钟</span>
+      <span>28 分钟</span>
     </span>
 </div>
 
@@ -353,38 +353,38 @@
 <ol>
 <li><code>dataloader/</code></li>
 </ol>
-<p>  <strong>作用</strong>：数据加载、预处理、增强（如论文项目中的 <code>with_colmap.py</code> 可能与多视图数据对齐相关）</p>
-<p>  <strong>典型内容</strong>：<code>Dataset</code> 类定义、数据增强函数、特征提取工具（如项目中的 <code>with_feature.py</code>）</p>
+<p> <strong>作用</strong>：数据加载、预处理、增强（如论文项目中的 <code>with_colmap.py</code> 可能与多视图数据对齐相关）</p>
+<p> <strong>典型内容</strong>：<code>Dataset</code> 类定义、数据增强函数、特征提取工具（如项目中的 <code>with_feature.py</code>）</p>
 <ol start="2">
 <li><strong><code>models/</code></strong></li>
 </ol>
-<p>  <strong>作用</strong>：定义神经网络模型（如项目中的<code>nerf_models.py</code> 可实现NeRF的核心架构）。</p>
-<p>  <strong>典型内容</strong>：模型类继承<code>torch.nn.Module</code>，包含前向传播逻辑（如项目中的<code>depth_decoder.py</code>可用于深度估计解码）。</p>
+<p> <strong>作用</strong>：定义神经网络模型（如项目中的<code>nerf_models.py</code> 可实现NeRF的核心架构）。</p>
+<p> <strong>典型内容</strong>：模型类继承<code>torch.nn.Module</code>，包含前向传播逻辑（如项目中的<code>depth_decoder.py</code>可用于深度估计解码）。</p>
 <ol start="3">
 <li><strong><code>utils/</code></strong></li>
 </ol>
-<p>  <strong>作用</strong>：辅助工具（如项目中的 <code>pose_utils.py</code> 处理相机位姿，<code>training_utils.py</code> 封装训练逻辑）。</p>
-<p>  <strong>典型内容</strong>：评估指标计算、可视化工具、训练回调函数。</p>
+<p> <strong>作用</strong>：辅助工具（如项目中的 <code>pose_utils.py</code> 处理相机位姿，<code>training_utils.py</code> 封装训练逻辑）。</p>
+<p> <strong>典型内容</strong>：评估指标计算、可视化工具、训练回调函数。</p>
 <ol start="4">
 <li><strong><code>third_party/</code></strong></li>
 </ol>
-<p>  <strong>作用</strong>：第三方库或工具（如项目中的 <code>ATE</code> 可能用于轨迹评估，<code>pytorch_ssim</code> 实现结构相似性损失）。</p>
+<p> <strong>作用</strong>：第三方库或工具（如项目中的 <code>ATE</code> 可能用于轨迹评估，<code>pytorch_ssim</code> 实现结构相似性损失）。</p>
 <ol start="5">
 <li>其他关键要素</li>
 </ol>
-<p>  <code>logs</code> 文件夹：记录训练和评估过程中的日志信息，如训练损失、验证损失、准确率等指标的变化情况，便于跟踪模型训练过程，分析模型的收敛性和性能表现。</p>
-<p>  <code>checkpoints</code> 文件夹：保存训练过程中的模型检查点，即模型在不同训练阶段的参数文件，用于在训练中断时恢复训练，或者用于选择在验证集上表现最好的模型进行测试和部署。</p>
-<p>  <code>requirement.txt</code>：列出项目所需的 Python 依赖库及其版本号，便于在新环境中快速安装项目所需的所有依赖。</p>
-<p>  <code>environment.yml</code>：Conda环境配置，确保依赖一致性。</p>
-<p>  <code>README.md</code>：项目说明、安装与使用指南（深度学习项目必备）。</p>
-<p>  <strong><code>main.py</code></strong>：项目的主程序入口，通常包含模型训练、评估和预测的主要逻辑，可通过命令行参数来控制程序的运行方式和参数设置。</p>
+<p> <code>logs</code> 文件夹：记录训练和评估过程中的日志信息，如训练损失、验证损失、准确率等指标的变化情况，便于跟踪模型训练过程，分析模型的收敛性和性能表现。</p>
+<p> <code>checkpoints</code> 文件夹：保存训练过程中的模型检查点，即模型在不同训练阶段的参数文件，用于在训练中断时恢复训练，或者用于选择在验证集上表现最好的模型进行测试和部署。</p>
+<p> <code>requirement.txt</code>：列出项目所需的 Python 依赖库及其版本号，便于在新环境中快速安装项目所需的所有依赖。</p>
+<p> <code>environment.yml</code>：Conda环境配置，确保依赖一致性。</p>
+<p> <code>README.md</code>：项目说明、安装与使用指南（深度学习项目必备）。</p>
+<p> <strong><code>main.py</code></strong>：项目的主程序入口，通常包含模型训练、评估和预测的主要逻辑，可通过命令行参数来控制程序的运行方式和参数设置。</p>
 </blockquote>
 <blockquote>
 <p>示例如下：</p>
 </blockquote>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">occ - nerf/  # 基于占用率的神经辐射场项目根目录</span><br><span class="line">├──.gitignore  # 指定Git不跟踪的文件或文件夹</span><br><span class="line">├── LICENSE  # 项目使用许可条款文件</span><br><span class="line">├── README.md  # 介绍项目背景、功能、使用方法等的说明文档</span><br><span class="line">├── environment.yml  # 定义项目运行所需软件环境</span><br><span class="line">├── local1.txt  # 用途不明，或为本地说明、配置等文件</span><br><span class="line">├── dataloader/  # 存放数据加载与预处理代码</span><br><span class="line">│   ├── any_folder.py  # 从任意文件夹结构加载数据</span><br><span class="line">│   ├── local_save.py  # 负责数据本地保存</span><br><span class="line">│   ├── with_colmap.py  # 从COLMAP处理后格式加载数据</span><br><span class="line">│   ├── with_feature.py  # 加载带特征的数据</span><br><span class="line">│   ├── with_feature_colmap.py  # 结合COLMAP与特征数据加载</span><br><span class="line">│   └── with_mask.py  # 加载带掩码的数据</span><br><span class="line">├── models/  # 存放深度学习模型定义与操作代码</span><br><span class="line">│   ├── depth_decoder.py  # 深度解码，用于深度估计</span><br><span class="line">│   ├── intrinsics.py  # 处理相机内参相关内容</span><br><span class="line">│   ├── layers.py  # 定义深度学习层结构</span><br><span class="line">│   ├── nerf_feature.py  # 处理NeRF特征相关逻辑</span><br><span class="line">│   ├── nerf_mask.py  # 处理NeRF模型中掩码相关内容</span><br><span class="line">│   ├── nerf_models.py  # 定义NeRF模型架构等核心内容</span><br><span class="line">│   └── poses.py  # 处理位姿相关操作</span><br><span class="line">├── utils/  # 包含辅助项目运行的工具函数</span><br><span class="line">│   ├── align_traj.py  # 实现轨迹对齐算法</span><br><span class="line">│   ├── comp_ate.py  # 计算绝对轨迹误差</span><br><span class="line">│   ├── comp_ray_dir.py  # 计算光线方向</span><br><span class="line">│   ├── lie_group_helper.py  # 提供李群相关辅助函数</span><br><span class="line">│   ├── pos_enc.py  # 实现位置编码</span><br><span class="line">│   ├── pose_utils.py  # 提供位姿相关实用工具函数</span><br><span class="line">│   ├── split_dataset.py  # 划分数据集为训练、验证、测试集</span><br><span class="line">│   ├── training_utils.py  # 提供模型训练辅助函数</span><br><span class="line">│   ├── vgg.py  # 与VGG神经网络相关操作</span><br><span class="line">│   ├── vis_cam_traj.py  # 可视化相机轨迹</span><br><span class="line">│   └── volume_op.py  # 操作三维体数据</span><br><span class="line">├── tasks/  # 存放训练、测试等具体任务代码</span><br><span class="line">│   └──...</span><br><span class="line">└── third_party/  # 存放第三方代码或库</span><br><span class="line">    ├── ATE/  # 与绝对轨迹误差计算相关</span><br><span class="line">    │   └── README.md  # 说明该部分功能与用法</span><br><span class="line">    └── pytorch_ssim/  # 计算结构相似性指数的库</span><br></pre></td></tr></table></figure>
 
-<h2 id="PyTorch"><a href="#PyTorch" class="headerlink" title="PyTorch"></a>PyTorch</h2><h3 id="什么是torch"><a href="#什么是torch" class="headerlink" title="什么是torch"></a>什么是torch</h3><p>Torch 是 PyTorch 深度学习框架的核心库，具备强大的功能与广泛的用途。它提供了丰富的张量操作，可在 CPU 或 GPU 上高效计算，能轻松处理各类数据；其自动求导机制极大简化了深度学习中梯度计算与反向传播的过程，让模型训练更为便捷。借助<code>torch.nn</code>模块可方便构建如 CNN、RNN 等复杂神经网络架构，<code>torch.optim</code>模块提供多种优化算法用于模型参数更新。此外，Torch 还支持预训练模型的使用与微调，结合可视化工具能助力监控训练过程，广泛应用于图像、自然语言处理、推荐系统等诸多领域。</p>
+<h2 id="深度学习-神经网络架构总览"><a href="#深度学习-神经网络架构总览" class="headerlink" title="深度学习&#x2F;神经网络架构总览"></a>深度学习&#x2F;神经网络架构总览</h2><h2 id="PyTorch"><a href="#PyTorch" class="headerlink" title="PyTorch"></a>PyTorch</h2><h3 id="什么是torch"><a href="#什么是torch" class="headerlink" title="什么是torch"></a>什么是torch</h3><p>Torch 是 PyTorch 深度学习框架的核心库，具备强大的功能与广泛的用途。它提供了丰富的张量操作，可在 CPU 或 GPU 上高效计算，能轻松处理各类数据；其自动求导机制极大简化了深度学习中梯度计算与反向传播的过程，让模型训练更为便捷。借助<code>torch.nn</code>模块可方便构建如 CNN、RNN 等复杂神经网络架构，<code>torch.optim</code>模块提供多种优化算法用于模型参数更新。此外，Torch 还支持预训练模型的使用与微调，结合可视化工具能助力监控训练过程，广泛应用于图像、自然语言处理、推荐系统等诸多领域。</p>
 <h3 id="torch常用函数和功能"><a href="#torch常用函数和功能" class="headerlink" title="torch常用函数和功能"></a>torch常用函数和功能</h3><h4 id="张量"><a href="#张量" class="headerlink" title="张量"></a>张量</h4><h5 id="什么是张量"><a href="#什么是张量" class="headerlink" title="什么是张量"></a>什么是张量</h5><p>张量是多维数组的泛化表示，可理解为一个多维的数据容器，零维张量是标量，一维张量是向量，二维张量是矩阵，三维及以上则是更高阶的张量。在深度学习里，使用张量是因为它能够高效地表示和处理大量的数据，像图像可表示为三维张量（高度、宽度、通道数），视频可表示为四维张量（帧数、高度、宽度、通道数）。并且，深度学习框架（如 PyTorch）针对张量运算进行了高度优化，能利用 GPU 等硬件加速计算，张量还能自然地支持自动求导机制，方便进行模型训练时的梯度计算和参数更新。</p>
 <p>张量是 PyTorch 中最基础的数据结构，类似于 NumPy 的多维数组，但它可以在 GPU 上进行加速计算，并且支持自动求导等深度学习所需的特性。</p>
 <h5 id="张量的维度"><a href="#张量的维度" class="headerlink" title="张量的维度"></a>张量的维度</h5><p>维度（也称为轴）是指张量在某个方向上的延伸。可以将维度理解为数据组织的一个方向或一个层次，类似于在地理坐标系统中，经度和纬度分别代表了不同的方向，张量的每个维度也代表了数据的一个特定方向的排列。维度的数量被称为张量的阶（rank），零阶张量是标量（一个单独的数值），一阶张量是向量（一维数组），二阶张量是矩阵（二维数组），三阶及以上的张量则用于表示更复杂的数据结构。</p>
@@ -471,51 +471,270 @@
 
 <p>在矩阵运算中，有时需要对矩阵进行转置操作。在图像处理中，可能需要调整图像张量的维度顺序。</p>
 <p><code>torch.transpose(x, 0, 1)</code> 表示交换张量 <code>x</code> 的第 0 维和第 1 维。在这个二维矩阵的例子中，就是对矩阵进行了转置操作，原来的行变成了列，列变成了行。在矩阵运算中，矩阵转置是一个常见的操作，例如在计算矩阵乘法时可能需要对矩阵进行转置。在图像处理中，图像张量的维度顺序可能需要调整，比如将 <code>(高度, 宽度, 通道数)</code> 调整为 <code>(通道数, 高度, 宽度)</code> 以适应某些模型的输入要求，这时就可以使用 <code>torch.transpose()</code> 来实现。</p>
-<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">原始张量 x：</span><br><span class="line">tensor([[<span class="number">1</span>, <span class="number">2</span>],</span><br><span class="line">        [<span class="number">3</span>, <span class="number">4</span>]])</span><br><span class="line">转置后的张量 transposed_x：</span><br><span class="line">tensor([[<span class="number">1</span>, <span class="number">3</span>],</span><br><span class="line">        [<span class="number">2</span>, <span class="number">4</span>]])</span><br></pre></td></tr></table></figure></li>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">原始张量 x：</span><br><span class="line">tensor([[<span class="number">1</span>, <span class="number">2</span>],</span><br><span class="line">        [<span class="number">3</span>, <span class="number">4</span>]])</span><br><span class="line">转置后的张量 transposed_x：</span><br><span class="line">tensor([[<span class="number">1</span>, <span class="number">3</span>],</span><br><span class="line">        [<span class="number">2</span>, <span class="number">4</span>]])</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>torch.squeeze()</code>：移除张量中所有维度为 1 的轴（或指定轴）。</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">x = torch.tensor([[[<span class="number">1</span>], [<span class="number">2</span>], [<span class="number">3</span>]]])  <span class="comment"># 形状 [1, 3, 1]</span></span><br><span class="line">y = torch.squeeze(x)                 <span class="comment"># 形状变为 [3]</span></span><br></pre></td></tr></table></figure>
+
+<p>在张量操作中，某些操作（如池化、索引）可能产生冗余的维度为 1 的轴。例如：</p>
+<ul>
+<li>处理单通道图像时，通道维度可能为 1。</li>
+<li>批量处理单个样本时，批量维度可能为 1。</li>
+<li>某些神经网络层的输出可能保留不必要的单维度。</li>
 </ul>
-<h4 id="自动求导"><a href="#自动求导" class="headerlink" title="自动求导"></a>自动求导</h4><p><code>requires_grad</code> 和 <code>backward()</code></p>
-<p>设置张量的 <code>requires_grad=True</code> 来跟踪其操作，使用 <code>backward()</code> 计算梯度。</p>
-<p>在深度学习模型训练中，需要计算损失函数关于模型参数的梯度，以便使用优化算法更新参数。通过设置参数张量的 <code>requires_grad=True</code>，可以利用自动求导机制自动计算梯度。</p>
+<p><code>torch.squeeze()</code> 默认移除所有大小为 1 的维度，也可指定 <code>dim</code> 参数移除特定轴（仅当该轴大小为 1 时生效）。</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">输入张量 x：</span><br><span class="line">tensor([[[<span class="number">1</span>],</span><br><span class="line">         [<span class="number">2</span>],</span><br><span class="line">         [<span class="number">3</span>]]])</span><br><span class="line">输出张量 y：</span><br><span class="line">tensor([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>])</span><br><span class="line"></span><br><span class="line">squeeze() 移除了所有大小为 <span class="number">1</span> 的维度（第 <span class="number">0</span> 维和第 <span class="number">2</span> 维），仅保留第 <span class="number">1</span> 维（大小为 <span class="number">3</span>）。</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h4 id="自动求导"><a href="#自动求导" class="headerlink" title="自动求导"></a>自动求导</h4><h5 id="前向传播（Forward-Propagation）"><a href="#前向传播（Forward-Propagation）" class="headerlink" title="前向传播（Forward Propagation）"></a>前向传播（Forward Propagation）</h5><ol>
+<li>定义</li>
+</ol>
+<p>前向传播是深度学习模型处理输入数据以产生输出的过程。在这个过程中，输入数据从输入层开始，依次经过神经网络的各个隐藏层，每层都会对输入进行特定的数学变换（如加权求和后通过激活函数），最终到达输出层得到预测结果。可以将其看作是信息从输入向输出流动的过程，每一层根据前一层的输出计算本层的输出，逐步传递直至得到最终输出。</p>
+<ol start="2">
+<li>作用</li>
+</ol>
+<p>根据当前模型的参数（权重和偏置）对输入数据进行预测。通过一系列的线性和非线性变换，模型能够学习到输入数据中的特征模式，并将其映射到输出空间。例如，在图像分类任务中，前向传播可以将输入的图像转换为不同类别的概率分布，从而判断图像所属的类别。它为后续的反向传播提供了预测结果，是整个深度学习训练过程的基础步骤。</p>
+<h5 id="反向传播（Backward-Propagation）"><a href="#反向传播（Backward-Propagation）" class="headerlink" title="反向传播（Backward Propagation）"></a>反向传播（Backward Propagation）</h5><ol>
+<li>定义</li>
+</ol>
+<p>反向传播是深度学习中用于计算损失函数（Loss Function）关于模型参数（权重和偏置）的梯度的算法。它基于链式法则，从输出层开始，将损失函数的误差沿着计算图反向传播到输入层，依次计算每一层参数的梯度。简单来说，反向传播是在已知前向传播得到的预测结果和真实标签的情况下，计算如何调整模型参数可以减小损失的过程。</p>
+<ol start="2">
+<li>作用</li>
+</ol>
+<p>为模型参数的更新提供依据。在深度学习中，通常使用优化算法（如随机梯度下降，Stochastic Gradient Descent，SGD）来更新模型的参数，而这些优化算法需要知道损失函数关于参数的梯度。反向传播通过高效地计算这些梯度，使得模型能够根据预测误差自动调整参数，从而不断优化模型的性能。通过多次迭代前向传播和反向传播，模型可以逐渐学习到输入数据和输出标签之间的映射关系，提高预测的准确性。</p>
+<h5 id="计算图与梯度追踪（可略过）"><a href="#计算图与梯度追踪（可略过）" class="headerlink" title="计算图与梯度追踪（可略过）"></a>计算图与梯度追踪（可略过）</h5><ol>
+<li><code>requires_grad</code>设置张量是否需要进行梯度追踪</li>
+</ol>
+<p>在深度学习模型训练过程中，需要计算损失函数关于模型参数的梯度，以便使用优化算法（如随机梯度下降）更新参数。通过将模型参数张量的 <code>requires_grad</code> 设置为 <code>True</code>，可以利用自动求导机制自动计算梯度。</p>
 <figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">x = torch.tensor([<span class="number">2.0</span>], requires_grad=<span class="literal">True</span>)</span><br><span class="line">y = x ** <span class="number">2</span></span><br><span class="line">y.backward()</span><br><span class="line"><span class="built_in">print</span>(x.grad)  <span class="comment"># 输出 4.0</span></span><br></pre></td></tr></table></figure>
 
+<p><code>requires_grad</code> 是 PyTorch 张量的一个属性，当将其设置为 <code>True</code> 时，PyTorch 会开始追踪该张量的所有操作，构建计算图。计算图是一个有向无环图，它记录了从输入张量到输出张量的所有操作路径。</p>
+<p>在上述示例中，我们创建了一个张量 <code>x</code> 并将 <code>requires_grad</code> 设置为 <code>True</code>，然后定义了一个函数 <code>y = x ** 2</code>。PyTorch 会自动记录这个操作，构建相应的计算图。</p>
+<p>调用 <code>y.backward()</code> 方法时，PyTorch 会根据链式法则沿着计算图反向传播，计算出 <code>y</code> 关于 <code>x</code> 的梯度，并将梯度存储在 <code>x.grad</code> 属性中。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">x 的梯度: tensor([4.])</span><br></pre></td></tr></table></figure>
 
+<ol start="2">
+<li><code>grad_fn</code> 属性与反向传播链</li>
+</ol>
+<p><strong><code>grad_fn</code></strong>：PyTorch 张量的属性，指向创建该张量的函数对象，用于记录操作历史以支持反向传播求梯度。</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建一个需要梯度追踪的张量</span></span><br><span class="line">x = torch.tensor([<span class="number">2.0</span>], requires_grad=<span class="literal">True</span>)</span><br><span class="line"><span class="comment"># 定义操作 y = x^2</span></span><br><span class="line">y = x ** <span class="number">2</span></span><br><span class="line"><span class="comment"># 定义操作 z = y * 3</span></span><br><span class="line">z = y * <span class="number">3</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 打印每个张量的 grad_fn</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;y 的 grad_fn:&quot;</span>, y.grad_fn)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;z 的 grad_fn:&quot;</span>, z.grad_fn)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 进行反向传播</span></span><br><span class="line">z.backward()</span><br><span class="line"><span class="comment"># 打印 x 的梯度</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;x 的梯度:&quot;</span>, x.grad)</span><br></pre></td></tr></table></figure>
 
-<h4 id="神经网络（需要更具体，有很多个）nn-module"><a href="#神经网络（需要更具体，有很多个）nn-module" class="headerlink" title="神经网络（需要更具体，有很多个）nn.module"></a>神经网络（需要更具体，有很多个）nn.module</h4><p>1.<code>torch.nn.Linear</code>定义全连接层。全连接层常用于多层感知机（MLP）中，用于将输入特征映射到输出特征。</p>
-<p>输入张量 <code>input_tensor = torch.randn(1, 10)</code> ，形状为 <code>(1, 10)</code>，这里的 <code>1</code> 表示样本数量为 1，<code>10</code> 表示每个样本具有 10 个特征，这与全连接层定义的输入维度 <code>in_features = 10</code> 相匹配。可以把维度理解为10个特征，因此<code>torch.randn(1, 10)</code>就是一个10维向量（有10个数对应10个特征）</p>
-<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch.nn <span class="keyword">as</span> nn</span><br><span class="line"></span><br><span class="line">linear_layer = nn.Linear(<span class="number">10</span>, <span class="number">5</span>)  <span class="comment"># 输入维度为 10，输出维度为 5</span></span><br><span class="line">input_tensor = torch.randn(<span class="number">1</span>, <span class="number">10</span>)</span><br><span class="line">output = linear_layer(input_tensor)</span><br></pre></td></tr></table></figure>
+<p>在深度学习模型训练时，需要计算损失函数关于模型参数的梯度。由于模型中存在大量复杂的运算，通过 <code>grad_fn</code> 记录的操作历史，PyTorch 可以构建反向传播链，从而准确计算出梯度，为参数更新提供依据。</p>
+<p>在上述代码中，首先创建了一个开启梯度追踪的张量 <code>x</code>。当执行 $y &#x3D; x^2$操作时，PyTorch 会创建一个表示平方操作的函数对象，<code>y.grad_fn</code> 就会指向这个函数对象，以此记录下 <code>y</code> 是由 <code>x</code> 经过平方操作得到的。接着执行 $z &#x3D; 3y$，同样地，<code>z.grad_fn</code> 会指向表示乘法操作的函数对象，记录 <code>z</code> 的计算来源。</p>
+<p>当调用 <code>z.backward()</code> 时，PyTorch 会从 <code>z</code> 开始，依据 <code>z.grad_fn</code> 找到创建 <code>z</code> 的操作，然后通过这个操作回溯到 <code>y</code>，再根据 <code>y.grad_fn</code> 回溯到 <code>x</code>。在这个回溯过程中，按照链式法则逐步计算出 <code>z</code> 关于 <code>x</code> 的梯度，并将其存储在 <code>x.grad</code> 中。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">y 的 grad_fn: &lt;PowBackward0 object at 0x...&gt;</span><br><span class="line">z 的 grad_fn: &lt;MulBackward0 object at 0x...&gt;</span><br><span class="line">x 的梯度: tensor([12.])</span><br></pre></td></tr></table></figure>
 
+<p><code>&lt;PowBackward0 object at 0x...&gt;</code> 是 PyTorch 中用于表示反向传播过程中特定操作的梯度计算函数对象的字符串表示形式。</p>
+<p><strong>反向传播函数对象</strong>：在 PyTorch 的自动求导机制里，对张量进行各种运算（如加法、乘法、幂运算等）时，PyTorch 会构建一个计算图来记录这些操作的顺序和依赖关系。每个操作在计算图中都对应一个前向传播函数（用于计算输出结果）和一个反向传播函数（用于计算梯度）。</p>
+<p><code>PowBackward0</code> 的意义：<code>PowBackward0</code> 表示的是幂运算的反向传播函数。执行 $y &#x3D; x^2$这样的幂运算时，<code>y</code> 的 <code>grad_fn</code> 属性就会指向一个 <code>PowBackward0</code> 对象，这个对象负责在反向传播过程中计算关于输入张量 <code>x</code> 的梯度。<strong><code>at 0x...</code></strong>：<code>at 0x...</code> 后面跟着的是该对象在内存中的地址。这个地址是系统为该对象分配的唯一标识符，用于在内存中定位该对象。</p>
+<h5 id="梯度控制（可略过）"><a href="#梯度控制（可略过）" class="headerlink" title="梯度控制（可略过）"></a>梯度控制（可略过）</h5><p>1.<code>torch.no_grad()</code> 上下文管理器</p>
+<p>用于临时禁止 PyTorch 的梯度计算功能，在其作用域内创建或操作的张量不会进行梯度追踪。</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建一个需要梯度追踪的张量</span></span><br><span class="line">x = torch.tensor([<span class="number">2.0</span>], requires_grad=<span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用 torch.no_grad() 上下文管理器</span></span><br><span class="line"><span class="keyword">with</span> torch.no_grad():</span><br><span class="line">    y = x ** <span class="number">2</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;y 是否进行梯度追踪:&quot;</span>, y.requires_grad)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 在上下文管理器外进行操作</span></span><br><span class="line">z = x ** <span class="number">2</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;z 是否进行梯度追踪:&quot;</span>, z.requires_grad)</span><br></pre></td></tr></table></figure>
 
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">y 是否进行梯度追踪: False</span><br><span class="line">z 是否进行梯度追踪: True（z在上下文管理器外进行操作）</span><br></pre></td></tr></table></figure>
 
-<p>2.<code>torch.nn.Conv2d</code>定义二维卷积层。在计算机视觉领域，卷积层广泛应用于图像分类、目标检测、语义分割等任务中，用于提取图像的特征。</p>
-<p>①<code>out_channels = 16</code> 的含义</p>
+<p>2.<code>detach()</code> 分离计算图  </p>
+<p><strong><code>detach()</code></strong>：用于将张量从当前计算图中分离，返回一个和原张量数据相同但不记录梯度信息、不参与反向传播的新张量。</p>
 <ul>
-<li><strong>输出通道的数量</strong>：<code>out_channels</code> 表示卷积层输出特征图的通道数量。在卷积神经网络（CNN）中，卷积层通过一系列卷积核在输入特征图上滑动进行卷积操作，每个卷积核会生成一个对应的输出特征图。这里 <code>out_channels = 16</code> 意味着该卷积层使用了 16 个不同的卷积核，每个卷积核会对输入特征图进行卷积计算，最终会输出 16 个特征图，这些特征图共同构成了卷积层的输出，且输出的通道数为 16。</li>
-<li><strong>特征提取的多样性</strong>：不同的卷积核可以学习到输入图像的不同特征，例如边缘、纹理、颜色等。通过设置多个输出通道，卷积层能够从输入图像中提取多种不同类型的特征，从而丰富了模型对图像特征的表达能力。在后续的网络层中，这些提取到的特征会被进一步处理和组合，用于完成图像分类、目标检测等任务。</li>
+<li>在模型评估阶段，只需得到预测结果，无需计算梯度，用 <code>detach()</code> 可节省内存和计算资源。</li>
+<li>在多模型联合训练时，若某个模型输出用于另一模型但不影响自身梯度计算，可使用 <code>detach()</code> 分离。（核心还是节省内存和计算资源）</li>
 </ul>
-<p>②<code>kernel_size = 3</code> 的含义</p>
-<ul>
-<li><strong>卷积核的大小</strong>：<code>kernel_size</code> 定义了卷积核的尺寸。<code>kernel_size = 3</code> 表示使用的是一个 3x3 的卷积核。卷积核是一个小的二维矩阵，在卷积操作中，它会在输入特征图上逐行逐列地滑动，与输入特征图的对应区域进行元素相乘并求和，从而得到输出特征图的一个元素。</li>
-<li><strong>特征感受野</strong>：卷积核的大小决定了卷积层的感受野，即输出特征图上的一个元素受到输入特征图上多大区域的影响。一个 3x3 的卷积核意味着输出特征图上的每个元素是由输入特征图上一个 3x3 的区域计算得到的，它能够捕捉到输入图像中 3x3 邻域内的局部特征。较大的卷积核可以捕捉到更大范围的特征，但同时也会增加模型的参数数量和计算量；较小的卷积核则更侧重于捕捉局部细节特征，并且计算效率更高。</li>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建需梯度追踪的张量</span></span><br><span class="line">x = torch.tensor([<span class="number">3.0</span>], requires_grad=<span class="literal">True</span>)</span><br><span class="line">y = <span class="number">2</span> * x</span><br><span class="line"><span class="comment"># 分离计算图</span></span><br><span class="line">y_detached = y.detach()</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;原张量 y 是否追踪梯度:&quot;</span>, y.requires_grad)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;分离后的张量 y_detached 是否追踪梯度:&quot;</span>, y_detached.requires_grad)</span><br><span class="line"></span><br><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    y_detached.backward()</span><br><span class="line"><span class="keyword">except</span> RuntimeError <span class="keyword">as</span> e:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;错误信息: <span class="subst">&#123;e&#125;</span>&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>上述代码里，<code>x</code> 开启梯度追踪，<code>y = 2 * x</code> 会记录在计算图中。调用 <code>y.detach()</code> 后得到 <code>y_detached</code>，它和 <code>y</code> 数据相同，但不追踪梯度。尝试对 <code>y_detached</code> 反向传播会报错，因为它已和计算图分离，无梯度信息。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">原张量 y 是否追踪梯度: True</span><br><span class="line">分离后的张量 y_detached 是否追踪梯度: False</span><br><span class="line">错误信息: element 0 of tensors does not require grad and does not have a grad_fn</span><br></pre></td></tr></table></figure>
+
+<p>3.<code>zero_grad()</code> (梯度清零) </p>
+<p>在深度学习模型的训练过程中，通常会按批次（batch）输入数据进行训练。每次反向传播计算得到的梯度会累加到模型参数的 <code>.grad</code> 属性中。如果不进行梯度清零，那么下一次计算的梯度会与之前的梯度累加，导致梯度计算错误。因此，在每个批次训练开始前，需要调用 <code>zero_grad()</code> 方法将梯度清零，以确保每个批次的梯度计算是独立的。</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"><span class="keyword">import</span> torch.nn <span class="keyword">as</span> nn</span><br><span class="line"><span class="keyword">import</span> torch.optim <span class="keyword">as</span> optim</span><br><span class="line"></span><br><span class="line"><span class="comment"># 定义一个简单的线性模型</span></span><br><span class="line">model = nn.Linear(<span class="number">10</span>, <span class="number">1</span>)</span><br><span class="line"><span class="comment"># 定义优化器</span></span><br><span class="line">optimizer = optim.SGD(model.parameters(), lr=<span class="number">0.01</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 模拟输入数据</span></span><br><span class="line">input_tensor = torch.randn(<span class="number">1</span>, <span class="number">10</span>)</span><br><span class="line">target = torch.randn(<span class="number">1</span>, <span class="number">1</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 前向传播</span></span><br><span class="line">output = model(input_tensor)</span><br><span class="line"><span class="comment"># 计算损失</span></span><br><span class="line">criterion = nn.MSELoss()</span><br><span class="line">loss = criterion(output, target)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 反向传播计算梯度</span></span><br><span class="line">loss.backward()</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;反向传播后第一个参数的梯度:&quot;</span>, model.weight.grad)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 梯度清零</span></span><br><span class="line">optimizer.zero_grad()</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;梯度清零后第一个参数的梯度:&quot;</span>, model.weight.grad)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">反向传播后第一个参数的梯度: tensor([[ 0.1234, -0.5678, ...]])</span><br><span class="line">梯度清零后第一个参数的梯度: tensor([[ 0., 0., ...]])</span><br></pre></td></tr></table></figure>
+
+<h4 id="神经网络层"><a href="#神经网络层" class="headerlink" title="神经网络层"></a>神经网络层</h4><h5 id="核心基类-nn-Module"><a href="#核心基类-nn-Module" class="headerlink" title="核心基类 nn.Module"></a>核心基类 <code>nn.Module</code></h5><h6 id="自定义模型继承方法"><a href="#自定义模型继承方法" class="headerlink" title="自定义模型继承方法"></a>自定义模型继承方法</h6><ol>
+<li><p>参数管理<code>parameters()</code>，<code>parameters()</code></p>
+</li>
+<li><p><code>train()</code> 与 <code>eval()</code> 模式切换</p>
+</li>
+</ol>
+<h5 id="网络层-Layers"><a href="#网络层-Layers" class="headerlink" title="网络层 (Layers)"></a>网络层 (Layers)</h5><h6 id="基础层"><a href="#基础层" class="headerlink" title="基础层"></a>基础层</h6><ol>
+<li><p><code>nn.Linear</code>全连接层</p>
+</li>
+<li><p><code>nn.Bilinear</code>双线性层</p>
+</li>
+</ol>
+<h6 id="卷积层"><a href="#卷积层" class="headerlink" title="卷积层"></a>卷积层</h6><ol>
+<li><p><code>nn.Conv1d</code> 1D卷积：处理时序数据（如音频、文本）</p>
+</li>
+<li><p><code>nn.Conv2d</code> 2D卷积：处理图像数据</p>
+</li>
+<li><p><code>nn.Conv3d</code> 3D卷积：处理视频&#x2F;体数据</p>
+</li>
+<li><p><code>nn.ConvTranspose1d/2d/3d</code> 转置卷积：反卷积（上采样）</p>
+</li>
+<li><p><code>nn.Conv1d/2d/3d</code> （设置 <code>dilation</code>）空洞卷积：扩大感受野</p>
+</li>
+<li><p><code>nn.Conv2d + 分组操作</code> 可分离卷积：轻量化卷积</p>
+</li>
+</ol>
+<h6 id="循环神经网络层"><a href="#循环神经网络层" class="headerlink" title="循环神经网络层"></a>循环神经网络层</h6><p>1.<code>nn.RNN</code> RNN：基础循环网络</p>
+<p>2.<code>nn.LSTM</code> LSTM：长短期记忆网络</p>
+<p>3.<code>nn.GRU</code> GRU：门控循环单元</p>
+<h6 id="Transformer-相关层"><a href="#Transformer-相关层" class="headerlink" title="Transformer 相关层"></a>Transformer 相关层</h6><ol>
+<li>什么是Transformer?</li>
+</ol>
+<p>2.<code>nn.Transformer</code> Transformer：完整 Transformer 模型</p>
+<p>3.<code>nn.TransformerEncoder</code> Transformer Encoder： 编码器堆叠</p>
+<p>4.<code>nn.TransformerDecoder</code> Transformer Decoder：解码器堆叠</p>
+<p>5.<code>nn.MultiheadAttention</code> 多头注意力：自注意力机制</p>
+<h6 id="归一化层"><a href="#归一化层" class="headerlink" title="归一化层"></a>归一化层</h6><ol>
+<li><p>什么是归一化？</p>
+</li>
+<li><p><code>nn.BatchNorm1d/2d/3d</code> 批量归一化：批维度归一化</p>
+</li>
+<li><p><code>nn.LayerNorm</code> 层归一化：通道维度归一化</p>
+</li>
+<li><p><code>nn.InstanceNorm1d/2d/3d</code> 实例归一化：单样本归一化（风格迁移）</p>
+</li>
+<li><p><code>nn.GroupNorm</code> 组归一化：分组归一化（小批量适用）</p>
+</li>
+</ol>
+<h6 id="激活函数"><a href="#激活函数" class="headerlink" title="激活函数"></a>激活函数</h6><p>1.什么是激活函数？</p>
+<p>2.<code>nn.ReLU</code> ReLU：$max(0, x)$</p>
+<p>3.<code>nn.LeakyReLU</code> LeakyReLU：$max(αx, x)$</p>
+<p>4.<code>nn.Sigmoid</code> Sigmoid：$\frac{1}{1 + e^{-x}}$</p>
+<p>5.<code>nn.Tanh</code> Tanh：$\frac{e^x - e^{-x}}{e^x + e^{-x}}$</p>
+<p>6.<code>nn.GELU</code> GELU：高斯误差线性单元（Transformer 常用）</p>
+<p>7.<code>nn.Softmax</code> Softmax：概率归一化</p>
+<h6 id="池化层"><a href="#池化层" class="headerlink" title="池化层"></a>池化层</h6><p>1.什么是池化？</p>
+<p>2.<code>nn.MaxPool1d/2d/3d</code> 最大池化：取局部最大值</p>
+<p>3.<code>nn.AvgPool1d/2d/3d</code> 平均池化：取局部平均值</p>
+<p>4.<code>nn.AdaptiveMaxPool1d/2d/3d</code> 自适应池化：动态调整输出尺寸</p>
+<p>5.<code>nn.FractionalMaxPool2d</code> 分数池化：随机分数步长池化</p>
+<h6 id="Dropout-层"><a href="#Dropout-层" class="headerlink" title="Dropout 层"></a>Dropout 层</h6><ol>
+<li><p>什么是Dropout？</p>
+</li>
+<li><p><code>nn.Dropout</code> 标准Dropout： 随机置零神经元</p>
+</li>
+<li><p><code>nn.Dropout1d/2d/3d</code> 空间Dropout：按通道&#x2F;空间置零</p>
+</li>
+</ol>
+<h6 id="嵌入层"><a href="#嵌入层" class="headerlink" title="嵌入层"></a>嵌入层</h6><ol>
+<li><p>什么是嵌入？</p>
+</li>
+<li><p><code>nn.Embedding</code> 词嵌入：nn.Embedding</p>
+</li>
+<li><p><code>nn.Embedding</code> 稀疏嵌入：高效处理变长序列</p>
+</li>
+</ol>
+<h6 id="稀疏层"><a href="#稀疏层" class="headerlink" title="稀疏层"></a>稀疏层</h6><ol>
+<li><p>什么是稀疏？</p>
+</li>
+<li><p><code>nn.Linear（输入为稀疏张量）</code> 稀疏全连接：稀疏矩阵乘法</p>
+</li>
+</ol>
+<h6 id="视觉专用层"><a href="#视觉专用层" class="headerlink" title="视觉专用层"></a>视觉专用层</h6><ol>
+<li><p><code>nn.PixelShuffle</code> 像素重排：子像素卷积（超分辨率）</p>
+</li>
+<li><p><code>nn.Unfold</code> 像素展开：滑动窗口提取局部块</p>
+</li>
+<li><p><code>nn.Fold</code> 像素折叠：逆操作于 <code>Unfold</code></p>
+</li>
+</ol>
+<h5 id="模型容器"><a href="#模型容器" class="headerlink" title="模型容器"></a>模型容器</h5><ol>
+<li><p>什么是容器？</p>
+</li>
+<li><p><code>nn.Sequential</code> 层字典</p>
+</li>
+<li><p><code>nn.ModuleList</code> 动态层列表</p>
+</li>
+<li><p><code>nn.ModuleDict</code>层字典</p>
+</li>
+</ol>
+<h4 id="优化器和损失函数"><a href="#优化器和损失函数" class="headerlink" title="优化器和损失函数"></a>优化器和损失函数</h4><h5 id="优化器（Optimizers）"><a href="#优化器（Optimizers）" class="headerlink" title="优化器（Optimizers）"></a>优化器（Optimizers）</h5><h4 id="2-4-优化器和损失函数-🔥-重点扩展"><a href="#2-4-优化器和损失函数-🔥-重点扩展" class="headerlink" title=".2.4 优化器和损失函数 🔥 重点扩展"></a><strong>.2.4 优化器和损失函数</strong> 🔥 <strong>重点扩展</strong></h4><ul>
+<li>2.2.4.1 优化器 (Optimizers)<ul>
+<li>经典优化器<ul>
+<li><code>torch.optim.SGD</code>（含动量）</li>
+<li><code>torch.optim.Adam</code>, <code>AdamW</code>, <code>RMSprop</code></li>
 </ul>
-<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">conv_layer = nn.Conv2d(in_channels=<span class="number">3</span>, out_channels=<span class="number">16</span>, kernel_size=<span class="number">3</span>)</span><br><span class="line">input_image = torch.randn(<span class="number">1</span>, <span class="number">3</span>, <span class="number">224</span>, <span class="number">224</span>)  <span class="comment"># 假设输入为 1 张 3 通道、224x224 的图像</span></span><br><span class="line">output = conv_layer(input_image)</span><br></pre></td></tr></table></figure>
-
-
-
-<p>3.<code>torch.nn.ReLU</code>定义 ReLU 激活函数层。激活函数用于引入非线性，使得神经网络能够学习更复杂的函数。ReLU 是一种常用的激活函数，在许多神经网络架构中都有应用。</p>
-<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">relu = nn.ReLU()</span><br><span class="line">input_tensor = torch.randn(<span class="number">1</span>, <span class="number">10</span>)</span><br><span class="line">output = relu(input_tensor)</span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="优化器和损失函数"><a href="#优化器和损失函数" class="headerlink" title="优化器和损失函数"></a>优化器和损失函数</h4><p>1.<code>torch.optim.SGD</code>定义随机梯度下降优化器。在模型训练过程中，需要使用优化器来更新模型的参数。SGD 是一种基本的优化算法，适用于大多数场景。</p>
-<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch.optim <span class="keyword">as</span> optim</span><br><span class="line"></span><br><span class="line">model = nn.Linear(<span class="number">10</span>, <span class="number">5</span>)</span><br><span class="line">optimizer = optim.SGD(model.parameters(), lr=<span class="number">0.01</span>)</span><br></pre></td></tr></table></figure>
-
-<p>2.<code>torch.nn.MSELoss</code>定义均方误差损失函数。均方误差损失函数常用于回归问题，用于衡量预测值与真实值之间的差异。</p>
-<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">criterion = nn.MSELoss()</span><br><span class="line">predictions = torch.randn(<span class="number">1</span>, <span class="number">5</span>)</span><br><span class="line">targets = torch.randn(<span class="number">1</span>, <span class="number">5</span>)</span><br><span class="line">loss = criterion(predictions, targets)</span><br></pre></td></tr></table></figure>
-
-<p>3.<code>torch.nn.CrossEntropyLoss</code>定义交叉熵损失函数。交叉熵损失函数常用于分类问题，用于衡量模型输出的概率分布与真实标签之间的差异。</p>
-<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">criterion = nn.CrossEntropyLoss()</span><br><span class="line">logits = torch.randn(<span class="number">1</span>, <span class="number">5</span>)</span><br><span class="line">targets = torch.tensor([<span class="number">1</span>])</span><br><span class="line">loss = criterion(logits, targets)</span><br></pre></td></tr></table></figure>
-
-<h4 id="预训练模型（torchvision-models）"><a href="#预训练模型（torchvision-models）" class="headerlink" title="预训练模型（torchvision.models）"></a>预训练模型（torchvision.models）</h4><h2 id="OS操作系统接口模块"><a href="#OS操作系统接口模块" class="headerlink" title="OS操作系统接口模块"></a>OS操作系统接口模块</h2><h2 id="Numpy"><a href="#Numpy" class="headerlink" title="Numpy"></a>Numpy</h2><p>np.stack</p>
+</li>
+<li>学习率调度<ul>
+<li><code>lr_scheduler.StepLR</code>, <code>CosineAnnealingLR</code>, <code>OneCycleLR</code></li>
+</ul>
+</li>
+<li>梯度裁剪：<code>nn.utils.clip_grad_norm_</code></li>
+</ul>
+</li>
+<li>2.2.4.2 损失函数 (Loss Functions)<ul>
+<li>分类任务<ul>
+<li><code>nn.CrossEntropyLoss</code>, <code>nn.BCEWithLogitsLoss</code></li>
+</ul>
+</li>
+<li>回归任务<ul>
+<li><code>nn.MSELoss</code>, <code>nn.L1Loss</code>, <code>nn.HuberLoss</code></li>
+</ul>
+</li>
+<li>生成任务<ul>
+<li><code>nn.BCELoss</code>, <code>nn.KLDivLoss</code>, 对抗损失（如 WGAN-GP）</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h6 id="什么是优化器？"><a href="#什么是优化器？" class="headerlink" title="什么是优化器？"></a>什么是优化器？</h6><h6 id="经典优化器"><a href="#经典优化器" class="headerlink" title="经典优化器"></a>经典优化器</h6><h6 id="学习率调度"><a href="#学习率调度" class="headerlink" title="学习率调度"></a>学习率调度</h6><h4 id="预训练模型（torchvision-models）与迁移学习"><a href="#预训练模型（torchvision-models）与迁移学习" class="headerlink" title="预训练模型（torchvision.models）与迁移学习"></a>预训练模型（torchvision.models）与迁移学习</h4><h4 id="2-4-优化器和损失函数-🔥-重点扩展-1"><a href="#2-4-优化器和损失函数-🔥-重点扩展-1" class="headerlink" title=".2.4 优化器和损失函数 🔥 重点扩展"></a><strong>.2.4 优化器和损失函数</strong> 🔥 <strong>重点扩展</strong></h4><ul>
+<li>2.2.4.1 优化器 (Optimizers)<ul>
+<li>经典优化器<ul>
+<li><code>torch.optim.SGD</code>（含动量）</li>
+<li><code>torch.optim.Adam</code>, <code>AdamW</code>, <code>RMSprop</code></li>
+</ul>
+</li>
+<li>学习率调度<ul>
+<li><code>lr_scheduler.StepLR</code>, <code>CosineAnnealingLR</code>, <code>OneCycleLR</code></li>
+</ul>
+</li>
+<li>梯度裁剪：<code>nn.utils.clip_grad_norm_</code></li>
+</ul>
+</li>
+<li>2.2.4.2 损失函数 (Loss Functions)<ul>
+<li>分类任务<ul>
+<li><code>nn.CrossEntropyLoss</code>, <code>nn.BCEWithLogitsLoss</code></li>
+</ul>
+</li>
+<li>回归任务<ul>
+<li><code>nn.MSELoss</code>, <code>nn.L1Loss</code>, <code>nn.HuberLoss</code></li>
+</ul>
+</li>
+<li>生成任务<ul>
+<li><code>nn.BCELoss</code>, <code>nn.KLDivLoss</code>, 对抗损失（如 WGAN-GP）</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h5 id="计算机视觉模型"><a href="#计算机视觉模型" class="headerlink" title="计算机视觉模型"></a>计算机视觉模型</h5><h6 id="经典-CNN-架构（通过-torchvision-models）"><a href="#经典-CNN-架构（通过-torchvision-models）" class="headerlink" title="经典 CNN 架构（通过 torchvision.models）"></a>经典 CNN 架构（通过 <code>torchvision.models</code>）</h6><p>什么是CNN</p>
+<p>1. </p>
+<p>2. </p>
+<p>3. </p>
+<h6 id="Transformer-模型"><a href="#Transformer-模型" class="headerlink" title="Transformer 模型"></a>Transformer 模型</h6><p>什么是Transformer</p>
+<ol>
+<li><p>Vision Transformer （ViT）</p>
+</li>
+<li><p>Swin Transformer</p>
+</li>
+</ol>
+<h5 id="自然语言处理模型"><a href="#自然语言处理模型" class="headerlink" title="自然语言处理模型"></a>自然语言处理模型</h5><h6 id="预训练语言模型（通过-transformers-库）"><a href="#预训练语言模型（通过-transformers-库）" class="headerlink" title="预训练语言模型（通过 transformers 库）"></a>预训练语言模型（通过 <code>transformers</code> 库）</h6><ol>
+<li><p>BERT</p>
+</li>
+<li><p>GPT</p>
+</li>
+</ol>
+<h5 id="迁移学习策略"><a href="#迁移学习策略" class="headerlink" title="迁移学习策略"></a>迁移学习策略</h5><p>什么是迁移学习策略</p>
+<h6 id="特征提取（冻结部分层）"><a href="#特征提取（冻结部分层）" class="headerlink" title="特征提取（冻结部分层）"></a>特征提取（冻结部分层）</h6><h6 id="微调（Fine-tuning）"><a href="#微调（Fine-tuning）" class="headerlink" title="微调（Fine-tuning）"></a>微调（Fine-tuning）</h6><h6 id="使用预训练特征（如-CLIP）"><a href="#使用预训练特征（如-CLIP）" class="headerlink" title="使用预训练特征（如 CLIP）"></a>使用预训练特征（如 CLIP）</h6><h4 id="数据管道-Data-Pipeline"><a href="#数据管道-Data-Pipeline" class="headerlink" title="数据管道 (Data Pipeline)"></a>数据管道 (Data Pipeline)</h4><h5 id="数据集类-Dataset"><a href="#数据集类-Dataset" class="headerlink" title="数据集类 Dataset"></a>数据集类 <code>Dataset</code></h5><p>自定义数据集实现</p>
+<h5 id="数据加载器-DataLoader"><a href="#数据加载器-DataLoader" class="headerlink" title="数据加载器 DataLoader"></a>数据加载器 <code>DataLoader</code></h5><ol>
+<li><p>批量加载</p>
+</li>
+<li><p>多进程加速 (<code>num_workers</code>)</p>
+</li>
+</ol>
+<h5 id="数据增强-torchvision-transforms"><a href="#数据增强-torchvision-transforms" class="headerlink" title="数据增强&#96;&#96;torchvision.transforms&#96;"></a>数据增强&#96;&#96;torchvision.transforms&#96;</h5><h4 id="模型部署与性能优化"><a href="#模型部署与性能优化" class="headerlink" title="模型部署与性能优化"></a>模型部署与性能优化</h4><h5 id="TorchScript-模型导出"><a href="#TorchScript-模型导出" class="headerlink" title="TorchScript 模型导出"></a>TorchScript 模型导出</h5><h5 id="ONNX-格式转换"><a href="#ONNX-格式转换" class="headerlink" title="ONNX 格式转换"></a>ONNX 格式转换</h5><h5 id="混合精度训练-torch-cuda-amp"><a href="#混合精度训练-torch-cuda-amp" class="headerlink" title="混合精度训练 (torch.cuda.amp)"></a>混合精度训练 (<code>torch.cuda.amp</code>)</h5><h2 id="OS操作系统接口模块"><a href="#OS操作系统接口模块" class="headerlink" title="OS操作系统接口模块"></a>OS操作系统接口模块</h2><h2 id="Numpy"><a href="#Numpy" class="headerlink" title="Numpy"></a>Numpy</h2><p>np.stack</p>
 
     </div>
 
@@ -612,13 +831,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">81k</span>
+    <span title="站点总字数">86k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">2:27</span>
+    <span title="站点阅读时长">2:36</span>
   </span>
 </div>
 <div class="busuanzi-count">
