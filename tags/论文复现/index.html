@@ -432,6 +432,154 @@ document.addEventListener('page:loaded', () => {
     }));
 });
 </script>
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+    <meta charset="UTF - 8">
+    <meta name="viewport" content="width=device - width, initial - scale = 1.0">
+    <title>Responsive Image Modal</title>
+    <style>
+        /* 样式重置 */
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        /* 图片链接样式 */
+        a {
+            display: inline - block;
+            margin: 10px;
+        }
+
+        /* 模态框样式 */
+        #imageModal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z - index: 9999;
+            align - items: center;
+            justify - content: center;
+        }
+
+        /* 模态框内容容器样式 */
+        #modalContent {
+            position: relative;
+            background - color: white;
+            border - radius: 20px;
+            width: 500px;
+            height: 500px;
+            display: flex;
+            align - items: center;
+            justify - content: center;
+        }
+
+        /* 关闭按钮样式，增加父元素选择器提高特异性 */
+        #modalContent #closeModal {
+            position: absolute;
+            color: #999;
+            font - size: 40px;
+            cursor: pointer;
+            top: 10px;
+            right: 20px;
+        }
+
+        /* 鼠标悬停时样式 */
+        #modalContent #closeModal:hover {
+            color: red;
+        }
+
+        /* 鼠标点击时样式 */
+        #modalContent #closeModal:active {
+            color: red;
+        }
+
+        /* 图片样式 */
+        #modalImage {
+            max - width: 90%;
+            max - height: 90%;
+        }
+
+        /* 确保.post - meta - item不受影响 */
+        span.post - meta - item {
+            position: relative;
+            display: inline - block;
+            /* 根据实际布局调整 */
+            margin: 0;
+            padding: 0;
+        }
+
+        span.post - meta - item.post - meta - item - icon {
+            display: inline - block;
+        }
+
+        span.post - meta - item.post - meta - item - text {
+            display: inline - block;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 示例图片链接 -->
+    <a href="wechat.png">微信图片</a>
+    <a href="qq.png">QQ 图片</a>
+
+    <!-- 模态框结构 -->
+    <div id="imageModal">
+        <div id="modalContent">
+            <span id="closeModal">×</span>
+            <img id="modalImage">
+        </div>
+    </div>
+
+    <span class="post - meta - item">
+        <span class="post - meta - item - icon">
+            <i class="far fa - folder"></i>
+        </span>
+        <span class="post - meta - item - text"> 分类于</span>
+        <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+            <a href="/categories/%E5%8D%9A%E5%AE%A2%E7%BB%B4%E6%8A%A4/" itemprop="url" rel="index"><span itemprop="name">博客维护</span></a>
+        </span>
+    </span>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const modal = document.getElementById('imageModal');
+            const closeButton = document.getElementById('closeModal');
+            const modalImage = document.getElementById('modalImage');
+
+            // 绑定点击事件
+            document.querySelectorAll('[href$="wechat.png"], [href$="qq.png"]').forEach(link => {
+                link.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    modal.style.display = 'flex';
+                    modalImage.src = this.href;
+
+                    // 等待图片加载完成
+                    modalImage.onload = function () {
+                        // 这里可以根据需要添加更多图片加载后的逻辑，当前模态框大小已固定
+                    };
+                });
+            });
+
+            // 关闭逻辑
+            closeButton.addEventListener('click', function () {
+                modal.style.display = 'none';
+            });
+
+            modal.addEventListener('click', function (e) {
+                if (e.target === this) {
+                    modal.style.display = 'none';
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
 </body>
 </html>
