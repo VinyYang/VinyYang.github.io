@@ -1349,7 +1349,7 @@ pre code {
     vertical-align: middle;
   }
   .links-of-author a::before {
-    background: #243441;
+    background: #d7fffe;
     display: inline-block;
     margin-right: 3px;
     transform: translateY(-2px);
@@ -3120,4 +3120,9 @@ blockquote.danger {
 blockquote.success {
   border-left-color: #5cb85c;
   background-color: #eef7f0;
+}
+#modalContent {
+  --modal-size: 500px; /* 桌面端尺寸 */
+  --mobile-size: 90vw; /* 移动端尺寸 */
+  --close-size: 50px; /* 关闭按钮大小 */
 }
