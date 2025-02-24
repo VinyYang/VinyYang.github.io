@@ -450,12 +450,17 @@ document.addEventListener('page:loaded', () => {
 
         /* 图片链接样式 */
         a {
-            display: inline-block;
+            display: inline - block;
             margin: 10px;
         }
 
+        /* 模态框外层容器 */
+        #modal - wrapper {
+            /* 可以添加一些必要的样式 */
+        }
+
         /* 模态框样式 */
-        #imageModal {
+        #modal - wrapper #imageModal {
             display: none;
             position: fixed;
             top: 0;
@@ -463,33 +468,31 @@ document.addEventListener('page:loaded', () => {
             width: 100%;
             height: 100%;
             background: rgba(0, 0, 0, 0.8);
-            z-index: 9999;
-            /* 使用 flexbox 实现居中 */
+            z - index: 9999;
             display: flex;
-            align-items: center;
-            justify-content: center;
+            align - items: center;
+            justify - content: center;
         }
 
         /* 模态框内容容器样式 */
-        #modalContent {
+        #modal - wrapper #modalContent {
             position: relative;
-            background-color: white;
-            border-radius: 20px;
-            /* 使用 max-width 和 max-height 适配不同屏幕 */
-            max-width: 90%;
-            max-height: 90%;
+            background - color: white;
+            border - radius: 20px;
+            max - width: 90%;
+            max - height: 90%;
             width: 500px;
             height: 500px;
             display: flex;
-            align-items: center;
-            justify-content: center;
+            align - items: center;
+            justify - content: center;
         }
 
-        /* 关闭按钮样式，增加父元素选择器提高特异性 */
-        #modalContent #closeModal {
+        /* 关闭按钮样式 */
+        #modal - wrapper #modalContent #closeModal {
             position: absolute;
             color: #999;
-            font-size: 60px;
+            font - size: 60px;
             cursor: pointer;
             top: 5px;
             right: 20px;
@@ -497,29 +500,24 @@ document.addEventListener('page:loaded', () => {
         }
 
         /* 鼠标悬停时样式 */
-        #modalContent #closeModal:hover {
+        #modal - wrapper #modalContent #closeModal:hover {
             color: red;
         }
 
         /* 鼠标点击时样式 */
-        #modalContent #closeModal:active {
+        #modal - wrapper #modalContent #closeModal:active {
             color: red;
         }
 
         /* 图片样式 */
-        #modalImage {
-            max-width: 90%;
-            max-height: 90%;
-        }
-
-        /* 确保.post - meta - item不受影响 */
-        span.post - meta - item {
-            display: none;
+        #modal - wrapper #modalContent #modalImage {
+            max - width: 90%;
+            max - height: 90%;
         }
 
         /* 手机端适配 */
-        @media (max-width: 768px) {
-            #modalContent {
+        @media (max - width: 768px) {
+            #modal - wrapper #modalContent {
                 width: 90%;
                 height: auto;
             }
@@ -528,15 +526,77 @@ document.addEventListener('page:loaded', () => {
 </head>
 
 <body>
+    <header class="post - header animated fadeInDown">
+        <h2 class="post - title" itemprop="name headline">
+            <a href="/algorithm_learning/" class="post - title - link" itemprop="url">算法基础课 (持续更新中)</a>
+        </h2>
+
+        <div class="post - meta - container">
+            <div class="post - meta">
+                <span class="post - meta - item">
+                    <span class="post - meta - item - icon">
+                        <i class="far fa - calendar"></i>
+                    </span>
+                    <span class="post - meta - item - text"> 发表于</span>
+                    <time title="创建时间：2025 - 02 - 14 04:42:29" itemprop="dateCreated datePublished"
+                        datetime="2025 - 02 - 14T04:42:29 + 08:00"> 2025 - 02 - 14</time>
+                </span>
+                <span class="post - meta - item">
+                    <span class="post - meta - item - icon">
+                        <i class="far fa - calendar - check"></i>
+                    </span>
+                    <span class="post - meta - item - text"> 更新于</span>
+                    <time title="修改时间：2025 - 02 - 20 00:38:53" itemprop="dateModified"
+                        datetime="2025 - 02 - 20T00:38:53 + 08:00"> 2025 - 02 - 20</time>
+                </span>
+                <span class="post - meta - item">
+                    <span class="post - meta - item - icon">
+                        <i class="far fa - folder"></i>
+                    </span>
+                    <span class="post - meta - item - text"> 分类于</span>
+                    <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                        <a href="/categories/%E7%AE%97%E6%B3%95%E9%A2%98/" itemprop="url" rel="index"><span
+                                itemprop="name">算法题</span></a>
+                    </span>
+                </span>
+
+                <div style="padding - left: 8px;">
+                    <span class="post - meta - divider" style="padding - right: 8px;"> |</span>
+                    <i class="fa fa - thumbtack"></i>
+                    <font color="purple" style="font - weight: bold; padding - left: 4px;"> 置顶 </font>
+                </div>
+
+
+                <span class="post - meta - break"></span>
+                <span class="post - meta - item" title="本文字数">
+                    <span class="post - meta - item - icon">
+                        <i class="far fa - file - word"></i>
+                    </span>
+                    <span class="post - meta - item - text">本文字数：</span>
+                    <span>4.9k</span>
+                </span>
+                <span class="post - meta - item" title="阅读时长">
+                    <span class="post - meta - item - icon">
+                        <i class="far fa - clock"></i>
+                    </span>
+                    <span class="post - meta - item - text"> 阅读时长 ≈</span>
+                    <span>9 分钟</span>
+                </span>
+            </div>
+        </div>
+    </header>
+
     <!-- 示例图片链接 -->
     <a href="wechat.png" style="display: none;">微信图片</a>
     <a href="qq.png" style="display: none;">QQ 图片</a>
 
-    <!-- 模态框结构 -->
-    <div id="imageModal">
-        <div id="modalContent">
-            <span id="closeModal">×</span>
-            <img id="modalImage">
+    <!-- 模态框结构，添加外层容器 -->
+    <div id="modal - wrapper">
+        <div id="imageModal">
+            <div id="modalContent">
+                <span id="closeModal">×</span>
+                <img id="modalImage">
+            </div>
         </div>
     </div>
 
