@@ -1349,7 +1349,7 @@ pre code {
     vertical-align: middle;
   }
   .links-of-author a::before {
-    background: #ffb888;
+    background: #f7ffff;
     display: inline-block;
     margin-right: 3px;
     transform: translateY(-2px);
@@ -3125,4 +3125,16 @@ blockquote.success {
   --modal-size: 500px; /* 桌面端尺寸 */
   --mobile-size: 90vw; /* 移动端尺寸 */
   --close-size: 50px; /* 关闭按钮大小 */
+}
+a[href^="mailto:"],
+a[href="/images/email.png"] {
+  color: #fff !important;
+}
+a[href^="mailto:"] i.fa-envelope,
+a[href="/images/email.png"] i.fa-envelope {
+  color: inherit;
+}
+a[href^="mailto:"]:hover,
+a[href="/images/email.png"]:hover {
+  color: rgba(255,255,255,0.8) !important;
 }

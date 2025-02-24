@@ -189,7 +189,7 @@
         <a href="https://github.com/VinyYang" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;VinyYang" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
       </span>
       <span class="links-of-author-item">
-        <a href="/yhy520%5BAT%5Demail%5BDOT%5Dswu%5BDOT%5Dedu%5BDOT%5Dcn" title="E-Mail → yhy520[AT]email[DOT]swu[DOT]edu[DOT]cn" rel="noopener me"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+        <a href="/images/email.png" title="E-Mail → &#x2F;images&#x2F;email.png" rel="noopener me"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
       </span>
       <span class="links-of-author-item">
         <a href="/images/wechat.png" title="Wechat → &#x2F;images&#x2F;wechat.png" rel="noopener me"><i class="fab fa-weixin fa-fw"></i>Wechat</a>
@@ -432,216 +432,165 @@ document.addEventListener('page:loaded', () => {
     }));
 });
 </script>
-<!DOCTYPE html>
-<html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Responsive Image Modal</title>
-    <style>
-        /* 样式重置 */
-        body {
-            margin: 0;
-            padding: 0;
-        }
-
-        /* 图片链接样式 */
-        a {
-            display: inline - block;
-            margin: 10px;
-        }
-
-        /* 模态框外层容器 */
-        #modal - wrapper {
-            /* 可以添加一些必要的样式 */
-        }
-
-        /* 模态框样式 */
-        #modal - wrapper #imageModal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.8);
-            z - index: 9999;
-            display: flex;
-            align - items: center;
-            justify - content: center;
-        }
-
-        /* 模态框内容容器样式 */
-        #modal - wrapper #modalContent {
-            position: relative;
-            background - color: white;
-            border - radius: 20px;
-            max - width: 90%;
-            max - height: 90%;
-            width: 500px;
-            height: 500px;
-            display: flex;
-            align - items: center;
-            justify - content: center;
-        }
-
-        /* 关闭按钮样式 */
-        #modal - wrapper #modalContent #closeModal {
-            position: absolute;
-            color: #999;
-            font - size: 60px;
-            cursor: pointer;
-            top: 5px;
-            right: 20px;
-            transition: color 0.3s ease;
-        }
-
-        /* 鼠标悬停时样式 */
-        #modal - wrapper #modalContent #closeModal:hover {
-            color: red;
-        }
-
-        /* 鼠标点击时样式 */
-        #modal - wrapper #modalContent #closeModal:active {
-            color: red;
-        }
-
-        /* 图片样式 */
-        #modal - wrapper #modalContent #modalImage {
-            max - width: 90%;
-            max - height: 90%;
-        }
-
-        /* 手机端适配 */
-        @media (max - width: 768px) {
-            #modal - wrapper #modalContent {
-                width: 90%;
-                height: auto;
-            }
-        }
-    </style>
-</head>
-
-<body>
-    <header class="post - header animated fadeInDown">
-        <h2 class="post - title" itemprop="name headline">
-            <a href="/algorithm_learning/" class="post - title - link" itemprop="url">算法基础课 (持续更新中)</a>
-        </h2>
-
-        <div class="post - meta - container">
-            <div class="post - meta">
-                <span class="post - meta - item">
-                    <span class="post - meta - item - icon">
-                        <i class="far fa - calendar"></i>
-                    </span>
-                    <span class="post - meta - item - text"> 发表于</span>
-                    <time title="创建时间：2025 - 02 - 14 04:42:29" itemprop="dateCreated datePublished"
-                        datetime="2025 - 02 - 14T04:42:29 + 08:00"> 2025 - 02 - 14</time>
-                </span>
-                <span class="post - meta - item">
-                    <span class="post - meta - item - icon">
-                        <i class="far fa - calendar - check"></i>
-                    </span>
-                    <span class="post - meta - item - text"> 更新于</span>
-                    <time title="修改时间：2025 - 02 - 20 00:38:53" itemprop="dateModified"
-                        datetime="2025 - 02 - 20T00:38:53 + 08:00"> 2025 - 02 - 20</time>
-                </span>
-                <span class="post - meta - item">
-                    <span class="post - meta - item - icon">
-                        <i class="far fa - folder"></i>
-                    </span>
-                    <span class="post - meta - item - text"> 分类于</span>
-                    <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                        <a href="/categories/%E7%AE%97%E6%B3%95%E9%A2%98/" itemprop="url" rel="index"><span
-                                itemprop="name">算法题</span></a>
-                    </span>
-                </span>
-
-                <div style="padding - left: 8px;">
-                    <span class="post - meta - divider" style="padding - right: 8px;"> |</span>
-                    <i class="fa fa - thumbtack"></i>
-                    <font color="purple" style="font - weight: bold; padding - left: 4px;"> 置顶 </font>
-                </div>
-
-
-                <span class="post - meta - break"></span>
-                <span class="post - meta - item" title="本文字数">
-                    <span class="post - meta - item - icon">
-                        <i class="far fa - file - word"></i>
-                    </span>
-                    <span class="post - meta - item - text">本文字数：</span>
-                    <span>4.9k</span>
-                </span>
-                <span class="post - meta - item" title="阅读时长">
-                    <span class="post - meta - item - icon">
-                        <i class="far fa - clock"></i>
-                    </span>
-                    <span class="post - meta - item - text"> 阅读时长 ≈</span>
-                    <span>9 分钟</span>
-                </span>
-            </div>
-        </div>
-    </header>
-
-    <!-- 示例图片链接 -->
-    <a href="wechat.png" style="display: none;">微信图片</a>
-    <a href="qq.png" style="display: none;">QQ 图片</a>
-
-    <!-- 模态框结构，添加外层容器 -->
-    <div id="modal - wrapper">
-        <div id="imageModal">
-            <div id="modalContent">
-                <span id="closeModal">×</span>
-                <img id="modalImage">
-            </div>
-        </div>
+<div class="contact-modal-overlay" style="display: none;">
+  <div class="contact-modal-box">
+    <div class="contact-modal-header">
+      <span class="contact-modal-title"></span>
+      <button class="contact-modal-close">&times;</button>
     </div>
+    <div class="contact-modal-body">
+      <img class="contact-qrcode" src="" alt="联系方式二维码">
+    </div>
+  </div>
+</div>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const modal = document.getElementById('imageModal');
-            const closeButton = document.getElementById('closeModal');
-            const modalImage = document.getElementById('modalImage');
+<style>
+/* 模态框遮罩层 */
+.contact-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.6);
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
 
-            // 确保模态框初始为隐藏状态
-            modal.style.display = 'none';
+/* 模态框主体 */
+.contact-modal-box {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+  max-width: 80%;
+  min-width: 300px;
+  transform: scale(0.8);
+  transition: all 0.3s ease;
+}
 
-            // 绑定点击事件
-            document.querySelectorAll('[href$="wechat.png"], [href$="qq.png"]').forEach(link => {
-                link.addEventListener('click', function (e) {
-                    e.preventDefault();
-                    // 显示模态框
-                    modal.style.display = 'flex';
-                    modalImage.src = this.href;
+/* 显示时的动画状态 */
+.contact-modal-overlay.active {
+  opacity: 1;
+}
+.contact-modal-overlay.active .contact-modal-box {
+  transform: scale(1);
+}
 
-                    // 等待图片加载完成
-                    modalImage.onload = function () {
-                        // 这里可以根据需要添加更多图片加载后的逻辑，当前模态框大小已固定
-                    };
-                });
-            });
+/* 头部样式 */
+.contact-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+  border-bottom: 1px solid #eee;
+}
 
-            // 关闭逻辑
-            closeButton.addEventListener('click', function () {
-                // 隐藏模态框
-                modal.style.display = 'none';
-                // 清空图片 src 属性
-                modalImage.src = '';
-            });
+.contact-modal-title {
+  font-size: 1.2em;
+  color: #333;
+  font-weight: bold;
+}
 
-            modal.addEventListener('click', function (e) {
-                if (e.target === this) {
-                    // 隐藏模态框
-                    modal.style.display = 'none';
-                    // 清空图片 src 属性
-                    modalImage.src = '';
-                }
-            });
-        });
-    </script>
-</body>
+/* 关闭按钮 */
+.contact-modal-close {
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: #666;
+  transition: color 0.2s;
+}
+.contact-modal-close:hover {
+  color: #333;
+}
 
-</html>
+/* 二维码图片 */
+.contact-qrcode {
+  max-width: 280px;
+  max-height: 60vh;
+  padding: 20px;
+  display: block;
+  margin: 0 auto;
+}
+
+/* 移动端适配 */
+@media (max-width: 767px) {
+  .contact-modal-box {
+    max-width: 90%;
+  }
+  .contact-qrcode {
+    max-width: 200px;
+  }
+}
+
+/* 现有按钮交互优化 */
+a[href*="/images/wechat.png"],
+a[href*="/images/qq.png"] {
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+a[href*="/images/wechat.png"]:hover,
+a[href*="/images/qq.png"]:hover {
+  transform: translateY(-2px);
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // 绑定现有按钮事件
+  const contactButtons = document.querySelectorAll(
+    'a[href*="/images/wechat.png"], a[href*="/images/qq.png"]'
+  );
+
+  contactButtons.forEach(btn => {
+    btn.addEventListener('click', function(e) {
+      e.preventDefault();
+      const type = this.innerHTML.includes('weixin') ? '微信' : 'QQ';
+      showContactModal(type, this.href);
+    });
+  });
+
+  // 显示模态框函数
+  const showContactModal = (type, path) => {
+    const overlay = document.querySelector('.contact-modal-overlay');
+    const title = document.querySelector('.contact-modal-title');
+    const img = document.querySelector('.contact-qrcode');
+
+    title.textContent = type;
+    img.src = path;
+    
+    overlay.style.display = 'flex';
+    setTimeout(() => overlay.classList.add('active'), 10);
+  };
+
+  // 关闭模态框逻辑
+  document.querySelector('.contact-modal-close').addEventListener('click', () => {
+    closeModal();
+  });
+
+  document.querySelector('.contact-modal-overlay').addEventListener('click', (e) => {
+    if(e.target === e.currentTarget) closeModal();
+  });
+
+  const closeModal = () => {
+    const overlay = document.querySelector('.contact-modal-overlay');
+    overlay.classList.remove('active');
+    setTimeout(() => {
+      overlay.style.display = 'none';
+    }, 300);
+  };
+});
+</script>
+
+
+
+
+
+
 </body>
 </html>
