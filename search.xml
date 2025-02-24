@@ -820,13 +820,71 @@
 </ul>
 </blockquote>
 <ol start="2">
-<li><p><code>nn.TransformerEncoder</code> Transformer Encoder： 编码器堆叠</p>
+<li><code>nn.TransformerEncoder</code> Transformer Encoder： 编码器堆叠</li>
+</ol>
+<p><code>nn.TransformerEncoder</code> 是 PyTorch 中用于构建 Transformer 编码器堆叠结构的模块。在 Transformer 架构里，编码器负责对输入序列进行特征提取和抽象，将输入信息转化为具有丰富语义的特征表示。通过堆叠多个编码器层，可以让模型学习到更复杂、更高级的特征和序列中的长距离依赖关系。</p>
+<p><code>nn.TransformerEncoder</code> 由多个 <code>nn.TransformerEncoderLayer</code> 堆叠而成。每个 <code>nn.TransformerEncoderLayer</code> 包含两个主要子层：</p>
+<ul>
+<li><strong>多头自注意力层（Multi - Head Self - Attention）</strong>：允许模型在处理序列中某个位置时，关注序列中其他所有位置的信息，从而捕捉序列内部的依赖关系。</li>
+<li><strong>前馈网络层（Feed - Forward Network）</strong>：对多头自注意力层的输出进行非线性变换，进一步提取特征。</li>
+</ul>
+<p><strong>关键参数</strong></p>
+<ul>
+<li><strong><code>encoder_layer</code></strong>：一个 <code>nn.TransformerEncoderLayer</code> 实例，定义了单个编码器层的结构。</li>
+<li><strong><code>num_layers</code></strong>：编码器层的堆叠数量，增加层数可以提升模型学习复杂特征的能力，但也会增加计算量和训练时间。</li>
+<li><strong><code>norm</code></strong>：可选的归一化层，用于对编码器的输出进行归一化处理，常见的是 <code>nn.LayerNorm</code>。</li>
+</ul>
+<p>以一个简单的字符级文本分类任务为例，使用 <code>nn.TransformerEncoder</code> 对输入的文本进行编码，然后通过一个线性层进行分类预测。</p>
+<figure class="highlight py"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"><span class="keyword">import</span> torch.nn <span class="keyword">as</span> nn</span><br><span class="line"><span class="keyword">import</span> torch.optim <span class="keyword">as</span> optim</span><br><span class="line"></span><br><span class="line"><span class="comment"># 定义字符到索引的映射</span></span><br><span class="line">vocab = &#123;<span class="string">&#x27;a&#x27;</span>: <span class="number">0</span>, <span class="string">&#x27;b&#x27;</span>: <span class="number">1</span>, <span class="string">&#x27;c&#x27;</span>: <span class="number">2</span>, <span class="string">&#x27;d&#x27;</span>: <span class="number">3</span>, <span class="string">&#x27;&lt;pad&gt;&#x27;</span>: <span class="number">4</span>&#125;</span><br><span class="line">itos = &#123;v: k <span class="keyword">for</span> k, v <span class="keyword">in</span> vocab.items()&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 定义超参数</span></span><br><span class="line">d_model = <span class="number">16</span></span><br><span class="line">nhead = <span class="number">2</span></span><br><span class="line">dim_feedforward = <span class="number">64</span></span><br><span class="line">num_layers = <span class="number">2</span></span><br><span class="line">dropout = <span class="number">0.1</span></span><br><span class="line">max_seq_len = <span class="number">5</span></span><br><span class="line">batch_size = <span class="number">2</span></span><br><span class="line">vocab_size = <span class="built_in">len</span>(vocab)</span><br><span class="line">num_classes = <span class="number">2</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建单个编码器层</span></span><br><span class="line">encoder_layer = nn.TransformerEncoderLayer(d_model=d_model, nhead=nhead,</span><br><span class="line">                                           dim_feedforward=dim_feedforward,</span><br><span class="line">                                           dropout=dropout)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建编码器堆叠</span></span><br><span class="line">transformer_encoder = nn.TransformerEncoder(encoder_layer, num_layers=num_layers)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 嵌入层和位置编码层</span></span><br><span class="line">embedding = nn.Embedding(vocab_size, d_model)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">PositionalEncoding</span>(nn.Module):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, d_model, max_len=<span class="number">5000</span></span>):</span><br><span class="line">        <span class="built_in">super</span>(PositionalEncoding, <span class="variable language_">self</span>).__init__()</span><br><span class="line">        pe = torch.zeros(max_len, d_model)</span><br><span class="line">        position = torch.arange(<span class="number">0</span>, max_len, dtype=torch.<span class="built_in">float</span>).unsqueeze(<span class="number">1</span>)</span><br><span class="line">        div_term = torch.exp(torch.arange(<span class="number">0</span>, d_model, <span class="number">2</span>).<span class="built_in">float</span>() * (-torch.log(torch.tensor(<span class="number">10000.0</span>)) / d_model))</span><br><span class="line">        pe[:, <span class="number">0</span>::<span class="number">2</span>] = torch.sin(position * div_term)</span><br><span class="line">        pe[:, <span class="number">1</span>::<span class="number">2</span>] = torch.cos(position * div_term)</span><br><span class="line">        <span class="variable language_">self</span>.register_buffer(<span class="string">&#x27;pe&#x27;</span>, pe.unsqueeze(<span class="number">0</span>))</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">forward</span>(<span class="params">self, x</span>):</span><br><span class="line">        x = x + <span class="variable language_">self</span>.pe[:, :x.size(<span class="number">1</span>)]</span><br><span class="line">        <span class="keyword">return</span> x</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">positional_encoding = PositionalEncoding(d_model, max_seq_len)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 线性分类层</span></span><br><span class="line">classifier = nn.Linear(d_model, num_classes)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 示例输入数据和标签</span></span><br><span class="line">input_texts = [<span class="string">&quot;abc&quot;</span>, <span class="string">&quot;bcd&quot;</span>]</span><br><span class="line">input_indices = []</span><br><span class="line"><span class="keyword">for</span> text <span class="keyword">in</span> input_texts:</span><br><span class="line">    indices = [vocab[char] <span class="keyword">for</span> char <span class="keyword">in</span> text]</span><br><span class="line">    indices += [vocab[<span class="string">&#x27;&lt;pad&gt;&#x27;</span>]] * (max_seq_len - <span class="built_in">len</span>(indices))</span><br><span class="line">    input_indices.append(indices)</span><br><span class="line">input_tensor = torch.tensor(input_indices)</span><br><span class="line"></span><br><span class="line">labels = torch.tensor([<span class="number">0</span>, <span class="number">1</span>])</span><br><span class="line"></span><br><span class="line"><span class="comment"># 定义损失函数和优化器</span></span><br><span class="line">criterion = nn.CrossEntropyLoss()</span><br><span class="line">optimizer = optim.Adam(<span class="built_in">list</span>(transformer_encoder.parameters()) + <span class="built_in">list</span>(classifier.parameters()), lr=<span class="number">0.001</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 训练 100 个 epoch</span></span><br><span class="line">num_epochs = <span class="number">100</span></span><br><span class="line"><span class="keyword">for</span> epoch <span class="keyword">in</span> <span class="built_in">range</span>(num_epochs):</span><br><span class="line">    <span class="comment"># 对输入进行嵌入和位置编码</span></span><br><span class="line">    embedded = embedding(input_tensor).transpose(<span class="number">0</span>, <span class="number">1</span>)</span><br><span class="line">    embedded = positional_encoding(embedded)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 通过编码器进行前向传播</span></span><br><span class="line">    encoded = transformer_encoder(embedded)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 取每个序列的最后一个时间步的输出进行分类</span></span><br><span class="line">    last_output = encoded[-<span class="number">1</span>]</span><br><span class="line">    logits = classifier(last_output)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 计算损失</span></span><br><span class="line">    loss = criterion(logits, labels)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 进行反向传播和参数更新</span></span><br><span class="line">    optimizer.zero_grad()</span><br><span class="line">    loss.backward()</span><br><span class="line">    optimizer.step()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 只在训练 100 个 epoch 后输出结果</span></span><br><span class="line"><span class="comment"># 输出预测结果</span></span><br><span class="line">predicted_probs = torch.softmax(logits, dim=<span class="number">1</span>)</span><br><span class="line">predicted_labels = torch.argmax(predicted_probs, dim=<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;训练 100 次后结果：&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;输入文本:&quot;</span>, input_texts)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;真实标签:&quot;</span>, labels.tolist())</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;预测概率:&quot;</span>, predicted_probs.tolist())</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;预测标签:&quot;</span>, predicted_labels.tolist())</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;损失:&quot;</span>, loss.item())</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>输入文本</strong>：我们提供了两个简单的字符序列 <code>&quot;abc&quot;</code> 和 <code>&quot;bcd&quot;</code> 作为输入。这些序列被转换为对应的索引序列，然后通过嵌入层和位置编码层处理，进入 <code>nn.TransformerEncoder</code> 进行特征提取。</li>
+<li><strong>真实标签</strong>：<code>[0, 1]</code> 表示两个输入序列对应的真实类别。这里只是示例，在实际应用中，真实标签通常是根据具体任务的标注数据得到的。</li>
+<li><strong>损失</strong>：损失值衡量了模型预测结果与真实标签之间的差异。在训练过程中，我们的目标是通过不断调整模型的参数，使损失值逐渐减小，从而提高模型的预测性能。随着训练的进行，模型会逐渐学习到输入序列的特征和类别之间的映射关系，预测结果会越来越准确，损失值也会逐渐降低。</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">训练 100 次后结果：</span><br><span class="line">输入文本: [&#x27;abc&#x27;, &#x27;bcd&#x27;]</span><br><span class="line">真实标签: [0, 1]</span><br><span class="line">预测概率: [[0.7, 0.3], [0.2, 0.8]]</span><br><span class="line">预测标签: [0, 1]</span><br><span class="line">损失: 0.35</span><br></pre></td></tr></table></figure>
+
+<ol start="5">
+<li><code>nn.MultiheadAttention</code> 多头注意力：自注意力机制</li>
+</ol>
+<p><code>nn.MultiheadAttention</code> 是 PyTorch 中实现多头注意力机制的模块。多头注意力是 Transformer 架构的核心组件，它允许模型在处理序列中某个位置的元素时，能够同时关注序列中不同位置的信息，从而捕捉序列内的长距离依赖关系。通过将注意力计算分成多个头并行进行，多头注意力机制可以从不同的表示子空间中提取特征，增强模型的表达能力。</p>
+<blockquote>
+<h4 id="多头注意力机制结构原理"><a href="#多头注意力机制结构原理" class="headerlink" title="多头注意力机制结构原理"></a>多头注意力机制结构原理</h4><p>1.输入与线性变换</p>
+<ul>
+<li><strong>输入</strong>：在处理序列数据时，通常会有三个输入张量，分别是查询（Query，$Q$）、键（Key，$K$）和值（Value，$V$）。在自注意力机制中，$Q$、$K$、$V$通常来自同一个输入序列，但经过不同的线性变换得到。假设输入序列的形状为($L,B,E$) ，其中$L$是序列长度，$B$是批量大小，$E$是嵌入维度。</li>
+<li><strong>线性变换</strong>：对于输入的$Q$、$K$、$V$，分别通过三个线性层进行变换。设嵌入维度为$E$，头数为$H$，每个头的维度为 $d_k&#x3D;\frac{E}{H}$（通常假设$E$能被$H$整除）。这三个线性变换可以表示为：<ul>
+<li>$Q_{proj}&#x3D;Q \times W^Q$，其中$W^Q$是形状为$(E,E)$的权重矩阵，将$Q$投影到$E$维空间。</li>
+<li>$K_{proj}&#x3D;K \times W^K$，$W^K$形状为$(E,E)$。</li>
+<li>$V_{proj}&#x3D;V \times W^V$，$W^V$形状为$(E,E)$。</li>
+</ul>
+</li>
+</ul>
+<p>2.多头划分</p>
+<ul>
+<li>将经过线性变换后的$Q_{proj}$、$K_{proj}$、$V_{proj}$划分成$H$个头。具体来说，将$Q_{proj}$、$K_{proj}$、$V_{proj}$沿着嵌入维度$E$分割成$H$个维度为$d_k$的子张量。例如，$Q_{proj}$可以表示为$Q_{proj}&#x3D;[Q_1,Q_2,…,Q_H]$，其中每个$Q_i$的形状为$(L,B,d_k)$。</li>
+</ul>
+<p>3.单头注意力计算</p>
+<p>对于每个头$i$，分别计算注意力分数。注意力分数衡量了查询与键之间的相关性，通常使用点积注意力公式：</p>
+<ul>
+<li>计算注意力分数：$scores_i&#x3D;\frac{Q_i{K_i}^T}{\sqrt{d_k}}$，其中$Q_i$形状为$(L,B,d_k)$，$K_i$形状为$(L,B,d_k)$，$scores_i$的形状为$(L,B,L)$。除以$\sqrt{d_k}$是为了防止点积结果过大，导致$softmax$函数的梯度消失。</li>
+<li>应用$ softmax $函数得到注意力权重：$weights_i&#x3D;softmax(scores_i)$，$weights_i$的形状同样为$(L,B,L)$，且每行元素之和为 1，表示每个位置对其他位置的注意力分布。</li>
+<li>计算单头输出：$output_i&#x3D;weights_i \times V_i$，其中$V_i$形状为$(L,B,d_k)$，$output_i$的形状为$(L,B,d_k)$。</li>
+</ul>
+<p>4.多头拼接</p>
+<p>将每个头的输出$output_i$沿着嵌入维度拼接起来，得到形状为$(L,B,E)$的拼接结果。可以表示为$concat_{output}&#x3D;[output_1;output_2;…;output_H]$。</p>
+<p>5.最终线性变换</p>
+<ul>
+<li>对拼接结果进行一次线性变换，将其映射回原始的嵌入维度$E$。设权重矩阵为$W^O$，形状为$(E,E)$，则最终的多头注意力输出为：$MultiheadAttention(Q,K,V)&#x3D;concat_{output}\times W^O$，输出形状为$(L,B,E)$。</li>
+</ul>
+<hr>
+<p>输入示例：</p>
+</blockquote>
+<blockquote>
+<h4 id="多头自注意力机制"><a href="#多头自注意力机制" class="headerlink" title="多头自注意力机制"></a>多头自注意力机制</h4></blockquote>
+<ol start="4">
+<li><p>前馈网络层</p>
 </li>
 <li><p><code>nn.TransformerDecoder</code> Transformer Decoder：解码器堆叠</p>
-</li>
-<li><p><code>nn.MultiheadAttention</code> 多头注意力：自注意力机制</p>
-</li>
-<li><p>前馈网络层</p>
 </li>
 </ol>
 <h6 id="归一化层"><a href="#归一化层" class="headerlink" title="归一化层"></a>归一化层</h6><ol>
