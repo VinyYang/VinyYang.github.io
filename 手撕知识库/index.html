@@ -33,7 +33,7 @@
 <meta property="og:image" content="https://vinyyang.github.io/%E6%89%8B%E6%92%95%E7%9F%A5%E8%AF%86%E5%BA%93/image-20250222212028325.png">
 <meta property="og:image" content="https://vinyyang.github.io/%E6%89%8B%E6%92%95%E7%9F%A5%E8%AF%86%E5%BA%93/image-20250222215408498.png">
 <meta property="article:published_time" content="2025-02-18T18:38:36.000Z">
-<meta property="article:modified_time" content="2025-02-22T14:11:01.292Z">
+<meta property="article:modified_time" content="2025-02-24T08:32:36.598Z">
 <meta property="article:author" content="Viny Yang">
 <meta property="article:tag" content="科研知识积累">
 <meta name="twitter:card" content="summary">
@@ -295,7 +295,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-02-22 22:11:01" itemprop="dateModified" datetime="2025-02-22T22:11:01+08:00">2025-02-22</time>
+      <time title="修改时间：2025-02-24 16:32:36" itemprop="dateModified" datetime="2025-02-24T16:32:36+08:00">2025-02-24</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -328,14 +328,14 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>24k</span>
+      <span>29k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>44 分钟</span>
+      <span>53 分钟</span>
     </span>
 </div>
 
@@ -669,10 +669,68 @@
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入张量形状: torch.Size([16, 3, 100])</span><br><span class="line">输出张量形状: torch.Size([16, 6, 98])</span><br></pre></td></tr></table></figure>
 
 <ol start="2">
-<li><p><code>nn.Conv2d</code> 2D卷积：处理图像数据</p>
-</li>
-<li><p><code>nn.Conv3d</code> 3D卷积：处理视频&#x2F;体数据</p>
-</li>
+<li><code>nn.Conv2d</code> 2D卷积：处理图像数据</li>
+</ol>
+<p><code>nn.Conv2d</code>：PyTorch 中用于实现二维卷积操作的类，主要处理图像数据。通过可学习的卷积核在输入图像上滑动并进行卷积运算，提取图像局部特征，利用参数共享减少模型参数。</p>
+<p><strong>图像分类</strong>：用于提取图像特征，结合后续层将图像映射到不同类别，如区分猫狗图像。</p>
+<p><strong>目标检测</strong>：提取物体特征，配合检测算法确定图像中物体的位置和类别，像自动驾驶中检测车辆、行人。</p>
+<p><strong>语义分割</strong>：对图像每个像素分类，将图像分割成不同语义区域，例如医学图像中分割肿瘤和正常组织。</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"><span class="keyword">import</span> torch.nn <span class="keyword">as</span> nn</span><br><span class="line"></span><br><span class="line"><span class="comment"># 准备输入数据，仅保留第一张图片</span></span><br><span class="line">batch_size = <span class="number">1</span></span><br><span class="line">in_channels = <span class="number">3</span></span><br><span class="line">height = <span class="number">4</span></span><br><span class="line">width = <span class="number">4</span></span><br><span class="line"><span class="comment"># 手动设定输入张量，方便后续手动计算验证</span></span><br><span class="line">input_tensor = torch.tensor([</span><br><span class="line">    [</span><br><span class="line">        [[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>],</span><br><span class="line">         [<span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>],</span><br><span class="line">         [<span class="number">9</span>, <span class="number">10</span>, <span class="number">11</span>, <span class="number">12</span>],</span><br><span class="line">         [<span class="number">13</span>, <span class="number">14</span>, <span class="number">15</span>, <span class="number">16</span>]],</span><br><span class="line">        [[<span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>],</span><br><span class="line">         [<span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>],</span><br><span class="line">         [<span class="number">10</span>, <span class="number">11</span>, <span class="number">12</span>, <span class="number">13</span>],</span><br><span class="line">         [<span class="number">14</span>, <span class="number">15</span>, <span class="number">16</span>, <span class="number">17</span>]],</span><br><span class="line">        [[<span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>],</span><br><span class="line">         [<span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>, <span class="number">10</span>],</span><br><span class="line">         [<span class="number">11</span>, <span class="number">12</span>, <span class="number">13</span>, <span class="number">14</span>],</span><br><span class="line">         [<span class="number">15</span>, <span class="number">16</span>, <span class="number">17</span>, <span class="number">18</span>]]</span><br><span class="line">    ]</span><br><span class="line">], dtype=torch.float32)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 定义卷积层</span></span><br><span class="line">out_channels = <span class="number">2</span></span><br><span class="line">kernel_size = <span class="number">2</span></span><br><span class="line">stride = <span class="number">1</span></span><br><span class="line">padding = <span class="number">0</span></span><br><span class="line">conv2d_layer = nn.Conv2d(in_channels=in_channels, out_channels=out_channels,</span><br><span class="line">                         kernel_size=kernel_size, stride=stride, padding=padding)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 手动设定卷积核权重，方便后续手动计算验证</span></span><br><span class="line"><span class="comment"># 这里假设的卷积核和前面理论部分一致</span></span><br><span class="line">conv2d_layer.weight.data = torch.tensor([</span><br><span class="line">    [</span><br><span class="line">        [[<span class="number">1</span>, <span class="number">0</span>],</span><br><span class="line">         [<span class="number">0</span>, <span class="number">1</span>]],</span><br><span class="line">        [[<span class="number">0</span>, <span class="number">1</span>],</span><br><span class="line">         [<span class="number">1</span>, <span class="number">0</span>]],</span><br><span class="line">        [[<span class="number">1</span>, <span class="number">1</span>],</span><br><span class="line">         [<span class="number">1</span>, <span class="number">1</span>]]</span><br><span class="line">    ],</span><br><span class="line">    [</span><br><span class="line">        [[<span class="number">1</span>, <span class="number">1</span>],</span><br><span class="line">         [<span class="number">1</span>, <span class="number">1</span>]],</span><br><span class="line">        [[<span class="number">0</span>, <span class="number">0</span>],</span><br><span class="line">         [<span class="number">0</span>, <span class="number">0</span>]],</span><br><span class="line">        [[<span class="number">1</span>, <span class="number">0</span>],</span><br><span class="line">         [<span class="number">0</span>, <span class="number">1</span>]]</span><br><span class="line">    ]</span><br><span class="line">], dtype=torch.float32)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 手动设定偏置为 0，简化计算</span></span><br><span class="line">conv2d_layer.bias.data = torch.zeros(out_channels)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 进行卷积操作</span></span><br><span class="line">output = conv2d_layer(input_tensor)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;输入张量形状:&quot;</span>, input_tensor.shape)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;卷积核形状:&quot;</span>, conv2d_layer.weight.shape)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;输出张量形状:&quot;</span>, output.shape)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;第一张图片的输出:&quot;</span>, output[<span class="number">0</span>])</span><br><span class="line"></span><br><span class="line"><span class="comment"># 手动计算第一张图片经过第一个卷积核的左上角输出值</span></span><br><span class="line">first_kernel_channel1 = torch.tensor([[<span class="number">1</span>, <span class="number">0</span>], [<span class="number">0</span>, <span class="number">1</span>]], dtype=torch.float32)</span><br><span class="line">first_kernel_channel2 = torch.tensor([[<span class="number">0</span>, <span class="number">1</span>], [<span class="number">1</span>, <span class="number">0</span>]], dtype=torch.float32)</span><br><span class="line">first_kernel_channel3 = torch.tensor([[<span class="number">1</span>, <span class="number">1</span>], [<span class="number">1</span>, <span class="number">1</span>]], dtype=torch.float32)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 第一个通道的局部卷积</span></span><br><span class="line">local_conv_channel1 = (input_tensor[<span class="number">0</span>, <span class="number">0</span>, :<span class="number">2</span>, :<span class="number">2</span>] * first_kernel_channel1).<span class="built_in">sum</span>()</span><br><span class="line"><span class="comment"># 第二个通道的局部卷积</span></span><br><span class="line">local_conv_channel2 = (input_tensor[<span class="number">0</span>, <span class="number">1</span>, :<span class="number">2</span>, :<span class="number">2</span>] * first_kernel_channel2).<span class="built_in">sum</span>()</span><br><span class="line"><span class="comment"># 第三个通道的局部卷积</span></span><br><span class="line">local_conv_channel3 = (input_tensor[<span class="number">0</span>, <span class="number">2</span>, :<span class="number">2</span>, :<span class="number">2</span>] * first_kernel_channel3).<span class="built_in">sum</span>()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 多通道结果相加</span></span><br><span class="line">manual_output = local_conv_channel1 + local_conv_channel2 + local_conv_channel3</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;手动计算第一张图片经过第一个卷积核左上角输出值:&quot;</span>, manual_output)</span><br></pre></td></tr></table></figure>
+
+<p>上述代码模拟了处理彩色图像的过程。输入数据是一个四维张量，形状为 <code>(batch_size, in_channels, height, width)</code>。例如，<code>batch_size = 1</code> 表示一次处理 1 张图像；<code>in_channels = 3</code> 对应 RGB 三个通道；<code>height = 4</code> 和 <code>width = 4</code> 是图像的高度和宽度。输入数据可以表示为：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">输入数据形状: (2, 3, 4, 4)</span><br><span class="line">第 1 张图像通道 1:</span><br><span class="line">[[1, 2, 3, 4],</span><br><span class="line"> [5, 6, 7, 8],</span><br><span class="line"> [9, 10, 11, 12],</span><br><span class="line"> [13, 14, 15, 16]]</span><br><span class="line"></span><br><span class="line">第 1 张图像通道 2:</span><br><span class="line">[[2, 3, 4, 5],</span><br><span class="line"> [6, 7, 8, 9],</span><br><span class="line"> [10, 11, 12, 13],</span><br><span class="line"> [14, 15, 16, 17]]</span><br><span class="line"></span><br><span class="line">第 1 张图像通道 3:</span><br><span class="line">[[3, 4, 5, 6],</span><br><span class="line"> [7, 8, 9, 10],</span><br><span class="line"> [11, 12, 13, 14],</span><br><span class="line"> [15, 16, 17, 18]]</span><br><span class="line"></span><br><span class="line">...（其他图片类似）</span><br></pre></td></tr></table></figure>
+
+<p>定义一个二维卷积层，设置参数如下：</p>
+<ul>
+<li><code>in_channels = 3</code>，与输入图像的通道数一致。</li>
+<li><code>out_channels = 2</code>，表示使用 2 个卷积核。</li>
+<li><code>kernel_size = 2</code>，卷积核是 2x2 的正方形。</li>
+<li><code>stride = 1</code>，卷积核每次滑动 1 个单位。</li>
+<li><code>padding = 0</code>，不进行填充。</li>
+</ul>
+<p>每个卷积核也是一个四维张量，形状为 <code>(out_channels, in_channels, kernel_height, kernel_width)</code>，这里是 <code>(2, 3, 2, 2)</code>。假设两个卷积核分别为：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">卷积核 1:</span><br><span class="line">通道 1:</span><br><span class="line">[[1, 0],</span><br><span class="line"> [0, 1]]</span><br><span class="line"></span><br><span class="line">通道 2:</span><br><span class="line">[[0, 1],</span><br><span class="line"> [1, 0]]</span><br><span class="line"></span><br><span class="line">通道 3:</span><br><span class="line">[[1, 1],</span><br><span class="line"> [1, 1]]</span><br><span class="line"></span><br><span class="line">卷积核 2:</span><br><span class="line">通道 1:</span><br><span class="line">[[1, 1],</span><br><span class="line"> [1, 1]]</span><br><span class="line"></span><br><span class="line">通道 2:</span><br><span class="line">[[0, 0],</span><br><span class="line"> [0, 0]]</span><br><span class="line"></span><br><span class="line">通道 3:</span><br><span class="line">[[1, 0],</span><br><span class="line"> [0, 1]]</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">卷积操作</span><br><span class="line">以第 1 张图像为例，对于卷积核 1：</span><br><span class="line">通道 1 的卷积：卷积核在通道 1 的输入图像上滑动，计算局部区域与卷积核对应元素相乘再求和。例如，在左上角区域：</span><br><span class="line">通道 2 和通道 3 同样操作：得到各自的局部卷积结果。</span><br><span class="line">多通道结果相加：将三个通道的局部卷积结果相加，得到该位置的最终输出值。</span><br><span class="line">滑动卷积核：卷积核在图像上按步长 1 滑动，重复上述操作，得到卷积核 1 对第 1 张图像的输出特征图。</span><br><span class="line">对于卷积核 2 也进行同样的操作，最终得到两个输出特征图，这两个特征图组成了第 1 张图像经过卷积层后的输出。对于第 2 张图像，也重复上述卷积操作。</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">输入张量形状: torch.Size([1, 3, 4, 4])</span><br><span class="line">卷积核形状: torch.Size([2, 3, 2, 2])</span><br><span class="line">输出张量形状: torch.Size([1, 2, 3, 3])</span><br><span class="line">第一张图片的输出:</span><br><span class="line">tensor([[[ 41.,  48.,  55.],</span><br><span class="line">         [ 65.,  72.,  79.],</span><br><span class="line">         [ 89.,  96., 103.]],</span><br><span class="line"></span><br><span class="line">        [[ 26.,  30.,  34.],</span><br><span class="line">         [ 46.,  50.,  54.],</span><br><span class="line">         [ 66.,  70.,  74.]]], grad_fn=&lt;SelectBackward0&gt;)</span><br><span class="line">手动计算第一张图片经过第一个卷积核左上角输出值: tensor(41.)</span><br></pre></td></tr></table></figure>
+
+<hr>
+<p>卷积核如何确定？</p>
+<p>卷积核的确定需要综合考虑任务需求、数据特点、模型架构和计算资源等因素，并通过实验和调优不断优化，以达到最佳的性能。</p>
+<hr>
+<ol start="3">
+<li><code>nn.Conv3d</code> 3D卷积：处理视频&#x2F;体数据</li>
+</ol>
+<p><code>nn.Conv3d</code> 是 PyTorch 中用于实现三维卷积操作的类，主要用于处理视频数据（包含时间维度和空间维度）或体数据（如医学影像中的三维体数据）。它通过可学习的三维卷积核在输入数据上进行滑动并执行卷积运算，提取数据中的三维特征，利用参数共享机制减少模型参数数量，降低计算复杂度。</p>
+<p><strong>视频分类</strong>：在视频分类任务中，<code>nn.Conv3d</code> 用于提取视频的时空特征，通过多个卷积层和池化层的组合，将视频特征映射到不同的类别。例如，在识别视频中的动作类型（如跑步、跳舞、打球等）时，三维卷积可以捕捉视频中随时间变化的动作特征。</p>
+<p><strong>医学影像分析</strong>：在医学影像分析中，如对 CT 或 MRI 扫描得到的三维体数据进行分析，<code>nn.Conv3d</code> 可以用于肿瘤检测、器官分割等任务。它能够提取体数据中的三维结构信息，帮助医生进行疾病诊断。</p>
+<p><strong>自动驾驶场景</strong>：在自动驾驶中处理点云数据（可以看作三维空间中的数据）时，<code>nn.Conv3d</code> 可用于识别道路上的障碍物、车辆、行人等目标，通过分析点云数据的三维特征来辅助决策。</p>
+<p><strong>卷积核与卷积操作</strong></p>
+<p>三维卷积核是一个三维的矩阵，其元素是可学习的权重参数。在进行卷积操作时，三维卷积核会在输入的三维数据（如视频的多个帧组成的序列或者三维体数据）上按一定的步长进行滑动，每次覆盖一个与卷积核大小相同的三维局部区域。对于这个局部区域，将卷积核与该区域的元素对应相乘后求和，得到一个输出值，这个值就构成了输出特征体的一个元素。随着卷积核不断滑动，遍历整个输入三维数据，最终生成完整的输出特征体。</p>
+<hr>
+<p><code>nn.Conv1d/2d/3d</code>的共同原理与特征</p>
+<p><strong>共同原理</strong></p>
+<p>1.卷积操作核心</p>
+<p>核心都是卷积运算。卷积核（也称为滤波器）是一组可学习的权重参数，在输入数据上按照一定规则滑动，每次覆盖一个局部区域，将卷积核与该局部区域的元素对应相乘后求和，得到一个输出值。这个过程不断重复，直到卷积核遍历完整个输入数据，从而生成输出特征。</p>
+<p>以 <code>nn.Conv1d</code> 为例，输入是一维序列，卷积核也是一维的，在序列上滑动进行卷积；<code>nn.Conv2d</code> 输入是二维图像，卷积核是二维矩阵，在图像上滑动；<code>nn.Conv3d</code> 输入是三维数据（如视频或体数据），卷积核是三维的，在三维空间中滑动。</p>
+<p>2.线性变换</p>
+<p>卷积操作本质上是一种线性变换。对于输入数据的每个局部区域，卷积运算将其与卷积核进行加权求和，这相当于对输入数据进行了线性组合。这种线性变换使得模型能够学习到输入数据中的特征模式。</p>
+<p>3.参数共享</p>
+<p>在卷积过程中，卷积核的权重在整个输入数据上是共享的。也就是说，同一个卷积核在不同的位置进行卷积操作时，使用的是相同的权重参数。这大大减少了模型需要学习的参数数量，降低了计算复杂度，同时也提高了模型的泛化能力，使得模型能够在不同位置检测到相同的特征。</p>
+<p>4.多通道处理</p>
+<p>当输入数据具有多个通道时，每个卷积核也具有对应数量的通道。卷积操作会在每个通道上分别进行卷积，然后将各通道的结果相加，得到最终的输出值。例如，对于 RGB 图像（3 个通道），每个二维卷积核也有 3 个通道，分别对 R、G、B 通道进行卷积后求和。<code>nn.Conv1d</code>、<code>nn.Conv2d</code> 和 <code>nn.Conv3d</code> 都支持多通道输入和输出，通过使用多个卷积核可以得到多个通道的输出特征。</p>
+<p><strong>共同特征</strong></p>
+<p>1.可学习性</p>
+<p>卷积核的权重参数是可学习的，在模型训练过程中，通过反向传播算法和优化器（如随机梯度下降、Adam 等）不断调整卷积核的权重，使得模型能够自动学习到输入数据中的有效特征，以适应不同的任务需求，如分类、检测、分割等。</p>
+<p>2.局部感知</p>
+<p>都具有局部感知的特性，即卷积核只关注输入数据的局部区域，而不是全局信息。这种局部感知能力使得模型能够捕捉到数据中的局部特征，如边缘、纹理、模式等。通过堆叠多个卷积层，模型可以逐渐学习到更高级、更抽象的特征。</p>
+<p>3.平移不变性</p>
+<p>由于参数共享的特性，卷积操作具有平移不变性。这意味着如果输入数据中的某个特征在不同位置出现，卷积核都能够检测到该特征，而不依赖于其具体位置。这种平移不变性使得模型在处理具有平移特性的数据时更加有效，例如图像中的物体在不同位置出现，模型都能够正确识别。</p>
+<p>4.输出特征的维度调整</p>
+<p>通过调整卷积核的大小、步长和填充等参数，可以控制输出特征的维度。步长越大，输出特征的维度越小；填充可以在输入数据的边缘添加额外的元素，从而保持输出特征的维度与输入数据相同或满足特定的要求。这种灵活性使得模型能够根据具体任务和数据特点进行合理的设计。</p>
+<hr>
+<ol start="4">
 <li><p><code>nn.ConvTranspose1d/2d/3d</code> 转置卷积：反卷积（上采样）</p>
 </li>
 <li><p><code>nn.Conv1d/2d/3d</code> （设置 <code>dilation</code>）空洞卷积：扩大感受野</p>
@@ -912,13 +970,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">95k</span>
+    <span title="站点总字数">100k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">2:52</span>
+    <span title="站点阅读时长">3:02</span>
   </span>
 </div>
 <div class="busuanzi-count">
