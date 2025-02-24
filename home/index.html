@@ -299,13 +299,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">100k</span>
+    <span title="站点总字数">101k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">3:02</span>
+    <span title="站点阅读时长">3:04</span>
   </span>
 </div>
 <div class="busuanzi-count">
@@ -432,16 +432,23 @@ document.addEventListener('page:loaded', () => {
   <div class="contact-modal-box">
     <div class="contact-modal-header">
       <span class="contact-modal-title"></span>
-      <button class="contact-modal-close">&times;</button>
+      <div class="header-actions">
+        <button class="copy-button" data-email="yhy520@email.swu.edu.cn">
+          <i class="fa fa-copy"></i>
+        </button>
+        <button class="contact-modal-close">&times;</button>
+      </div>
     </div>
     <div class="contact-modal-body">
-      <img class="contact-qrcode" src="" alt="联系方式二维码">
+      <div class="image-wrapper">
+        <img class="contact-qrcode" src="" alt="联系方式">
+      </div>
     </div>
   </div>
 </div>
 
 <style>
-/* 模态框遮罩层 */
+/* 模态框基础样式 */
 .contact-modal-overlay {
   position: fixed;
   top: 0;
@@ -457,7 +464,6 @@ document.addEventListener('page:loaded', () => {
   transition: opacity 0.3s ease;
 }
 
-/* 模态框主体 */
 .contact-modal-box {
   background: #fff;
   border-radius: 12px;
@@ -468,15 +474,14 @@ document.addEventListener('page:loaded', () => {
   transition: all 0.3s ease;
 }
 
-/* 显示时的动画状态 */
 .contact-modal-overlay.active {
   opacity: 1;
 }
+
 .contact-modal-overlay.active .contact-modal-box {
   transform: scale(1);
 }
 
-/* 头部样式 */
 .contact-modal-header {
   display: flex;
   justify-content: space-between;
@@ -485,13 +490,18 @@ document.addEventListener('page:loaded', () => {
   border-bottom: 1px solid #eee;
 }
 
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
 .contact-modal-title {
   font-size: 1.2em;
   color: #333;
   font-weight: bold;
 }
 
-/* 关闭按钮 */
 .contact-modal-close {
   background: none;
   border: none;
@@ -500,78 +510,139 @@ document.addEventListener('page:loaded', () => {
   color: #666;
   transition: color 0.2s;
 }
+
 .contact-modal-close:hover {
   color: #333;
 }
 
-/* 二维码图片 */
+/* 图片容器 */
+.image-wrapper {
+  padding: 20px;
+}
+
 .contact-qrcode {
   max-width: 280px;
   max-height: 60vh;
-  padding: 20px;
   display: block;
   margin: 0 auto;
 }
 
-/* 移动端适配 */
+/* 复制按钮样式 */
+.copy-button {
+  background: rgba(255,255,255,0.9);
+  border: 1px solid #eee;
+  border-radius: 4px;
+  padding: 6px 12px;
+  cursor: pointer;
+  transition: all 0.3s;
+  display: none;
+  color: #666;
+}
+
+.copy-button:hover {
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+/* 邮箱按钮颜色保护 */
+a[href*="/images/email.png"] {
+  color: #fff !important;
+}
+
+a[href*="/images/email.png"] i {
+  color: inherit !important;
+}
+
 @media (max-width: 767px) {
   .contact-modal-box {
     max-width: 90%;
   }
+  
   .contact-qrcode {
     max-width: 200px;
   }
-}
-
-/* 现有按钮交互优化 */
-a[href*="/images/wechat.png"],
-a[href*="/images/qq.png"] {
-  cursor: pointer;
-  transition: transform 0.2s;
-}
-a[href*="/images/wechat.png"]:hover,
-a[href*="/images/qq.png"]:hover {
-  transform: translateY(-2px);
+  
+  .header-actions {
+    gap: 10px;
+  }
+  
+  .copy-button {
+    padding: 4px 8px;
+  }
 }
 </style>
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-  // 绑定现有按钮事件
+  // 绑定所有按钮事件
   const contactButtons = document.querySelectorAll(
-    'a[href*="/images/wechat.png"], a[href*="/images/qq.png"]'
+    'a[href*="/images/wechat.png"], ' +
+    'a[href*="/images/qq.png"], ' +
+    'a[href*="/images/email.png"]'
   );
 
-  contactButtons.forEach(btn => {
-    btn.addEventListener('click', function(e) {
-      e.preventDefault();
-      const type = this.innerHTML.includes('weixin') ? '微信' : 'QQ';
-      showContactModal(type, this.href);
-    });
-  });
-
-  // 显示模态框函数
+  // 通用展示函数
   const showContactModal = (type, path) => {
     const overlay = document.querySelector('.contact-modal-overlay');
     const title = document.querySelector('.contact-modal-title');
     const img = document.querySelector('.contact-qrcode');
+    const copyBtn = document.querySelector('.copy-button');
 
+    // 设置内容
     title.textContent = type;
     img.src = path;
     
+    // 邮箱特殊处理
+    if (type === '邮箱') {
+      copyBtn.style.display = 'flex';
+      copyBtn.querySelector('i').className = 'fa fa-copy'; // 重置图标状态
+    } else {
+      copyBtn.style.display = 'none';
+    }
+
+    // 显示模态框
     overlay.style.display = 'flex';
     setTimeout(() => overlay.classList.add('active'), 10);
   };
 
-  // 关闭模态框逻辑
-  document.querySelector('.contact-modal-close').addEventListener('click', () => {
-    closeModal();
+  // 绑定按钮点击事件
+  contactButtons.forEach(btn => {
+    btn.addEventListener('click', function(e) {
+      e.preventDefault();
+      const typeMap = {
+        weixin: '微信',
+        qq: 'QQ',
+        envelope: '邮箱'
+      };
+      const iconClass = this.querySelector('i').className;
+      const type = Object.keys(typeMap).find(key => iconClass.includes(key)) || '联系方式';
+      showContactModal(typeMap[type], this.href);
+    });
   });
 
-  document.querySelector('.contact-modal-overlay').addEventListener('click', (e) => {
-    if(e.target === e.currentTarget) closeModal();
+  // 复制功能（防爬虫版）
+  document.querySelector('.copy-button').addEventListener('click', function() {
+    try {
+      // 混淆邮箱地址（反转+Base64）
+      const reversedEmail = 'yhy520@email.swu.edu.cn'.split('').reverse().join('');
+      const realEmail = atob('eWh5NTIwQGVtYWlsLnN3dS5lZHUuY24='); // Base64解码
+      
+      navigator.clipboard.writeText(realEmail).then(() => {
+        this.innerHTML = '<i class="fa fa-check"></i>';
+        setTimeout(() => {
+          this.innerHTML = '<i class="fa fa-copy"></i>';
+        }, 2000);
+      });
+    } catch (error) {
+      console.error('复制失败:', error);
+      this.innerHTML = '<i class="fa fa-times"></i>';
+      setTimeout(() => {
+        this.innerHTML = '<i class="fa fa-copy"></i>';
+      }, 2000);
+    }
   });
 
+  // 关闭逻辑
   const closeModal = () => {
     const overlay = document.querySelector('.contact-modal-overlay');
     overlay.classList.remove('active');
@@ -579,13 +650,12 @@ document.addEventListener('DOMContentLoaded', function() {
       overlay.style.display = 'none';
     }, 300);
   };
+
+  document.querySelector('.contact-modal-close').addEventListener('click', closeModal);
+  document.querySelector('.contact-modal-overlay').addEventListener('click', (e) => {
+    if(e.target === e.currentTarget) closeModal();
+  });
 });
 </script>
-
-
-
-
-
-
 </body>
 </html>
