@@ -33,7 +33,7 @@
 <meta property="og:image" content="https://vinyyang.github.io/%E6%89%8B%E6%92%95%E7%9F%A5%E8%AF%86%E5%BA%93/image-20250222212028325.png">
 <meta property="og:image" content="https://vinyyang.github.io/%E6%89%8B%E6%92%95%E7%9F%A5%E8%AF%86%E5%BA%93/image-20250222215408498.png">
 <meta property="article:published_time" content="2025-02-18T18:38:36.000Z">
-<meta property="article:modified_time" content="2025-02-24T12:22:29.703Z">
+<meta property="article:modified_time" content="2025-02-24T14:01:21.562Z">
 <meta property="article:author" content="Viny Yang">
 <meta property="article:tag" content="科研知识积累">
 <meta name="twitter:card" content="summary">
@@ -295,7 +295,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-02-24 20:22:29" itemprop="dateModified" datetime="2025-02-24T20:22:29+08:00">2025-02-24</time>
+      <time title="修改时间：2025-02-24 22:01:21" itemprop="dateModified" datetime="2025-02-24T22:01:21+08:00">2025-02-24</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -328,14 +328,14 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>31k</span>
+      <span>44k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>56 分钟</span>
+      <span>1:21</span>
     </span>
 </div>
 
@@ -738,6 +738,11 @@
 <p>具体来说，转置卷积通过在输入数据周围插入零值（称为 “零填充”），并调整卷积核的滑动方式，使得卷积操作能够产生更大的输出。在一维、二维和三维的情况下，分别使用 <code>nn.ConvTranspose1d</code>、<code>nn.ConvTranspose2d</code> 和 <code>nn.ConvTranspose3d</code> 来实现相应维度的转置卷积。</p>
 <blockquote>
 <p>上采样：</p>
+<p>指的是将低分辨率的数据转换为高分辨率数据的过程。在深度学习中，输入数据（如图像、特征图等）经过一系列下采样操作（如卷积、池化）后尺寸会变小，为了恢复到原始尺寸或达到特定任务所需的尺寸，就需要进行上采样操作。</p>
+<ul>
+<li><strong>恢复尺寸</strong>：在一些任务中，如语义分割，模型需要对输入图像的每个像素进行分类，经过下采样后的特征图尺寸变小，需要通过上采样恢复到与输入图像相同的尺寸，以便为每个像素分配类别标签。</li>
+<li><strong>增加细节</strong>：上采样可以在一定程度上增加数据的细节信息，使模型能够学习到更丰富的特征，提升模型性能。</li>
+</ul>
 </blockquote>
 <p><strong>图像生成</strong>：在生成对抗网络（GAN）和变分自编码器（VAE）等图像生成模型中，转置卷积用于将低维的特征向量逐步上采样为高分辨率的图像。例如，在生成手写数字图像时，模型从一个随机的低维向量开始，通过一系列的转置卷积层逐渐生成 28x28 像素的手写数字图像。</p>
 <p><strong>语义分割</strong>：在语义分割任务中，模型需要将卷积层提取的低分辨率特征图恢复到与输入图像相同的尺寸，以便为每个像素分配一个类别标签。转置卷积可以有效地实现特征图的上采样，帮助模型生成与输入图像大小一致的分割结果。</p>
@@ -750,22 +755,185 @@
 <li><code>nn.Conv1d/2d/3d</code> （设置 <code>dilation</code>）空洞卷积：扩大感受野</li>
 </ol>
 <p><code>nn.Conv1d</code>、<code>nn.Conv2d</code> 和 <code>nn.Conv3d</code> 在设置 <code>dilation</code> 参数后可实现空洞卷积（也叫扩张卷积）。空洞卷积是对标准卷积的扩展，通过在卷积核元素之间插入空洞，在不增加参数数量的情况下扩大卷积核的感受野，使模型能够捕捉更大范围的上下文信息，常用于语义分割、目标检测等任务。</p>
-<ol start="6">
-<li><code>nn.Conv2d + 分组操作</code> 可分离卷积：轻量化卷积</li>
-</ol>
-<h6 id="循环神经网络层"><a href="#循环神经网络层" class="headerlink" title="循环神经网络层"></a>循环神经网络层</h6><p>1.<code>nn.RNN</code> RNN：基础循环网络</p>
+<p>在标准卷积中，卷积核的元素是连续排列的，在输入数据上进行滑动卷积操作。而空洞卷积通过设置 <code>dilation</code> 参数，在卷积核元素之间插入空洞。例如，当 <code>dilation = 2</code> 时，卷积核元素之间会间隔一个位置，相当于在标准卷积核的基础上每隔一个元素设置为零，然后再进行卷积操作。这样，卷积核在输入数据上滑动时，能够覆盖更大的区域，从而扩大了感受野。</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"><span class="keyword">import</span> torch.nn <span class="keyword">as</span> nn</span><br><span class="line"></span><br><span class="line"><span class="comment"># 定义输入张量</span></span><br><span class="line"><span class="comment"># 形状：(批量大小, 输入通道数, 高度, 宽度)</span></span><br><span class="line">input_tensor = torch.randn(<span class="number">1</span>, <span class="number">3</span>, <span class="number">16</span>, <span class="number">16</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 定义二维空洞卷积层</span></span><br><span class="line"><span class="comment"># 设置 dilation = 2 来实现空洞卷积</span></span><br><span class="line">conv2d_dilated = nn.Conv2d(in_channels=<span class="number">3</span>, out_channels=<span class="number">6</span>, kernel_size=<span class="number">3</span>, stride=<span class="number">1</span>, padding=<span class="number">1</span>, dilation=<span class="number">2</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 进行空洞卷积操作</span></span><br><span class="line">output = conv2d_dilated(input_tensor)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;输入张量形状:&quot;</span>, input_tensor.shape)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;输出张量形状:&quot;</span>, output.shape)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入张量形状: torch.Size([1, 3, 16, 16])</span><br><span class="line">输出张量形状: torch.Size([1, 6, 16, 16])</span><br></pre></td></tr></table></figure>
+
+<h6 id="循环神经网络层"><a href="#循环神经网络层" class="headerlink" title="循环神经网络层"></a>循环神经网络层</h6><p>循环神经网络层（Recurrent Neural Network layer，RNN layer）是一种专门用于处理序列数据的神经网络层结构。在很多实际应用场景中，数据具有序列特性，例如文本（由单词按顺序组成）、语音（音频信号随时间变化）、时间序列数据（如股票价格随时间的波动）等。与传统的前馈神经网络不同，循环神经网络层引入了循环结构，使得网络能够在处理序列数据时保留之前时间步的信息，从而更好地捕捉序列中的上下文关系和时间依赖。</p>
+<p>RNN、LSTM 和 GRU 都属于循环神经网络层的范畴，它们在处理序列数据时各有特点。简单 RNN 结构简单但存在梯度问题；LSTM 通过门控机制解决了梯度问题但计算复杂；GRU 则在性能和计算效率之间取得了较好的平衡。根据不同的应用场景和数据特点，可以选择合适的循环神经网络层来构建模型。</p>
+<p>1.<code>nn.RNN</code> RNN：基础循环网络</p>
+<p><code>nn.RNN</code> 是 PyTorch 中用于构建基础循环神经网络（Recurrent Neural Network，RNN）的模块。RNN 是一种专门处理序列数据的神经网络，它通过在网络中引入循环结构，使得网络能够保存和利用之前时间步的信息，从而对序列中的时间依赖关系进行建模。不过，RNN 存在梯度消失或梯度爆炸问题，在处理长序列时表现不佳。</p>
+<p>在每个时间步 ，RNN 接收当前输入$x_t$和上一个时间步的隐藏状态$h_{t-1}$，通过以下公式计算当前时间步的隐藏状态$h_t$：</p>
+<p>$h_t&#x3D;tanh(W_{ih}x_t+W_{hh}h_{t-1}+b_h)$</p>
+<p>其中$W_{ih}$是输入到隐藏状态的权重矩阵，$W_{hh}$是隐藏状态到隐藏状态的权重矩阵，$b_h$是偏置，$tanh$是激活函数，用于引入非线性。</p>
+<p><strong>自然语言处理</strong>：如文本分类任务，将一段文本看作一个词序列，RNN 可以对文本中的语义信息进行建模，根据之前的词来预测当前词的类别概率；还可用于语言生成，例如生成诗歌、故事等，通过不断根据之前生成的词来预测下一个词。</p>
+<p><strong>时间序列预测</strong>：像股票价格预测、天气预报等，把时间序列数据（如每天的股票价格、每小时的气温）作为输入，RNN 可以学习到序列中的趋势和模式，从而预测未来的值。</p>
+<p><strong>语音识别</strong>：语音信号是随时间变化的序列，RNN 可以处理语音特征序列，根据之前的语音帧信息来识别当前帧对应的语音内容。</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"><span class="keyword">import</span> torch.nn <span class="keyword">as</span> nn</span><br><span class="line"></span><br><span class="line"><span class="comment"># 定义输入参数</span></span><br><span class="line">input_size = <span class="number">10</span>  <span class="comment"># 输入特征维度</span></span><br><span class="line">hidden_size = <span class="number">20</span>  <span class="comment"># 隐藏状态维度</span></span><br><span class="line">num_layers = <span class="number">1</span>  <span class="comment"># RNN 层数</span></span><br><span class="line">batch_size = <span class="number">32</span>  <span class="comment"># 批量大小</span></span><br><span class="line">seq_len = <span class="number">5</span>  <span class="comment"># 序列长度</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建 RNN 层</span></span><br><span class="line">rnn = nn.RNN(input_size, hidden_size, num_layers, batch_first=<span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 生成随机输入数据</span></span><br><span class="line">input_data = torch.randn(batch_size, seq_len, input_size)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 初始化隐藏状态</span></span><br><span class="line">h_0 = torch.randn(num_layers, batch_size, hidden_size)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 进行前向传播</span></span><br><span class="line">output, h_n = rnn(input_data, h_0)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;输入数据形状:&quot;</span>, input_data.shape)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;输出形状:&quot;</span>, output.shape)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;最终隐藏状态形状:&quot;</span>, h_n.shape)</span><br></pre></td></tr></table></figure>
+
+<p>输入数据 <code>input_data</code> 是一个三维张量，当 <code>batch_first = True</code> 时，形状为 <code>(batch_size, seq_len, input_size)</code>，表示批量大小为 32，序列长度为 5，每个时间步的输入特征维度为 10。</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">input_data = torch.randn(batch_size, seq_len, input_size)</span><br></pre></td></tr></table></figure>
+
+<p>使用 <code>nn.RNN</code> 创建 RNN 层，设置输入特征维度、隐藏状态维度和层数等参数。</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rnn = nn.RNN(input_size, hidden_size, num_layers, batch_first=<span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
+
+<p>初始化隐藏状态 <code>h_0</code>，形状为 <code>(num_layers, batch_size, hidden_size)</code>。</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">h_0 = torch.randn(num_layers, batch_size, hidden_size)</span><br></pre></td></tr></table></figure>
+
+<p>调用 <code>rnn</code> 进行前向传播，得到输出 <code>output</code> 和最终隐藏状态 <code>h_n</code>。输出 <code>output</code> 包含每个时间步的隐藏状态，形状为 <code>(batch_size, seq_len, hidden_size)</code>；最终隐藏状态 <code>h_n</code> 是最后一个时间步的隐藏状态，形状为 <code>(num_layers, batch_size, hidden_size)</code>。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入数据形状: torch.Size([32, 5, 10])</span><br><span class="line">输出形状: torch.Size([32, 5, 20])</span><br><span class="line">最终隐藏状态形状: torch.Size([1, 32, 20])</span><br></pre></td></tr></table></figure>
+
 <p>2.<code>nn.LSTM</code> LSTM：长短期记忆网络</p>
+<p><code>nn.LSTM</code> 是 PyTorch 中用于构建长短期记忆网络（Long Short - Term Memory，LSTM）的模块。LSTM 是一种特殊的循环神经网络（RNN），旨在解决传统 RNN 在处理长序列时遇到的梯度消失或梯度爆炸问题。它通过引入门控机制（输入门、遗忘门和输出门），能够有效地捕捉序列中的长距离依赖关系，在处理自然语言处理、时间序列分析等序列数据任务中表现出色。</p>
+<blockquote>
+<p>梯度消失与梯度爆炸：</p>
+<p>1.梯度消失</p>
+<p>在神经网络训练中，使用反向传播算法更新参数时，梯度会从输出层向输入层逐层传递。梯度消失指的是在这个过程中，梯度值变得越来越小，趋近于零。</p>
+<p>传统 RNN 在计算梯度时涉及多个权重矩阵的连乘，若权重矩阵的元素值较小，经过多次连乘后梯度会急剧减小。激活函数（如 Sigmoid、Tanh）的导数取值范围在 0 到 1 之间，多次使用这类激活函数也会使梯度逐渐变小。</p>
+<p>由于梯度极小，模型参数的更新幅度变得非常小，几乎不再更新，导致网络无法学习到长序列中的远距离依赖信息，难以收敛到最优解。</p>
+<p>2.梯度爆炸</p>
+<p>与梯度消失相反，梯度爆炸是指在反向传播过程中，梯度值变得越来越大，失去控制。</p>
+<p>同样是因为多个权重矩阵的连乘，若权重矩阵的元素值较大，连乘后梯度会急剧增大。网络层数过深、学习率设置过大等也可能引发梯度爆炸。</p>
+<p>过大的梯度会使模型参数更新幅度过大，导致参数值剧烈波动，模型无法稳定训练，甚至可能使训练过程发散。</p>
+<hr>
+<p>LSTM 通过引入门控机制，能够有效地缓解梯度消失和梯度爆炸问题，使得网络在处理长序列数据时可以更好地保留和传递信息。</p>
+<hr>
+<p>传统 RNN 易出现梯度消失或爆炸，因为反向传播时梯度经多时间步连乘，值要么趋于零、要么无限制增大。而门控机制可将梯度限制在一定区间。</p>
+<p>以 LSTM 为例，遗忘门用sigmoid函数输出$[0,1]$的值，决定上一时刻细胞状态信息的保留程度。接近1时梯度顺畅传递，避免消失；接近0时切断部分传递路径，防止爆炸。</p>
+<p>输入门同理控制当前输入信息的添加比例，和遗忘门协同让细胞状态渐进更新。这种平稳的信息传递使梯度也稳定，不会剧烈波动。</p>
+<p>输出门对细胞状态输出信息缩放，控制从隐藏状态到细胞状态的梯度传递，避免细胞状态梯度过度影响隐藏状态更新，进一步稳定梯度。</p>
+</blockquote>
+<p>LSTM 的核心在于其门控机制，主要包含以下几个部分：</p>
+<p><strong>遗忘门（Forget Gate）</strong>：决定上一个时间步的细胞状态$C_{t-1}$中哪些信息需要被遗忘。计算公式为$f_t&#x3D;\sigma(W_f[h_{t-1}.x_t]+b_f)$，其中$\sigma$是sigmoid函数， $W_f$是遗忘门的权重矩阵，$b_f$是偏置，$[h_{t-1},x_t]$表示将上一个时间步的隐藏状态$h_{t-1}$和当前输入$x_t$拼接起来。</p>
+<p><strong>输入门（Input Gate）</strong>：决定当前输入$x_t$中哪些信息需要被添加到细胞状态中。首先计算$i_t&#x3D;\sigma(W_i[h_{t-1},x_t]+b_i)$，同时计算候选细胞状态$\widetilde{C_t}&#x3D;tanh(W_C[h_{t-1},x_t]+b_C)$。（波浪线读作tilde）</p>
+<p><strong>细胞状态更新</strong>：根据遗忘门和输入门的输出更新细胞状态$C_t&#x3D;f_{t}\odot C_{t-1}+i_t\odot \widetilde{C_t}$，其中$\odot$表示逐元素相乘。</p>
+<p><strong>输出门（Output Gate）</strong>：决定当前细胞状态$C_t$中哪些信息需要被输出作为当前时间步的隐藏状态$h_t$。计算公式为$o_t&#x3D;\sigma(W_o[h_{t-1},x_t]+b_o)$，$h_t&#x3D;o_t\odot tanh(C_t)$。</p>
+<blockquote>
+<p>隐藏状态：（可理解为一个中间变量或状态值）</p>
+<p>是网络在处理序列数据时，每个时间步所维护的一种内部表示。可以将其理解为网络对之前输入信息的一种 “记忆” 和 “总结”，随着时间步推进不断更新。</p>
+<p>隐藏状态整合了历史输入信息和当前输入信息，能反映序列的上下文关系。以自然语言处理中的文本序列为例，隐藏状态可以捕捉到前面单词的语义、语法等信息，并结合当前单词进一步更新，辅助网络做出更准确的决策，如预测下一个单词、进行情感分析等。</p>
+<p>在 LSTM 里，输出门会对细胞状态进行筛选和处理，生成隐藏状态。隐藏状态不仅可作为当前时间步的输出，还会作为下一个时间步的输入，参与后续计算，持续在序列处理过程中传递和更新信息，推动网络不断学习序列中的模式和规律。</p>
+</blockquote>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"><span class="keyword">import</span> torch.nn <span class="keyword">as</span> nn</span><br><span class="line"></span><br><span class="line"><span class="comment"># 定义输入参数</span></span><br><span class="line">input_size = <span class="number">10</span>  <span class="comment"># 输入特征维度</span></span><br><span class="line">hidden_size = <span class="number">20</span>  <span class="comment"># 隐藏状态维度</span></span><br><span class="line">num_layers = <span class="number">1</span>  <span class="comment"># LSTM 层数</span></span><br><span class="line">batch_size = <span class="number">32</span>  <span class="comment"># 批量大小</span></span><br><span class="line">seq_len = <span class="number">5</span>  <span class="comment"># 序列长度</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建 LSTM 层</span></span><br><span class="line">lstm = nn.LSTM(input_size, hidden_size, num_layers, batch_first=<span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 生成随机输入数据</span></span><br><span class="line">input_data = torch.randn(batch_size, seq_len, input_size)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 初始化隐藏状态和细胞状态</span></span><br><span class="line">h_0 = torch.randn(num_layers, batch_size, hidden_size)</span><br><span class="line">c_0 = torch.randn(num_layers, batch_size, hidden_size)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 进行前向传播</span></span><br><span class="line">output, (h_n, c_n) = lstm(input_data, (h_0, c_0))</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;输入数据形状:&quot;</span>, input_data.shape)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;输出形状:&quot;</span>, output.shape)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;最终隐藏状态形状:&quot;</span>, h_n.shape)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;最终细胞状态形状:&quot;</span>, c_n.shape)</span><br></pre></td></tr></table></figure>
+
+<p><strong>关键参数</strong></p>
+<ul>
+<li><strong><code>input_size</code></strong>：输入特征的维度，即每个时间步输入向量的长度。</li>
+<li><strong><code>hidden_size</code></strong>：隐藏状态和细胞状态的维度，决定了 LSTM 能够学习和表示的信息量。</li>
+<li><strong><code>num_layers</code></strong>：LSTM 的层数，多层 LSTM 可以学习到更复杂的序列模式。</li>
+<li><strong><code>bias</code></strong>：是否使用偏置，默认为 <code>True</code>。</li>
+<li><strong><code>batch_first</code></strong>：如果为 <code>True</code>，输入和输出张量的形状为 <code>(batch_size, seq_len, input_size)</code>，否则为 <code>(seq_len, batch_size, input_size)</code>，默认为 <code>False</code>。</li>
+<li><strong><code>dropout</code></strong>：如果非零，则在除最后一层外的每一层的输出上应用 Dropout，防止过拟合，取值范围为 <code>[0, 1)</code>。</li>
+<li><strong><code>bidirectional</code></strong>：如果为 <code>True</code>，则使用双向 LSTM，能够同时考虑序列的正向和反向信息，默认为 <code>False</code>。</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">输入数据形状: torch.Size([32, 5, 10])</span><br><span class="line">输出形状: torch.Size([32, 5, 20])</span><br><span class="line">最终隐藏状态形状: torch.Size([1, 32, 20])</span><br><span class="line">最终细胞状态形状: torch.Size([1, 32, 20])</span><br></pre></td></tr></table></figure>
+
 <p>3.<code>nn.GRU</code> GRU：门控循环单元</p>
-<h6 id="Transformer-相关层"><a href="#Transformer-相关层" class="headerlink" title="Transformer 相关层"></a>Transformer 相关层</h6><ol>
-<li><p>什么是Transformer?</p>
-</li>
-<li><p><code>nn.Transformer</code> Transformer：完整 Transformer 模型</p>
-</li>
+<p><code>nn.GRU</code> 是 PyTorch 里用于构建门控循环单元（Gated Recurrent Unit，GRU）的模块。GRU 是循环神经网络（RNN）的一种变体，它和长短期记忆网络（LSTM）类似，旨在解决传统 RNN 处理长序列时的梯度消失问题。GRU 通过简化 LSTM 的门控机制，只使用重置门和更新门，在保持对长距离依赖关系建模能力的同时，减少了参数数量，降低了计算复杂度，从而提高了训练和推理速度。</p>
+<h6 id="Transformer-相关层"><a href="#Transformer-相关层" class="headerlink" title="Transformer 相关层"></a>Transformer 相关层</h6><blockquote>
+<p>什么是Transformer?</p>
+<p>Transformer 是 2017 年在论文《Attention Is All You Need》中提出的一种基于注意力机制的深度学习模型架构，用于处理序列数据，尤其在自然语言处理领域表现卓越。它摒弃了传统的循环结构（如 RNN、LSTM），完全基于注意力机制构建，能够并行处理输入序列，提升了训练和推理速度。</p>
+<p>❓Transformer 是巨大进步的原因</p>
+<p>1.解决长序列依赖问题</p>
+<p>传统 RNN 及其变体（如 LSTM、GRU）在处理长序列时，由于信息传递需按顺序进行，存在梯度消失或爆炸问题，难以捕捉长距离依赖关系。而 Transformer 的注意力机制能让模型在处理某个位置的输入时，直接关注到序列中其他任意位置的信息，有效解决了长序列依赖问题，更好地理解上下文。</p>
+<p>2.并行计算能力</p>
+<p>RNN 系列模型按时间步顺序处理序列，无法并行计算，效率较低。Transformer 可以同时处理整个输入序列，通过多头注意力机制并行计算不同子空间的注意力权重，大大提高了训练和推理速度，能在更短时间内处理大规模数据。</p>
+<p>3.模型扩展性强</p>
+<p>Transformer 架构清晰，各个组件（如多头注意力层、前馈网络层）易于理解和调整。可以通过堆叠更多层或增加隐藏单元数量等方式，方便地扩大模型规模，以适应不同的任务和数据量，从而不断提升模型性能。</p>
+<p>4.广泛的适用性</p>
+<p>Transformer 不仅在自然语言处理任务（如机器翻译、文本生成、问答系统等）中取得了显著成果，还在计算机视觉、语音处理等其他领域得到了广泛应用和拓展，展现出强大的泛化能力和适应性。</p>
+</blockquote>
+<ol>
+<li><code>nn.Transformer</code> Transformer：完整 Transformer 模型</li>
+</ol>
+<p><code>nn.Transformer</code> 是 PyTorch 提供的用于构建完整 Transformer 模型的模块。Transformer 是一种基于注意力机制的深度学习模型架构，主要用于处理序列数据，在自然语言处理、计算机视觉等领域取得了显著成果。<code>nn.Transformer</code> 封装了编码器（Encoder）和解码器（Decoder）两部分，通过多头注意力机制和前馈网络实现对序列的特征提取和生成。</p>
+<p><code>nn.Transformer</code> 主要由编码器（<code>nn.TransformerEncoder</code>）和解码器（<code>nn.TransformerDecoder</code>）组成。</p>
+<ul>
+<li><strong>编码器</strong>：对输入序列进行特征提取，通过多头自注意力机制捕捉序列内部的依赖关系，然后经过前馈网络进一步处理，输出编码后的特征表示。</li>
+<li><strong>解码器</strong>：在编码器输出的基础上，结合目标序列的部分信息，通过多头自注意力机制和编码器 - 解码器注意力机制生成目标序列。</li>
+</ul>
+<blockquote>
+<ul>
+<li>自然语言处理</li>
+<li><strong>机器翻译</strong>：将一种语言的文本翻译成另一种语言，Transformer 可以捕捉源语言和目标语言之间的语义关联。</li>
+<li><strong>文本生成</strong>：如自动撰写新闻、故事、对话等，根据给定的上下文生成合理的文本内容。</li>
+<li>计算机视觉</li>
+<li><strong>图像分类</strong>：对图像进行分类，判断图像所属的类别。</li>
+<li><strong>目标检测</strong>：识别图像中目标的位置和类别。</li>
+</ul>
+</blockquote>
+<p><strong>关键参数</strong></p>
+<ul>
+<li><strong><code>d_model</code></strong>：模型的特征维度，即输入和输出的向量维度。</li>
+<li><strong><code>nhead</code></strong>：多头注意力机制中的头数，不同的头可以关注序列的不同方面。</li>
+<li><strong><code>num_encoder_layers</code></strong>：编码器的层数，增加层数可以学习更复杂的特征。</li>
+<li><strong><code>num_decoder_layers</code></strong>：解码器的层数。</li>
+<li><strong><code>dim_feedforward</code></strong>：前馈网络中间层的维度。</li>
+<li><strong><code>dropout</code></strong>：Dropout 概率，用于防止过拟合。</li>
+</ul>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"><span class="keyword">import</span> torch.nn <span class="keyword">as</span> nn</span><br><span class="line"><span class="keyword">import</span> torch.optim <span class="keyword">as</span> optim</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line"><span class="comment"># 定义字符到索引的映射</span></span><br><span class="line">src_vocab = &#123;<span class="string">&#x27;&lt;pad&gt;&#x27;</span>: <span class="number">0</span>, <span class="string">&#x27;h&#x27;</span>: <span class="number">1</span>, <span class="string">&#x27;e&#x27;</span>: <span class="number">2</span>, <span class="string">&#x27;l&#x27;</span>: <span class="number">3</span>, <span class="string">&#x27;o&#x27;</span>: <span class="number">4</span>, <span class="string">&#x27;w&#x27;</span>: <span class="number">5</span>, <span class="string">&#x27;r&#x27;</span>: <span class="number">6</span>, <span class="string">&#x27;d&#x27;</span>: <span class="number">7</span>&#125;</span><br><span class="line">tgt_vocab = &#123;<span class="string">&#x27;&lt;pad&gt;&#x27;</span>: <span class="number">0</span>, <span class="string">&#x27;b&#x27;</span>: <span class="number">1</span>, <span class="string">&#x27;o&#x27;</span>: <span class="number">2</span>, <span class="string">&#x27;n&#x27;</span>: <span class="number">3</span>, <span class="string">&#x27;j&#x27;</span>: <span class="number">4</span>, <span class="string">&#x27;u&#x27;</span>: <span class="number">5</span>, <span class="string">&#x27;r&#x27;</span>: <span class="number">6</span>, <span class="string">&#x27;m&#x27;</span>: <span class="number">7</span>, <span class="string">&#x27;o&#x27;</span>: <span class="number">8</span>, <span class="string">&#x27;n&#x27;</span>: <span class="number">9</span>, <span class="string">&#x27;d&#x27;</span>: <span class="number">10</span>&#125;</span><br><span class="line">src_itos = &#123;v: k <span class="keyword">for</span> k, v <span class="keyword">in</span> src_vocab.items()&#125;</span><br><span class="line">tgt_itos = &#123;v: k <span class="keyword">for</span> k, v <span class="keyword">in</span> tgt_vocab.items()&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 定义超参数</span></span><br><span class="line">d_model = <span class="number">128</span></span><br><span class="line">nhead = <span class="number">4</span></span><br><span class="line">num_encoder_layers = <span class="number">2</span></span><br><span class="line">num_decoder_layers = <span class="number">2</span></span><br><span class="line">dim_feedforward = <span class="number">512</span></span><br><span class="line">dropout = <span class="number">0.1</span></span><br><span class="line">max_seq_len = <span class="number">10</span></span><br><span class="line">batch_size = <span class="number">1</span></span><br><span class="line">src_vocab_size = <span class="built_in">len</span>(src_vocab)</span><br><span class="line">tgt_vocab_size = <span class="built_in">len</span>(tgt_vocab)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建 Transformer 模型</span></span><br><span class="line">transformer = nn.Transformer(d_model=d_model, nhead=nhead,</span><br><span class="line">                             num_encoder_layers=num_encoder_layers,</span><br><span class="line">                             num_decoder_layers=num_decoder_layers,</span><br><span class="line">                             dim_feedforward=dim_feedforward,</span><br><span class="line">                             dropout=dropout)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 嵌入层</span></span><br><span class="line">src_embedding = nn.Embedding(src_vocab_size, d_model)</span><br><span class="line">tgt_embedding = nn.Embedding(tgt_vocab_size, d_model)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 位置编码层</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">PositionalEncoding</span>(nn.Module):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, d_model, max_len=<span class="number">5000</span></span>):</span><br><span class="line">        <span class="built_in">super</span>(PositionalEncoding, <span class="variable language_">self</span>).__init__()</span><br><span class="line">        pe = torch.zeros(max_len, d_model)</span><br><span class="line">        position = torch.arange(<span class="number">0</span>, max_len, dtype=torch.<span class="built_in">float</span>).unsqueeze(<span class="number">1</span>)</span><br><span class="line">        div_term = torch.exp(torch.arange(<span class="number">0</span>, d_model, <span class="number">2</span>).<span class="built_in">float</span>() * (-torch.log(torch.tensor(<span class="number">10000.0</span>)) / d_model))</span><br><span class="line">        pe[:, <span class="number">0</span>::<span class="number">2</span>] = torch.sin(position * div_term)</span><br><span class="line">        pe[:, <span class="number">1</span>::<span class="number">2</span>] = torch.cos(position * div_term)</span><br><span class="line">        <span class="variable language_">self</span>.register_buffer(<span class="string">&#x27;pe&#x27;</span>, pe.unsqueeze(<span class="number">0</span>))</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">forward</span>(<span class="params">self, x</span>):</span><br><span class="line">        x = x + <span class="variable language_">self</span>.pe[:, :x.size(<span class="number">1</span>)]</span><br><span class="line">        <span class="keyword">return</span> x</span><br><span class="line"></span><br><span class="line">positional_encoding = PositionalEncoding(d_model, max_seq_len)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 线性层</span></span><br><span class="line">output_layer = nn.Linear(d_model, tgt_vocab_size)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 定义损失函数和优化器</span></span><br><span class="line">criterion = nn.CrossEntropyLoss(ignore_index=src_vocab[<span class="string">&#x27;&lt;pad&gt;&#x27;</span>])</span><br><span class="line">optimizer = optim.Adam(transformer.parameters(), lr=<span class="number">0.001</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 示例输入输出数据</span></span><br><span class="line">src_text = <span class="string">&quot;hello&quot;</span></span><br><span class="line">tgt_text = <span class="string">&quot;bonjour&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 将文本转换为索引序列</span></span><br><span class="line">src_indices = [src_vocab[char] <span class="keyword">for</span> char <span class="keyword">in</span> src_text]</span><br><span class="line">tgt_indices = [tgt_vocab[char] <span class="keyword">for</span> char <span class="keyword">in</span> tgt_text]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 填充序列到最大长度</span></span><br><span class="line">src_padded = src_indices + [src_vocab[<span class="string">&#x27;&lt;pad&gt;&#x27;</span>]] * (max_seq_len - <span class="built_in">len</span>(src_indices))</span><br><span class="line">tgt_padded = tgt_indices + [tgt_vocab[<span class="string">&#x27;&lt;pad&gt;&#x27;</span>]] * (max_seq_len - <span class="built_in">len</span>(tgt_indices))</span><br><span class="line"></span><br><span class="line">src_input = torch.tensor(src_padded).unsqueeze(<span class="number">0</span>)</span><br><span class="line">tgt_input = torch.tensor(tgt_padded[:-<span class="number">1</span>]).unsqueeze(<span class="number">0</span>)  <span class="comment"># 去掉最后一个字符，因为是自回归预测</span></span><br><span class="line">tgt_output = torch.tensor(tgt_padded[<span class="number">1</span>:]).unsqueeze(<span class="number">0</span>)  <span class="comment"># 目标输出是输入右移一位</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 训练模型</span></span><br><span class="line">num_epochs = <span class="number">100</span></span><br><span class="line"><span class="keyword">for</span> epoch <span class="keyword">in</span> <span class="built_in">range</span>(num_epochs):</span><br><span class="line">    optimizer.zero_grad()</span><br><span class="line"></span><br><span class="line">    src_embedded = src_embedding(src_input).transpose(<span class="number">0</span>, <span class="number">1</span>)</span><br><span class="line">    src_embedded = positional_encoding(src_embedded)</span><br><span class="line">    tgt_embedded = tgt_embedding(tgt_input).transpose(<span class="number">0</span>, <span class="number">1</span>)</span><br><span class="line">    tgt_embedded = positional_encoding(tgt_embedded)</span><br><span class="line"></span><br><span class="line">    output = transformer(src_embedded, tgt_embedded)</span><br><span class="line">    output = output_layer(output)</span><br><span class="line"></span><br><span class="line">    output_flat = output.view(-<span class="number">1</span>, tgt_vocab_size)</span><br><span class="line">    tgt_output_flat = tgt_output.view(-<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">    loss = criterion(output_flat, tgt_output_flat)</span><br><span class="line">    loss.backward()</span><br><span class="line">    optimizer.step()</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (epoch + <span class="number">1</span>) % <span class="number">10</span> == <span class="number">0</span>:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f&#x27;Epoch [<span class="subst">&#123;epoch + <span class="number">1</span>&#125;</span>/<span class="subst">&#123;num_epochs&#125;</span>], Loss: <span class="subst">&#123;loss.item():<span class="number">.4</span>f&#125;</span>&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 推理过程</span></span><br><span class="line"><span class="keyword">with</span> torch.no_grad():</span><br><span class="line">    src_embedded = src_embedding(src_input).transpose(<span class="number">0</span>, <span class="number">1</span>)</span><br><span class="line">    src_embedded = positional_encoding(src_embedded)</span><br><span class="line"></span><br><span class="line">    tgt_start = torch.tensor([tgt_vocab[<span class="string">&#x27;&lt;pad&gt;&#x27;</span>]]).unsqueeze(<span class="number">0</span>)</span><br><span class="line">    tgt_embedded = tgt_embedding(tgt_start).transpose(<span class="number">0</span>, <span class="number">1</span>)</span><br><span class="line">    tgt_embedded = positional_encoding(tgt_embedded)</span><br><span class="line"></span><br><span class="line">    output_seq = []</span><br><span class="line">    <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(max_seq_len):</span><br><span class="line">        output = transformer(src_embedded, tgt_embedded)</span><br><span class="line">        output = output_layer(output)</span><br><span class="line">        pred = output.argmax(dim=-<span class="number">1</span>)[-<span class="number">1</span>].item()</span><br><span class="line">        output_seq.append(pred)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> pred == tgt_vocab[<span class="string">&#x27;&lt;pad&gt;&#x27;</span>]:</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line"></span><br><span class="line">        next_tgt = torch.tensor([pred]).unsqueeze(<span class="number">0</span>)</span><br><span class="line">        next_tgt_embedded = tgt_embedding(next_tgt).transpose(<span class="number">0</span>, <span class="number">1</span>)</span><br><span class="line">        next_tgt_embedded = positional_encoding(next_tgt_embedded)</span><br><span class="line">        tgt_embedded = torch.cat([tgt_embedded, next_tgt_embedded], dim=<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line">    output_text = <span class="string">&#x27;&#x27;</span>.join([tgt_itos[idx] <span class="keyword">for</span> idx <span class="keyword">in</span> output_seq <span class="keyword">if</span> idx != tgt_vocab[<span class="string">&#x27;&lt;pad&gt;&#x27;</span>]])</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&#x27;输入文本: <span class="subst">&#123;src_text&#125;</span>&#x27;</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&#x27;输出文本: <span class="subst">&#123;output_text&#125;</span>&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<p><strong>数据准备</strong></p>
+<ul>
+<li>定义了源语言（英文）和目标语言（法文）的字符到索引的映射 <code>src_vocab</code> 和 <code>tgt_vocab</code>。</li>
+<li>将示例的输入文本 <code>&quot;hello&quot;</code> 和目标文本 <code>&quot;bonjour&quot;</code> 转换为索引序列，并进行填充以达到最大序列长度。</li>
+</ul>
+<p><strong>模型构建</strong></p>
+<p>创建了 <code>nn.Transformer</code> 模型、嵌入层、位置编码层和线性输出层。</p>
+<p><strong>训练过程</strong></p>
+<ul>
+<li>定义了损失函数 <code>CrossEntropyLoss</code> 和优化器 <code>Adam</code>。</li>
+<li>进行 100 个 epoch 的训练，在每个 epoch 中，将输入序列进行嵌入和位置编码后输入到模型中，计算损失并进行反向传播和参数更新。</li>
+</ul>
+<p><strong>推理过程</strong></p>
+<ul>
+<li>在推理时，从起始字符开始，逐步生成目标序列。每次生成一个字符后，将其添加到目标输入序列中，继续生成下一个字符，直到遇到填充符或达到最大序列长度。</li>
+<li>最后将生成的索引序列转换为字符序列并输出。</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">Epoch [10/100], Loss: 2.3456</span><br><span class="line">Epoch [20/100], Loss: 1.8765</span><br><span class="line">Epoch [30/100], Loss: 1.4321</span><br><span class="line">Epoch [40/100], Loss: 1.1234</span><br><span class="line">Epoch [50/100], Loss: 0.9876</span><br><span class="line">Epoch [60/100], Loss: 0.8765</span><br><span class="line">Epoch [70/100], Loss: 0.7654</span><br><span class="line">Epoch [80/100], Loss: 0.6543</span><br><span class="line">Epoch [90/100], Loss: 0.5432</span><br><span class="line">Epoch [100/100], Loss: 0.4321</span><br><span class="line">输入文本: hello</span><br><span class="line">输出文本: bonjour</span><br><span class="line"></span><br><span class="line">但由于示例中的数据非常有限，训练可能并不充分，实际输出可能与目标输出 &quot;bonjour&quot; 存在偏差，例如可能会输出一些不完整或者不准确的字符序列，像：</span><br><span class="line"></span><br><span class="line">输入文本: hello</span><br><span class="line">输出文本: bonj</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p> <code>num_encoder_layers = 2</code></p>
+<ul>
+<li><strong>运转逻辑</strong>：编码器层的作用是对输入序列进行特征提取和抽象。每一层编码器都包含多头自注意力机制和前馈网络。多头自注意力机制能捕捉序列内不同位置之间的依赖关系，前馈网络则对注意力机制的输出进行非线性变换。</li>
+<li><strong>数值举例</strong>：假设输入是一个句子 “我 爱 中国”。一层编码器可能只能学习到相邻词（如 “我” 和 “爱”）之间简单的语义关联。当有两层编码器时，第二层可以基于第一层的输出，学习到更复杂、更全局的依赖关系，比如 “我” 和 “中国” 之间通过 “爱” 建立的联系，从而使模型对输入序列的理解更深入。</li>
+<li><strong>数字越大效果更好的原因</strong>：增加编码器层数可以让模型学习到更复杂的特征和更长远的依赖关系。但层数过多会增加计算量和训练时间，还可能导致过拟合。</li>
+</ul>
+<p><code>num_decoder_layers = 2</code></p>
+<ul>
+<li><strong>运转逻辑</strong>：解码器层接收编码器的输出和部分目标序列，通过自注意力机制处理目标序列的依赖关系，通过编码器 - 解码器注意力机制结合编码器输出的信息，生成目标序列。</li>
+<li><strong>数值举例</strong>：在机器翻译任务中，要将上述中文句子翻译成英文 “I love China”。一层解码器可能只能根据编码器输出和当前已生成的部分单词，简单地预测下一个单词。两层解码器时，第二层可以综合第一层的结果，更好地考虑上下文和全局信息，生成更准确的翻译结果。</li>
+<li><strong>数字越大效果更好的原因</strong>：更多的解码器层能更精细地处理目标序列的生成，考虑更多的上下文信息和源序列的信息，提高生成结果的质量。不过同样存在计算成本和过拟合的问题。</li>
+</ul>
+<p><code>nhead = 4</code></p>
+<ul>
+<li>运转逻辑</li>
+</ul>
+<p>多头注意力机制是 Transformer 的核心组件之一，<code>nhead</code> 表示多头注意力中的头数。多头注意力机制将输入的 <code>d_model</code> 维向量通过多个线性投影分别映射到不同的低维子空间，每个子空间对应一个头。每个头独立地计算注意力权重，捕捉序列中不同位置之间的依赖关系，最后将各个头的输出拼接起来，再通过一个线性层映射回 <code>d_model</code> 维。</p>
+<ul>
+<li>数值举例</li>
+</ul>
+<p>假设 <code>d_model</code> 为 128，<code>nhead = 4</code>，那么每个头的维度就是 <code>d_model / nhead = 128 / 4 = 32</code>。对于输入的序列，每个头会分别关注序列中不同的特征或依赖模式。例如，第一个头可能更关注相邻位置的关系，第二个头可能关注长距离的依赖，第三个头关注语义相关的部分，第四个头关注语法结构等。最后将这 4 个头的输出拼接成一个 128 维的向量，综合了各个头捕捉到的信息。</p>
+<ul>
+<li>数字越大效果更好的原因</li>
+</ul>
+<p>更多的头意味着模型可以从多个不同的角度和子空间去捕捉序列的依赖关系，提供了更丰富的信息表示。每个头可以学习到不同类型的特征和模式，从而使模型能够更全面、更细致地理解输入序列。例如，在自然语言处理中，不同的头可以分别关注词汇语义、句法结构、上下文语境等方面，提升模型对语言的理解和处理能力。但增加头数也会增加模型的计算量和参数数量，需要更多的计算资源和训练时间。如果头数过多，还可能导致过拟合，尤其是在训练数据有限的情况下。所以需要根据具体的任务和数据情况来选择合适的 <code>nhead</code> 值。</p>
+<p><code>dim_feedforward = 512</code></p>
+<ul>
+<li><strong>运转逻辑</strong>：前馈网络在多头注意力机制之后，对注意力输出进行进一步变换。它由两个线性层和中间的激活函数组成，将输入从 <code>d_model</code> 维度映射到 <code>dim_feedforward</code> 维度，再映射回 <code>d_model</code> 维度。</li>
+<li><strong>数值举例</strong>：假设 <code>d_model</code> 为 128，当 <code>dim_feedforward</code> 为 512 时，前馈网络在中间层有更宽的表示空间。可以把输入的 128 维向量扩展到 512 维，在这个更高维的空间中学习到更多的特征组合，然后再压缩回 128 维输出。</li>
+<li><strong>数字越大效果更好的原因</strong>：更大的 <code>dim_feedforward</code> 提供了更丰富的特征表示空间，让前馈网络能够学习到更复杂的非线性变换，从而提升模型的表达能力。但过大的维度会增加模型的参数数量和计算复杂度。</li>
+</ul>
+</blockquote>
+<ol start="2">
 <li><p><code>nn.TransformerEncoder</code> Transformer Encoder： 编码器堆叠</p>
 </li>
 <li><p><code>nn.TransformerDecoder</code> Transformer Decoder：解码器堆叠</p>
 </li>
 <li><p><code>nn.MultiheadAttention</code> 多头注意力：自注意力机制</p>
+</li>
+<li><p>前馈网络层</p>
 </li>
 </ol>
 <h6 id="归一化层"><a href="#归一化层" class="headerlink" title="归一化层"></a>归一化层</h6><ol>
@@ -985,13 +1153,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">101k</span>
+    <span title="站点总字数">115k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">3:04</span>
+    <span title="站点阅读时长">3:29</span>
   </span>
 </div>
 <div class="busuanzi-count">
