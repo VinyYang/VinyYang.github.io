@@ -630,7 +630,7 @@
 <p>转置卷积本质上是标准卷积的一种 “逆向” 操作，但不是严格意义上的逆运算。在标准卷积中，卷积核在输入数据上滑动，将局部区域映射到一个输出值，导致输出尺寸通常小于输入尺寸。而转置卷积则是将输入的每个元素扩展到一个更大的区域，然后与卷积核进行卷积操作，从而实现输出尺寸大于输入尺寸的效果。</p>
 <p>具体来说，转置卷积通过在输入数据周围插入零值（称为 “零填充”），并调整卷积核的滑动方式，使得卷积操作能够产生更大的输出。在一维、二维和三维的情况下，分别使用 <code>nn.ConvTranspose1d</code>、<code>nn.ConvTranspose2d</code> 和 <code>nn.ConvTranspose3d</code> 来实现相应维度的转置卷积。</p>
 <blockquote>
-<p>上采样：</p>
+<p>&#x3D;&#x3D;上采样&#x3D;&#x3D;</p>
 <p>指的是将低分辨率的数据转换为高分辨率数据的过程。在深度学习中，输入数据（如图像、特征图等）经过一系列下采样操作（如卷积、池化）后尺寸会变小，为了恢复到原始尺寸或达到特定任务所需的尺寸，就需要进行上采样操作。</p>
 <ul>
 <li><strong>恢复尺寸</strong>：在一些任务中，如语义分割，模型需要对输入图像的每个像素进行分类，经过下采样后的特征图尺寸变小，需要通过上采样恢复到与输入图像相同的尺寸，以便为每个像素分配类别标签。</li>
@@ -680,7 +680,7 @@
 <p>2.<code>nn.LSTM</code> LSTM：长短期记忆网络</p>
 <p><code>nn.LSTM</code> 是 PyTorch 中用于构建长短期记忆网络（Long Short - Term Memory，LSTM）的模块。LSTM 是一种特殊的循环神经网络（RNN），旨在解决传统 RNN 在处理长序列时遇到的梯度消失或梯度爆炸问题。它通过引入门控机制（输入门、遗忘门和输出门），能够有效地捕捉序列中的长距离依赖关系，在处理自然语言处理、时间序列分析等序列数据任务中表现出色。</p>
 <blockquote>
-<p>梯度消失与梯度爆炸：</p>
+<p>&#x3D;&#x3D;梯度消失与梯度爆炸&#x3D;&#x3D;</p>
 <p>1.梯度消失</p>
 <p>在神经网络训练中，使用反向传播算法更新参数时，梯度会从输出层向输入层逐层传递。梯度消失指的是在这个过程中，梯度值变得越来越小，趋近于零。</p>
 <p>传统 RNN 在计算梯度时涉及多个权重矩阵的连乘，若权重矩阵的元素值较小，经过多次连乘后梯度会急剧减小。激活函数（如 Sigmoid、Tanh）的导数取值范围在 0 到 1 之间，多次使用这类激活函数也会使梯度逐渐变小。</p>
@@ -703,7 +703,7 @@
 <p><strong>细胞状态更新</strong>：根据遗忘门和输入门的输出更新细胞状态$C_t&#x3D;f_{t}\odot C_{t-1}+i_t\odot \widetilde{C_t}$，其中$\odot$表示逐元素相乘。</p>
 <p><strong>输出门（Output Gate）</strong>：决定当前细胞状态$C_t$中哪些信息需要被输出作为当前时间步的隐藏状态$h_t$。计算公式为$o_t&#x3D;\sigma(W_o[h_{t-1},x_t]+b_o)$，$h_t&#x3D;o_t\odot tanh(C_t)$。</p>
 <blockquote>
-<p>隐藏状态：（可理解为一个中间变量或状态值）</p>
+<p>&#x3D;&#x3D;隐藏状态&#x3D;&#x3D;（可理解为一个中间变量或状态值）</p>
 <p>是网络在处理序列数据时，每个时间步所维护的一种内部表示。可以将其理解为网络对之前输入信息的一种 “记忆” 和 “总结”，随着时间步推进不断更新。</p>
 <p>隐藏状态整合了历史输入信息和当前输入信息，能反映序列的上下文关系。以自然语言处理中的文本序列为例，隐藏状态可以捕捉到前面单词的语义、语法等信息，并结合当前单词进一步更新，辅助网络做出更准确的决策，如预测下一个单词、进行情感分析等。</p>
 <p>在 LSTM 里，输出门会对细胞状态进行筛选和处理，生成隐藏状态。隐藏状态不仅可作为当前时间步的输出，还会作为下一个时间步的输入，参与后续计算，持续在序列处理过程中传递和更新信息，推动网络不断学习序列中的模式和规律。</p>
@@ -725,9 +725,9 @@
 <p>3.<code>nn.GRU</code> GRU：门控循环单元</p>
 <p><code>nn.GRU</code> 是 PyTorch 里用于构建门控循环单元（Gated Recurrent Unit，GRU）的模块。GRU 是循环神经网络（RNN）的一种变体，它和长短期记忆网络（LSTM）类似，旨在解决传统 RNN 处理长序列时的梯度消失问题。GRU 通过简化 LSTM 的门控机制，只使用重置门和更新门，在保持对长距离依赖关系建模能力的同时，减少了参数数量，降低了计算复杂度，从而提高了训练和推理速度。</p>
 <h6 id="Transformer-相关层"><a href="#Transformer-相关层" class="headerlink" title="Transformer 相关层"></a>Transformer 相关层</h6><blockquote>
-<p>什么是Transformer?</p>
+<p>&#x3D;&#x3D;❓什么是Transformer?&#x3D;&#x3D;</p>
 <p>Transformer 是 2017 年在论文《Attention Is All You Need》中提出的一种基于注意力机制的深度学习模型架构，用于处理序列数据，尤其在自然语言处理领域表现卓越。它摒弃了传统的循环结构（如 RNN、LSTM），完全基于注意力机制构建，能够并行处理输入序列，提升了训练和推理速度。</p>
-<p>❓Transformer 是巨大进步的原因</p>
+<p>&#x3D;&#x3D;❓Transformer 是巨大进步的原因&#x3D;&#x3D;</p>
 <p>1.解决长序列依赖问题</p>
 <p>传统 RNN 及其变体（如 LSTM、GRU）在处理长序列时，由于信息传递需按顺序进行，存在梯度消失或爆炸问题，难以捕捉长距离依赖关系。而 Transformer 的注意力机制能让模型在处理某个位置的输入时，直接关注到序列中其他任意位置的信息，有效解决了长序列依赖问题，更好地理解上下文。</p>
 <p>2.并行计算能力</p>
@@ -849,7 +849,8 @@
 </ol>
 <p><code>nn.MultiheadAttention</code> 是 PyTorch 中实现多头注意力机制的模块。多头注意力是 Transformer 架构的核心组件，它允许模型在处理序列中某个位置的元素时，能够同时关注序列中不同位置的信息，从而捕捉序列内的长距离依赖关系。通过将注意力计算分成多个头并行进行，多头注意力机制可以从不同的表示子空间中提取特征，增强模型的表达能力。</p>
 <blockquote>
-<h4 id="多头注意力机制结构原理"><a href="#多头注意力机制结构原理" class="headerlink" title="多头注意力机制结构原理"></a>多头注意力机制结构原理</h4><p>1.输入与线性变换</p>
+<p>&#x3D;&#x3D;多头注意力机制结构原理&#x3D;&#x3D;</p>
+<p>1.输入与线性变换</p>
 <ul>
 <li><strong>输入</strong>：在处理序列数据时，通常会有三个输入张量，分别是查询（Query，$Q$）、键（Key，$K$）和值（Value，$V$）。在自注意力机制中，$Q$、$K$、$V$通常来自同一个输入序列，但经过不同的线性变换得到。假设输入序列的形状为($L,B,E$) ，其中$L$是序列长度，$B$是批量大小，$E$是嵌入维度。</li>
 <li><strong>线性变换</strong>：对于输入的$Q$、$K$、$V$，分别通过三个线性层进行变换。设嵌入维度为$E$，头数为$H$，每个头的维度为 $d_k&#x3D;\frac{E}{H}$（通常假设$E$能被$H$整除）。这三个线性变换可以表示为：<ul>
@@ -896,7 +897,8 @@
 </ul>
 </blockquote>
 <blockquote>
-<h4 id="多头自注意力机制"><a href="#多头自注意力机制" class="headerlink" title="多头自注意力机制"></a>多头自注意力机制</h4><p>是多头注意力机制的一种特殊形式，强调查询（Query）、键（Key）和值（Value）都来自同一个输入序列，主要用于捕捉序列内部元素之间的相互依赖关系。</p>
+<p>&#x3D;&#x3D;多头自注意力机制&#x3D;&#x3D;</p>
+<p>是多头注意力机制的一种特殊形式，强调查询（Query）、键（Key）和值（Value）都来自同一个输入序列，主要用于捕捉序列内部元素之间的相互依赖关系。</p>
 <p>查询、键和值都来自同一个输入序列。比如在处理一个句子时，每个词的表示都会与句子中其他所有词的表示进行比较，以确定该词在不同语义和句法层面上与其他词的关联程度。</p>
 <ul>
 <li><strong>多头自注意力机制</strong>：主要关注同一序列内部元素之间的关系，能够让模型在处理序列中的每个元素时，综合考虑序列中其他元素的信息，从而更好地理解序列的整体结构和语义。</li>
@@ -941,12 +943,14 @@
 <li><strong>图像描述生成</strong>：编码器对图像进行特征提取，解码器根据图像特征生成描述图像内容的文本。</li>
 </ul>
 <blockquote>
-<h5 id="❓编码器和解码器这个名字为什么会用在transformer里？"><a href="#❓编码器和解码器这个名字为什么会用在transformer里？" class="headerlink" title="❓编码器和解码器这个名字为什么会用在transformer里？"></a>❓编码器和解码器这个名字为什么会用在transformer里？</h5><p>Transformer 中使用 “编码器” 和 “解码器” 这两个名字，是借鉴了信息处理和通信领域的概念，能形象体现其功能。</p>
+<p>&#x3D;&#x3D;❓编码器和解码器这个名字为什么会用在transformer里？&#x3D;&#x3D;</p>
+<p>Transformer 中使用 “编码器” 和 “解码器” 这两个名字，是借鉴了信息处理和通信领域的概念，能形象体现其功能。</p>
 <p>在信息处理中，编码器负责将原始信息转换为一种更适合后续处理或传输的编码形式。在 Transformer 里，编码器对输入序列（如源语言句子）进行处理，把输入信息转换为一系列具有丰富语义的特征表示，这些特征包含了输入序列的关键信息和内在结构，就像将原始信息 “编码” 成了便于解码器理解的形式。</p>
 <p>解码器则是将编码后的信息还原为原始信息或生成相关的目标信息。在 Transformer 中，解码器根据编码器输出的特征表示，逐步生成目标序列（如目标语言的翻译句子），相当于把编码器得到的 “编码信息” 进行 “解码”，从而得到我们期望的输出结果。</p>
 </blockquote>
 <blockquote>
-<h5 id="❓Transformer中的码是什么，怎么从实际信息变过来的？"><a href="#❓Transformer中的码是什么，怎么从实际信息变过来的？" class="headerlink" title="❓Transformer中的码是什么，怎么从实际信息变过来的？"></a>❓Transformer中的码是什么，怎么从实际信息变过来的？</h5><p>在 Transformer 中，“码” 指的是数据经过处理后得到的特征表示。</p>
+<p>&#x3D;&#x3D;❓Transformer中的码是什么，怎么从实际信息变过来的？&#x3D;&#x3D;</p>
+<p>在 Transformer 中，“码” 指的是数据经过处理后得到的特征表示。</p>
 <p>实际信息通常是自然语言文本、图像等数据。以自然语言处理为例，输入的是由单词或字符组成的句子，比如 “I love machine learning” 。</p>
 <ul>
 <li>词嵌入（Word Embedding）</li>
@@ -1041,24 +1045,269 @@
 </ul>
 <p>合适的激活函数可以帮助模型更好地学习数据的分布，减少过拟合的风险，从而提高模型的泛化能力。例如，$Leaky ReLU$函数通过在负数区间保留一个小的梯度，避免了“死亡ReLU”问题，使模型能够更有效地学习和泛化。</p>
 <p>2.<code>nn.ReLU</code> ReLU：$max(0, x)$</p>
-<p>3.<code>nn.LeakyReLU</code> LeakyReLU：$max(αx, x)$</p>
+<p><code>nn.ReLU</code> 是$PyTorch$中实现修正线性单元（Rectified Linear Unit，ReLU）激活函数的模块。$ReLU$函数的数学表达式为$f(x)&#x3D;max(0,x)$，即对于输入$x$，如果$x$大于0，则输出$x$；如果$x$小于等于 0，则输出0。</p>
+<p>ReLU 函数在深度学习中应用广泛，尤其在卷积神经网络（CNN）和多层感知机（MLP）中经常被使用。例如，在图像分类任务中，许多流行的CNN架构（如 AlexNet、VGG 等）都大量使用了 ReLU 激活函数，以提高模型的训练效率和性能。</p>
+<p><strong>优点</strong></p>
+<ul>
+<li><strong>计算简单</strong>：ReLU 函数只需要进行一次比较操作，计算速度快，能显著减少训练时间。</li>
+<li><strong>缓解梯度消失问题</strong>：在正区间内，ReLU 函数的导数恒为 1，避免了像 Sigmoid 和 Tanh 函数那样在输入值很大或很小时梯度趋近于 0 的问题，使得神经网络的训练更加高效。</li>
+<li><strong>稀疏性</strong>：ReLU 函数会使一部分神经元的输出为 0，从而产生稀疏激活，这有助于减少神经元之间的相互依赖，提高模型的泛化能力。</li>
+</ul>
+<p><strong>缺点</strong></p>
+<ul>
+<li><strong>死亡 ReLU 问题</strong>：当输入值小于等于 0 时，ReLU 函数的导数为 0，这可能导致神经元在训练过程中永远不会被激活，也就是所谓的 “死亡 ReLU”。一旦某个神经元进入这种状态，它将不再对后续的输入产生响应，梯度也无法通过该神经元进行反向传播。</li>
+<li><strong>输出不以 0 为中心</strong>：ReLU 函数的输出值均为非负数，这可能会导致模型收敛速度变慢，因为它会使权重更新的方向都偏向同一侧。</li>
+</ul>
+<p>3.<code>nn.LeakyReLU</code>$ LeakyReLU$：$max(αx, x)$</p>
+<p><code>nn.LeakyReLU</code> 是 PyTorch 里实现 Leaky ReLU 激活函数的模块。Leaky ReLU 是对 ReLU 的改进，其数学表达式为<img src="/./%E6%89%8B%E6%92%95%E7%9F%A5%E8%AF%86%E5%BA%93/QianJianTec1740557269940.png" alt="QianJianTec1740557269940"></p>
+<p>其中$\alpha$ 是一个较小的正数（通常取值为 0.01）。与 ReLU 不同的是，当输入$x$为负数时，$Leaky ReLU$不会将其输出置为0，而是乘以一个小的斜率 ，从而保留了一定的梯度。</p>
+<p>LeakyReLU 常用于各种深度学习任务中，特别是在处理可能出现大量负数输入的情况时表现出色。例如在生成对抗网络（GAN）中，LeakyReLU 可以帮助缓解梯度消失问题，使生成器和判别器能够更稳定地训练，提高生成图像的质量。</p>
+<p><strong>优点</strong></p>
+<ul>
+<li><strong>解决死亡 ReLU 问题</strong>：由于在负数区间保留了一个小的梯度（），即使输入为负数，神经元也不会完全 “死亡”，能够继续参与训练和梯度传播，避免了部分神经元永久失效的情况，提高了模型的稳定性。</li>
+<li><strong>计算简单</strong>：和 ReLU 一样，LeakyReLU 的计算相对简单，不会显著增加计算量，保证了训练的高效性。</li>
+</ul>
+<p><strong>缺点</strong></p>
+<ul>
+<li><strong>超参数选择问题</strong>： 是一个需要手动调整的超参数。如果 选择不当，可能会影响模型的性能。例如， 过大可能会使LeakyReLU退化为线性函数，失去引入非线性的作用； 过小则可能无法有效解决死亡ReLU问题。</li>
+</ul>
 <p>4.<code>nn.Sigmoid</code> Sigmoid：$\frac{1}{1 + e^{-x}}$</p>
+<p><code>nn.Sigmoid</code> 是PyTorch中用于实现Sigmoid激活函数的模块。Sigmoid函数的数学表达式为$\sigma(x)&#x3D;\frac{1}{1+e^{-x}}$，它能将任意实数输入$x$映射到$(0,1)$区间内。</p>
+<p>在二分类任务的输出层使用 Sigmoid 函数，将模型的输出转换为概率值，便于进行分类决策。例如，在判断邮件是否为垃圾邮件的任务中，Sigmoid 函数可以输出邮件为垃圾邮件的概率。</p>
+<p>在深度学习发展的早期，Sigmoid 函数被广泛应用。但随着对梯度消失问题的认识和其他激活函数的提出，现在在深层网络中使用 Sigmoid 函数的情况相对较少。</p>
+<p><strong>优点</strong></p>
+<ul>
+<li><strong>输出具有概率解释性</strong>：由于 Sigmoid 函数的输出范围在$(0,1)$之间，因此可以将其输出解释为概率。在二分类问题中，Sigmoid 函数常被用于输出层，将模型的输出转换为属于某一类别的概率。</li>
+<li><strong>平滑性</strong>：Sigmoid 函数是连续可导的，其导数可以通过简单的公式计算：$\sigma^{‘}(x)&#x3D;\sigma(x)(1-\sigma(x))$。这种平滑性使得它在使用基于梯度的优化算法（如梯度下降）时非常方便。</li>
+</ul>
+<p><strong>缺点</strong></p>
+<ul>
+<li><strong>梯度消失问题</strong>：当输入值非常大或非常小时，Sigmoid 函数的导数趋近于 0。在深度神经网络的反向传播过程中，这会导致梯度在传播过程中逐渐消失，使得模型难以学习到有效的特征，尤其是在网络层数较多的情况下，训练会变得非常困难。</li>
+<li><strong>输出不以 0 为中心</strong>：Sigmoid 函数的输出始终为正数，这会导致在反向传播过程中，权重更新的方向都偏向同一侧，使得收敛速度变慢。</li>
+</ul>
 <p>5.<code>nn.Tanh</code> Tanh：$\frac{e^x - e^{-x}}{e^x + e^{-x}}$</p>
+<p><code>nn.Tanh</code>是PyTorch里实现双曲正切激活函数（Tanh）的模块。Tanh 函数的数学表达式为$tanh(x)&#x3D;\frac{e^x-e^{-x}}{e^x+e^{-x}}$，它能把任意实数输入$x$映射到$(-1,1)$区间内。</p>
+<ul>
+<li><strong>循环神经网络（RNN）</strong>：在早期的 RNN 及其变体（如 LSTM、GRU）中，Tanh 函数常被用于隐藏层的激活函数，因为它以 0 为中心的特性有助于缓解梯度消失问题，使模型能够更好地捕捉序列数据中的长期依赖关系。</li>
+<li><strong>某些特定的回归问题</strong>：当输出需要在$(-1,1)$区间内时，Tanh 函数可以作为一个合适的选择。例如，在预测某些具有正负范围的数值时，使用 Tanh 函数可以将模型的输出限制在合理的区间内。</li>
+</ul>
+<p><strong>优点</strong></p>
+<ul>
+<li><strong>以 0 为中心</strong>：与 Sigmoid 函数不同，Tanh 函数的输出范围是$(-1,1)$，关于原点对称。这使得在反向传播过程中，权重更新的方向更加灵活，有助于模型更快地收敛。</li>
+<li><strong>平滑可导</strong>：Tanh 函数是连续可导的，其导数为$1-tanh^2(x)$。这种平滑性对于基于梯度的优化算法（如梯度下降）非常重要，便于进行梯度计算和参数更新。</li>
+</ul>
+<p><strong>缺点</strong></p>
+<ul>
+<li><strong>梯度消失问题</strong>：和 Sigmoid 函数类似，当输入值非常大或非常小时，Tanh 函数的导数趋近于 0。在深度神经网络的反向传播过程中，这会导致梯度在传播过程中逐渐消失，使得模型难以学习到有效的特征，尤其是在网络层数较多的情况下，训练会变得困难。</li>
+</ul>
 <p>6.<code>nn.GELU</code> GELU：高斯误差线性单元（Transformer 常用）</p>
+<p><code>nn.GELU</code> 是 PyTorch 中实现高斯误差线性单元（Gaussian Error Linear Unit，GELU）激活函数的模块。GELU 是一种非线性激活函数，它根据输入的概率来随机将输入置为 0，从而引入了随机性和非线性。其数学表达式有几种近似形式，常见的一种是：</p>
+<p>$GELU(x)&#x3D;x·\phi(x)$</p>
+<p>其中$\phi(x)$是标准正态分布的累积分布函数，通常使用以下近似公式计算：</p>
+<p>$GELU(x)&#x3D;0.5x(1+tanh(\sqrt{\frac{2}{\pi}}(x+0.044715x^3)))$</p>
+<p>对于不同的输入值，GELU 函数会根据其自身的计算规则输出相应的结果。当输入为 0 时，输出为 0；对于正数输入，输出为正且会根据输入大小非线性变化；对于负数输入，输出值会小于 0 且同样遵循非线性规律。</p>
+<p><strong>应用场景</strong></p>
+<ul>
+<li><strong>Transformer 架构</strong>：在基于 Transformer 的模型（如 BERT、GPT 系列等）中，GELU 被广泛应用于前馈网络层，是这些模型取得优异性能的关键因素之一。</li>
+<li><strong>自然语言处理任务</strong>：由于其能够更好地处理序列数据中的复杂关系，GELU 在各种自然语言处理任务中得到了广泛应用，如情感分析、命名实体识别等。</li>
+</ul>
+<p><strong>优点</strong></p>
+<ul>
+<li><strong>更好的拟合能力</strong>：GELU 函数比传统的激活函数（如 ReLU、Sigmoid 等）具有更复杂的非线性特性，能够更好地拟合复杂的数据分布，从而提高模型的表达能力。</li>
+<li><strong>在 Transformer 中表现出色</strong>：在 Transformer 架构中，GELU 被广泛使用。它有助于模型捕捉序列数据中的复杂模式和依赖关系，提升模型在自然语言处理任务（如机器翻译、文本分类等）中的性能。</li>
+<li><strong>平滑性</strong>：GELU 函数是连续可导的，这对于基于梯度的优化算法（如 Adam 优化器）非常友好，能够保证模型训练过程的稳定性。</li>
+</ul>
+<p><strong>缺点</strong></p>
+<ul>
+<li><strong>计算复杂度相对较高</strong>：与 ReLU 等简单激活函数相比，GELU 的计算涉及到较为复杂的数学运算（如双曲正切函数和多项式运算），因此计算成本相对较高，可能会增加模型的训练时间和计算资源消耗。</li>
+</ul>
+<blockquote>
+<p>&#x3D;&#x3D;❓为什么神经网络分为输入层，隐藏层和输出层&#x3D;&#x3D;</p>
+<p>神经网络的设计灵感来源于人类的神经系统。在人类大脑中，感觉器官（如眼睛、耳朵）相当于输入层，负责接收外界的信息；大脑中的神经元网络进行复杂的信息处理和分析，类似于隐藏层的功能；而运动系统或决策系统则相当于输出层，产生相应的行为或决策。因此，将神经网络分为输入层、隐藏层和输出层是对人类神经系统工作方式的一种模拟和简化。</p>
+<p>同时，神经网络分为输入层、隐藏层和输出层这种结构符合信息处理流程：信息接收-加工-输出</p>
+<p>&#x3D;&#x3D;❓隐藏层为什么要叫隐藏层（也就是为什么某些层需要被“隐藏”）&#x3D;&#x3D;</p>
+<p>1.<strong>与外界无直接交互</strong>：“隐藏” 并不是指这些层在物理上不可见，而是它们不像输入层和输出层那样与外界有直接的联系。输入层直接接收外部数据，输出层直接将结果反馈给外界，而隐藏层的状态和输出对于用户来说通常是不可直接观察和干预的。它们主要在网络内部进行特征提取和转换，是网络学习过程中的中间步骤。</p>
+<p>2.<strong>自动学习特征</strong>：隐藏层的主要任务是自动学习数据中的特征表示。这些特征是在训练过程中由网络自动发现和提取的，不需要人工预先定义。由于隐藏层学习到的特征是抽象的、针对具体任务的，并且可能难以用人类语言直接描述，所以被视为 “隐藏” 的特征。例如，在图像识别任务中，隐藏层可能学习到一些对于识别物体有帮助的特征，但这些特征可能无法直观地表达出来。</p>
+</blockquote>
+<blockquote>
+<p>&#x3D;&#x3D;❓学习和表示复杂的函数关系最后是怎么反映到实际问题的&#x3D;&#x3D;</p>
+<p>以图像分类任务为例进行简要分析。</p>
+<p>图像分类是指将输入的图像划分到一个或多个预定义的类别中，例如判断一张图片是猫、狗还是其他动物。这个问题的复杂性在于图像中的物体可能有不同的姿态、角度、光照条件等，需要模型学习到图像特征和类别之间复杂的函数关系。</p>
+<p>1.数据收集与预处理</p>
+<ul>
+<li>收集大量不同类别的图像数据，例如包含猫和狗的图片。</li>
+<li>对图像进行预处理，如调整大小、归一化等，将图像数据转换为适合模型输入的格式。</li>
+</ul>
+<p>2.构建模型</p>
+<p>构建一个深度神经网络模型，如卷积神经网络（CNN），它可以看作是在学习输入图像和输出类别之间的复杂函数关系。网络包含多个卷积层、池化层和全连接层，每个层通过不同的操作（如卷积、激活函数等）来提取和转换图像特征。</p>
+<p>3.模型训练</p>
+<ul>
+<li>使用收集到的图像数据和对应的类别标签对模型进行训练。在训练过程中，模型通过不断调整其内部的参数（如卷积核的权重），使得模型的输出尽可能接近真实的类别标签。</li>
+<li>为了衡量模型输出和真实标签之间的差异，使用损失函数（如交叉熵损失）。通过反向传播算法，根据损失函数的梯度更新模型的参数，使得损失函数逐渐减小。</li>
+</ul>
+<p>因此，在训练过程中，模型学习到了&#x3D;&#x3D;图像中不同特征和类别之间的关系&#x3D;&#x3D;。例如，CNN 的卷积层可以学习到图像中的边缘、纹理等局部特征，随着网络层数的增加，模型能够组合这些局部特征，形成更高级的语义特征。这些特征表示了图像的本质信息，是模型学习到的复杂函数关系的一部分。</p>
+<p>当一个新的图像输入到训练好的模型中时，模型会根据学习到的函数关系对图像进行处理。首先，模型会提取图像的特征，然后根据这些特征计算每个类别的得分。最后，模型会选择得分最高的类别作为预测结果，从而完成图像分类任务。</p>
+<p><u>实际效果体现</u></p>
+<ul>
+<li><strong>准确性</strong>：如果模型学习到的函数关系能够很好地反映图像特征和类别之间的真实关系，那么模型在测试数据上的分类准确率会较高。例如，在一个包含猫和狗的图像分类任务中，模型能够准确地将大部分猫的图片分类为猫，狗的图片分类为狗。</li>
+<li><strong>泛化能力</strong>：学习到的函数关系还体现在模型的泛化能力上。即模型不仅能够在训练数据上表现良好，还能够对未见过的图像进行准确分类。例如，当遇到不同姿态、不同光照条件下的猫和狗的图片时，模型仍然能够正确分类。</li>
+</ul>
+</blockquote>
 <p>7.<code>nn.Softmax</code> Softmax：概率归一化</p>
+<p><code>nn.Softmax</code> 是 PyTorch 中用于实现 Softmax 函数的模块。Softmax 函数是一种常用的激活函数，主要用于将一个实数向量转换为概率分布，使得向量中的每个元素都在 <code>(0, 1)</code> 区间内，并且所有元素之和为 1。</p>
+<p>对于一个输入向量$z&#x3D;[z_1,z_2,…,z_n]$，Softmax 函数的数学表达式为：$Softmax(z_i)&#x3D;\frac{e^{z_i}}{ {\textstyle \sum_{j&#x3D;1}^{n}}e^{z_j} }$</p>
+<p><strong>应用场景</strong></p>
+<ul>
+<li><strong>多分类问题</strong>：在多分类任务中，如手写数字识别、图像分类等，Softmax 函数通常用于输出层，将模型的输出转换为概率分布，从而确定样本所属的类别。</li>
+<li><strong>强化学习</strong>：在强化学习中，Softmax 函数可以用于动作选择策略。例如，在基于策略梯度的算法中，使用 Softmax 函数将动作的偏好分数转换为动作选择的概率，使得智能体可以根据概率随机选择动作。</li>
+</ul>
+<p><strong>优点</strong></p>
+<ul>
+<li><strong>概率解释性</strong>：Softmax 函数的输出可以直接解释为概率。在多分类问题中，每个类别的输出值可以看作是样本属于该类别的概率，这使得模型的输出具有直观的意义，便于进行分类决策。</li>
+<li><strong>可微性</strong>：Softmax 函数是连续可微的，这使得它可以用于基于梯度的优化算法，如随机梯度下降（SGD）、Adam 等。在训练神经网络时，可以通过反向传播算法计算损失函数关于 Softmax 输入的梯度，从而更新模型的参数。</li>
+</ul>
+<p><strong>缺点</strong></p>
+<ul>
+<li><strong>对输入值敏感</strong>：Softmax 函数使用指数运算，对输入值的差异非常敏感。当输入值之间的差异较大时，经过 Softmax 函数处理后，较大的值会变得非常接近 1，而较小的值会变得非常接近 0，这可能导致梯度消失或梯度爆炸问题。</li>
+<li><strong>计算复杂度高</strong>：Softmax 函数的计算涉及到指数运算和求和操作，计算复杂度相对较高。在处理大规模数据时，可能会影响模型的训练和推理速度。</li>
+</ul>
 <h6 id="池化层"><a href="#池化层" class="headerlink" title="池化层"></a>池化层</h6><p>1.什么是池化？</p>
+<p>池化（Pooling）是深度学习中一种常用的操作，主要用于对输入数据进行下采样，也就是减少数据的维度和参数数量。</p>
+<p>池化操作通常在卷积层之后进行，它会在输入数据的局部区域（例如一个小的矩形区域）上进行计算，根据特定规则从该区域中提取一个代表值，以此来替代整个区域的数据。常见的规则有取最大值、平均值等。</p>
+<p>&#x3D;&#x3D;常见类型&#x3D;&#x3D;</p>
+<ul>
+<li><strong>最大池化（Max Pooling）</strong>：在每个局部区域中选取最大值作为该区域的输出。例如，对于一个 2x2 的局部区域，将其中 4 个元素中的最大值提取出来。最大池化能够保留输入数据中的主要特征，因为最大值往往对应着数据中最显著的特征信息，有助于突出重要的边缘、纹理等特征。</li>
+<li><strong>平均池化（Average Pooling）</strong>：计算每个局部区域内所有元素的平均值作为输出。它会对局部区域的信息进行平均化处理，能保留更多的背景信息，但相对而言可能会模糊一些突出的特征。</li>
+</ul>
+<p>&#x3D;&#x3D;作用&#x3D;&#x3D;</p>
+<ul>
+<li><strong>降低数据维度</strong>：通过减少数据的尺寸，降低后续层的计算量和参数数量，从而加快模型的训练速度，减少过拟合的风险。例如，在处理高分辨率的图像时，池化操作可以显著减小特征图的大小。</li>
+<li><strong>增强特征的平移不变性</strong>：即使输入数据在局部区域内发生了一定的平移，池化操作提取的特征仍然保持相对稳定。这使得模型在面对物体位置变化时具有更强的鲁棒性。</li>
+<li><strong>提取重要特征</strong>：最大池化可以突出数据中的重要特征，帮助模型聚焦于更关键的信息，提高模型的特征表达能力。</li>
+</ul>
 <p>2.<code>nn.MaxPool1d/2d/3d</code> 最大池化：取局部最大值</p>
+<p><code>nn.MaxPool1d</code>、<code>nn.MaxPool2d</code> 和 <code>nn.MaxPool3d</code> 是 PyTorch 中用于实现不同维度最大池化操作的模块。最大池化的核心思想是在输入数据的局部区域内选取最大值作为该区域的输出，以此来减少数据的维度，同时保留重要的特征信息。</p>
+<p><code>nn.MaxPool1d</code></p>
+<ul>
+<li><p><strong>适用场景</strong>：主要用于处理一维数据，如时间序列数据或一维的特征向量。输入数据的形状通常为 <code>(N, C, L)</code>，其中 <code>N</code> 是批量大小，<code>C</code> 是通道数，<code>L</code> 是序列长度。</p>
+</li>
+<li><p><strong>参数</strong></p>
+<ul>
+<li><code>kernel_size</code>：池化窗口的大小，是一个整数，表示在序列长度方向上的窗口大小。</li>
+<li><code>stride</code>：池化窗口的步长，默认为 <code>kernel_size</code>。</li>
+<li><code>padding</code>：在输入数据的边界填充 0 的数量，默认为 0。</li>
+</ul>
+<figure class="highlight py"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 定义输入数据</span></span><br><span class="line">input_data = torch.randn(<span class="number">1</span>, <span class="number">1</span>, <span class="number">10</span>)  <span class="comment"># 批量大小为 1，通道数为 1，序列长度为 10</span></span><br><span class="line"><span class="comment"># 创建 MaxPool1d 层</span></span><br><span class="line">max_pool_1d = nn.MaxPool1d(kernel_size=<span class="number">2</span>, stride=<span class="number">2</span>)</span><br><span class="line"><span class="comment"># 进行最大池化操作</span></span><br><span class="line">output = max_pool_1d(input_data)</span><br></pre></td></tr></table></figure></li>
+</ul>
+<p><code>nn.MaxPool2d</code></p>
+<ul>
+<li><p><strong>适用场景</strong>：常用于处理二维数据，如图像数据。输入数据的形状通常为 <code>(N, C, H, W)</code>，其中 <code>N</code> 是批量大小，<code>C</code> 是通道数，<code>H</code> 是高度，<code>W</code> 是宽度。</p>
+</li>
+<li><p><strong>参数：</strong></p>
+<ul>
+<li><code>kernel_size</code>：池化窗口的大小，可以是一个整数或元组。如果是整数，则表示正方形窗口的边长；如果是元组，则分别表示高度和宽度方向的窗口大小。</li>
+<li><code>stride</code>：池化窗口的步长，默认为 <code>kernel_size</code>。</li>
+<li><code>padding</code>：在输入数据的边界填充 0 的数量，默认为 0。</li>
+</ul>
+<figure class="highlight py"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 定义输入数据</span></span><br><span class="line">input_data = torch.randn(<span class="number">1</span>, <span class="number">1</span>, <span class="number">4</span>, <span class="number">4</span>)  <span class="comment"># 批量大小为 1，通道数为 1，高度为 4，宽度为 4</span></span><br><span class="line"><span class="comment"># 创建 MaxPool2d 层</span></span><br><span class="line">max_pool_2d = nn.MaxPool2d(kernel_size=<span class="number">2</span>, stride=<span class="number">2</span>)</span><br><span class="line"><span class="comment"># 进行最大池化操作</span></span><br><span class="line">output = max_pool_2d(input_data)</span><br></pre></td></tr></table></figure></li>
+</ul>
+<p><code>nn.MaxPool3d</code></p>
+<ul>
+<li><p><strong>适用场景</strong>：适用于处理三维数据，如 3D 医学图像或视频数据。输入数据的形状通常为 <code>(N, C, D, H, W)</code>，其中 <code>N</code> 是批量大小，<code>C</code> 是通道数，<code>D</code> 是深度，<code>H</code> 是高度，<code>W</code> 是宽度。</p>
+</li>
+<li><p><strong>参数：</strong></p>
+<ul>
+<li><code>kernel_size</code>：池化窗口的大小，可以是一个整数或元组。如果是整数，则表示立方体窗口的边长；如果是元组，则分别表示深度、高度和宽度方向的窗口大小。</li>
+<li><code>stride</code>：池化窗口的步长，默认为 <code>kernel_size</code>。</li>
+<li><code>padding</code>：在输入数据的边界填充 0 的数量，默认为 0。</li>
+</ul>
+<figure class="highlight py"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 定义输入数据</span></span><br><span class="line">input_data = torch.randn(<span class="number">1</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">4</span>, <span class="number">4</span>)  <span class="comment"># 批量大小为 1，通道数为 1，深度为 2，高度为 4，宽度为 4</span></span><br><span class="line"><span class="comment"># 创建 MaxPool3d 层</span></span><br><span class="line">max_pool_3d = nn.MaxPool3d(kernel_size=<span class="number">2</span>, stride=<span class="number">2</span>)</span><br><span class="line"><span class="comment"># 进行最大池化操作</span></span><br><span class="line">output = max_pool_3d(input_data)</span><br></pre></td></tr></table></figure></li>
+</ul>
 <p>3.<code>nn.AvgPool1d/2d/3d</code> 平均池化：取局部平均值</p>
+<p>原理同上</p>
 <p>4.<code>nn.AdaptiveMaxPool1d/2d/3d</code> 自适应池化：动态调整输出尺寸</p>
+<p><code>nn.AdaptiveMaxPool1d</code>、<code>nn.AdaptiveMaxPool2d</code> 和 <code>nn.AdaptiveMaxPool3d</code> 是 PyTorch 中用于实现自适应最大池化操作的模块。与普通的最大池化（如 <code>nn.MaxPool1d</code>、<code>nn.MaxPool2d</code>、<code>nn.MaxPool3d</code>）不同，自适应最大池化允许用户直接指定输出的尺寸，而不是像普通池化那样指定池化窗口的大小和步长，它会根据指定的输出尺寸动态地调整池化窗口的大小和步长，从而得到期望的输出。</p>
+<figure class="highlight py"><table><tr><td class="code"><pre><span class="line">1D:</span><br><span class="line">    <span class="comment"># 定义输入数据</span></span><br><span class="line">input_data = torch.randn(<span class="number">1</span>, <span class="number">1</span>, <span class="number">10</span>)  <span class="comment"># 批量大小为 1，通道数为 1，序列长度为 10</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建 AdaptiveMaxPool1d 层，指定输出长度为 5</span></span><br><span class="line">adaptive_max_pool_1d = nn.AdaptiveMaxPool1d(output_size=<span class="number">5</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 进行自适应最大池化操作</span></span><br><span class="line">output = adaptive_max_pool_1d(input_data)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">2D:</span><br><span class="line">    <span class="comment"># 定义输入数据</span></span><br><span class="line">input_data = torch.randn(<span class="number">1</span>, <span class="number">1</span>, <span class="number">8</span>, <span class="number">8</span>)  <span class="comment"># 批量大小为 1，通道数为 1，高度为 8，宽度为 8</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建 AdaptiveMaxPool2d 层，指定输出高度和宽度为 4</span></span><br><span class="line">adaptive_max_pool_2d = nn.AdaptiveMaxPool2d(output_size=<span class="number">4</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 进行自适应最大池化操作</span></span><br><span class="line">output = adaptive_max_pool_2d(input_data)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">3D:</span><br><span class="line">    <span class="comment"># 定义输入数据</span></span><br><span class="line">input_data = torch.randn(<span class="number">1</span>, <span class="number">1</span>, <span class="number">4</span>, <span class="number">8</span>, <span class="number">8</span>)  <span class="comment"># 批量大小为 1，通道数为 1，深度为 4，高度为 8，宽度为 8</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建 AdaptiveMaxPool3d 层，指定输出深度、高度和宽度为 2</span></span><br><span class="line">adaptive_max_pool_3d = nn.AdaptiveMaxPool3d(output_size=<span class="number">2</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 进行自适应最大池化操作</span></span><br><span class="line">output = adaptive_max_pool_3d(input_data)</span><br></pre></td></tr></table></figure>
+
 <p>5.<code>nn.FractionalMaxPool2d</code> 分数池化：随机分数步长池化</p>
-<h6 id="Dropout-层"><a href="#Dropout-层" class="headerlink" title="Dropout 层"></a>Dropout 层</h6><ol>
-<li><p>什么是Dropout？</p>
-</li>
-<li><p><code>nn.Dropout</code> 标准Dropout： 随机置零神经元</p>
-</li>
-<li><p><code>nn.Dropout1d/2d/3d</code> 空间Dropout：按通道&#x2F;空间置零</p>
-</li>
+<p><code>nn.FractionalMaxPool2d</code> 是 PyTorch 中用于实现分数最大池化（Fractional Max Pooling）的模块。传统的最大池化（如 <code>nn.MaxPool2d</code>）使用固定的步长和池化窗口大小进行下采样，而分数最大池化引入了随机的分数步长，能够在池化过程中提供更多的随机性和灵活性，有助于提高模型的泛化能力。</p>
+<p>分数最大池化的核心思想是通过随机选择分数步长来确定池化窗口的位置，从而实现下采样。在每次前向传播时，池化窗口的位置是随机的，但会保证输出的尺寸满足用户指定的要求。具体来说，它会根据输入的尺寸和期望的输出尺寸，随机生成一系列分数步长，然后根据这些步长移动池化窗口并进行最大池化操作。</p>
+<p><strong>优点</strong></p>
+<ul>
+<li><strong>增强泛化能力</strong>：由于分数最大池化引入了随机的分数步长，使得模型在每次训练时看到的池化结果不同，增加了数据的多样性，有助于模型学习到更鲁棒的特征，从而提高模型的泛化能力。</li>
+<li><strong>减少过拟合</strong>：随机池化的过程可以看作是一种数据增强的方式，能够在一定程度上减少模型对训练数据的过拟合。</li>
+</ul>
+<p><strong>缺点</strong></p>
+<ul>
+<li><strong>计算复杂度较高</strong>：由于需要随机生成分数步长并进行池化操作，分数最大池化的计算复杂度相对较高，可能会增加模型的训练时间。</li>
+<li><strong>可解释性较差</strong>：随机池化的过程使得池化窗口的位置不固定，增加了模型的不确定性，导致其可解释性相对较差。</li>
+</ul>
+<blockquote>
+<p>&#x3D;&#x3D;❓分数池化和自适应池化的区别&#x3D;&#x3D;</p>
+<ul>
+<li>分数池化（<code>nn.FractionalMaxPool2d</code>）</li>
+</ul>
+<p> 引入随机的分数步长来确定池化窗口的位置。在每次前向传播时，会根据输入尺寸和期望的输出尺寸随机生成分数步长，然后依据这些步长移动池化窗口进行最大池化操作。也就是说，每次池化时窗口的位置是随机的，具有一定的不确定性。</p>
+<p> 适用于对模型泛化能力要求较高、需要&#x3D;&#x3D;缓解过拟合&#x3D;&#x3D;问题的任务，如在图像分类、目标检测等任务中，当训练数据有限或者模型容易过拟合时，可以考虑使用分数池化。</p>
+<ul>
+<li>自适应池化（<code>nn.AdaptiveMaxPool2d</code>）</li>
+</ul>
+<p> 直接根据用户指定的输出尺寸来动态调整池化窗口的大小和步长。它会自动计算出合适的池化窗口参数，以确保输出的特征图尺寸符合要求。整个过程是确定性的，对于相同的输入和指定的输出尺寸，每次得到的结果都是相同的。</p>
+<p> 适用于需要&#x3D;&#x3D;统一不同样本特征尺寸&#x3D;&#x3D;的场景，例如在处理不同分辨率的图像数据时，使用自适应池化可以将不同尺寸的输入图像转换为固定尺寸的特征图，方便后续的处理和模型训练。同时，在一些对计算效率有较高要求的场景中，自适应池化也是一个不错的选择。</p>
+</blockquote>
+<h6 id="Dropout（丢弃）-层"><a href="#Dropout（丢弃）-层" class="headerlink" title="Dropout（丢弃） 层"></a>Dropout（丢弃） 层</h6><ol>
+<li>什么是Dropout（丢弃）？</li>
 </ol>
+<p>Dropout 是深度学习中一种常用的正则化技术，主要用于防止神经网络过拟合。</p>
+<p>&#x3D;&#x3D;原理&#x3D;&#x3D;</p>
+<p>在神经网络训练过程中，神经元之间可能会产生复杂的共适应关系，即某些神经元会依赖其他特定神经元的输出。这可能导致模型对训练数据过度拟合，在新数据上的泛化能力变差。Dropout 通过随机 “丢弃”（暂时忽略）一部分神经元及其连接，打破这种共适应关系，使模型更加鲁棒。</p>
+<p>&#x3D;&#x3D;工作机制&#x3D;&#x3D;</p>
+<ul>
+<li><strong>训练阶段</strong>：在每次训练迭代中，对于每个神经元，以一定的概率 （称为 Dropout 率）将其暂时从网络中丢弃，即该神经元在本次前向传播和反向传播中不参与计算。通常，输入层的 Dropout 率较低（如 0.2），隐藏层的 Dropout 率较高（如 0.5）。</li>
+<li><strong>测试阶段</strong>：在测试或推理时，所有神经元都参与计算，但为了平衡训练和测试阶段神经元的输出规模，需要将每个神经元的输出乘以$(1-p)$。不过，在实际实现中，也可以采用倒置 Dropout（Inverted Dropout）技术，在训练时就对保留的神经元输出除以$(1-p)$，这样测试时就无需额外操作。</li>
+</ul>
+<p>&#x3D;&#x3D;作用&#x3D;&#x3D;</p>
+<ul>
+<li><strong>减少过拟合</strong>：Dropout 相当于在每次迭代中训练一个不同的子网络，这些子网络共享参数。通过这种方式，模型不会过度依赖于任何一个神经元或一组神经元，从而减少对训练数据的过拟合，提高在新数据上的泛化能力。</li>
+<li><strong>集成学习效果</strong>：从某种意义上说，Dropout 可以看作是一种集成学习方法，因为每次训练的子网络都可以看作是一个独立的模型，最终的模型相当于这些子网络的集成。</li>
+</ul>
+<p>&#x3D;&#x3D;缺点&#x3D;&#x3D;</p>
+<ul>
+<li><strong>训练时间增加</strong>：由于每次迭代中部分神经元被丢弃，模型需要更多的迭代次数才能收敛，因此会增加训练时间。</li>
+<li><strong>超参数选择困难</strong>：Dropout 率 是一个超参数，需要通过实验进行调整。如果$p$设置过大，模型可能欠拟合；如果$p$设置过小，则可能无法有效防止过拟合。</li>
+</ul>
+<ol start="2">
+<li><code>nn.Dropout</code> 标准Dropout： 随机置零神经元</li>
+</ol>
+<p><code>nn.Dropout</code> 是 PyTorch 中用于实现标准 Dropout 操作的模块。Dropout 是一种在训练神经网络时常用的正则化技术，其核心思想是在每次训练迭代中，以一定的概率 随机 “丢弃”（将输出置为 0）网络中的部分神经元，使得模型不会过度依赖于某些特定的神经元，从而减少过拟合的风险，提高模型的泛化能力。</p>
+<p><strong>应用场景</strong></p>
+<ul>
+<li><strong>全连接层之后</strong>：在多层感知机（MLP）中，通常在全连接层之后添加 Dropout 层，以防止过拟合。</li>
+<li><strong>卷积神经网络（CNN）</strong>：在一些 CNN 架构中，也会在全连接层之前或之后使用 Dropout 层。不过，在卷积层中使用 Dropout 的情况相对较少，因为卷积层本身具有一定的平移不变性和稀疏性。</li>
+</ul>
+<p><strong>优点缺点</strong>同上。</p>
+<figure class="highlight py"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"><span class="keyword">import</span> torch.nn <span class="keyword">as</span> nn</span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建输入张量</span></span><br><span class="line">input_tensor = torch.randn(<span class="number">10</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建 Dropout 层，设置丢弃概率为 0.2</span></span><br><span class="line">dropout = nn.Dropout(p=<span class="number">0.2</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 开启训练模式</span></span><br><span class="line">dropout.train()</span><br><span class="line">output_train = dropout(input_tensor)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 开启评估模式</span></span><br><span class="line">dropout.<span class="built_in">eval</span>()</span><br><span class="line">output_eval = dropout(input_tensor)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;输入张量:&quot;</span>, input_tensor)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;训练模式下的输出:&quot;</span>, output_train)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;评估模式下的输出:&quot;</span>, output_eval)</span><br></pre></td></tr></table></figure>
+
+<p><strong>代码解释</strong></p>
+<ul>
+<li><strong>输入张量</strong>：<code>input_tensor</code> 是一个包含 10 个随机数的一维张量。</li>
+<li><strong>Dropout 层实例</strong>：使用 <code>nn.Dropout(p = 0.2)</code> 创建一个 Dropout 层实例，其中 <code>p</code> 表示每个神经元被丢弃的概率，这里设置为 0.2。</li>
+<li><strong>训练模式</strong>：调用 <code>dropout.train()</code> 将 Dropout 层设置为训练模式。在训练模式下，Dropout 会按照设定的概率随机将部分神经元的输出置为 0，并对保留的神经元输出进行缩放（采用倒置 Dropout 方式，除以 <code>(1 - p)</code>）。</li>
+<li><strong>评估模式</strong>：调用 <code>dropout.eval()</code> 将 Dropout 层设置为评估模式。在评估模式下，Dropout 层不进行任何丢弃操作，直接返回输入张量，因为在测试阶段不需要使用 Dropout 来防止过拟合。</li>
+</ul>
+<blockquote>
+<p>❓为什么平移不变性和稀疏性不容易出现过拟合，进而不需要Dropout</p>
+<p>平移不变性是指当输入数据发生平移时，模型的输出结果保持不变。在卷积神经网络（CNN）中，卷积层通过共享卷积核的方式自然地具备了一定程度的平移不变性。例如，在图像识别任务中，无论目标物体在图像中的位置如何移动，卷积核都能检测到相同的特征。</p>
+<p>&#x3D;&#x3D;具有平移不变性的模型更关注数据中的本质特征，而不是特征出现的具体位置。这使得模型学到的特征具有更强的泛化能力，能够适应不同位置的相同特征，扩大了训练数据的多样性。&#x3D;&#x3D;</p>
+<p>&#x3D;&#x3D;模型在这种多样化的数据上学习，能够更好地捕捉数据的整体分布，而不是过度拟合训练数据中的特定样本。&#x3D;&#x3D;</p>
+<p>稀疏性是指数据或模型中的大部分元素为零或接近零。在深度学习中，稀疏性可以体现在数据本身（如稀疏矩阵）或模型的参数（如稀疏连接的神经网络）上。例如，在自然语言处理中，词嵌入向量通常是稀疏的，因为一个句子中只包含少量的词汇。</p>
+<p>&#x3D;&#x3D;稀疏性意味着模型只关注数据中的少数重要特征，而忽略了大量的无关信息。稀疏数据中的非零元素往往代表了数据中的重要特征，因此模型能够更准确地捕捉数据的本质规律。这种对重要特征的聚焦使得模型在新数据上也能有较好的表现，减少了过拟合的可能性。&#x3D;&#x3D;</p>
+<p>Dropout 主要用于防止模型过拟合，通过随机丢弃部分神经元来减少神经元之间的共适应关系。而具有平移不变性和稀疏性的模型本身已经具备了一定的抗过拟合能力，因此在这些情况下，可能不需要额外使用 Dropout 来防止过拟合。但这并不意味着在所有具有平移不变性和稀疏性的模型中都绝对不需要 Dropout，具体情况还需要根据模型的复杂度、训练数据的规模等因素来综合考虑。</p>
+</blockquote>
+<ol start="3">
+<li><code>nn.Dropout1d/2d/3d</code> 空间Dropout：按通道&#x2F;空间置零</li>
+</ol>
+<p>标准的 <code>nn.Dropout</code> 是对输入张量中的每个元素独立地以一定概率进行置零操作。而空间 Dropout 则是<strong>按通道或空间维度进行置零</strong>，即一次会将整个通道或空间区域的元素置零。这样做的好处是可以更好地保留特征之间的相关性，尤其适用于处理具有空间结构的数据，如序列数据（<code>nn.Dropout1d</code>）、图像数据（<code>nn.Dropout2d</code>）和 3D 数据（<code>nn.Dropout3d</code>）。</p>
 <h6 id="嵌入层"><a href="#嵌入层" class="headerlink" title="嵌入层"></a>嵌入层</h6><ol>
 <li><p>什么是嵌入？</p>
 </li>
@@ -1117,7 +1366,9 @@
 <li><p>相关损失函数<code>nn.BCELoss</code>, <code>nn.KLDivLoss</code>, 对抗损失（如 WGAN-GP）</p>
 </li>
 </ol>
-<h4 id="预训练模型（torchvision-models）与迁移学习"><a href="#预训练模型（torchvision-models）与迁移学习" class="headerlink" title="预训练模型（torchvision.models）与迁移学习"></a>预训练模型（torchvision.models）与迁移学习</h4><h5 id="计算机视觉模型"><a href="#计算机视觉模型" class="headerlink" title="计算机视觉模型"></a>计算机视觉模型</h5><h6 id="经典-CNN-架构（通过-torchvision-models）"><a href="#经典-CNN-架构（通过-torchvision-models）" class="headerlink" title="经典 CNN 架构（通过 torchvision.models）"></a>经典 CNN 架构（通过 <code>torchvision.models</code>）</h6><p>什么是CNN</p>
+<h4 id="预训练模型（torchvision-models）与迁移学习"><a href="#预训练模型（torchvision-models）与迁移学习" class="headerlink" title="预训练模型（torchvision.models）与迁移学习"></a>预训练模型（torchvision.models）与迁移学习</h4><h5 id="计算机视觉模型"><a href="#计算机视觉模型" class="headerlink" title="计算机视觉模型"></a>计算机视觉模型</h5><h6 id="经典-CNN-架构（通过-torchvision-models）"><a href="#经典-CNN-架构（通过-torchvision-models）" class="headerlink" title="经典 CNN 架构（通过 torchvision.models）"></a>经典 CNN 架构（通过 <code>torchvision.models</code>）</h6><blockquote>
+<p>&#x3D;&#x3D;❓什么是CNN&#x3D;&#x3D;</p>
+</blockquote>
 <ol>
 <li><p>ResNet</p>
 </li>
@@ -1126,8 +1377,7 @@
 <li><p>EfficientNet</p>
 </li>
 </ol>
-<h6 id="Transformer-模型"><a href="#Transformer-模型" class="headerlink" title="Transformer 模型"></a>Transformer 模型</h6><p>什么是Transformer</p>
-<ol>
+<h6 id="Transformer-模型"><a href="#Transformer-模型" class="headerlink" title="Transformer 模型"></a>Transformer 模型</h6><ol>
 <li><p>Vision Transformer （ViT）</p>
 </li>
 <li><p>Swin Transformer</p>
