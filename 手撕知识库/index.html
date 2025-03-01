@@ -29,16 +29,16 @@
 <meta property="og:site_name" content="Viny与CS的邂逅">
 <meta property="og:description" content="手撕论文知识库">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://vinyyang.github.io/%E6%89%8B%E6%92%95%E7%9F%A5%E8%AF%86%E5%BA%93/%E6%89%8B%E6%92%95%E7%9F%A5%E8%AF%86%E5%BA%93/image-20250219032451598.png">
-<meta property="og:image" content="https://vinyyang.github.io/%E6%89%8B%E6%92%95%E7%9F%A5%E8%AF%86%E5%BA%93/%E6%89%8B%E6%92%95%E7%9F%A5%E8%AF%86%E5%BA%93/image-20250222212028325.png">
-<meta property="og:image" content="https://vinyyang.github.io/%E6%89%8B%E6%92%95%E7%9F%A5%E8%AF%86%E5%BA%93/%E6%89%8B%E6%92%95%E7%9F%A5%E8%AF%86%E5%BA%93/image-20250222215408498.png">
-<meta property="og:image" content="https://vinyyang.github.io/%E6%89%8B%E6%92%95%E7%9F%A5%E8%AF%86%E5%BA%93/%E6%89%8B%E6%92%95%E7%9F%A5%E8%AF%86%E5%BA%93/QianJianTec1740557269940.png">
+<meta property="og:image" content="https://vinyyang.github.io/%E6%89%8B%E6%92%95%E7%9F%A5%E8%AF%86%E5%BA%93/image-20250219032451598.png">
+<meta property="og:image" content="https://vinyyang.github.io/%E6%89%8B%E6%92%95%E7%9F%A5%E8%AF%86%E5%BA%93/image-20250222212028325.png">
+<meta property="og:image" content="https://vinyyang.github.io/%E6%89%8B%E6%92%95%E7%9F%A5%E8%AF%86%E5%BA%93/image-20250222215408498.png">
+<meta property="og:image" content="https://vinyyang.github.io/%E6%89%8B%E6%92%95%E7%9F%A5%E8%AF%86%E5%BA%93/QianJianTec1740557269940.png">
 <meta property="article:published_time" content="2025-02-18T18:38:36.000Z">
 <meta property="article:modified_time" content="2025-02-27T09:57:36.854Z">
 <meta property="article:author" content="Viny Yang">
 <meta property="article:tag" content="科研知识积累">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://vinyyang.github.io/%E6%89%8B%E6%92%95%E7%9F%A5%E8%AF%86%E5%BA%93/%E6%89%8B%E6%92%95%E7%9F%A5%E8%AF%86%E5%BA%93/image-20250219032451598.png">
+<meta name="twitter:image" content="https://vinyyang.github.io/%E6%89%8B%E6%92%95%E7%9F%A5%E8%AF%86%E5%BA%93/image-20250219032451598.png">
 
 
 <link rel="canonical" href="https://vinyyang.github.io/%E6%89%8B%E6%92%95%E7%9F%A5%E8%AF%86%E5%BA%93/">
@@ -414,7 +414,7 @@
 <p><code>image = torch.randn(224, 224, 3)</code> 这行代码能够随机生成一个形状为 <code>(224, 224, 3)</code> 的张量来模拟图像的三通道数值。</p>
 <p>由于 <code>torch.randn()</code> 生成的是服从标准正态分布的随机数，这些数值可能为负数，也可能超出了常见图像像素值的范围（通常是 0 - 255 或者 0 - 1）。在实际的图像处理任务中，如果需要模拟真实图像，可能需要对这些随机值进行进一步的处理，例如通过归一化或裁剪操作将其限制在合适的范围内。</p>
 <figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">image = torch.randn(<span class="number">224</span>, <span class="number">224</span>, <span class="number">3</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;图像张量的维度数量:&quot;</span>, image.dim()) </span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;图像高度维度的大小:&quot;</span>, image.size(<span class="number">0</span>)) </span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;图像宽度维度的大小:&quot;</span>, image.size(<span class="number">1</span>)) </span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;图像通道维度的大小:&quot;</span>, image.size(<span class="number">2</span>)) </span><br></pre></td></tr></table></figure>
-<p><img src="./%E6%89%8B%E6%92%95%E7%9F%A5%E8%AF%86%E5%BA%93/image-20250219032451598.png" alt="image-20250219032451598"></p>
+<p><img src="/%E6%89%8B%E6%92%95%E7%9F%A5%E8%AF%86%E5%BA%93/image-20250219032451598.png" alt="image-20250219032451598"></p>
 <p><strong>视频数据</strong>：视频可以看作是一系列的图像帧，因此可以用四阶张量表示，形状通常为 <code>(帧数, 高度, 宽度, 通道数)</code>。第一个维度代表视频中的帧数，其余维度与图像张量的含义相同。</p>
 <p>*<strong>5.通道</strong></p>
 <p>通道指图像中特定类型信息的集合，图像可含一个或多个通道，各通道存储图像某方面特征数据。像单通道存亮度，RGB 三通道分别存红、绿、蓝颜色信息，四通道还多了透明度通道，以此组合完整呈现图像。</p>
@@ -626,7 +626,7 @@
 <p><strong><code>nn.Bilinear</code></strong>：PyTorch 中的一个类，用于创建双线性层。双线性层对两个输入进行双线性变换，能捕捉两个输入之间的交互信息，是一种比普通线性层更复杂的变换形式。</p>
 <p><strong>关系建模</strong>：在需要捕捉两个不同特征之间交互关系的任务中非常有用。例如，在推荐系统中，可以用双线性层来建模用户特征和物品特征之间的交互，以预测用户对物品的偏好；在自然语言处理中，可用于处理两个不同句子或不同语义表示之间的关系。</p>
 <p><strong>融合多模态信息</strong>：当处理多模态数据（如图像和文本）时，双线性层可以帮助融合不同模态之间的信息，挖掘它们之间的潜在关联。</p>
-<p><img src="./%E6%89%8B%E6%92%95%E7%9F%A5%E8%AF%86%E5%BA%93/image-20250222212028325.png" alt="image-20250222212028325"></p>
+<p><img src="/%E6%89%8B%E6%92%95%E7%9F%A5%E8%AF%86%E5%BA%93/image-20250222212028325.png" alt="image-20250222212028325"></p>
 <figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"><span class="keyword">import</span> torch.nn <span class="keyword">as</span> nn</span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建一个双线性层</span></span><br><span class="line"><span class="comment"># 第一个输入维度为 10，第二个输入维度为 20，输出维度为 5</span></span><br><span class="line">bilinear_layer = nn.Bilinear(<span class="number">10</span>, <span class="number">20</span>, <span class="number">5</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 模拟两个输入张量</span></span><br><span class="line"><span class="comment"># 第一个输入：假设有 1 个样本，每个样本有 10 个特征</span></span><br><span class="line">input1 = torch.randn(<span class="number">1</span>, <span class="number">10</span>)</span><br><span class="line"><span class="comment"># 第二个输入：假设有 1 个样本，每个样本有 20 个特征</span></span><br><span class="line">input2 = torch.randn(<span class="number">1</span>, <span class="number">20</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 进行前向传播</span></span><br><span class="line">output = bilinear_layer(input1, input2)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;双线性层的权重形状:&quot;</span>, bilinear_layer.weight.shape)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;双线性层的偏置形状:&quot;</span>, bilinear_layer.bias.shape)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;第一个输入张量的形状:&quot;</span>, input1.shape)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;第二个输入张量的形状:&quot;</span>, input2.shape)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;输出张量的形状:&quot;</span>, output.shape)</span><br></pre></td></tr></table></figure>
 <p>权重张量的形状符合 <code>(out_features, in1_features, in2_features)</code>，偏置向量的长度等于输出特征的数量，两个输入张量经过双线性层后，输出张量的特征数量变为 <code>out_features</code> 设定的值。</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">双线性层的权重形状: torch.Size([5, 10, 20])</span><br><span class="line">双线性层的偏置形状: torch.Size([5])</span><br><span class="line">第一个输入张量的形状: torch.Size([1, 10])</span><br><span class="line">第二个输入张量的形状: torch.Size([1, 20])</span><br><span class="line">输出张量的形状: torch.Size([1, 5])</span><br></pre></td></tr></table></figure>
@@ -664,7 +664,7 @@
 <p>卷积核在输入数据的序列维度上滑动，每次覆盖 <code>kernel_size</code> 个元素，并在每个通道上进行卷积操作，然后将各通道的结果相加（如果有多个输入通道），最后加上偏置项得到输出的一个值。卷积核不断滑动，最终得到输出特征图。</p>
 <p><strong>输出数据</strong></p>
 <p>输出数据同样是三维张量，形状为 <code>(batch_size, out_channels, new_sequence_length)</code>。其中 <code>batch_size</code> 与输入相同；<code>out_channels</code> 是卷积层定义的输出通道数；<code>new_sequence_length</code> 由输入序列长度、卷积核大小、步长（<code>stride</code>，默认为 1）和填充（<code>padding</code>，默认为 0）等因素决定，计算公式为：</p>
-<p><img src="./%E6%89%8B%E6%92%95%E7%9F%A5%E8%AF%86%E5%BA%93/image-20250222215408498.png" alt="image-20250222215408498"></p>
+<p><img src="/%E6%89%8B%E6%92%95%E7%9F%A5%E8%AF%86%E5%BA%93/image-20250222215408498.png" alt="image-20250222215408498"></p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入张量形状: torch.Size([16, 3, 100])</span><br><span class="line">输出张量形状: torch.Size([16, 6, 98])</span><br></pre></td></tr></table></figure>
 <ol start="2">
 <li><code>nn.Conv2d</code> 2D卷积：处理图像数据</li>
@@ -1150,7 +1150,7 @@
 <li><strong>输出不以 0 为中心</strong>：ReLU 函数的输出值均为非负数，这可能会导致模型收敛速度变慢，因为它会使权重更新的方向都偏向同一侧。</li>
 </ul>
 <p>3.<code>nn.LeakyReLU</code>$ LeakyReLU$：$max(αx, x)$</p>
-<p><code>nn.LeakyReLU</code> 是 PyTorch 里实现 Leaky ReLU 激活函数的模块。Leaky ReLU 是对 ReLU 的改进，其数学表达式为<img src="./%E6%89%8B%E6%92%95%E7%9F%A5%E8%AF%86%E5%BA%93/QianJianTec1740557269940.png" alt="QianJianTec1740557269940"></p>
+<p><code>nn.LeakyReLU</code> 是 PyTorch 里实现 Leaky ReLU 激活函数的模块。Leaky ReLU 是对 ReLU 的改进，其数学表达式为<img src="/%E6%89%8B%E6%92%95%E7%9F%A5%E8%AF%86%E5%BA%93/QianJianTec1740557269940.png" alt="QianJianTec1740557269940"></p>
 <p>其中$\alpha$ 是一个较小的正数（通常取值为 0.01）。与 ReLU 不同的是，当输入$x$为负数时，$Leaky ReLU$不会将其输出置为0，而是乘以一个小的斜率 ，从而保留了一定的梯度。</p>
 <p>LeakyReLU 常用于各种深度学习任务中，特别是在处理可能出现大量负数输入的情况时表现出色。例如在生成对抗网络（GAN）中，LeakyReLU 可以帮助缓解梯度消失问题，使生成器和判别器能够更稳定地训练，提高生成图像的质量。</p>
 <p><strong>优点</strong></p>
