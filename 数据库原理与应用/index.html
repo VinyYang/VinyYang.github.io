@@ -1,0 +1,1917 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancyapps-ui/5.0.31/fancybox/fancybox.css" integrity="sha256-gkQVf8UKZgQ0HyuxL/VnacadJ+D2Kox2TCEBuNQg5+w=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/themes/blue/pace-theme-minimal.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous"></script>
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"vinyyang.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.22.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":true,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":true,"comments":{"style":"tabs","active":"giscus","storage":true,"lazyload":false,"nav":null,"activeClass":"giscus"},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="数据库原理与应用">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据库原理与应用">
+<meta property="og:url" content="https://vinyyang.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/index.html">
+<meta property="og:site_name" content="Viny与CS的邂逅">
+<meta property="og:description" content="数据库原理与应用">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://vinyyang.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/4056449bbc39c95e5e5283fcd35fd06.png">
+<meta property="og:image" content="https://vinyyang.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250404162717301.png">
+<meta property="og:image" content="https://vinyyang.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250404170719519.png">
+<meta property="og:image" content="https://vinyyang.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250404172215011.png">
+<meta property="og:image" content="https://vinyyang.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250404174542552.png">
+<meta property="og:image" content="https://vinyyang.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250404173242304.png">
+<meta property="og:image" content="https://vinyyang.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250404173301724.png">
+<meta property="og:image" content="https://vinyyang.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250404174230327.png">
+<meta property="og:image" content="https://vinyyang.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250404174904185.png">
+<meta property="og:image" content="https://vinyyang.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250404174938134.png">
+<meta property="og:image" content="https://vinyyang.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250404175138249.png">
+<meta property="og:image" content="https://vinyyang.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250404175152885.png">
+<meta property="og:image" content="https://vinyyang.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250404180404369.png">
+<meta property="og:image" content="https://vinyyang.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250404182607053.png">
+<meta property="og:image" content="https://vinyyang.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250404182642359.png">
+<meta property="og:image" content="https://vinyyang.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250404183001650.png">
+<meta property="og:image" content="https://vinyyang.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250404183008482.png">
+<meta property="og:image" content="https://vinyyang.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250404183020132.png">
+<meta property="og:image" content="https://vinyyang.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250404183030136.png">
+<meta property="og:image" content="https://vinyyang.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250404225033947.png">
+<meta property="og:image" content="https://vinyyang.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250404225239363.png">
+<meta property="og:image" content="https://vinyyang.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250404231037023.png">
+<meta property="og:image" content="https://vinyyang.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250405002036004.png">
+<meta property="og:image" content="https://vinyyang.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250405015935005.png">
+<meta property="og:image" content="https://vinyyang.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250405015951495.png">
+<meta property="og:image" content="https://vinyyang.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250405020015334.png">
+<meta property="og:image" content="https://vinyyang.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250405160947912.png">
+<meta property="og:image" content="https://vinyyang.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250405161034771.png">
+<meta property="og:image" content="https://vinyyang.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250405161325718.png">
+<meta property="og:image" content="https://vinyyang.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250405161444475.png">
+<meta property="og:image" content="https://vinyyang.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250405161951203.png">
+<meta property="og:image" content="https://vinyyang.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250405162010473.png">
+<meta property="og:image" content="https://vinyyang.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250405163551604-1743842152769-2.png">
+<meta property="og:image" content="https://vinyyang.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250405163713204.png">
+<meta property="og:image" content="https://vinyyang.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250405163813526.png">
+<meta property="og:image" content="https://vinyyang.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250405164901862.png">
+<meta property="og:image" content="https://vinyyang.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250405165521667.png">
+<meta property="og:image" content="https://vinyyang.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250405165748572.png">
+<meta property="og:image" content="https://vinyyang.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250405165811644.png">
+<meta property="og:image" content="https://vinyyang.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250405165835910.png">
+<meta property="og:image" content="https://vinyyang.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250405165937879.png">
+<meta property="og:image" content="https://vinyyang.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250405170043731-1743843644613-4.png">
+<meta property="og:image" content="https://vinyyang.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250405170410765.png">
+<meta property="og:image" content="https://vinyyang.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250405170953706.png">
+<meta property="og:image" content="https://vinyyang.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250405171008694.png">
+<meta property="og:image" content="https://vinyyang.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250405171057891.png">
+<meta property="og:image" content="https://vinyyang.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250405171900690.png">
+<meta property="og:image" content="https://vinyyang.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250405172601006.png">
+<meta property="og:image" content="https://vinyyang.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250405172621179.png">
+<meta property="og:image" content="https://vinyyang.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250405172749648.png">
+<meta property="og:image" content="https://vinyyang.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250405173850068.png">
+<meta property="og:image" content="https://vinyyang.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250405173900305.png">
+<meta property="og:image" content="https://vinyyang.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250405173957448.png">
+<meta property="og:image" content="https://vinyyang.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250405174436294.png">
+<meta property="og:image" content="https://vinyyang.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250405180148534-1743847309555-9.png">
+<meta property="og:image" content="https://vinyyang.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250405180208489.png">
+<meta property="og:image" content="https://vinyyang.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250405181640903.png">
+<meta property="og:image" content="https://vinyyang.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250405182248727-1743848569474-12.png">
+<meta property="og:image" content="https://vinyyang.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250405182511113.png">
+<meta property="og:image" content="https://vinyyang.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250405182825587.png">
+<meta property="og:image" content="https://vinyyang.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250405183007933.png">
+<meta property="og:image" content="https://vinyyang.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250405183613324-1743849376124-19.png">
+<meta property="og:image" content="https://vinyyang.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250405183821828.png">
+<meta property="og:image" content="https://vinyyang.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250405183907897.png">
+<meta property="og:image" content="https://vinyyang.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250405184442674.png">
+<meta property="og:image" content="https://vinyyang.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250405184515362.png">
+<meta property="og:image" content="https://vinyyang.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250405184546205.png">
+<meta property="og:image" content="https://vinyyang.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250405184639198.png">
+<meta property="og:image" content="https://vinyyang.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250406170418856.png">
+<meta property="og:image" content="https://vinyyang.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250406171001965.png">
+<meta property="og:image" content="https://vinyyang.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250406170602656.png">
+<meta property="og:image" content="https://vinyyang.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250406170936471.png">
+<meta property="og:image" content="https://vinyyang.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250406171449993.png">
+<meta property="og:image" content="https://vinyyang.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250406171506097.png">
+<meta property="og:image" content="https://vinyyang.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250406171527749.png">
+<meta property="og:image" content="https://vinyyang.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250406173740728.png">
+<meta property="og:image" content="https://vinyyang.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250406173859636.png">
+<meta property="og:image" content="https://vinyyang.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250406173905848.png">
+<meta property="og:image" content="https://vinyyang.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250406173952683.png">
+<meta property="og:image" content="https://vinyyang.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250406174028759.png">
+<meta property="og:image" content="https://vinyyang.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250406180321425.png">
+<meta property="og:image" content="https://vinyyang.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250406180514123.png">
+<meta property="og:image" content="https://vinyyang.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250406181040664.png">
+<meta property="og:image" content="https://vinyyang.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250406182029068.png">
+<meta property="og:image" content="https://vinyyang.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250406182039779.png">
+<meta property="og:image" content="https://vinyyang.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250406182434308.png">
+<meta property="og:image" content="https://vinyyang.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250406182535168.png">
+<meta property="og:image" content="https://vinyyang.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250406182557789.png">
+<meta property="og:image" content="https://vinyyang.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250406182651245.png">
+<meta property="og:image" content="https://vinyyang.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250406183042122-1743935443016-1.png">
+<meta property="og:image" content="https://vinyyang.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250406183117876.png">
+<meta property="og:image" content="https://vinyyang.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250406183130102.png">
+<meta property="og:image" content="https://vinyyang.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250409175029242.png">
+<meta property="og:image" content="https://vinyyang.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250409175040422.png">
+<meta property="og:image" content="https://vinyyang.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250409175051346.png">
+<meta property="og:image" content="https://vinyyang.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250409175111969.png">
+<meta property="og:image" content="https://vinyyang.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250410000142106.png">
+<meta property="og:image" content="https://vinyyang.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250410000432437.png">
+<meta property="og:image" content="https://vinyyang.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250410001314151.png">
+<meta property="og:image" content="https://vinyyang.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250410001414817.png">
+<meta property="og:image" content="https://vinyyang.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250410002103901.png">
+<meta property="og:image" content="https://vinyyang.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250410005115914.png">
+<meta property="og:image" content="https://vinyyang.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250410005145247.png">
+<meta property="og:image" content="https://vinyyang.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250410005205364.png">
+<meta property="og:image" content="https://vinyyang.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250410005236240.png">
+<meta property="og:image" content="https://vinyyang.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250410005656210.png">
+<meta property="og:image" content="https://vinyyang.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250410005733716-1744217854547-1.png">
+<meta property="og:image" content="https://vinyyang.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250410005753009-1744217874069-3.png">
+<meta property="og:image" content="https://vinyyang.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250410010344197.png">
+<meta property="og:image" content="https://vinyyang.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250410010406573.png">
+<meta property="og:image" content="https://vinyyang.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250410010550322.png">
+<meta property="og:image" content="https://vinyyang.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250410012810819.png">
+<meta property="og:image" content="https://vinyyang.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250410013222456.png">
+<meta property="og:image" content="https://vinyyang.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250410013308722.png">
+<meta property="og:image" content="https://vinyyang.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250410013325353.png">
+<meta property="og:image" content="https://vinyyang.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250410013757166-1744220278095-5.png">
+<meta property="og:image" content="https://vinyyang.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250410015012345.png">
+<meta property="og:image" content="https://vinyyang.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250410015259123.png">
+<meta property="og:image" content="https://vinyyang.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250410015320408.png">
+<meta property="og:image" content="https://vinyyang.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250410015419701.png">
+<meta property="og:image" content="https://vinyyang.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250410015430980.png">
+<meta property="og:image" content="https://vinyyang.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250410020918720.png">
+<meta property="og:image" content="https://vinyyang.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250410021305935.png">
+<meta property="og:image" content="https://vinyyang.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250410021423470.png">
+<meta property="og:image" content="https://vinyyang.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250410021449305.png">
+<meta property="og:image" content="https://vinyyang.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250410173525324.png">
+<meta property="og:image" content="https://vinyyang.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250410173541637.png">
+<meta property="og:image" content="https://vinyyang.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250410173601241.png">
+<meta property="og:image" content="https://vinyyang.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250410173631717.png">
+<meta property="og:image" content="https://vinyyang.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250410173720154.png">
+<meta property="og:image" content="https://vinyyang.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250410173730325.png">
+<meta property="og:image" content="https://vinyyang.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250410174213489.png">
+<meta property="og:image" content="https://vinyyang.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250410174437433.png">
+<meta property="og:image" content="https://vinyyang.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250410174448375.png">
+<meta property="og:image" content="https://vinyyang.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250410174509029.png">
+<meta property="og:image" content="https://vinyyang.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250410174536299.png">
+<meta property="og:image" content="https://vinyyang.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250410175038255.png">
+<meta property="og:image" content="https://vinyyang.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250410175538252.png">
+<meta property="og:image" content="https://vinyyang.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250410175606172.png">
+<meta property="og:image" content="https://vinyyang.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250410175908297.png">
+<meta property="og:image" content="https://vinyyang.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250410180018091.png">
+<meta property="og:image" content="https://vinyyang.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250410180037245.png">
+<meta property="og:image" content="https://vinyyang.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250410180443644.png">
+<meta property="og:image" content="https://vinyyang.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250410180458614.png">
+<meta property="og:image" content="https://vinyyang.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250410180518302.png">
+<meta property="og:image" content="https://vinyyang.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250410180543655.png">
+<meta property="og:image" content="https://vinyyang.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250410180556728.png">
+<meta property="og:image" content="https://vinyyang.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250410180611694.png">
+<meta property="og:image" content="https://vinyyang.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250410180839689.png">
+<meta property="og:image" content="https://vinyyang.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250410180929727.png">
+<meta property="og:image" content="https://vinyyang.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250410181251730-1744279972524-1.png">
+<meta property="og:image" content="https://vinyyang.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250410181307306.png">
+<meta property="og:image" content="https://vinyyang.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250410181459893.png">
+<meta property="og:image" content="https://vinyyang.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250410181726356.png">
+<meta property="og:image" content="https://vinyyang.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250410181752329.png">
+<meta property="og:image" content="https://vinyyang.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250410181812575.png">
+<meta property="og:image" content="https://vinyyang.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250410181826760.png">
+<meta property="og:image" content="https://vinyyang.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250410181843432-1744280323897-3.png">
+<meta property="og:image" content="https://vinyyang.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250410181903772-1744280344218-5.png">
+<meta property="og:image" content="https://vinyyang.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250410182306654.png">
+<meta property="og:image" content="https://vinyyang.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250410182452409.png">
+<meta property="og:image" content="https://vinyyang.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250410182522589.png">
+<meta property="og:image" content="https://vinyyang.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250410182802410.png">
+<meta property="og:image" content="https://vinyyang.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250410182830736.png">
+<meta property="og:image" content="https://vinyyang.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250410182844357.png">
+<meta property="og:image" content="https://vinyyang.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250410182857171.png">
+<meta property="og:image" content="https://vinyyang.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250410182915963.png">
+<meta property="og:image" content="https://vinyyang.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250410182929350.png">
+<meta property="og:image" content="https://vinyyang.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250410182943908.png">
+<meta property="og:image" content="https://vinyyang.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250410183139220.png">
+<meta property="og:image" content="https://vinyyang.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250410183157549-1744281118293-7.png">
+<meta property="og:image" content="https://vinyyang.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250410193207482.png">
+<meta property="og:image" content="https://vinyyang.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250410193304086.png">
+<meta property="og:image" content="https://vinyyang.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250410193437629.png">
+<meta property="og:image" content="https://vinyyang.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250410193515852-1744284916784-11.png">
+<meta property="og:image" content="https://vinyyang.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250410193535211.png">
+<meta property="og:image" content="https://vinyyang.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250410193609199-1744284970353-13.png">
+<meta property="og:image" content="https://vinyyang.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250410194055648.png">
+<meta property="og:image" content="https://vinyyang.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250410194118303.png">
+<meta property="og:image" content="https://vinyyang.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250410194159810.png">
+<meta property="og:image" content="https://vinyyang.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250410194211064.png">
+<meta property="og:image" content="https://vinyyang.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250410195145797.png">
+<meta property="og:image" content="https://vinyyang.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250410195222766.png">
+<meta property="og:image" content="https://vinyyang.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250410195239542.png">
+<meta property="og:image" content="https://vinyyang.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250410195350974.png">
+<meta property="og:image" content="https://vinyyang.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250410195734365-1744286255456-15.png">
+<meta property="og:image" content="https://vinyyang.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250410195819274-1744286300236-17.png">
+<meta property="og:image" content="https://vinyyang.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250410195846700.png">
+<meta property="og:image" content="https://vinyyang.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250410195943041.png">
+<meta property="og:image" content="https://vinyyang.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250410200009109.png">
+<meta property="og:image" content="https://vinyyang.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250410200040076.png">
+<meta property="og:image" content="https://vinyyang.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250410200133562.png">
+<meta property="og:image" content="https://vinyyang.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250410200153466.png">
+<meta property="og:image" content="https://vinyyang.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250410201102658.png">
+<meta property="article:published_time" content="2025-04-04T07:59:02.000Z">
+<meta property="article:modified_time" content="2025-04-10T12:12:29.004Z">
+<meta property="article:author" content="Viny Yang">
+<meta property="article:tag" content="学习">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://vinyyang.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/4056449bbc39c95e5e5283fcd35fd06.png">
+
+
+<link rel="canonical" href="https://vinyyang.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://vinyyang.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/","path":"数据库原理与应用/","title":"数据库原理与应用"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>数据库原理与应用 | Viny与CS的邂逅</title>
+  
+
+  <script src="/js/third-party/analytics/baidu-analytics.js"></script>
+  <script async src="https://hm.baidu.com/hm.js?7d748fca465d5b9edd218c485f0a2579"></script>
+
+
+
+
+
+
+<script src="//sdk.jinrishici.com/v2/browser/jinrishici.js"></script>
+<script>
+  jinrishici.load((result) => {
+    let jrsc = document.getElementById('jrsc');
+    const data = result.data;
+    let author = data.origin.author;
+    let title = '《' + data.origin.title + '》';
+    let content = data.content.substr(0, data.content.length - 1);
+    let dynasty = data.origin.dynasty.substr(0, data.origin.dynasty.length - 1);
+    jrsc.innerText = content + ' @ ' + dynasty + '·' + author + title;
+  });
+</script>
+<div style="text-align: center"><span id="jrsc" >正在加载今日诗词....</span></div>
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="Viny与CS的邂逅" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Viny与CS的邂逅</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">虽千万人吾往矣</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-guestbook"><a href="/guestbook/" rel="section"><i class="fa fa-book fa-fw"></i>留言板</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="搜索..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%B8%80%E7%AB%A0-%E7%BB%AA%E8%AE%BA"><span class="nav-number">1.</span> <span class="nav-text">第一章 绪论</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%844%E4%B8%AA%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="nav-number">1.1.</span> <span class="nav-text">数据库的4个基本概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E6%A8%A1%E5%9E%8B"><span class="nav-number">1.2.</span> <span class="nav-text">数据模型</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E6%A8%A1%E5%9E%8B%E7%9A%84%E4%B8%89%E8%A6%81%E7%B4%A0%EF%BC%9A%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%EF%BC%8C%E6%95%B0%E6%8D%AE%E6%93%8D%E7%BA%B5%E5%92%8C%E5%AE%8C%E6%95%B4%E6%80%A7%E7%BA%A6%E6%9D%9F"><span class="nav-number">1.2.1.</span> <span class="nav-text">数据模型的三要素：数据结构，数据操纵和完整性约束</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B1%82%E6%AC%A1%E6%A8%A1%E5%9E%8B"><span class="nav-number">1.2.2.</span> <span class="nav-text">层次模型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BD%91%E7%8A%B6%E6%A8%A1%E5%9E%8B"><span class="nav-number">1.2.3.</span> <span class="nav-text">网状模型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%85%B3%E7%B3%BB%E6%A8%A1%E5%9E%8B"><span class="nav-number">1.2.4.</span> <span class="nav-text">关系模型</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E7%9A%84%E4%B8%89%E7%BA%A7%E6%A8%A1%E5%BC%8F%E7%BB%93%E6%9E%84"><span class="nav-number">1.3.</span> <span class="nav-text">数据库系统的三级模式结构</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E4%B8%AD%E6%A8%A1%E5%BC%8F%E7%9A%84%E6%A6%82%E5%BF%B5"><span class="nav-number">1.3.1.</span> <span class="nav-text">数据库系统中模式的概念</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E7%9A%84%E4%B8%89%E7%BA%A7%E6%A8%A1%E5%BC%8F%E7%BB%93%E6%9E%84-2"><span class="nav-number">1.3.2.</span> <span class="nav-text">数据库系统的三级模式结构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E4%B8%A4%E7%BA%A7%E6%98%A0%E5%83%8F%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%8B%AC%E7%AB%8B%E6%80%A7"><span class="nav-number">1.3.3.</span> <span class="nav-text">数据库的两级映像与数据独立性</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E7%9A%84%E7%BB%84%E6%88%90"><span class="nav-number">1.4.</span> <span class="nav-text">数据库系统的组成</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B3%E7%B3%BB%E6%A8%A1%E5%9E%8B-2"><span class="nav-number">2.</span> <span class="nav-text">关系模型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B3%E7%B3%BB%E6%A8%A1%E5%9E%8B%E7%9A%84%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%8F%8A%E5%BD%A2%E5%BC%8F%E5%8C%96%E5%AE%9A%E4%B9%89"><span class="nav-number">2.1.</span> <span class="nav-text">关系模型的数据结构及形式化定义</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%85%B3%E7%B3%BB"><span class="nav-number">2.1.1.</span> <span class="nav-text">关系</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%85%B3%E7%B3%BB%E6%A8%A1%E5%BC%8F"><span class="nav-number">2.1.2.</span> <span class="nav-text">关系模式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%85%B3%E7%B3%BB%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="nav-number">2.1.3.</span> <span class="nav-text">关系数据库</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%85%B3%E7%B3%BB%E6%A8%A1%E5%9E%8B%E7%9A%84%E5%AD%98%E5%82%A8%E7%BB%93%E6%9E%84"><span class="nav-number">2.1.4.</span> <span class="nav-text">关系模型的存储结构</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B3%E7%B3%BB%E6%93%8D%E4%BD%9C"><span class="nav-number">2.2.</span> <span class="nav-text">关系操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B3%E7%B3%BB%E7%9A%84%E5%AE%8C%E6%95%B4%E6%80%A7"><span class="nav-number">2.3.</span> <span class="nav-text">关系的完整性</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%9E%E4%BD%93%E5%AE%8C%E6%95%B4%E6%80%A7"><span class="nav-number">2.3.1.</span> <span class="nav-text">实体完整性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8F%82%E7%85%A7%E5%AE%8C%E6%95%B4%E6%80%A7"><span class="nav-number">2.3.2.</span> <span class="nav-text">参照完整性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%94%A8%E6%88%B7%E5%AE%9A%E4%B9%89%E7%9A%84%E5%AE%8C%E6%95%B4%E6%80%A7"><span class="nav-number">2.3.3.</span> <span class="nav-text">用户定义的完整性</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B3%E7%B3%BB%E4%BB%A3%E6%95%B0"><span class="nav-number">2.4.</span> <span class="nav-text">关系代数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BC%A0%E7%BB%9F%E7%9A%84%E9%9B%86%E5%90%88%E8%BF%90%E7%AE%97"><span class="nav-number">2.4.1.</span> <span class="nav-text">传统的集合运算</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%93%E9%97%A8%E7%9A%84%E5%85%B3%E7%B3%BB%E8%BF%90%E7%AE%97"><span class="nav-number">2.4.2.</span> <span class="nav-text">专门的关系运算</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SQL%E8%AF%AD%E8%A8%80"><span class="nav-number">3.</span> <span class="nav-text">SQL语言</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#SQL%E6%A6%82%E8%BF%B0"><span class="nav-number">3.1.</span> <span class="nav-text">SQL概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E5%AE%9A%E4%B9%89"><span class="nav-number">3.2.</span> <span class="nav-text">数据定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E6%9F%A5%E8%AF%A2"><span class="nav-number">3.3.</span> <span class="nav-text">数据查询</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AE%89%E5%85%A8%E6%80%A7"><span class="nav-number">4.</span> <span class="nav-text">数据库安全性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AE%8C%E6%95%B4%E6%80%A7"><span class="nav-number">5.</span> <span class="nav-text">数据库完整性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B3%E7%B3%BB%E6%95%B0%E6%8D%AE%E7%90%86%E8%AE%BA"><span class="nav-number">6.</span> <span class="nav-text">关系数据理论</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AE%BE%E8%AE%A1"><span class="nav-number">7.</span> <span class="nav-text">数据库设计</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AE%BE%E8%AE%A1%E6%A6%82%E8%BF%B0"><span class="nav-number">7.1.</span> <span class="nav-text">数据库设计概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9C%80%E6%B1%82%E5%88%86%E6%9E%90"><span class="nav-number">7.2.</span> <span class="nav-text">需求分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A6%82%E5%BF%B5%E7%BB%93%E6%9E%84%E8%AE%BE%E8%AE%A1"><span class="nav-number">7.3.</span> <span class="nav-text">概念结构设计</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%BB%E8%BE%91%E7%BB%93%E6%9E%84%E8%AE%BE%E8%AE%A1"><span class="nav-number">7.4.</span> <span class="nav-text">逻辑结构设计</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E7%89%A9%E7%90%86%E8%AE%BE%E8%AE%A1"><span class="nav-number">7.5.</span> <span class="nav-text">数据库物理设计</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%EF%BC%88%E7%AC%AC%E5%8D%81%E4%B8%80%E7%AB%A0%EF%BC%89%E6%95%B0%E6%8D%AE%E5%BA%93%E6%81%A2%E5%A4%8D%E6%8A%80%E6%9C%AF"><span class="nav-number">8.</span> <span class="nav-text">（第十一章）数据库恢复技术</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%EF%BC%88%E7%AC%AC%E5%8D%81%E4%BA%8C%E7%AB%A0%EF%BC%89%E5%B9%B6%E5%8F%91%E6%8E%A7%E5%88%B6"><span class="nav-number">9.</span> <span class="nav-text">（第十二章）并发控制</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Viny Yang"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">Viny Yang</p>
+  <div class="site-description" itemprop="description">陌上花开，可缓缓归矣</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">9</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/VinyYang" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;VinyYang" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/images/email.png" title="E-Mail → &#x2F;images&#x2F;email.png" rel="noopener me"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/images/wechat.png" title="Wechat → &#x2F;images&#x2F;wechat.png" rel="noopener me"><i class="fab fa-weixin fa-fw"></i>Wechat</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/images/qq.png" title="QQ → &#x2F;images&#x2F;qq.png" rel="noopener me"><i class="fab fa-qq fa-fw"></i>QQ</a>
+      </span>
+  </div>
+  <div class="cc-license animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdnjs.cloudflare.com/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/small/by_nc_sa.svg" alt="Creative Commons"></a>
+  </div>
+
+        </div>
+      </div>
+        <div class="back-to-top animated" role="button" aria-label="返回顶部">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+    </div>
+
+    
+    <div class="sidebar-inner sidebar-blogroll">
+      <div class="links-of-blogroll animated">
+        <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+          链接
+        </div>
+        <ul class="links-of-blogroll-list">
+            <li class="links-of-blogroll-item">
+              <a href="https://zhuanlan.zhihu.com/p/618864711" title="https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;618864711" rel="noopener" target="_blank">配置主题</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://zhuanlan.zhihu.com/p/671308695" title="https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;671308695" rel="noopener" target="_blank">重新部署</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://copilot.github.com/" title="https:&#x2F;&#x2F;copilot.github.com&#x2F;" rel="noopener" target="_blank">Copilot</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://chat.deepseek.com/" title="https:&#x2F;&#x2F;chat.deepseek.com&#x2F;" rel="noopener" target="_blank">DeepSeek</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://chatgpt.com/" title="https:&#x2F;&#x2F;chatgpt.com&#x2F;" rel="noopener" target="_blank">ChatGPT</a>
+            </li>
+        </ul>
+      </div>
+    </div>
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://vinyyang.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Viny Yang">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Viny与CS的邂逅">
+      <meta itemprop="description" content="陌上花开，可缓缓归矣">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="数据库原理与应用 | Viny与CS的邂逅">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          数据库原理与应用
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2025-04-04 15:59:02" itemprop="dateCreated datePublished" datetime="2025-04-04T15:59:02+08:00">2025-04-04</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-04-10 20:12:29" itemprop="dateModified" datetime="2025-04-10T20:12:29+08:00">2025-04-10</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">学习</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+  <div style="padding-left: 8px;">
+    <span class="post-meta-divider" style="padding-right: 8px;">|</span>
+    <i class="fa fa-thumbtack"></i>
+    <font color=purple style="font-weight: bold; padding-left: 4px;"> 置顶 </font>
+  </div>
+
+
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>14k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>26 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p>数据库原理与应用</p>
+<p>目录：</p>
+<p><img src="/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/4056449bbc39c95e5e5283fcd35fd06.png" alt="4056449bbc39c95e5e5283fcd35fd06"></p>
+<h2 id="第一章-绪论">第一章 绪论</h2>
+<blockquote>
+<p>重点</p>
+<p>1.数据模型：组成要素（三要素）是数据结构，数据操作和完整性约束条件</p>
+<blockquote>
+<p>[!success]</p>
+<ul>
+<li>数据结构：描述数据库的组成对象以及对象之间的关系</li>
+<li>数据操纵：对数据库中各种对象（型）的实例（值）允许执行的操作的集合，包括操作及有关的操作规则。主要操作是查询和更新（包括插入、删除和修改）。</li>
+<li>完整性约束：是一组完整性规则（即给定的数据模型中数据及其联系所具有的制约和依存规则）。限定了符合数据模型的数据库状态以及状态的变化，以保证数据的正确、 有效和相容。</li>
+</ul>
+</blockquote>
+<p>2.数据、数据库、数据库管理系统和数据库系统</p>
+<blockquote>
+<p>[!success]</p>
+<ul>
+<li>数据（data）是数据库存储的基本对象</li>
+<li>数据库（database简称DB）是长期存储在计算机内有组织、可共享的大量数据的集合</li>
+<li>数据库管理系统（DBMS）：是位于用户与操作系统之间的一层数据管理软件，是计算机的基础软件，是一个大型复杂的软件系统</li>
+<li>数据库系统由数据库（DB）、数据库管理系统（及外围的应用开发工具）（DBMS）、应用程序与数据库管理员构成</li>
+</ul>
+</blockquote>
+<p>3.数据库系统特点：模式、三级模式结构和二级映像功能与数据独立性</p>
+<blockquote>
+<p>[!success]</p>
+<p>1.数据库模式（即全局逻辑结构）</p>
+<p>①是数据库的中心和关键</p>
+<p>②独立于数据库的其他层次</p>
+<p>③设计数据库模式时应首先确定数据库逻辑模式</p>
+<p>2.三级模式结构：模式，内模式，外模式</p>
+<ul>
+<li>数据库的内模式</li>
+</ul>
+<p>①依赖于模式（全局逻辑结构）</p>
+<p>②独立于数据库的用户视图，即外模式</p>
+<p>③独立于具体的存储设备</p>
+<p>④将全局逻辑结构中所定义的数据结构及其联系按照一定的物理存储策略进行组织，以达到较好的时间和空间效率</p>
+<ul>
+<li>数据库的外模式</li>
+</ul>
+<p>①面向具体的应用程序</p>
+<p>②定义在逻辑模式之上</p>
+<p>③独立于存储模式和存储设备</p>
+<p>④当应用需求发生较大变化，相应外模式不能满足其视图要求时，该外模式就得做相应改动</p>
+<p>⑤设计外模式时应充分考虑应用的扩充性</p>
+<p>3.数据库的二级映像功能（外模式/模式映像，模式/内模式映像）</p>
+<p>①保证了数据库外模式的稳定性</p>
+<p>②从底层保证了应用程序的稳定性，除非应用需求本身发生变化，否则应用程序一般不需要修改</p>
+<p>4.数据独立性：指数据与程序之间的独立性，使得数据的定义和描述可以从应用程序中分离出去</p>
+<ul>
+<li>外模式/模式映像的作用是：保持数据的逻辑独立性</li>
+</ul>
+<p>①当模式改变时，数据库管理员对外模式/模式映像作相应改变，使外模式保持不变。应用程序是依据数据的外模式编写的，应用程序不必修改，保证了数据与程序的逻辑独立性，简称数据的逻辑独立性</p>
+<ul>
+<li>模式/内模式映像的作用是：保持数据的物理独立性</li>
+</ul>
+<p>②当数据库的存储结构改变时（例如选用了另一种存储结构），数据库管理员修改模式/内模式映像，使模式保持不变。模式保持不变，则应用程序不必改变。保证了数据与程序的物理独立性，简称数据的物理独立性</p>
+</blockquote>
+</blockquote>
+<h3 id="数据库的4个基本概念">数据库的4个基本概念</h3>
+<p>数据（Data）、数据库（DataBase，DB）、数据库管理系统（DataBase Management System，DBMS）、数据库系统（DataBase System，DBS）</p>
+<ul>
+<li>数据（data）是数据库存储的基本对象</li>
+<li>数据库（database简称DB）是长期存储在计算机内有组织、可共享的大量数据的集合</li>
+</ul>
+<blockquote>
+<p>数据库的基本特征</p>
+<p>1.数据按一定的数据模型组织、描述和储存</p>
+<p>2.较小的冗余度</p>
+<p>3.较高的数据独立性</p>
+<p>4.可扩展性</p>
+</blockquote>
+<ul>
+<li>数据库管理系统（DBMS）：是位于用户与操作系统之间的一层数据管理软件，是计算机的基础软件，是一个大型复杂的软件系统</li>
+</ul>
+<blockquote>
+<p>数据库管理系统的主要功能</p>
+<p>1.数据定义功能</p>
+<p>①提供数据定义语言（DDL）</p>
+<p>②定义数据库中的数据对象的组成和结构</p>
+<p>2.数据组织、存储和管理功能</p>
+<p>①分类组织、存储和管理各种数据</p>
+<p>②确定组织数据的文件结构和存取方式</p>
+<p>③实现数据之间的联系</p>
+<p>④提供多种存取方式提高存取效率</p>
+<p>3.数据操纵功能</p>
+<p>①提供数据操纵语言（DML）</p>
+<p>②实现对数据库的基本操作（查询、插入、删除和修改）</p>
+<p>4.数据库的事务管理与运行功能</p>
+<p>①数据库在建立、运行和维护时由数据库管理系统统一管理和控制</p>
+<p>②<strong>保证数据的安全性、完整性</strong></p>
+<p>③多用户对数据的并发使用及发生故障后的系统恢复</p>
+<p>5.数据库的建立与维护功能</p>
+<p>①<strong>数据库初始数据的输入和转换</strong></p>
+<p>②<strong>数据库转储和恢复功能</strong></p>
+<p>③<strong>数据库的重组织、性能监视和数据分析等</strong></p>
+<p>6.其他功能</p>
+<p>①<strong>数据库管理系统与网络中其它软件系统的通信</strong></p>
+<p>②<strong>数据库管理系统系统之间或与文件系统的数据转换</strong></p>
+<p>③<strong>异构数据库之间的互访和互操作</strong></p>
+</blockquote>
+<ul>
+<li>数据库系统由数据库（DB）、数据库管理系统（及外围的应用开发工具）（DBMS）、应用程序与数据库管理员构成</li>
+</ul>
+<p><img src="/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250404162717301.png" alt="image-20250404162717301"></p>
+<h3 id="数据模型">数据模型</h3>
+<ul>
+<li>定义</li>
+</ul>
+<blockquote>
+<p>1.数据模型是对现实数据特征的抽象，是现实世界的模拟</p>
+<p>2.数据模型是用来描述数据、组织数据和对数据进行操作的</p>
+<p>3.数据模型应满足三方面要求</p>
+<p>①能比较真实地模拟现实世界</p>
+<p>②容易为人所理解</p>
+<p>③便于在计算机上实现</p>
+<p>4.数据模型是数据库系统的核心与基础</p>
+</blockquote>
+<ul>
+<li>信息世界中的基本概念</li>
+</ul>
+<blockquote>
+<p>1.信息世界的基本概念</p>
+<p>①实体（entity）：客观存在并可相互区别的事物</p>
+<p>②属性（attribute）：尸体所具有的某一特性，一个实体可以由若干属性刻画</p>
+<p>③码（key）：唯一标识实体的属性集</p>
+<p>④实体型（entity type）：用实体名及其属性名集合来抽象和刻画同类实体称为实体型</p>
+<p>⑤实体集（entity set）：同一类型实体的集合</p>
+<p>⑥联系（relationship）：现实世界中事物内部以及事物之间的联系在信息世界中反映为实体（型）内部的联系和实体（型）之间的联系</p>
+<p>a.实体内部的联系指组成实体的各属性之间的联系</p>
+<p>b.实体之间的联系指不同实体集之间的联系</p>
+<p>c.实体之间的联系可以是一对一、一对多、多对多等</p>
+</blockquote>
+<ul>
+<li>概念模型的一种表示方法：实体-联系模型（Entity-Relationship，简称E-R）</li>
+</ul>
+<p><img src="/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250404170719519.png" alt="image-20250404170719519"></p>
+<blockquote>
+<ul>
+<li>
+<p><strong>抽象了学校中的学生和课程两个客观事物：学生实体和课程实体</strong></p>
+</li>
+<li>
+<p><strong>抽象了现实世界中事物之间的联系：</strong></p>
+</li>
+</ul>
+<p><strong>一门课程可以有多名学生选修，一个学生可以选修多门课程</strong></p>
+<p>用课程实体与学生实体多对多（m:n）联系来描述</p>
+</blockquote>
+<p><mark>数据建模的两个层次：概念模型与数据模型</mark></p>
+<ul>
+<li>概念模型：按照用户的观点对数据和信息建模</li>
+<li>数据模型：按照计算机系统的观点对数据建模</li>
+</ul>
+<h4 id="数据模型的三要素：数据结构，数据操纵和完整性约束">数据模型的三要素：数据结构，数据操纵和完整性约束</h4>
+<ul>
+<li>数据结构：描述数据库的组成对象以及对象之间的关系</li>
+</ul>
+<blockquote>
+<p>描述的内容：与对象的类型，内容和性质有关，也与数据之间的联系有关</p>
+<p>数据结构是对系统静态特性的描述</p>
+</blockquote>
+<ul>
+<li>数据操纵：对数据库中各种对象（型）的实例（值）允许执行的操作的集合，包括操作及有关的操作规则。主要操作是查询和更新（包括插入、删除和修改）。</li>
+</ul>
+<blockquote>
+<p>数据模型必须定义：</p>
+<p>①操作的确切含义</p>
+<p>②操作符号</p>
+<p>③操作规则（如优先级）</p>
+<p>④实现操作的语言</p>
+<p>数据操纵是对系统动态特性的描述</p>
+</blockquote>
+<ul>
+<li>完整性约束是一组完整性规则（即给定的数据模型中数据及其联系所具有的制约和依存规则）。限定了符合数据模型的数据库状态以及状态的变化，以保证数据的正确、 有效和相容。</li>
+</ul>
+<p><img src="/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250404172215011.png" alt="image-20250404172215011"></p>
+<h4 id="层次模型">层次模型</h4>
+<p>层次模型是数据库系统中最早出现的数据库模型，用<mark>树形结构</mark>来表示各类实体以及实体间的联系</p>
+<blockquote>
+<p>①实体用记录表示</p>
+<p>②实体的属性对应记录的数据项（或字段）</p>
+<p>③实体之间的联系转换成记录之间的两两关系</p>
+<p>④数据结构的单位是基本层次关系：指两个记录以及他们之间的一对多（包括一对一）的联系</p>
+</blockquote>
+<p>1.层次模型的数据结构</p>
+<blockquote>
+<p>①有且只有一个结点没有双亲结点，这个结点称为根节点</p>
+<p>②根以外的其他结点有且只有一个双亲结点</p>
+</blockquote>
+<p>一个结点对应一个记录类型（实体），字段对应属性，联系对应连线</p>
+<p><img src="/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250404174542552.png" alt="image-20250404174542552"></p>
+<p><img src="/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250404173242304.png" alt="image-20250404173242304"></p>
+<p><img src="/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250404173301724.png" alt="image-20250404173301724"></p>
+<p>2.层次模型的数据操纵与完整性约束</p>
+<p>①数据操纵：查询，插入，删除，更新</p>
+<p>②完整性约束：</p>
+<p>a.无相应的双亲结点值就不能插入子女结点值</p>
+<p>b.如果删除双亲结点值，则相应子女结点值也被同时删除</p>
+<p>c.更新操作时，应更新所有相应记录，以保证数据一致性</p>
+<p><img src="/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250404174230327.png" alt="image-20250404174230327"></p>
+<h4 id="网状模型">网状模型</h4>
+<p>1.网状模型的数据结构</p>
+<p>①定义</p>
+<p>a.允许一个以上的结点无双亲</p>
+<p>b.一个结点可以有多于一个双亲</p>
+<p>②表示方法</p>
+<p><img src="/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250404174904185.png" alt="image-20250404174904185"></p>
+<p>③网状模型与层次模型的区别</p>
+<p><img src="/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250404174938134.png" alt="image-20250404174938134"></p>
+<p>2.网状模型的数据操纵与完整性约束</p>
+<p><img src="/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250404175138249.png" alt="image-20250404175138249"></p>
+<p><img src="/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250404175152885.png" alt="image-20250404175152885"></p>
+<h4 id="关系模型">关系模型</h4>
+<p>1.关系模型中的数据结构</p>
+<p><img src="/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250404180404369.png" alt="image-20250404180404369"></p>
+<p>①基本概念</p>
+<blockquote>
+<p>1.关系（relation）：一个关系对应一个表</p>
+<p>2.元组（tuple）：表中的一行即为一个元组</p>
+<p>3.属性（attribute）：表中的一列即为一个属性，给每个属性起一个名称即属性名</p>
+<p>4.码（key）：又称码键或键。表中的某一个属性或一组属性，其值可以唯一确定一个元组。</p>
+<p>5.域（domain）：是一组具有相同数据类型的值的集合。属性的取值范围来自某个域。</p>
+<p>6.分量：元组中的一个属性值</p>
+<p>7.关系模式：即对关系的描述（表头）。如关系名（属性1，属性2，…, 属性n），学生（学号，姓名，性别，出生日期，主修专业）</p>
+</blockquote>
+<p>②关系必须是规范化的，满足一定的规范条件。最基本的规范条件：关系的每一个分量必须是一个不可分的数据项，不允许表中还有表。如下图的联系方式是可分的数据项，不符合关系模型要求（也就是说每一个分量都是下面没有子标题的标题）</p>
+<p><img src="/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250404182607053.png" alt="image-20250404182607053"></p>
+<p><img src="/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250404182642359.png" alt="image-20250404182642359"></p>
+<p>2.关系模型的数据操纵与完整性约束</p>
+<p><img src="/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250404183001650.png" alt="image-20250404183001650"></p>
+<p><img src="/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250404183008482.png" alt="image-20250404183008482"></p>
+<p><img src="/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250404183020132.png" alt="image-20250404183020132"></p>
+<p><img src="/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250404183030136.png" alt="image-20250404183030136"></p>
+<h3 id="数据库系统的三级模式结构">数据库系统的三级模式结构</h3>
+<h4 id="数据库系统中模式的概念">数据库系统中模式的概念</h4>
+<p>1.型和值的概念</p>
+<p>①型type：对某一类数据的结构和属性的说明</p>
+<p>②值value：是型的一个具体赋值</p>
+<p>例如：学生记录（型，也就是表头）：（学号，姓名，性别，出生日期，主修专业）。一个记录值：（20180003，王敏，女，2001-8-1，计算机科学与技术）</p>
+<p>2.模式（schema）</p>
+<blockquote>
+<p>①是数据库中全体数据的逻辑结构和特征的描述</p>
+<p>②是型（表头）的描述，不涉及具体值</p>
+<p>③反映的是数据结构及其联系</p>
+<p>④模式是相对稳定的</p>
+</blockquote>
+<p>3.实例（instance）</p>
+<p>①是模式的一个具体值</p>
+<p>②反映数据库某一时刻的状态</p>
+<p>③同一个模式可以有很多实例</p>
+<p>④实例随数据库中数据的更新而变动</p>
+<p><img src="/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250404225033947.png" alt="image-20250404225033947"></p>
+<h4 id="数据库系统的三级模式结构-2">数据库系统的三级模式结构</h4>
+<p>数据库系统三级模式结构：模式、外模式和内模式</p>
+<p><img src="/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250404225239363.png" alt="image-20250404225239363"></p>
+<p>1.模式（schema）</p>
+<blockquote>
+<p>1.内容（也称逻辑模式）</p>
+<p>①是数据库中全体数据的逻辑结构和特征描述</p>
+<p>②所有用户的公共数据视图</p>
+<p><mark>一个数据库只有一个模式</mark></p>
+<p>2.模式的地位：是数据库系统结构的中间层</p>
+<p>①与数据的物理存储细节和硬件环境无关</p>
+<p>②与具体的应用程序、开发工具和高级程序设计语言无关</p>
+<p>3.模式的定义</p>
+<p>①数据的逻辑结构（数据项的名字、类型、取值范围等）</p>
+<p>②数据之间的联系</p>
+<p>③数据有关的安全性、完整性要求</p>
+<p><mark>数据库管理系统提供模式数据定义语言（模式DDL）严格定义模式</mark></p>
+</blockquote>
+<p>2.外模式（external schema）</p>
+<blockquote>
+<p>1.外模式定义（也称子模式或用户模式）</p>
+<p>①数据库用户（包括应用程序员和最终用户）能够看见和使用的局部数据的逻辑结构和特征的描述</p>
+<p>②数据库用户的数据视图，是与某一应用有关的数据的逻辑表示</p>
+<p>2.一个数据库可以有多个外模式：不同在用户的应用需求、看待数据的方式、对数据保密的要求等方面存在差异</p>
+<p>3.对模式中的同一数据，在外模式中的结构、类型、长度、保密级别等都可以不同</p>
+<p>4.同一外模式也可以为某一用户的多个应用系统使用，但一个应用程序只能使用一个外模式</p>
+<p>5.外模式的用途</p>
+<p>①保证数据库安全性的一个有力措施</p>
+<p>②每个用户只能看见和访问所对应的外模式中的数据</p>
+<p>6.数据库管理系统提供外模式数据定义语言（外模式DDL）来严格定义外模式</p>
+</blockquote>
+<p>3.内模式（internal schema）（也称物理模式或存储模式）</p>
+<blockquote>
+<p>1.定义</p>
+<p>①是数据物理结构和组织方式的描述</p>
+<p>②是数据在数据库内部的表现方式</p>
+<p><img src="/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250404231037023.png" alt="image-20250404231037023"></p>
+</blockquote>
+<h4 id="数据库的两级映像与数据独立性">数据库的两级映像与数据独立性</h4>
+<p>三级模式是对数据的三个抽象级别，而两级映像在数据库管理系统内部实现三个抽象层次的联系和转换：外模式/模式映像，模式/内模式映像</p>
+<p>1.外模式/模式映像</p>
+<blockquote>
+<p>1.模式：描述的是数据的全局逻辑结构</p>
+<p>2.外模式：描述的是数据的局部逻辑结构</p>
+<p>3.同一个模式可以有任意多个外模式</p>
+<p>4.对于每一个外模式，数据库系统都有一个外模式/模式映像用于定义外模式与模式之间的对应关系</p>
+<p>5.映像定义通常包含在各自外模式描述中</p>
+<p>6.外模式/模式映像的作用是：保持数据的逻辑独立性</p>
+<p>①当模式改变时，数据库管理员对外模式/模式映像作相应改变，使外模式保持不变</p>
+<p>②应用程序是依据数据的外模式编写的，应用程序不必修改，保证了数据与程序的逻辑独立性，简称数据的逻辑独立性</p>
+</blockquote>
+<p>2.模式/内模式映像</p>
+<blockquote>
+<p>1.模式/内模式映像定义了数据全局逻辑结构与存储结构之间的对应关系</p>
+<p>例如：说明逻辑记录和字段在内部是如何表示的</p>
+<p>2.数据库中模式/内模式映像是唯一的</p>
+<p>3.该映像定义通常包含在模式描述中</p>
+<p>4.保证数据的物理独立性</p>
+<p>①当数据库的存储结构改变时（例如选用了另一种存储结构），数据库管理员修改模式/内模式映像，使模式保持不变</p>
+<p>②模式保持不变，应用程序不必改变。保证了数据与程序的物理独立性，简称数据的物理独立性</p>
+</blockquote>
+<h3 id="数据库系统的组成">数据库系统的组成</h3>
+<p>数据库+数据库管理系统（及其应用开发工具）+应用系统+数据库管理员</p>
+<p><img src="/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250405002036004.png" alt="image-20250405002036004"></p>
+<h2 id="关系模型-2">关系模型</h2>
+<blockquote>
+<p>重点</p>
+<p>1.关系的完整性：实体完整性，参照完整性，用户定义完整性</p>
+<p>2.什么是关系</p>
+<p>3.关系的性质</p>
+<p>4.实体标识符</p>
+<p>5.码的定义</p>
+<p>6.关系代数</p>
+<p>4种传统集合运算：并，差，交，广义笛卡尔积</p>
+<p>4种专门关系运算：选择，投影，连接（掌握），除</p>
+<p>其中基本运算有5个：并，差，笛卡尔积，投影，选择</p>
+<p>连接、外连接</p>
+<p>会使用关系代数表达查询</p>
+</blockquote>
+<h3 id="关系模型的数据结构及形式化定义">关系模型的数据结构及形式化定义</h3>
+<h4 id="关系">关系</h4>
+<blockquote>
+<p>1.单一的数据结构——关系：现实世界的实体以及实体间的各种联系均用关系来表示</p>
+<p>2.逻辑结构——二维表：从用户角度，关系模型中数据的逻辑结构是一张二维表</p>
+<p>3.分为域（domain）、笛卡尔积（Cartesian product）和关系（relation）</p>
+<p>4.域（domain）</p>
+<p>①域是一组具有相同数据类型的值的集合</p>
+<p>例：整数，实数，介于某个取值范围的整数，长度小于25B的变长字符串集合，{男，女}……</p>
+<p>5.笛卡尔积</p>
+<p>①是所有域的所有取值的一个不能重复的组合</p>
+<p>给定一组域D1，D2，…,Dn，允许其中某些域是相同的。笛卡尔积为：</p>
+<p>$D_1\times D_2\times ... \times D_n={(d_1,d_2,...,d_n)\ |d_i\in D_i,\ i=1,2,...,\ n }$</p>
+<p>②元组（tuple）：笛卡尔积中每一个元素$(d_1,d_2,...,d_n)$叫做一个n元组（n-tuple）或简称元组。如{a同学，计算机科学与技术，a老师}</p>
+<p>③分组（Component）：笛卡尔积元素$(d_1,d_2,...,d_n)$中的每一个值$d_i$都叫做一个分量，如a同学，计算机科学与技术，a老师</p>
+<p>④基数（cardinal number）：是一个域允许的不同取值个数。</p>
+<p>若$D_i(i=1,2,...,n)$为有限集，其基数为$m_i(i=1,2,...,n)$，则$D_1\times D_2 \times ... \times D_n$的基数$M$为：$M=\prod_{i=1}^{n}m_i $</p>
+<p>⑤笛卡尔积的表示方法：二维表，表中每行对应一个元组，每列对应一个域</p>
+<p><img src="/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250405015935005.png" alt="image-20250405015935005"><img src="/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250405015951495.png" alt="image-20250405015951495"></p>
+<p><img src="/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250405020015334.png" alt="image-20250405020015334"></p>
+<p>6.关系</p>
+<p>①关系模型中$D_1,D_2,...,D_n$的笛卡尔积一般没有实际语义，只有某个真子集才有实际含义</p>
+<p><img src="/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250405160947912.png" alt="image-20250405160947912"></p>
+<p><img src="/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250405161034771.png" alt="image-20250405161034771"></p>
+<p>②关系的定义：$D_1 \times D_2 \times ...\times D_n$的子集叫做在域$D_1,D_2,...,D_n$上的关系，表示为$R(D_1,D_2,...,D_n)$。其中R是关系名，n是关系的度</p>
+<p>③元组：关系中的每个元素是关系中的元组，通常用t表示</p>
+<p>④单元关系与二元关系</p>
+<p><img src="/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250405161325718.png" alt="image-20250405161325718"></p>
+<p>⑤关系的表示：关系也是一个二维表，表的每行对应一个元组，表的每列对应一个域</p>
+<p>⑥属性</p>
+<p><img src="/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250405161444475.png" alt="image-20250405161444475"></p>
+<p>⑦三类关系</p>
+<p>a.基本关系（基本表或基表）：实际存在的表，是实际存储数据的逻辑表示</p>
+<p>b.查询结果：查询执行产生的结果对应的临时表</p>
+<p>c.视图表：由基本表或其他视图表导出的虚表，不存储实际数据</p>
+<p>⑧基本关系的性质</p>
+<p><img src="/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250405161951203.png" alt="image-20250405161951203"></p>
+<p><img src="/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250405162010473.png" alt="image-20250405162010473"></p>
+</blockquote>
+<h4 id="关系模式">关系模式</h4>
+<p>1.关系模式的定义：关系模式是对关系的描述，描述了关系元组集合的结构：如属性构成，属性来自的域，属性与域之间的映像关系；也描述了关系的完整性约束</p>
+<p><mark>关系模式是型，关系是值</mark></p>
+<p>2.定义关系模式</p>
+<p><img src="/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250405163551604-1743842152769-2.png" alt="image-20250405163551604"></p>
+<p><img src="/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250405163713204.png" alt="image-20250405163713204"></p>
+<p><img src="/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250405163813526.png" alt="image-20250405163813526"></p>
+<p>3.关系模式中的各种码</p>
+<p>（1）候选码（candidate key）：关系模式中的某一个属性或者一组属性的值能唯一地标识一个元组，而它的真子集不能唯一地标识一个元组，则称该属性或属性组为候选码。最简单的情况就是候选码只包含一个属性</p>
+<p>（2）全码（all-key）：最极端的情况下关系模式中的所有属性才能成为这个关系模式的候选码，这个时候的码就是全码（all-key）</p>
+<p>（3）主码：若一个关系有多个候选码，则选定其中一个为主码（primary key）</p>
+<p><img src="/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250405164901862.png" alt="image-20250405164901862"></p>
+<p>（4）主属性：候选码的主属性称为主属性（prime attribute）</p>
+<p>相对应的不包含在任何候选码中的属性称为非主属性（non-prime attribute）或非码属性（non-key attribute）</p>
+<p>4.关系模式与关系</p>
+<p>①关系模式是对关系的描述，是静态的、稳定的</p>
+<p>②关系是关系模式在某一时刻的状态或内容，是动态的、随时间不断变化的</p>
+<p>③关系模式和关系往往笼统称为关系，具体由上下文区别</p>
+<h4 id="关系数据库">关系数据库</h4>
+<p><img src="/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250405165521667.png" alt="image-20250405165521667"></p>
+<p><img src="/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250405165748572.png" alt="image-20250405165748572"></p>
+<p><img src="/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250405165811644.png" alt="image-20250405165811644"></p>
+<h4 id="关系模型的存储结构">关系模型的存储结构</h4>
+<p><img src="/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250405165835910.png" alt="image-20250405165835910"></p>
+<h3 id="关系操作">关系操作</h3>
+<p><img src="/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250405165937879.png" alt="image-20250405165937879"></p>
+<h3 id="关系的完整性">关系的完整性</h3>
+<p><img src="/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250405170043731-1743843644613-4.png" alt="image-20250405170043731"></p>
+<h4 id="实体完整性">实体完整性</h4>
+<p>1.实体完整性规则（entity integrity）：若属性（指一个或一组属性）A是基本关系R的主属性，则A不能取空值（空值就是“不知道”不存在”或“无意义”的值）</p>
+<p><img src="/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250405170410765.png" alt="image-20250405170410765"></p>
+<p>2.实体完整性规则说明</p>
+<p>①实体完整性规则是针对基本关系而言的。一个基本表通常对应现实世界的一个实体集</p>
+<p>②现实世界中的实体是可区分的，具有某种唯一性标识</p>
+<p>③关系模型中以主码作为唯一性标识</p>
+<p>④主码中的属性不能去空值（如果取了空值，就说明存在某个不可标识的实体，即存在不可区分的实体，而②中实体是可区分的也就矛盾了，因此规则命名为实体完整性）</p>
+<h4 id="参照完整性">参照完整性</h4>
+<p>1.关系间的引用</p>
+<p><img src="/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250405170953706.png" alt="image-20250405170953706"></p>
+<p><img src="/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250405171008694.png" alt="image-20250405171008694"></p>
+<p><img src="/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250405171057891.png" alt="image-20250405171057891"></p>
+<p>2.外码（foreign key）</p>
+<p>①外码的定义：设F是基本关系R的一个或一组属性，但不是关系R的码，Ks是基本关系S的主码。如果F与Ks对应，则称F是R的外码</p>
+<blockquote>
+<p>基本关系R称为参照关系（referencing relation）</p>
+<p>基本关系S称为被参照关系（referenced relation）或目标关系（target relation）</p>
+<p><img src="/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250405171900690.png" alt="image-20250405171900690"></p>
+<p><img src="/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250405172601006.png" alt="image-20250405172601006"></p>
+<p><img src="/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250405172621179.png" alt="image-20250405172621179"></p>
+<p><img src="/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250405172749648.png" alt="image-20250405172749648"></p>
+<p><mark>总结</mark></p>
+<blockquote>
+<p>[!success]</p>
+<p>1.参照关系、被参照关系就看谁是模仿者，谁是被模仿者，如果一个关系中某个属性模仿了另一个属性那ta既是参照关系也是非参照关系</p>
+<p>2.外码不一定要与主码同名，也就是模仿者不一定啥都要跟被模仿者一样，比如先修课（模仿者，外码）和课程（被模仿者，主码）</p>
+</blockquote>
+</blockquote>
+<p>3.参照完整性约束</p>
+<p>若属性（或属性组）F是基本关系R的外码，ta与基本关系S的主码Ks相对于（R和S可以是同一个关系也可以是不同关系），则对于R中每个元组在F上的值必须为：空值（F的每个属性值均为空值）或等于S中某个元组的主码值</p>
+<p><img src="/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250405173850068.png" alt="image-20250405173850068"></p>
+<p><img src="/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250405173900305.png" alt="image-20250405173900305"></p>
+<p><img src="/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250405173957448.png" alt="image-20250405173957448"></p>
+<h4 id="用户定义的完整性">用户定义的完整性</h4>
+<p>1.定义：针对某一具体关系数据库的约束条件，反映某一具体应用所涉及的数据必须满足的语义要求。关系模型应提供定义和检验这类完整性的机制，以便用统一的系统的方法处理它们，而不需由应用程序承担这一功能。</p>
+<p><img src="/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250405174436294.png" alt="image-20250405174436294"></p>
+<h3 id="关系代数">关系代数</h3>
+<p><img src="/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250405180148534-1743847309555-9.png" alt="image-20250405180148534"></p>
+<p><img src="/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250405180208489.png" alt="image-20250405180208489"></p>
+<h4 id="传统的集合运算">传统的集合运算</h4>
+<p>1.并（union）</p>
+<p>（1）R和S要求：具有相同的目n（即两个关系都有n个属性）且相应的属性取自同一个域</p>
+<blockquote>
+<p>属性与域的区别</p>
+<ul>
+<li><strong>属性</strong>：用于描述实体的特性 。比如学生实体，有学号、姓名、年龄等属性，体现学生不同方面特征。</li>
+<li><strong>域</strong>：是属性的取值范围 。像学号属性，域可能是特定长度的数字集合；性别的域是 {男，女} 。</li>
+</ul>
+<p>简言之，属性是实体特征描述，域限定属性取值，是属性的规则。</p>
+</blockquote>
+<p>（2）$R \cup S$：仍为n目关系，由属于R或属于S的元组组成（取属于R或S的元组，且<strong>去重</strong>）。</p>
+<p>​			$R \cup S={t \ | \ t \in R \ \vee t \in S}$</p>
+<p><img src="/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250405181640903.png" alt="image-20250405181640903"></p>
+<p>去重是以一行一行来看的，只有S第二行是R中没出现过的。</p>
+<p>2.差（difference）</p>
+<p>（1）R和S要求：具有相同的目n（即两个关系都有n个属性）且相应的属性取自同一个域</p>
+<p>（2）$R - S$：仍为n目关系，由属于R或属于S的元组组成（去掉R中同属于R和S的元组）。</p>
+<p>​			$R - S={t \ | \ t \in R \ \vee t \notin S}$</p>
+<p><img src="/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250405182248727-1743848569474-12.png" alt="image-20250405182248727"></p>
+<p>3.交（intersection）</p>
+<p>（1）R和S要求：具有相同的目n（即两个关系都有n个属性）且相应的属性取自同一个域</p>
+<p>（2）$R \cap S$：仍为n目关系，由属于R或属于S的元组组成（取R中同属于R和S的元组）。</p>
+<p>​			$R \cap S={t \ | \ t \in R \ \wedge t \in S}$</p>
+<p><img src="/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250405182511113.png" alt="image-20250405182511113"></p>
+<p>4.（广义）笛卡尔积（（extended） Cartesian product）</p>
+<p><img src="/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250405182825587.png" alt="image-20250405182825587"></p>
+<p><img src="/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250405183007933.png" alt="image-20250405183007933"></p>
+<h4 id="专门的关系运算">专门的关系运算</h4>
+<p>1.记号的引入</p>
+<p>（1）$R,t\in R,t[A_i]$</p>
+<p>设关系模式$R(A_1,A_2,...,A_n)$</p>
+<p>一个关系设为R，则$t\in R$表示$t$是R的一个元组，$t[A_i]$则表示元组t中相应于属性$A_i$的一个分量</p>
+<p><img src="/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250405183613324-1743849376124-19.png" alt="image-20250405183613324"></p>
+<p>（2）$A,t[A],\overline{A}$</p>
+<p><img src="/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250405183821828.png" alt="image-20250405183821828"></p>
+<p><img src="/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250405183907897.png" alt="image-20250405183907897"></p>
+<p>（3）$\widehat{t_r t_s} $</p>
+<p><img src="/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250405184442674.png" alt="image-20250405184442674"></p>
+<p><img src="/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250405184515362.png" alt="image-20250405184515362"></p>
+<p>（4）象集$Z_x$</p>
+<p><img src="/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250405184546205.png" alt="image-20250405184546205"></p>
+<p><img src="/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250405184639198.png" alt="image-20250405184639198"></p>
+<p>相当于已知一个分量，把另一个基于该分量得到的分量结果输出出来（相当于筛选）</p>
+<p>2.选择</p>
+<p>选择又称为限制（restriction）。在关系R中选择满足给定条件的诸元组$\sigma_F(R)={t\ |t \in R \ \wedge \ F(t)='真'}$</p>
+<p>其中F是选择条件，是一个逻辑表达式，取值为‘真’或‘假’</p>
+<p><img src="/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250406170418856.png" alt="image-20250406170418856"></p>
+<p>选择运算是从关系R中选取使逻辑表达式F为真的元组，是从行（hang）的角度进行的运算</p>
+<p><img src="/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250406171001965.png" alt="image-20250406171001965"></p>
+<p><img src="/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250406170602656.png" alt="image-20250406170602656"></p>
+<p><img src="/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250406170936471.png" alt="image-20250406170936471"></p>
+<p>3.投影</p>
+<p>从R中选择出若干属性组成新的关系$\pi_A(R)={t[A]\ | \ t \in \ R}$</p>
+<p>A是R中的属性列。投影操作主要是从列的角度进行运算。投影之后不仅取消了原关系中的某些列，而且还可能取消某些元组（避免重复行）</p>
+<p><img src="/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250406171449993.png" alt="image-20250406171449993"></p>
+<p><img src="/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250406171506097.png" alt="image-20250406171506097"></p>
+<p><img src="/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250406171527749.png" alt="image-20250406171527749"></p>
+<p>4.连接（join）</p>
+<p>①定义</p>
+<blockquote>
+<p>连接也成为θ连接，是从两个关系的笛卡尔积中选取属性间满足一定条件的元组</p>
+<p>$R \mathbin{\underset{A \theta B}{\bowtie}} S = { \widehat{t_r t_s} \mid t_r \in R \land t_s \in S \land t_r[A] \mathbin{\theta} t_s[B] }$</p>
+<p>A和B：分别为R和S上度数相等且可比的属性组，θ是比较运算符</p>
+<p>连接运算从R和S的广义笛卡尔积中选取R关系在A属性组上的值与S关系在B属性组上的值满足比较关系θ的元组</p>
+</blockquote>
+<p>②两种常用连接运算</p>
+<blockquote>
+<p>1.等值连接（equijoin）</p>
+<p>θ为“=”的连接运算称为等值连接。从关系R与S的广义笛卡尔积中选取A、B属性值相等的那些元组，即等值连接为$R \mathbin{\underset{A = B}{\bowtie}} S = { \widehat{t_r t_s} \mid t_r \in R \land t_s \in S \land t_r[A] = t_s[B] }$</p>
+<p>2.自然连接（natural join）</p>
+<p>自然连接是一种特殊等值连接，两个关系中进行比较的分量必须是同名的属性组，同时在结果中把重复的属性列去掉。其含义为：R和S具有相同的属性组B，U为R和S的全体属性集合。</p>
+<p>$R \mathbin{\Join} S = { \widehat{t_r t_s}[U - B] \mid t_r \in R \land t_s \in S \land t_r[B] = t_s[B] }$</p>
+<p><img src="/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250406173740728.png" alt="image-20250406173740728"></p>
+<p><img src="/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250406173859636.png" alt="image-20250406173859636"></p>
+<p>S第五行b2 2应为b5 2</p>
+<p><mark>连接理由：保证C的值小于E</mark></p>
+<p><img src="/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250406173905848.png" alt="image-20250406173905848"></p>
+<p><img src="/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250406173952683.png" alt="image-20250406173952683"></p>
+<p><img src="/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250406174028759.png" alt="image-20250406174028759"></p>
+<p><mark>也就是进一步把B列合并而不分R.B和S.B</mark></p>
+</blockquote>
+<p>③悬浮元组（dangling tuple）</p>
+<p>两个关系R和S在做自然连接时，关系R中某些元组有可能在S中不存在公共属性上值相等的元组，从而造成R中这些元组在操作上被舍弃了，这些被舍弃的元组称为悬浮元组。</p>
+<p>④外连接（outer join）</p>
+<p>如果把悬浮元组也保存在结果关系中，其他属性上填空值（NULL），就叫做外连接。</p>
+<p>左外连接（left outer join或left join）：只保留左边关系R中的悬浮元组</p>
+<p>右外连接（right outer join或right join）：只保留右边关系S中的悬浮元组</p>
+<p><img src="/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250406180321425.png" alt="image-20250406180321425"></p>
+<p><img src="/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250406180514123.png" alt="image-20250406180514123"></p>
+<p><img src="/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250406181040664.png" alt="image-20250406181040664"></p>
+<p><mark>也就是外连接强行合并同类项并把所有信息聚合起来，左外连接就是只根据左边的合并同类项聚合信息而不管左边没有右边有的信息</mark></p>
+<p>5.除</p>
+<p>给定关系R(X,Y)和S(Y,Z)，其中X，Y，Z为属性组。R中的Y与S中的Y可以有不同属性名，但必须出自相同的域集.R与S的除运算得到一个新的关系P（X），P是R中满足下列条件的元组在X属性列上的投影：元组在X上分量值x的象集Yx包含在S在Y上投影的集合，记作：</p>
+<p>$R /  S = { t_r[X] \mid t_r \in R \land \pi_Y(S) \subseteq Y_x }$</p>
+<p><img src="/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250406182029068.png" alt="image-20250406182029068"></p>
+<p><img src="/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250406182039779.png" alt="image-20250406182039779"></p>
+<p><img src="/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250406182434308.png" alt="image-20250406182434308"></p>
+<blockquote>
+<p><img src="/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250406182535168.png" alt="image-20250406182535168"></p>
+<p><img src="/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250406182557789.png" alt="image-20250406182557789"></p>
+<p><img src="/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250406182651245.png" alt="image-20250406182651245"></p>
+</blockquote>
+<p><img src="/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250406183042122-1743935443016-1.png" alt="image-20250406183042122"></p>
+<p><img src="/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250406183117876.png" alt="image-20250406183117876"></p>
+<p><img src="/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250406183130102.png" alt="image-20250406183130102"></p>
+<h2 id="SQL语言">SQL语言</h2>
+<blockquote>
+<p>重点</p>
+<p>1.数据定义：基本表的定义（完整性约束的定义）、修改和删除、索引的建立和删除、索引建立的目的</p>
+<p>2.数据更新：insert，delete，update</p>
+<p>3.视图：create view</p>
+<p>4.查询：写SQL语句及理解其含义</p>
+<p>①单表查询：distinct，between and,in，like，is，and，or，order，集函数，group by，having的用法</p>
+<p>②连接查询：max，min，average，sum，count</p>
+<p>③嵌套查询：带in谓词的，带比较运算符的</p>
+</blockquote>
+<h3 id="SQL概述">SQL概述</h3>
+<p>1.SQL（Structured Query Language）结构化查询语言，是关系数据库的标准语言，包括数据查询、数据库模式创建、数据库数据的增删改、数据库安全性和完整性定义与控制等</p>
+<p>2.SQL的特点</p>
+<p><img src="/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250409175029242.png" alt="image-20250409175029242"></p>
+<p><img src="/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250409175040422.png" alt="image-20250409175040422"></p>
+<p><img src="/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250409175051346.png" alt="image-20250409175051346"></p>
+<p><img src="/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250409175111969.png" alt="image-20250409175111969"></p>
+<p><img src="/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250410000142106.png" alt="image-20250410000142106"></p>
+<p>3.SQL的基本概念</p>
+<p><img src="/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250410000432437.png" alt="image-20250410000432437"></p>
+<p>（1）基本表的概念</p>
+<p>①是本身独立存在的表</p>
+<p>②关系数据库管理系统中一个关系就对应一个基本表</p>
+<p>③一个或多个基本表对应一个存储文件</p>
+<p>④一个表可以带若干索引</p>
+<p>（2）存储文件</p>
+<p>①逻辑结构和物理结构组成了关系数据库的内模式</p>
+<p>②物理文件结构是由数据库管理系统设计决定的</p>
+<p>（3）视图</p>
+<p>①是从基本表或其他视图中导出的表</p>
+<p>②数据库中只存放视图的定义而不存放视图对应的视图</p>
+<p>③视图是一个虚表</p>
+<p>④用户可以在视图上再定义视图</p>
+<h3 id="数据定义">数据定义</h3>
+<p><img src="/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250410001314151.png" alt="image-20250410001314151"></p>
+<p><img src="/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250410001414817.png" alt="image-20250410001414817"></p>
+<p>1.模式的定义与删除</p>
+<p>（1）定义模式</p>
+<p>①为用户WANG定义一个“学生选课”模式S-C-SC</p>
+<p><code>create schema &quot;S-C-SC&quot; authorization WANG;</code></p>
+<p>②下面的模式没有指定模式名，模式名隐含为用户名WANG</p>
+<p><code>create schema autorization WANG;</code></p>
+<p>（2）定义模式实际上定义了一个<mark>命名空间</mark>。在这个空间中可以定义该模式包含的数据库对象，例如基本表，视图，索引等。也就是说</p>
+<p>在<code>create schema</code>中可以接受<code>create table,create view和grant</code>子句</p>
+<p><code>create schema &lt;模式名&gt; authorization &lt;用户名&gt;[&lt;表定义子句&gt;|&lt;视图定义子句&gt;|&lt;授权定义子句&gt;]</code></p>
+<p><img src="/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250410002103901.png" alt="image-20250410002103901"></p>
+<p><code>create chema Test authorization Zhang</code></p>
+<p><code>create table Tab1(Col1 smallint,</code></p>
+<p><code>                   Col2 int,</code></p>
+<p><code>                   Col3 char(20)</code></p>
+<p><code>                   Col4 numeric(10,3)</code></p>
+<p><code>                   Col5 decimal(5,2)</code></p>
+<p><code>                   );</code></p>
+<p>（2）删除模式</p>
+<p><code>drop schema &lt;模式名&gt; &lt;cascade|restrict&gt;</code></p>
+<p>①cascade（级联）——连坐</p>
+<p>删除模式的同时把该模式中所有的数据库对象全部删除。</p>
+<p>②restrict（限制）</p>
+<p>如果该模式中定义了数据库对象（如表、视图等），则拒绝该删除语句的执行。</p>
+<blockquote>
+<p>仅当该模式中没有任何下属的对象时才能执行</p>
+</blockquote>
+<p>例3.4 <code>drop schema Test cascade;</code></p>
+<p>删除模式Test，同时该模式中定义的表Tab1也被删除</p>
+<p>2.基本表的定义、删除和修改</p>
+<p>（1）定义基本表</p>
+<p><code>create table &lt;表名&gt;</code></p>
+<p><code>(&lt;列名&gt;&lt;数据类型&gt;[&lt;列级完整性约束&gt;])</code></p>
+<p><code>[,&lt;列名&gt;&lt;数据类型&gt;[&lt;列级完整性约束&gt;]]</code></p>
+<p><code>...</code></p>
+<p><code>[,&lt;表级完整性约束&gt;]);</code></p>
+<p>&lt;表名&gt;：所要定义的基本表的名字。</p>
+<p>&lt;列名&gt;：组成该表的各个属性（列）。</p>
+<p>&lt;列级完整性约束&gt;：涉及相应属性列的完整性约束。</p>
+<p>&lt;表级完整性约束&gt;：涉及一个或多个属性列的完整性约束。</p>
+<p>如果完整性约束涉及该表的多个属性列，则必须定义在表级上，否则可以定义在列级也可以定义在表级</p>
+<p><img src="/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250410005115914.png" alt="image-20250410005115914"></p>
+<p><img src="/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250410005145247.png" alt="image-20250410005145247"></p>
+<p><img src="/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250410005205364.png" alt="image-20250410005205364"></p>
+<p><img src="/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250410005236240.png" alt="image-20250410005236240"></p>
+<p>（2）数据类型</p>
+<p><img src="/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250410005656210.png" alt="image-20250410005656210"></p>
+<p><img src="/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250410005733716-1744217854547-1.png" alt="image-20250410005733716"></p>
+<p><img src="/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250410005753009-1744217874069-3.png" alt="image-20250410005753009"></p>
+<p>（3）模式与表</p>
+<p><img src="/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250410010344197.png" alt="image-20250410010344197"></p>
+<p><img src="/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250410010406573.png" alt="image-20250410010406573"></p>
+<p><img src="/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250410010550322.png" alt="image-20250410010550322"></p>
+<p>（4）修改基本表</p>
+<p><code>alter table &lt;表名&gt;</code></p>
+<p><code>[add [column] &lt;新列名&gt; &lt;数据类型&gt; [完整性约束]]</code></p>
+<p><code>[add &lt;表级完整性约束&gt;]</code></p>
+<p><code>[drop [column] &lt;列名&gt; [cascade|restrict]]</code></p>
+<p><code>[drop constraint &lt;完整性约束名&gt; [restrict|cascade]]</code></p>
+<p><code>rename column &lt;列名&gt; to &lt;新列名&gt;</code></p>
+<p><code>[alter column &lt;列名&gt; type &lt;数据类型&gt;];</code></p>
+<blockquote>
+<p>1.&lt;表名&gt;是要修改的基本表，</p>
+<p>2.add子句用于增加新列、新的列级完整性约束和新的表级完整性约束</p>
+<p>3.drop column子句用于删除表中的列</p>
+<p>①如果指定了cascade短语，则自动删除引用了该列的其他对象</p>
+<p>②如果指定了restrict短语，则如果该列被其它对象引用，关系数据库系统将拒绝删除该列</p>
+<p>4.drop constraint子句用于删除指定的完整性约束</p>
+<p>5.rename column子句用于修改列名</p>
+<p>6.alter column子句用于修改列的数据类型</p>
+</blockquote>
+<p><img src="/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250410012810819.png" alt="image-20250410012810819"></p>
+<p><code>alter（改变） table Student add Semail varchar(30);</code></p>
+<blockquote>
+<p>不论基本表中原来是否已有数据，新增加的列一律为空值</p>
+</blockquote>
+<p><img src="/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250410013222456.png" alt="image-20250410013222456"></p>
+<p><code>alter table Student alter column Sbirthdate type varchar(20);</code></p>
+<p><img src="/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250410013308722.png" alt="image-20250410013308722"></p>
+<p><img src="/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250410013325353.png" alt="image-20250410013325353"></p>
+<p><code>alter table Course add unique(Cname);</code></p>
+<p>（5）删除基本表</p>
+<p><code>drop table &lt;表名&gt; [restrict|cascade]</code></p>
+<blockquote>
+<p>restrict：删除表是有限制的</p>
+<ul>
+<li>想要删除的基本表不能被其他表的约束所引用。如果存在依赖该表的对象，则此表不能被删除</li>
+</ul>
+<p>cascade：删除该表没有限制</p>
+<ul>
+<li>在删除表的同时，相关依赖对象也一并删除</li>
+</ul>
+</blockquote>
+<p><img src="/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250410013757166-1744220278095-5.png" alt="image-20250410013757166"></p>
+<p><code>drop table Student cascade</code></p>
+<blockquote>
+<ul>
+<li>基本表定义被删除，数据被删除</li>
+<li>表上建立的索引，视图，触发器等一般也被删除</li>
+</ul>
+</blockquote>
+<p><img src="/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250410015012345.png" alt="image-20250410015012345"></p>
+<p><code>create view CS_Student</code>/<em>Student表上建立计科学生视图</em>/</p>
+<p><code>as</code></p>
+<p><code>select Sno,Sname,Ssex,Sbirthdate,Smajor</code></p>
+<p><code>from Student</code></p>
+<p><code>where Smajor='计算机科学与技术'</code></p>
+<p><code>drop table Student restrict;</code>/<em>删除Student表</em>/</p>
+<p><img src="/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250410015259123.png" alt="image-20250410015259123"></p>
+<p><img src="/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250410015320408.png" alt="image-20250410015320408"></p>
+<p>3.索引的建立与删除</p>
+<p>（1）建立索引目的：加快查询速度</p>
+<p><img src="/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250410015419701.png" alt="image-20250410015419701"></p>
+<p><img src="/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250410015430980.png" alt="image-20250410015430980"></p>
+<p>（1）建立索引</p>
+<p><code>create [unique] [cluster] index &lt;索引名&gt; on &lt;表名&gt;（&lt;列名&gt;[&lt;次序&gt;][，&lt;列名&gt;[&lt;次序&gt;]]...）;</code></p>
+<blockquote>
+<p>&lt;表名&gt;：要建立索引的基本表的名字</p>
+<p>索引：可以建立在该表的一列或多列上，各列明之间用逗号分隔</p>
+<p>&lt;次序&gt;：指定索引值的排列顺序，升序asc，降序desc，默认升序asc</p>
+<p>unique：此索引的每一个索引值只对应唯一的数据记录</p>
+<p>cluster：建立的索引是聚簇索引</p>
+</blockquote>
+<p><img src="/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250410020918720.png" alt="image-20250410020918720"></p>
+<p><code>create unique index Idx_StuSname on Student(Sname);</code></p>
+<p>/<em>保证了Sname取唯一值的约束</em>****/</p>
+<p><code>create unique index Idx_CouCname on Course(Cname);</code></p>
+<p>/*加上Cname取唯一值的约束*****/</p>
+<p><code>create unique index Idx_SCCno on sc(Sno asc,Cno desc);</code></p>
+<p>（2）修改索引</p>
+<p><code>alter index &lt;旧索引名&gt; rename to &lt;新索引名&gt;</code></p>
+<p><img src="/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250410021305935.png" alt="image-20250410021305935"></p>
+<p><code>alter index Idx_SCCno rename to Idx_SCSnoCno;</code></p>
+<p>（3）删除索引</p>
+<p><code>drop index &lt;索引名&gt;</code></p>
+<p><strong>删除索引时，系统会从数据字典中删去有关该索引的描述</strong></p>
+<p><img src="/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250410021423470.png" alt="image-20250410021423470"></p>
+<p>（4）数据字典</p>
+<p><img src="/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250410021449305.png" alt="image-20250410021449305"></p>
+<h3 id="数据查询">数据查询</h3>
+<h2 id="数据库安全性">数据库安全性</h2>
+<blockquote>
+<p>重点</p>
+<p>1.数据库安全性是指保护数据库，防止因用户非法使用数据库造成数据泄露、更改或破坏。作用是防止恶意的破坏和非法的存取</p>
+<p>2.视图的作用</p>
+<p>3.GRANT和REVOKE</p>
+</blockquote>
+<h2 id="数据库完整性">数据库完整性</h2>
+<blockquote>
+<p>重点</p>
+<p>1.数据库完整性是指数据的正确性和相容性；数据库的完整性是为了防止数据库中存在不符合语义的数据，也就是防止数据库中存在不正确的数据</p>
+<p>2.如何定义几种完整性</p>
+<p>3.插入、更新、修改能否被执行的判断</p>
+</blockquote>
+<h2 id="关系数据理论">关系数据理论</h2>
+<blockquote>
+<p>重点</p>
+<p>1.1NF的关系模式存在的问题：插入异常，删除异常，数据冗余度高，修改异常（复杂）</p>
+<p>2.函数依赖，能写出函数依赖</p>
+<p>3.<mark>规范化理论</mark></p>
+<p>4.范式（各级范式的特征，会求范式级别）</p>
+<p>5.属性集关于函数依赖集的闭包</p>
+<p>6.码的求解方法</p>
+</blockquote>
+<h2 id="数据库设计">数据库设计</h2>
+<blockquote>
+<p>重点</p>
+<p>1.六个步骤</p>
+<p>①需求分析：数据字典及其内容</p>
+<p>②概念结构设计</p>
+<p>③逻辑结构设计：E-R图转换成关系模型</p>
+<p>④数据库物理设计</p>
+<p>⑤数据库实施</p>
+<p>⑥数据库运行与维护：重组织与重构造</p>
+<p><mark>2.概念设计中E-R模型设计方法（掌握）</mark></p>
+<p><mark>3.逻辑设计中E-R模型向关系模型的转换方法（重点掌握）</mark></p>
+</blockquote>
+<h3 id="数据库设计概述">数据库设计概述</h3>
+<p>1.数据库设计定义：是指对于一个给定的应用环境，构造优化的数据库<mark>逻辑模式</mark>和<mark>物理结构</mark>，并据此建立数据库及其应用系统，是指能够有效存储管理数据，满足各种用户的应用需求，包括信息管理要求和数据操作要求。</p>
+<blockquote>
+<p>信息管理要求：在数据库中应该存储和管理哪些数据对象</p>
+<p>数据操作要求：对数据对象需要进行哪些操作，如查询、增加、删除、修改、统计和分析等操作</p>
+</blockquote>
+<p>2.数据库设计目标：是为用户和各种应用系统提供一个信息基础设施和高效的运行环境</p>
+<p><img src="/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250410173525324.png" alt="image-20250410173525324"></p>
+<p>3.数据库设计的特点</p>
+<p><img src="/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250410173541637.png" alt="image-20250410173541637"></p>
+<p><img src="/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250410173601241.png" alt="image-20250410173601241"></p>
+<p><img src="/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250410173631717.png" alt="image-20250410173631717"></p>
+<p>4.数据库设计的方法</p>
+<p><img src="/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250410173720154.png" alt="image-20250410173720154"></p>
+<p><img src="/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250410173730325.png" alt="image-20250410173730325"></p>
+<p>5.数据库设计的基本步骤</p>
+<blockquote>
+<p><mark>六个阶段</mark></p>
+<p>1.需求分析</p>
+<p>2.概念结构设计</p>
+<p>3.逻辑结构设计</p>
+<p>4.物理结构设计</p>
+<p>5.数据库实施</p>
+<p>6.数据库运行与维护</p>
+</blockquote>
+<blockquote>
+<ul>
+<li>需求分析和概念设计独立于任何数据库管理系统</li>
+<li>逻辑设计和物理设计与选用的数据库管理系统密切相关</li>
+</ul>
+</blockquote>
+<p><img src="/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250410174213489.png" alt="image-20250410174213489"></p>
+<p><img src="/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250410174437433.png" alt="image-20250410174437433"></p>
+<p><img src="/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250410174448375.png" alt="image-20250410174448375"></p>
+<p><img src="/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250410174509029.png" alt="image-20250410174509029"></p>
+<p><img src="/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250410174536299.png" alt="image-20250410174536299"></p>
+<h3 id="需求分析">需求分析</h3>
+<p><img src="/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250410175038255.png" alt="image-20250410175038255"></p>
+<p>1.数据字典</p>
+<p>（1）数据字典是关于数据库中数据的描述，即元数据，不是数据本身</p>
+<p>（2）数据字典在需求分析阶段建立，在数据库设计过程中不断修改、充实、完善</p>
+<p>（3）数据字典是进行详细的数据收集和数据分析所获得的主要成果</p>
+<p>（4）数据字典的内容</p>
+<p>①数据项</p>
+<p>②数据结构</p>
+<p>③数据流</p>
+<p>④数据存储</p>
+<p>⑤处理过程</p>
+<p>（5）数据项是数据的最小组成单位</p>
+<p>（6）若干个数据项可以组成一个数据结构</p>
+<p>（7）数据字典通过对数据项和数据结构的定义来描述数据流、数据存储的逻辑内容</p>
+<p>2.数据项</p>
+<p>（1）数据项是不可再分的数据单位</p>
+<p>（2）对数据项的描述</p>
+<p><img src="/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250410175538252.png" alt="image-20250410175538252"></p>
+<p>3.数据结构</p>
+<p><img src="/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250410175606172.png" alt="image-20250410175606172"></p>
+<p>4.数据流</p>
+<p><img src="/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250410175908297.png" alt="image-20250410175908297"></p>
+<p>5.数据存储</p>
+<p><img src="/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250410180018091.png" alt="image-20250410180018091"></p>
+<p>6.处理过程</p>
+<p><img src="/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250410180037245.png" alt="image-20250410180037245"></p>
+<h3 id="概念结构设计">概念结构设计</h3>
+<p><img src="/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250410180443644.png" alt="image-20250410180443644"></p>
+<p><img src="/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250410180458614.png" alt="image-20250410180458614"></p>
+<p><img src="/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250410180518302.png" alt="image-20250410180518302"></p>
+<p><img src="/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250410180543655.png" alt="image-20250410180543655"></p>
+<p><img src="/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250410180556728.png" alt="image-20250410180556728"></p>
+<p><img src="/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250410180611694.png" alt="image-20250410180611694"></p>
+<p><img src="/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250410180839689.png" alt="image-20250410180839689"></p>
+<p><img src="/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250410180929727.png" alt="image-20250410180929727"></p>
+<p><mark>实体型就是具体的一个个主体，联系/关系就是要执行的事件</mark></p>
+<p><img src="/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250410181251730-1744279972524-1.png" alt="image-20250410181251730"></p>
+<p><img src="/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250410181307306.png" alt="image-20250410181307306"></p>
+<blockquote>
+<p><mark>E-R图</mark>：提供了表示实体型、属性和联系的方法</p>
+<p>（1）实体型：用矩形表示，矩形框内写明实体名</p>
+<p>（2）属性：用椭圆形表示，并用无向边将其与相应的实体型连接起来</p>
+<p><img src="/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250410181459893.png" alt="image-20250410181459893"></p>
+<p>（3）联系：用菱形表示，菱形框内写明联系名，并用无向边分别与有关实体型连接起来，同时在无向边旁标上联系的类型（1：1，1：n或m：n）</p>
+<ul>
+<li>联系可以具有属性</li>
+</ul>
+<p><img src="/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250410181726356.png" alt="image-20250410181726356"></p>
+</blockquote>
+<p><img src="/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250410181752329.png" alt="image-20250410181752329"></p>
+<p><img src="/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250410181812575.png" alt="image-20250410181812575"></p>
+<p><img src="/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250410181826760.png" alt="image-20250410181826760"></p>
+<p><img src="/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250410181843432-1744280323897-3.png" alt="image-20250410181843432"></p>
+<p><img src="/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250410181903772-1744280344218-5.png" alt="image-20250410181903772"></p>
+<p><img src="/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250410182306654.png" alt="image-20250410182306654"></p>
+<p><img src="/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250410182452409.png" alt="image-20250410182452409"></p>
+<p><img src="/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250410182522589.png" alt="image-20250410182522589"></p>
+<p><img src="/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250410182802410.png" alt="image-20250410182802410"></p>
+<p><img src="/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250410182830736.png" alt="image-20250410182830736"></p>
+<p><img src="/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250410182844357.png" alt="image-20250410182844357"></p>
+<p><img src="/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250410182857171.png" alt="image-20250410182857171"></p>
+<p><img src="/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250410182915963.png" alt="image-20250410182915963"></p>
+<p><img src="/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250410182929350.png" alt="image-20250410182929350"></p>
+<p><img src="/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250410182943908.png" alt="image-20250410182943908"></p>
+<p><img src="/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250410183139220.png" alt="image-20250410183139220"></p>
+<p><img src="/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250410183157549-1744281118293-7.png" alt="image-20250410183157549"></p>
+<p><img src="/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250410193207482.png" alt="image-20250410193207482"></p>
+<p><img src="/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250410193304086.png" alt="image-20250410193304086"></p>
+<p><img src="/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250410193437629.png" alt="image-20250410193437629"></p>
+<p><img src="/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250410193515852-1744284916784-11.png" alt="image-20250410193515852"></p>
+<p><img src="/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250410193535211.png" alt="image-20250410193535211"></p>
+<p><img src="/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250410193609199-1744284970353-13.png" alt="image-20250410193609199"></p>
+<p><img src="/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250410194055648.png" alt="image-20250410194055648"></p>
+<p><img src="/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250410194118303.png" alt="image-20250410194118303"></p>
+<p><img src="/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250410194159810.png" alt="image-20250410194159810"></p>
+<p><img src="/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250410194211064.png" alt="image-20250410194211064"></p>
+<h3 id="逻辑结构设计">逻辑结构设计</h3>
+<p>1.E-R图向关系模型的转换</p>
+<blockquote>
+<p>（1）转换内容</p>
+<p>①E-R图由实体型，实体的属性和实体型之间的联系三个要素组成</p>
+<p>②关系模型的逻辑结构也是一组关系模式的集合</p>
+<p>③将E-R图转换为关系模型：将实体型、实体的属性和实体型之间的联系转化为关系模式</p>
+<p>（2）转换原则</p>
+<p>①一个实体型转换为一个关系模式：关系的属性&lt;-实体的属性，关系的码&lt;-实体的码</p>
+<p>②实体型间的联系</p>
+<p><img src="/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250410195145797.png" alt="image-20250410195145797"></p>
+<p><img src="/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250410195222766.png" alt="image-20250410195222766"></p>
+<p><img src="/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250410195239542.png" alt="image-20250410195239542"></p>
+<p><img src="/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250410195350974.png" alt="image-20250410195350974"></p>
+<p><img src="/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250410195734365-1744286255456-15.png" alt="image-20250410195734365"></p>
+<p><img src="/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250410195819274-1744286300236-17.png" alt="image-20250410195819274"></p>
+<p><img src="/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250410195846700.png" alt="image-20250410195846700"></p>
+<p><img src="/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250410195943041.png" alt="image-20250410195943041"></p>
+<p><img src="/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250410200009109.png" alt="image-20250410200009109"></p>
+<p><img src="/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250410200040076.png" alt="image-20250410200040076"></p>
+<p><img src="/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250410200133562.png" alt="image-20250410200133562"></p>
+<p><img src="/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250410200153466.png" alt="image-20250410200153466"></p>
+</blockquote>
+<h3 id="数据库物理设计">数据库物理设计</h3>
+<p><img src="/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/image-20250410201102658.png" alt="image-20250410201102658"></p>
+<p><mark>数据库管理系统常用存取办法</mark></p>
+<p>B+树索引、哈希索引、聚簇的存取方法</p>
+<h2 id="（第十一章）数据库恢复技术">（第十一章）数据库恢复技术</h2>
+<blockquote>
+<p>重点</p>
+<p>1.事务概念及ACID特性、commit rollback</p>
+<p>2.几种故障，各自恢复方法</p>
+<p>3.数据转储和日志文件，登记日志文件原则</p>
+<p>4.事务日志</p>
+</blockquote>
+<h2 id="（第十二章）并发控制">（第十二章）并发控制</h2>
+<blockquote>
+<p>重点</p>
+<p>1.并发控制：就是用正确的方法调度并发操作，以免不同事务的执行会互相带来干扰</p>
+<p>2.主要解决那四类数据不一致的问题</p>
+<p>3.事务隔离级别</p>
+<p>4.并发控制基本方法：封锁（何为封锁）：X锁，S锁</p>
+<p>5.封锁协议及其作用</p>
+<p>6.死锁</p>
+<p>7.两段锁协议</p>
+</blockquote>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="reward-container">
+  <div>请我一杯咖啡吧！</div>
+  <button>
+    赞赏
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="/images/wechatpay.png" alt="Viny Yang 微信">
+        <span>微信</span>
+      </div>
+      <div>
+        <img src="/images/alipay.png" alt="Viny Yang 支付宝">
+        <span>支付宝</span>
+      </div>
+
+  </div>
+</div>
+
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>Viny Yang
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://vinyyang.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/" title="数据库原理与应用">https://vinyyang.github.io/数据库原理与应用/</a>
+  </li>
+  <li class="post-copyright-license">
+      <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/%E5%AD%A6%E4%B9%A0/" rel="tag"><i class="fa fa-tag"></i> 学习</a>
+          </div>
+
+        
+  <div class="social-like a2a_kit a2a_kit_size_32 a2a_default_style">
+    <a class="a2a_dd" target="_blank" rel="noopener" href="https://www.addtoany.com/share"></a>
+      <a class="a2a_button_wechat"></a>
+  </div>
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/%E6%89%8B%E6%92%95%E7%9F%A5%E8%AF%86%E5%BA%93/" rel="prev" title="手撕论文知识库">
+                  <i class="fa fa-angle-left"></i> 手撕论文知识库
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%AE%9E%E9%AA%8C%E5%AE%8C%E6%88%90%E6%80%9D%E8%B7%AF/" rel="next" title="计算机网络实验完成思路">
+                  计算机网络实验完成思路 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    
+  
+  <div class="comments giscus-container">
+  </div>
+  
+  
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Viny Yang</span>
+  </div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">340k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">10:19</span>
+  </span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+<!-- 网站运行时间的设置 -->
+<span id="timeDate">载入天数...</span>
+<span id="times">载入时分秒...</span>
+<script>
+    var now = new Date();
+    function createtime() {
+        var grt= new Date("03/01/2023 10:00:00"); //此处修改你的建站时间或者网站上线时间
+        now.setTime(now.getTime()+250);
+        days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days);
+        hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours);
+        if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+        mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;}
+        seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+        snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;}
+        document.getElementById("timeDate").innerHTML = "本站已安全运行 "+dnum+" 天 ";
+        document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒.";
+    }
+setInterval("createtime()",250);
+</script>
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="reading-progress-bar"></div>
+
+  <a href="https://github.com/VinyYang" class="github-corner" title="在 GitHub 上关注我" aria-label="在 GitHub 上关注我" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancyapps-ui/5.0.31/fancybox/fancybox.umd.js" integrity="sha256-a+H7FYzJv6oU2hfsfDGM2Ohw/cR9v+hPfxHCLdmCrE8=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pangu/4.0.7/pangu.min.js" integrity="sha256-j+yj56cdEY2CwkVtGyz18fNybFGpMGJ8JxG3GSyO2+I=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+  <script class="next-config" data-name="pdf" type="application/json">{"object_url":{"url":"https://cdnjs.cloudflare.com/ajax/libs/pdfobject/2.3.0/pdfobject.min.js","integrity":"sha256-JJZNsid68vnh3/zyj0lY9BN5ynxVX/12XgOa1TlaYN0="},"url":"/lib/pdf/web/viewer.html"}</script>
+  <script src="/js/third-party/tags/pdf.js"></script>
+
+  <script class="next-config" data-name="mermaid" type="application/json">{"enable":true,"theme":{"light":"default","dark":"dark"},"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mermaid/11.4.0/mermaid.min.js","integrity":"sha256-G8ouPAnw4zzMbnAenHnVz6h9XpKbNdOkrqTh7AadyHs="}}</script>
+  <script src="/js/third-party/tags/mermaid.js"></script>
+
+
+  <script src="/js/third-party/fancybox.js"></script>
+
+  <script src="/js/third-party/pace.js"></script>
+
+  <script src="/js/third-party/addtoany.js"></script>
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"all","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+<script class="next-config" data-name="giscus" type="application/json">{"enable":true,"repo":"VinyYang/VinyYang.github.io","repo_id":"R_kgDON5FgxA","category":"Announcements","category_id":"DIC_kwDON5FgxM4Cm-MG","mapping":"pathname","strict":0,"reactions_enabled":1,"emit_metadata":0,"theme":"light","lang":"zh-CN","crossorigin":"anonymous","input_position":"bottom","loading":"lazy"}</script>
+
+<script>
+document.addEventListener('page:loaded', () => {
+  if (!CONFIG.page.comments) return;
+
+  NexT.utils.loadComments('.giscus-container')
+    .then(() => NexT.utils.getScript('https://giscus.app/client.js', {
+      attributes: {
+        async                   : true,
+        crossOrigin             : 'anonymous',
+        'data-repo'             : CONFIG.giscus.repo,
+        'data-repo-id'          : CONFIG.giscus.repo_id,
+        'data-category'         : CONFIG.giscus.category,
+        'data-category-id'      : CONFIG.giscus.category_id,
+        'data-mapping'          : CONFIG.giscus.mapping,
+        'data-strict'           : CONFIG.giscus.strict,
+        'data-reactions-enabled': CONFIG.giscus.reactions_enabled,
+        'data-emit-metadata'    : CONFIG.giscus.emit_metadata,
+        'data-theme'            : CONFIG.giscus.theme,
+        'data-lang'             : CONFIG.giscus.lang,
+        'data-input-position'   : CONFIG.giscus.input_position,
+        'data-loading'          : CONFIG.giscus.loading
+      },
+      parentNode: document.querySelector('.giscus-container')
+    }));
+});
+</script>
+
+<div class="contact-modal-overlay" style="display: none;">
+  <div class="contact-modal-box">
+    <div class="contact-modal-header">
+      <span class="contact-modal-title"></span>
+      <div class="header-actions">
+        <button class="copy-button" data-email="yhy520@email.swu.edu.cn">
+          <i class="fa fa-copy"></i>
+        </button>
+        <button class="contact-modal-close">&times;</button>
+      </div>
+    </div>
+    <div class="contact-modal-body">
+      <div class="image-wrapper">
+        <img class="contact-qrcode" src="" alt="联系方式">
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+/* 模态框基础样式 */
+.contact-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.6);
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.contact-modal-box {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+  max-width: 80%;
+  min-width: 300px;
+  transform: scale(0.8);
+  transition: all 0.3s ease;
+}
+
+.contact-modal-overlay.active {
+  opacity: 1;
+}
+
+.contact-modal-overlay.active .contact-modal-box {
+  transform: scale(1);
+}
+
+.contact-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+  border-bottom: 1px solid #eee;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.contact-modal-title {
+  font-size: 1.2em;
+  color: #333;
+  font-weight: bold;
+}
+
+.contact-modal-close {
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: #666;
+  transition: color 0.2s;
+}
+
+.contact-modal-close:hover {
+  color: #333;
+}
+
+/* 图片容器 */
+.image-wrapper {
+  padding: 20px;
+}
+
+.contact-qrcode {
+  max-width: 280px;
+  max-height: 60vh;
+  display: block;
+  margin: 0 auto;
+}
+
+/* 复制按钮样式 */
+.copy-button {
+  background: rgba(255,255,255,0.9);
+  border: 1px solid #eee;
+  border-radius: 4px;
+  padding: 6px 12px;
+  cursor: pointer;
+  transition: all 0.3s;
+  display: none;
+  color: #666;
+}
+
+.copy-button:hover {
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+/* 邮箱按钮颜色保护 */
+a[href*="/images/email.png"] {
+  color: #fff !important;
+}
+
+a[href*="/images/email.png"] i {
+  color: inherit !important;
+}
+
+@media (max-width: 767px) {
+  .contact-modal-box {
+    max-width: 90%;
+  }
+  
+  .contact-qrcode {
+    max-width: 200px;
+  }
+  
+  .header-actions {
+    gap: 10px;
+  }
+  
+  .copy-button {
+    padding: 4px 8px;
+  }
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // 绑定所有按钮事件
+  const contactButtons = document.querySelectorAll(
+    'a[href*="/images/wechat.png"], ' +
+    'a[href*="/images/qq.png"], ' +
+    'a[href*="/images/email.png"]'
+  );
+
+  // 通用展示函数
+  const showContactModal = (type, path) => {
+    const overlay = document.querySelector('.contact-modal-overlay');
+    const title = document.querySelector('.contact-modal-title');
+    const img = document.querySelector('.contact-qrcode');
+    const copyBtn = document.querySelector('.copy-button');
+
+    // 设置内容
+    title.textContent = type;
+    img.src = path;
+    
+    // 邮箱特殊处理
+    if (type === '邮箱') {
+      copyBtn.style.display = 'flex';
+      copyBtn.querySelector('i').className = 'fa fa-copy'; // 重置图标状态
+    } else {
+      copyBtn.style.display = 'none';
+    }
+
+    // 显示模态框
+    overlay.style.display = 'flex';
+    setTimeout(() => overlay.classList.add('active'), 10);
+  };
+
+  // 绑定按钮点击事件
+  contactButtons.forEach(btn => {
+    btn.addEventListener('click', function(e) {
+      e.preventDefault();
+      const typeMap = {
+        weixin: '微信',
+        qq: 'QQ',
+        envelope: '邮箱'
+      };
+      const iconClass = this.querySelector('i').className;
+      const type = Object.keys(typeMap).find(key => iconClass.includes(key)) || '联系方式';
+      showContactModal(typeMap[type], this.href);
+    });
+  });
+
+  // 复制功能（防爬虫版）
+  document.querySelector('.copy-button').addEventListener('click', function() {
+    try {
+      // 混淆邮箱地址（反转+Base64）
+      const reversedEmail = 'yhy520@email.swu.edu.cn'.split('').reverse().join('');
+      const realEmail = atob('eWh5NTIwQGVtYWlsLnN3dS5lZHUuY24='); // Base64解码
+      
+      navigator.clipboard.writeText(realEmail).then(() => {
+        this.innerHTML = '<i class="fa fa-check"></i>';
+        setTimeout(() => {
+          this.innerHTML = '<i class="fa fa-copy"></i>';
+        }, 2000);
+      });
+    } catch (error) {
+      console.error('复制失败:', error);
+      this.innerHTML = '<i class="fa fa-times"></i>';
+      setTimeout(() => {
+        this.innerHTML = '<i class="fa fa-copy"></i>';
+      }, 2000);
+    }
+  });
+
+  // 关闭逻辑
+  const closeModal = () => {
+    const overlay = document.querySelector('.contact-modal-overlay');
+    overlay.classList.remove('active');
+    setTimeout(() => {
+      overlay.style.display = 'none';
+    }, 300);
+  };
+
+  document.querySelector('.contact-modal-close').addEventListener('click', closeModal);
+  document.querySelector('.contact-modal-overlay').addEventListener('click', (e) => {
+    if(e.target === e.currentTarget) closeModal();
+  });
+});
+</script>
+</body>
+</html>

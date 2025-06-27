@@ -1,0 +1,994 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancyapps-ui/5.0.31/fancybox/fancybox.css" integrity="sha256-gkQVf8UKZgQ0HyuxL/VnacadJ+D2Kox2TCEBuNQg5+w=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/themes/blue/pace-theme-minimal.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous"></script>
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"vinyyang.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.22.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":true,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":true,"comments":{"style":"tabs","active":"giscus","storage":true,"lazyload":false,"nav":null,"activeClass":"giscus"},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="计算机网络实验完成思路">
+<meta property="og:type" content="article">
+<meta property="og:title" content="计算机网络实验完成思路">
+<meta property="og:url" content="https://vinyyang.github.io/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%AE%9E%E9%AA%8C%E5%AE%8C%E6%88%90%E6%80%9D%E8%B7%AF/index.html">
+<meta property="og:site_name" content="Viny与CS的邂逅">
+<meta property="og:description" content="计算机网络实验完成思路">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://vinyyang.github.io/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%AE%9E%E9%AA%8C%E5%AE%8C%E6%88%90%E6%80%9D%E8%B7%AF/%E5%AE%9E%E9%AA%8C%E4%B8%80%E6%8E%A5%E7%BA%BF.jpg">
+<meta property="og:image" content="https://vinyyang.github.io/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%AE%9E%E9%AA%8C%E5%AE%8C%E6%88%90%E6%80%9D%E8%B7%AF/%E5%AE%9E%E9%AA%8C%E4%B8%80%E5%88%86vlan%E5%89%8D.jpg">
+<meta property="og:image" content="https://vinyyang.github.io/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%AE%9E%E9%AA%8C%E5%AE%8C%E6%88%90%E6%80%9D%E8%B7%AF/%E5%AE%9E%E9%AA%8C%E4%B8%80%E5%88%86vlan%E5%90%8E.jpg">
+<meta property="og:image" content="https://vinyyang.github.io/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%AE%9E%E9%AA%8C%E5%AE%8C%E6%88%90%E6%80%9D%E8%B7%AF/%E5%AE%9E%E9%AA%8C%E4%BA%8C%E6%8E%A5%E7%BA%BF.jpg">
+<meta property="og:image" content="https://vinyyang.github.io/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%AE%9E%E9%AA%8C%E5%AE%8C%E6%88%90%E6%80%9D%E8%B7%AF/%E7%AB%AF%E5%8F%A3%E9%85%8D%E7%BD%AE%E6%88%90%E5%8A%9F%E5%9B%BE.jpg">
+<meta property="og:image" content="https://vinyyang.github.io/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%AE%9E%E9%AA%8C%E5%AE%8C%E6%88%90%E6%80%9D%E8%B7%AF/%E5%AE%9E%E9%AA%8C%E4%BA%8C%E4%B8%8D%E5%90%8C%E4%BA%A4%E6%8D%A2%E6%9C%BA%E7%9B%B8%E5%90%8Cvlan.jpg">
+<meta property="og:image" content="https://vinyyang.github.io/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%AE%9E%E9%AA%8C%E5%AE%8C%E6%88%90%E6%80%9D%E8%B7%AF/%E5%AE%9E%E9%AA%8C%E4%B8%80%E7%BA%A7%E8%81%94%E5%89%8D.jpg">
+<meta property="og:image" content="https://vinyyang.github.io/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%AE%9E%E9%AA%8C%E5%AE%8C%E6%88%90%E6%80%9D%E8%B7%AF/%E4%BA%8C%E5%B1%82%E4%B8%8E%E4%B8%89%E5%B1%82%E7%BA%A7%E8%81%94%E5%89%8D.jpg">
+<meta property="og:image" content="https://vinyyang.github.io/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%AE%9E%E9%AA%8C%E5%AE%8C%E6%88%90%E6%80%9D%E8%B7%AF/%E5%AE%9E%E9%AA%8C%E4%B8%80%E7%BA%A7%E8%81%94%E5%90%8E.jpg">
+<meta property="og:image" content="https://vinyyang.github.io/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%AE%9E%E9%AA%8C%E5%AE%8C%E6%88%90%E6%80%9D%E8%B7%AF/%E4%B8%89%E5%B1%82%E4%BA%A4%E6%8D%A2%E6%9C%BA%E9%85%8D%E7%BD%AE%E8%B7%AF%E7%94%B1%E6%8E%A5%E5%8F%A3%E7%9A%84%E4%B8%BB%E4%BB%8EIP.jpg">
+<meta property="og:image" content="https://vinyyang.github.io/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%AE%9E%E9%AA%8C%E5%AE%8C%E6%88%90%E6%80%9D%E8%B7%AF/%E4%BA%8C%E5%B1%82%E4%B8%8E%E4%B8%89%E5%B1%82%E7%BA%A7%E8%81%94%E5%90%8E.jpg">
+<meta property="og:image" content="https://vinyyang.github.io/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%AE%9E%E9%AA%8C%E5%AE%8C%E6%88%90%E6%80%9D%E8%B7%AF/%E5%AE%9E%E9%AA%8C%E4%BA%8C.jpg">
+<meta property="og:image" content="https://vinyyang.github.io/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%AE%9E%E9%AA%8C%E5%AE%8C%E6%88%90%E6%80%9D%E8%B7%AF/%E5%88%86%E9%85%8D%E7%AB%AF%E5%8F%A3.jpg">
+<meta property="og:image" content="https://vinyyang.github.io/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%AE%9E%E9%AA%8C%E5%AE%8C%E6%88%90%E6%80%9D%E8%B7%AF/%E8%AE%BE%E7%BD%AEip%E5%92%8CVLAN%E5%86%85%E7%9A%84%E8%AE%A1%E7%AE%97%E6%9C%BAip%E5%9C%B0%E5%9D%80%E5%A4%84%E4%BA%8E%E5%90%8C%E4%B8%80%E7%BD%91%E6%AE%B5%E5%86%85%E3%80%82.jpg">
+<meta property="og:image" content="https://vinyyang.github.io/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%AE%9E%E9%AA%8C%E5%AE%8C%E6%88%90%E6%80%9D%E8%B7%AF/%E5%AE%9E%E9%AA%8C%E4%BA%8C%E7%BB%93%E6%9E%9C.jpg">
+<meta property="og:image" content="https://vinyyang.github.io/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%AE%9E%E9%AA%8C%E5%AE%8C%E6%88%90%E6%80%9D%E8%B7%AF/a13db8cbfb38eb34ec2e117ff084c74.jpg">
+<meta property="og:image" content="https://vinyyang.github.io/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%AE%9E%E9%AA%8C%E5%AE%8C%E6%88%90%E6%80%9D%E8%B7%AF/b336387fe7521d1e9169f1b51058ee5.jpg">
+<meta property="og:image" content="https://vinyyang.github.io/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%AE%9E%E9%AA%8C%E5%AE%8C%E6%88%90%E6%80%9D%E8%B7%AF/%E5%AE%9E%E9%AA%8C1%E9%85%8D%E7%BD%AE-1745845804411-3.jpg">
+<meta property="og:image" content="https://vinyyang.github.io/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%AE%9E%E9%AA%8C%E5%AE%8C%E6%88%90%E6%80%9D%E8%B7%AF/%E5%AE%9E%E9%AA%8C1%E4%BB%A5%E5%A4%AA%E5%8F%A3%E4%B8%8E%E4%B8%B2%E5%8F%A3%E7%8A%B6%E6%80%81.jpg">
+<meta property="og:image" content="https://vinyyang.github.io/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%AE%9E%E9%AA%8C%E5%AE%8C%E6%88%90%E6%80%9D%E8%B7%AF/%E9%9D%99%E6%80%81%E8%B7%AF%E7%94%B1%E8%B7%AF%E7%94%B1%E8%A1%A8-1745846184681-7.jpg">
+<meta property="og:image" content="https://vinyyang.github.io/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%AE%9E%E9%AA%8C%E5%AE%8C%E6%88%90%E6%80%9D%E8%B7%AF/%E6%B6%88%E8%9E%8D%E5%AE%9E%E9%AA%8C.jpg">
+<meta property="og:image" content="https://vinyyang.github.io/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%AE%9E%E9%AA%8C%E5%AE%8C%E6%88%90%E6%80%9D%E8%B7%AF/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-04-28%20211107.png">
+<meta property="og:image" content="https://vinyyang.github.io/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%AE%9E%E9%AA%8C%E5%AE%8C%E6%88%90%E6%80%9D%E8%B7%AF/%E6%9C%80%E7%BB%88%E7%BB%93%E6%9E%9C.jpg">
+<meta property="og:image" content="https://vinyyang.github.io/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%AE%9E%E9%AA%8C%E5%AE%8C%E6%88%90%E6%80%9D%E8%B7%AF/0000%E7%BB%93%E6%9E%9C.jpg">
+<meta property="og:image" content="https://vinyyang.github.io/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%AE%9E%E9%AA%8C%E5%AE%8C%E6%88%90%E6%80%9D%E8%B7%AF/image-20250519235551495.png">
+<meta property="og:image" content="https://vinyyang.github.io/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%AE%9E%E9%AA%8C%E5%AE%8C%E6%88%90%E6%80%9D%E8%B7%AF/%7B40CCDF6B-6040-4427-B687-D348E2E5E521%7D.png.jpg">
+<meta property="og:image" content="https://vinyyang.github.io/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%AE%9E%E9%AA%8C%E5%AE%8C%E6%88%90%E6%80%9D%E8%B7%AF/%7B0C1E3B07-103F-4BCB-B4D2-B35F1850C431%7D.png.jpg">
+<meta property="og:image" content="https://vinyyang.github.io/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%AE%9E%E9%AA%8C%E5%AE%8C%E6%88%90%E6%80%9D%E8%B7%AF/%7B7DC3C540-91F0-4632-BE68-DBBE19E78677%7D.png.jpg">
+<meta property="og:image" content="https://vinyyang.github.io/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%AE%9E%E9%AA%8C%E5%AE%8C%E6%88%90%E6%80%9D%E8%B7%AF/%7B7898914C-7DC4-4B94-8F8D-9EBDBAA2395F%7D.png.jpg">
+<meta property="article:published_time" content="2025-04-14T13:39:12.000Z">
+<meta property="article:modified_time" content="2025-05-19T17:10:32.664Z">
+<meta property="article:author" content="Viny Yang">
+<meta property="article:tag" content="学习">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://vinyyang.github.io/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%AE%9E%E9%AA%8C%E5%AE%8C%E6%88%90%E6%80%9D%E8%B7%AF/%E5%AE%9E%E9%AA%8C%E4%B8%80%E6%8E%A5%E7%BA%BF.jpg">
+
+
+<link rel="canonical" href="https://vinyyang.github.io/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%AE%9E%E9%AA%8C%E5%AE%8C%E6%88%90%E6%80%9D%E8%B7%AF/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://vinyyang.github.io/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%AE%9E%E9%AA%8C%E5%AE%8C%E6%88%90%E6%80%9D%E8%B7%AF/","path":"计算机网络实验完成思路/","title":"计算机网络实验完成思路"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>计算机网络实验完成思路 | Viny与CS的邂逅</title>
+  
+
+  <script src="/js/third-party/analytics/baidu-analytics.js"></script>
+  <script async src="https://hm.baidu.com/hm.js?7d748fca465d5b9edd218c485f0a2579"></script>
+
+
+
+
+
+
+<script src="//sdk.jinrishici.com/v2/browser/jinrishici.js"></script>
+<script>
+  jinrishici.load((result) => {
+    let jrsc = document.getElementById('jrsc');
+    const data = result.data;
+    let author = data.origin.author;
+    let title = '《' + data.origin.title + '》';
+    let content = data.content.substr(0, data.content.length - 1);
+    let dynasty = data.origin.dynasty.substr(0, data.origin.dynasty.length - 1);
+    jrsc.innerText = content + ' @ ' + dynasty + '·' + author + title;
+  });
+</script>
+<div style="text-align: center"><span id="jrsc" >正在加载今日诗词....</span></div>
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="Viny与CS的邂逅" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Viny与CS的邂逅</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">虽千万人吾往矣</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-guestbook"><a href="/guestbook/" rel="section"><i class="fa fa-book fa-fw"></i>留言板</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="搜索..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#2025-4-14-%E5%AE%9E%E9%AA%8C%E4%BA%8C"><span class="nav-number">1.</span> <span class="nav-text">2025&#x2F;4&#x2F;14 实验二</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2025-4-21-%E5%AE%9E%E9%AA%8C%E4%B8%89"><span class="nav-number">2.</span> <span class="nav-text">2025.4.21 实验三</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2025-4-28%E5%AE%9E%E9%AA%8C%E5%9B%9B"><span class="nav-number">3.</span> <span class="nav-text">2025.4.28实验四</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2025-05-11%E5%AE%9E%E9%AA%8C%E4%BA%94"><span class="nav-number">4.</span> <span class="nav-text">2025.05.11实验五</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2025-05-19-%E5%AE%9E%E9%AA%8C%E5%85%AD"><span class="nav-number">5.</span> <span class="nav-text">2025.05.19 实验六</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Viny Yang"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">Viny Yang</p>
+  <div class="site-description" itemprop="description">陌上花开，可缓缓归矣</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">9</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/VinyYang" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;VinyYang" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/images/email.png" title="E-Mail → &#x2F;images&#x2F;email.png" rel="noopener me"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/images/wechat.png" title="Wechat → &#x2F;images&#x2F;wechat.png" rel="noopener me"><i class="fab fa-weixin fa-fw"></i>Wechat</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/images/qq.png" title="QQ → &#x2F;images&#x2F;qq.png" rel="noopener me"><i class="fab fa-qq fa-fw"></i>QQ</a>
+      </span>
+  </div>
+  <div class="cc-license animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdnjs.cloudflare.com/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/small/by_nc_sa.svg" alt="Creative Commons"></a>
+  </div>
+
+        </div>
+      </div>
+        <div class="back-to-top animated" role="button" aria-label="返回顶部">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+    </div>
+
+    
+    <div class="sidebar-inner sidebar-blogroll">
+      <div class="links-of-blogroll animated">
+        <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+          链接
+        </div>
+        <ul class="links-of-blogroll-list">
+            <li class="links-of-blogroll-item">
+              <a href="https://zhuanlan.zhihu.com/p/618864711" title="https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;618864711" rel="noopener" target="_blank">配置主题</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://zhuanlan.zhihu.com/p/671308695" title="https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;671308695" rel="noopener" target="_blank">重新部署</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://copilot.github.com/" title="https:&#x2F;&#x2F;copilot.github.com&#x2F;" rel="noopener" target="_blank">Copilot</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://chat.deepseek.com/" title="https:&#x2F;&#x2F;chat.deepseek.com&#x2F;" rel="noopener" target="_blank">DeepSeek</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://chatgpt.com/" title="https:&#x2F;&#x2F;chatgpt.com&#x2F;" rel="noopener" target="_blank">ChatGPT</a>
+            </li>
+        </ul>
+      </div>
+    </div>
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://vinyyang.github.io/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%AE%9E%E9%AA%8C%E5%AE%8C%E6%88%90%E6%80%9D%E8%B7%AF/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Viny Yang">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Viny与CS的邂逅">
+      <meta itemprop="description" content="陌上花开，可缓缓归矣">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="计算机网络实验完成思路 | Viny与CS的邂逅">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          计算机网络实验完成思路
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2025-04-14 21:39:12" itemprop="dateCreated datePublished" datetime="2025-04-14T21:39:12+08:00">2025-04-14</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-05-20 01:10:32" itemprop="dateModified" datetime="2025-05-20T01:10:32+08:00">2025-05-20</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">学习</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+  <div style="padding-left: 8px;">
+    <span class="post-meta-divider" style="padding-right: 8px;">|</span>
+    <i class="fa fa-thumbtack"></i>
+    <font color=purple style="font-weight: bold; padding-left: 4px;"> 置顶 </font>
+  </div>
+
+
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>3.8k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>7 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p>计算机网络实验完成思路</p>
+<h2 id="2025-4-14-实验二">2025/4/14 实验二</h2>
+<p>实验1：</p>
+<p><img src="/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%AE%9E%E9%AA%8C%E5%AE%8C%E6%88%90%E6%80%9D%E8%B7%AF/%E5%AE%9E%E9%AA%8C%E4%B8%80%E6%8E%A5%E7%BA%BF.jpg" alt="实验一接线"></p>
+<p>一开始先啥也不用做，因为此时电脑都默认处于vlan1，只需要待连接的一些电脑防火墙都关闭，ipv4的地址前三位相同后一位不同，然后互相ping，截图即可。</p>
+<p>随后，某一台电脑连接交换机S1，打开超级终端，选择com2，波特率9600其他不用管，进去之后enter就行，用sys（tab补全）进入系统设置状态</p>
+<p>随后输入vlan 2，port Ethernet 1/0/1 to 1/0/2，让两个接口进入vlan 2，然后用display curr（tab补全）查看情况。随后quit。</p>
+<p><img src="/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%AE%9E%E9%AA%8C%E5%AE%8C%E6%88%90%E6%80%9D%E8%B7%AF/%E5%AE%9E%E9%AA%8C%E4%B8%80%E5%88%86vlan%E5%89%8D.jpg" alt="实验一分vlan前"></p>
+<p>同理输入vlan 3，port Ethernet 1/0/3 to 1/0/4，display curr（tab补全）查看情况。这时12与34（就是路由器上PC对应链接SIL的数值，这个就是端口号）对应的主机无法ping，说明vlan配置成功。</p>
+<p><img src="/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%AE%9E%E9%AA%8C%E5%AE%8C%E6%88%90%E6%80%9D%E8%B7%AF/%E5%AE%9E%E9%AA%8C%E4%B8%80%E5%88%86vlan%E5%90%8E.jpg" alt="实验一分vlan后"></p>
+<p>实验2：</p>
+<p><img src="/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%AE%9E%E9%AA%8C%E5%AE%8C%E6%88%90%E6%80%9D%E8%B7%AF/%E5%AE%9E%E9%AA%8C%E4%BA%8C%E6%8E%A5%E7%BA%BF.jpg" alt="实验二接线"></p>
+<p>另一台电脑接入交换机S2，按照S1的配置来安排S2，随后按照如图所示接线接好（主要是两台交换机的端口4相连，同一vlan下的端口就要连到各自交换机的相同端口）。</p>
+<p><img src="/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%AE%9E%E9%AA%8C%E5%AE%8C%E6%88%90%E6%80%9D%E8%B7%AF/%E7%AB%AF%E5%8F%A3%E9%85%8D%E7%BD%AE%E6%88%90%E5%8A%9F%E5%9B%BE.jpg" alt="端口配置成功图"></p>
+<p>然后输入interface Ethernet 1/0/4,port link-type trunk,port trunk permit vlan2,随后就可以两台交换机对应的电脑相互通信，发现可以就完成了。</p>
+<p><img src="/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%AE%9E%E9%AA%8C%E5%AE%8C%E6%88%90%E6%80%9D%E8%B7%AF/%E5%AE%9E%E9%AA%8C%E4%BA%8C%E4%B8%8D%E5%90%8C%E4%BA%A4%E6%8D%A2%E6%9C%BA%E7%9B%B8%E5%90%8Cvlan.jpg" alt="实验二不同交换机相同vlan"></p>
+<h2 id="2025-4-21-实验三">2025.4.21 实验三</h2>
+<p>1).同实验二 只是将四个电脑中的两台分到不同网段 人工设置网关为X.X.X.1</p>
+<p>接线：</p>
+<p><img src="/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%AE%9E%E9%AA%8C%E5%AE%8C%E6%88%90%E6%80%9D%E8%B7%AF/%E5%AE%9E%E9%AA%8C%E4%B8%80%E7%BA%A7%E8%81%94%E5%89%8D.jpg" alt="实验一级联前"></p>
+<p><img src="/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%AE%9E%E9%AA%8C%E5%AE%8C%E6%88%90%E6%80%9D%E8%B7%AF/%E4%BA%8C%E5%B1%82%E4%B8%8E%E4%B8%89%E5%B1%82%E7%BA%A7%E8%81%94%E5%89%8D.jpg" alt="二层与三层级联前"></p>
+<p>结果：同一网段能传不同不能传</p>
+<p>加入三层交换机并将二三层级联</p>
+<p>连线：</p>
+<p><img src="/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%AE%9E%E9%AA%8C%E5%AE%8C%E6%88%90%E6%80%9D%E8%B7%AF/%E5%AE%9E%E9%AA%8C%E4%B8%80%E7%BA%A7%E8%81%94%E5%90%8E.jpg" alt="实验一级联后"></p>
+<p>手动设置s1的主从网关</p>
+<p>[Switch] interface vlan-interface 1</p>
+<p>[Switch-Vlan-interface1] ip address 192.168.0.1 255.255.255.0</p>
+<p>[Switch-Vlan-interface1] ip address 202.202.0.1 255.255.255.0 sub</p>
+<p><img src="/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%AE%9E%E9%AA%8C%E5%AE%8C%E6%88%90%E6%80%9D%E8%B7%AF/%E4%B8%89%E5%B1%82%E4%BA%A4%E6%8D%A2%E6%9C%BA%E9%85%8D%E7%BD%AE%E8%B7%AF%E7%94%B1%E6%8E%A5%E5%8F%A3%E7%9A%84%E4%B8%BB%E4%BB%8EIP.jpg" alt="三层交换机配置路由接口的主从IP"></p>
+<p>结果 联通 包括电脑到电脑 电脑到节点</p>
+<p><img src="/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%AE%9E%E9%AA%8C%E5%AE%8C%E6%88%90%E6%80%9D%E8%B7%AF/%E4%BA%8C%E5%B1%82%E4%B8%8E%E4%B8%89%E5%B1%82%E7%BA%A7%E8%81%94%E5%90%8E.jpg" alt="二层与三层级联后"></p>
+<p>实验二 ： 验证同1交换机 不同网段不同VLAN能否互联</p>
+<p>连线</p>
+<p><img src="/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%AE%9E%E9%AA%8C%E5%AE%8C%E6%88%90%E6%80%9D%E8%B7%AF/%E5%AE%9E%E9%AA%8C%E4%BA%8C.jpg" alt="实验二"></p>
+<p><img src="/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%AE%9E%E9%AA%8C%E5%AE%8C%E6%88%90%E6%80%9D%E8%B7%AF/%E5%88%86%E9%85%8D%E7%AB%AF%E5%8F%A3.jpg" alt="分配端口"></p>
+<p>如实验二分配端口</p>
+<p>display curr….</p>
+<p>vlan ？</p>
+<p>port Ethernet 1/0/1 to 1/0/2</p>
+<p><img src="/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%AE%9E%E9%AA%8C%E5%AE%8C%E6%88%90%E6%80%9D%E8%B7%AF/%E8%AE%BE%E7%BD%AEip%E5%92%8CVLAN%E5%86%85%E7%9A%84%E8%AE%A1%E7%AE%97%E6%9C%BAip%E5%9C%B0%E5%9D%80%E5%A4%84%E4%BA%8E%E5%90%8C%E4%B8%80%E7%BD%91%E6%AE%B5%E5%86%85%E3%80%82.jpg" alt="设置ip和VLAN内的计算机ip地址处于同一网段内。"></p>
+<p>建立VLAN 100和VLAN 200的路由接口，并分别设置ip地址，该ip应和VLAN内的计算机ip地址处于同一网段内。</p>
+<p>三层交换机上的配置</p>
+<p>[S1] vlan 100       # 创建 vlan 100 并进入其视图</p>
+<p>[S1-vlan100] port e1/0/1 to e1/0/3    # 将1-3号以太口加入VLAN100</p>
+<p>[S1-vlan100] vlan 200      # 创建 vlan 200 并进入其视图</p>
+<p>[S1-vlan200] port e1/0/4 to e1/0/6    #将4-6号以太口加入VLAN200</p>
+<p>[S1] int vlan 100       # 创建vlan100的路由接口</p>
+<p>[S1-vlan-interface100] ip address 192.168.0.1 255.255.255.0  # 配置IP地址</p>
+<p>[S1-vlan-interface100] int vlan 200  # 创建vlan200的路由接口</p>
+<p>[S1-vlan-interface200] ip address 202.0.0.1 255.255.255.0</p>
+<p>结果：显然联通</p>
+<p><img src="/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%AE%9E%E9%AA%8C%E5%AE%8C%E6%88%90%E6%80%9D%E8%B7%AF/%E5%AE%9E%E9%AA%8C%E4%BA%8C%E7%BB%93%E6%9E%9C.jpg" alt="实验二结果"></p>
+<h2 id="2025-4-28实验四">2025.4.28实验四</h2>
+<p>连线：</p>
+<p><img src="/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%AE%9E%E9%AA%8C%E5%AE%8C%E6%88%90%E6%80%9D%E8%B7%AF/a13db8cbfb38eb34ec2e117ff084c74.jpg" alt="a13db8cbfb38eb34ec2e117ff084c74"></p>
+<p><img src="/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%AE%9E%E9%AA%8C%E5%AE%8C%E6%88%90%E6%80%9D%E8%B7%AF/b336387fe7521d1e9169f1b51058ee5.jpg" alt="b336387fe7521d1e9169f1b51058ee5"></p>
+<p>首先，交换机正常情况会把所有IP放入vlan1 检查所有IP是否在vlan1中</p>
+<p>后将两台电脑分别配置路由器1和路由器2</p>
+<p>先配置一台路由器做消融实验看看能联通到哪一个位置</p>
+<p>路由器R1的设置：通过超级终端，进入路由器控制口。</p>
+<p>进入系统视图后，进入以太网0口的接口视图，设置ip地址：</p>
+<p><H3C>system-view</H3C></p>
+<p>[H3C]sysname R1</p>
+<p>[R1]interface Ethernet 0/0</p>
+<p>[R1-Ethernet0/0]ip address 202.0.0.1 24</p>
+<p>再进入串口的1/0口，设置ip地址：</p>
+<p>[R1-Ethernet0/0]interface serial 1/0</p>
+<p>[R1-Serial1/0]ip address 192.0.0.1 24</p>
+<p><img src="/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%AE%9E%E9%AA%8C%E5%AE%8C%E6%88%90%E6%80%9D%E8%B7%AF/%E5%AE%9E%E9%AA%8C1%E9%85%8D%E7%BD%AE-1745845804411-3.jpg" alt="实验1配置"></p>
+<p>配置完成后检查以太口和串口的状态 如图 可以发现均转为up</p>
+<p>display ip interface brief</p>
+<p><img src="/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%AE%9E%E9%AA%8C%E5%AE%8C%E6%88%90%E6%80%9D%E8%B7%AF/%E5%AE%9E%E9%AA%8C1%E4%BB%A5%E5%A4%AA%E5%8F%A3%E4%B8%8E%E4%B8%B2%E5%8F%A3%E7%8A%B6%E6%80%81.jpg" alt="实验1以太口与串口状态"></p>
+<p>设置静态路由</p>
+<p>静态路由（Static Routing）是在路由器中设置固定的路由表。由网络管理员管理路由表。由于静态路由不能对网络的改变作出反映，一般用于网络规模不大、拓扑结构固定的网络中。优点是简单、高效、可靠。在所有的路由中，静态路由优先级最高。当动态路由与静态路由发生冲突时，以静态路由为准。</p>
+<p>命令 ip route-static <em>ip</em>*-address* { <em>mask</em> | <em>mask-length</em> } [ <em>interface-type interface-number</em> ] [ <em>nexthop</em>*-address* ] [ preference <em>preference-value</em> ] [ reject | blackhole ] [ tag <em>tag-value</em> ] [ description <em>string</em> ]</p>
+<p>R1上的配置：</p>
+<p>[R1] ip route-static 202.0.1.0 255.255.255.0 192.0.0.2</p>
+<p><img src="/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%AE%9E%E9%AA%8C%E5%AE%8C%E6%88%90%E6%80%9D%E8%B7%AF/%E9%9D%99%E6%80%81%E8%B7%AF%E7%94%B1%E8%B7%AF%E7%94%B1%E8%A1%A8-1745846184681-7.jpg" alt="静态路由路由表"></p>
+<p><img src="/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%AE%9E%E9%AA%8C%E5%AE%8C%E6%88%90%E6%80%9D%E8%B7%AF/%E6%B6%88%E8%9E%8D%E5%AE%9E%E9%AA%8C.jpg" alt="实验1配置"></p>
+<p><img src="/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%AE%9E%E9%AA%8C%E5%AE%8C%E6%88%90%E6%80%9D%E8%B7%AF/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-04-28%20211107.png" alt="屏幕截图 2025-04-28 211107"></p>
+<p>检测到只能ping通到第一个路由器位置</p>
+<p>后按之前步骤配置第二台交换机 继续测试联通位置</p>
+<p><img src="/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%AE%9E%E9%AA%8C%E5%AE%8C%E6%88%90%E6%80%9D%E8%B7%AF/%E6%9C%80%E7%BB%88%E7%BB%93%E6%9E%9C.jpg" alt="最终结果"></p>
+<p>发现所有接口均可联通</p>
+<p>可知试验成功</p>
+<p>将之前的路由改为默认路由 测试结果</p>
+<p>默认路由是静态路由的一种，当目标网络为0.0.0.0时，表示任何发往外网的数据包找不到匹配路由项时将发往指定的下一跳地址</p>
+<p><img src="/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%AE%9E%E9%AA%8C%E5%AE%8C%E6%88%90%E6%80%9D%E8%B7%AF/0000%E7%BB%93%E6%9E%9C.jpg" alt="0000结果"></p>
+<p>结果如上</p>
+<p>最后删除所有静态路由</p>
+<p>实验结束</p>
+<h2 id="2025-05-11实验五">2025.05.11实验五</h2>
+<p>动态路由协议的配置</p>
+<p>如图所示搭建网络</p>
+<p><img src="/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%AE%9E%E9%AA%8C%E5%AE%8C%E6%88%90%E6%80%9D%E8%B7%AF/image-20250519235551495.png" alt="image-20250519235551495"></p>
+<p>师承实验四的路由器配置，设置以太网和串口的ip地址，然后ping网关或者查看display ip routing-table，可以发现已经加入进去对方网关</p>
+<p>随后设置动态路由：</p>
+<p>先用命令delete static-routes all将所有静态路由删除。</p>
+<p>进入系统视图，用rip命令启用RIP协议，然后用network命令宣告连接在R1上的网段</p>
+<p>[R1] rip</p>
+<p>[R1-rip-1] network 192.0.0.0</p>
+<p>[R1-rip-1] network 202.0.0.0</p>
+<p>R2上的配置：</p>
+<p>同R1的配置，宣告网段注意应该上连接到自己接口上的网段</p>
+<p>[R2] rip</p>
+<p>[R2-rip-1] network 192.0.0.0</p>
+<p>[R2-rip-1] network 202.0.1.0</p>
+<p>配置完成后，路由器将会把连接到自己的网段的路由信息发送给相邻的路由器，用display ip routing-table查看路由表，因该能看到对方网段的路由信息。</p>
+<p>可以用display rip来显示rip协议配置信息。</p>
+<p><img src="/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%AE%9E%E9%AA%8C%E5%AE%8C%E6%88%90%E6%80%9D%E8%B7%AF/%7B40CCDF6B-6040-4427-B687-D348E2E5E521%7D.png.jpg" alt="{40CCDF6B-6040-4427-B687-D348E2E5E521}.png"></p>
+<p>设置动态路由OSPF。</p>
+<p>R1上的配置：</p>
+<p>[R1] router id 1.1.1.1</p>
+<p>[R1] ospf 1</p>
+<p>[R1-ospf-1] area 1</p>
+<p>[R1-ospf-1-aeR1-0.0.0.1] network 202.0.0.0 0.0.0.255</p>
+<p>[R1-ospf-1] area 0</p>
+<p>[R1-ospf-1-aeR1-0.0.0.0] network 192.0.0.0 0.0.0.255</p>
+<p>R2上的配置：</p>
+<p>同R1的配置，宣告网段注意应该是连接到自己接口上的网段</p>
+<p>[[R2] router id 2.2.2.1</p>
+<p>[R2] ospf 1</p>
+<p>[R2-ospf-1] area 2</p>
+<p>[R2-ospf-1-aeR1-0.0.0.2] network 202.0.1.0 0.0.0.255</p>
+<p>[R2-ospf-1] area 0</p>
+<p>[R2-ospf-1-aeR1-0.0.0.0] network 192.0.0.0 0.0.0.255</p>
+<p>配置完成后，路由器将会把连接到自己的网段的路由信息发送给相邻的路由器，用display ip routing-table查看路由表，因该能看到对方网段的路由信息。</p>
+<p>在PC下用ping命令测试，应该能ping通对放的网段。</p>
+<p><img src="/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%AE%9E%E9%AA%8C%E5%AE%8C%E6%88%90%E6%80%9D%E8%B7%AF/%7B0C1E3B07-103F-4BCB-B4D2-B35F1850C431%7D.png.jpg" alt="{0C1E3B07-103F-4BCB-B4D2-B35F1850C431}.png"></p>
+<p><img src="/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%AE%9E%E9%AA%8C%E5%AE%8C%E6%88%90%E6%80%9D%E8%B7%AF/%7B7DC3C540-91F0-4632-BE68-DBBE19E78677%7D.png.jpg" alt="{7DC3C540-91F0-4632-BE68-DBBE19E78677}.png"></p>
+<h2 id="2025-05-19-实验六">2025.05.19 实验六</h2>
+<p>按照实验四先配置交换机和路由器</p>
+<p>在R1上设置：</p>
+<p>acl <strong>num 3000</strong></p>
+<p><strong>rule deny</strong> <strong>ip</strong> <strong>source</strong> 202.0.0.0 0.0.0.255 <strong>destination</strong> 202.0.1.0 0.0.0.255</p>
+<p><strong>interface</strong> e 0</p>
+<p>packet-filter** 3000 <strong>inbound</strong></p>
+<p><strong>interface</strong> s 0</p>
+<p>packet-filter** 3000 <strong>outbound</strong></p>
+<p>禁止202.0.0.0 网段发送信息到202.0.1.0网段</p>
+<p>结果：<img src="/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%AE%9E%E9%AA%8C%E5%AE%8C%E6%88%90%E6%80%9D%E8%B7%AF/%7B7898914C-7DC4-4B94-8F8D-9EBDBAA2395F%7D.png.jpg" alt="{7898914C-7DC4-4B94-8F8D-9EBDBAA2395F}.png"></p>
+<p>以上是无防火墙的情况下</p>
+<p>以下是有防火墙的情况下</p>
+<p>先配置防火墙</p>
+<p>l<strong>打开或者关闭防火墙</strong></p>
+<p>à<strong>firewall { enable | disable }</strong></p>
+<p>l<strong>设置防火墙的缺省过滤模式</strong></p>
+<p>à<strong>firewall default {</strong> <strong>permit|deny</strong> <strong>}</strong></p>
+<p>l<strong>显示防火墙的统计信息</strong></p>
+<p>à<strong>display firewall-statistics { all | interface</strong> <em>interface-name</em> <strong>|</strong> <strong>fragments-inspect }</strong></p>
+<p>l<strong>打开防火墙包过滤调试信息开关</strong></p>
+<p>à<strong>debugging firewall</strong> <strong>{ all |</strong> <strong>icmp</strong> <strong>|</strong> <strong>tcp</strong> <strong>|</strong> <strong>udp</strong> <strong>| others } [ interface</strong> <em>interface-name</em> <strong>]</strong></p>
+<p>在R1上输入</p>
+<p><strong>acl</strong> <strong>num 3000</strong></p>
+<p><strong>rule deny</strong> <strong>ip</strong> <strong>source</strong> 202.0.0.0 0.0.0.255 <strong>destination</strong> 202.0.1.0 0.0.0.255</p>
+<p><strong>firewall enable</strong></p>
+<p><strong>interface</strong> e 0</p>
+<p><strong>firewall packet-filter</strong> 3000 <strong>inbound</strong></p>
+<p><strong>interface</strong> s 0</p>
+<p><strong>firewall packet-filter</strong> 3000 <strong>outbound</strong></p>
+<p>结果同上</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="reward-container">
+  <div>请我一杯咖啡吧！</div>
+  <button>
+    赞赏
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="/images/wechatpay.png" alt="Viny Yang 微信">
+        <span>微信</span>
+      </div>
+      <div>
+        <img src="/images/alipay.png" alt="Viny Yang 支付宝">
+        <span>支付宝</span>
+      </div>
+
+  </div>
+</div>
+
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>Viny Yang
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://vinyyang.github.io/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%AE%9E%E9%AA%8C%E5%AE%8C%E6%88%90%E6%80%9D%E8%B7%AF/" title="计算机网络实验完成思路">https://vinyyang.github.io/计算机网络实验完成思路/</a>
+  </li>
+  <li class="post-copyright-license">
+      <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/%E5%AD%A6%E4%B9%A0/" rel="tag"><i class="fa fa-tag"></i> 学习</a>
+          </div>
+
+        
+  <div class="social-like a2a_kit a2a_kit_size_32 a2a_default_style">
+    <a class="a2a_dd" target="_blank" rel="noopener" href="https://www.addtoany.com/share"></a>
+      <a class="a2a_button_wechat"></a>
+  </div>
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/" rel="prev" title="数据库原理与应用">
+                  <i class="fa fa-angle-left"></i> 数据库原理与应用
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/%E7%BB%84%E4%BC%9A%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/" rel="next" title="组会学习记录">
+                  组会学习记录 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    
+  
+  <div class="comments giscus-container">
+  </div>
+  
+  
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Viny Yang</span>
+  </div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">340k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">10:19</span>
+  </span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+<!-- 网站运行时间的设置 -->
+<span id="timeDate">载入天数...</span>
+<span id="times">载入时分秒...</span>
+<script>
+    var now = new Date();
+    function createtime() {
+        var grt= new Date("03/01/2023 10:00:00"); //此处修改你的建站时间或者网站上线时间
+        now.setTime(now.getTime()+250);
+        days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days);
+        hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours);
+        if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+        mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;}
+        seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+        snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;}
+        document.getElementById("timeDate").innerHTML = "本站已安全运行 "+dnum+" 天 ";
+        document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒.";
+    }
+setInterval("createtime()",250);
+</script>
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="reading-progress-bar"></div>
+
+  <a href="https://github.com/VinyYang" class="github-corner" title="在 GitHub 上关注我" aria-label="在 GitHub 上关注我" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancyapps-ui/5.0.31/fancybox/fancybox.umd.js" integrity="sha256-a+H7FYzJv6oU2hfsfDGM2Ohw/cR9v+hPfxHCLdmCrE8=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pangu/4.0.7/pangu.min.js" integrity="sha256-j+yj56cdEY2CwkVtGyz18fNybFGpMGJ8JxG3GSyO2+I=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+  <script class="next-config" data-name="pdf" type="application/json">{"object_url":{"url":"https://cdnjs.cloudflare.com/ajax/libs/pdfobject/2.3.0/pdfobject.min.js","integrity":"sha256-JJZNsid68vnh3/zyj0lY9BN5ynxVX/12XgOa1TlaYN0="},"url":"/lib/pdf/web/viewer.html"}</script>
+  <script src="/js/third-party/tags/pdf.js"></script>
+
+  <script class="next-config" data-name="mermaid" type="application/json">{"enable":true,"theme":{"light":"default","dark":"dark"},"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mermaid/11.4.0/mermaid.min.js","integrity":"sha256-G8ouPAnw4zzMbnAenHnVz6h9XpKbNdOkrqTh7AadyHs="}}</script>
+  <script src="/js/third-party/tags/mermaid.js"></script>
+
+
+  <script src="/js/third-party/fancybox.js"></script>
+
+  <script src="/js/third-party/pace.js"></script>
+
+  <script src="/js/third-party/addtoany.js"></script>
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"all","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+<script class="next-config" data-name="giscus" type="application/json">{"enable":true,"repo":"VinyYang/VinyYang.github.io","repo_id":"R_kgDON5FgxA","category":"Announcements","category_id":"DIC_kwDON5FgxM4Cm-MG","mapping":"pathname","strict":0,"reactions_enabled":1,"emit_metadata":0,"theme":"light","lang":"zh-CN","crossorigin":"anonymous","input_position":"bottom","loading":"lazy"}</script>
+
+<script>
+document.addEventListener('page:loaded', () => {
+  if (!CONFIG.page.comments) return;
+
+  NexT.utils.loadComments('.giscus-container')
+    .then(() => NexT.utils.getScript('https://giscus.app/client.js', {
+      attributes: {
+        async                   : true,
+        crossOrigin             : 'anonymous',
+        'data-repo'             : CONFIG.giscus.repo,
+        'data-repo-id'          : CONFIG.giscus.repo_id,
+        'data-category'         : CONFIG.giscus.category,
+        'data-category-id'      : CONFIG.giscus.category_id,
+        'data-mapping'          : CONFIG.giscus.mapping,
+        'data-strict'           : CONFIG.giscus.strict,
+        'data-reactions-enabled': CONFIG.giscus.reactions_enabled,
+        'data-emit-metadata'    : CONFIG.giscus.emit_metadata,
+        'data-theme'            : CONFIG.giscus.theme,
+        'data-lang'             : CONFIG.giscus.lang,
+        'data-input-position'   : CONFIG.giscus.input_position,
+        'data-loading'          : CONFIG.giscus.loading
+      },
+      parentNode: document.querySelector('.giscus-container')
+    }));
+});
+</script>
+
+<div class="contact-modal-overlay" style="display: none;">
+  <div class="contact-modal-box">
+    <div class="contact-modal-header">
+      <span class="contact-modal-title"></span>
+      <div class="header-actions">
+        <button class="copy-button" data-email="yhy520@email.swu.edu.cn">
+          <i class="fa fa-copy"></i>
+        </button>
+        <button class="contact-modal-close">&times;</button>
+      </div>
+    </div>
+    <div class="contact-modal-body">
+      <div class="image-wrapper">
+        <img class="contact-qrcode" src="" alt="联系方式">
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+/* 模态框基础样式 */
+.contact-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.6);
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.contact-modal-box {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+  max-width: 80%;
+  min-width: 300px;
+  transform: scale(0.8);
+  transition: all 0.3s ease;
+}
+
+.contact-modal-overlay.active {
+  opacity: 1;
+}
+
+.contact-modal-overlay.active .contact-modal-box {
+  transform: scale(1);
+}
+
+.contact-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+  border-bottom: 1px solid #eee;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.contact-modal-title {
+  font-size: 1.2em;
+  color: #333;
+  font-weight: bold;
+}
+
+.contact-modal-close {
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: #666;
+  transition: color 0.2s;
+}
+
+.contact-modal-close:hover {
+  color: #333;
+}
+
+/* 图片容器 */
+.image-wrapper {
+  padding: 20px;
+}
+
+.contact-qrcode {
+  max-width: 280px;
+  max-height: 60vh;
+  display: block;
+  margin: 0 auto;
+}
+
+/* 复制按钮样式 */
+.copy-button {
+  background: rgba(255,255,255,0.9);
+  border: 1px solid #eee;
+  border-radius: 4px;
+  padding: 6px 12px;
+  cursor: pointer;
+  transition: all 0.3s;
+  display: none;
+  color: #666;
+}
+
+.copy-button:hover {
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+/* 邮箱按钮颜色保护 */
+a[href*="/images/email.png"] {
+  color: #fff !important;
+}
+
+a[href*="/images/email.png"] i {
+  color: inherit !important;
+}
+
+@media (max-width: 767px) {
+  .contact-modal-box {
+    max-width: 90%;
+  }
+  
+  .contact-qrcode {
+    max-width: 200px;
+  }
+  
+  .header-actions {
+    gap: 10px;
+  }
+  
+  .copy-button {
+    padding: 4px 8px;
+  }
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // 绑定所有按钮事件
+  const contactButtons = document.querySelectorAll(
+    'a[href*="/images/wechat.png"], ' +
+    'a[href*="/images/qq.png"], ' +
+    'a[href*="/images/email.png"]'
+  );
+
+  // 通用展示函数
+  const showContactModal = (type, path) => {
+    const overlay = document.querySelector('.contact-modal-overlay');
+    const title = document.querySelector('.contact-modal-title');
+    const img = document.querySelector('.contact-qrcode');
+    const copyBtn = document.querySelector('.copy-button');
+
+    // 设置内容
+    title.textContent = type;
+    img.src = path;
+    
+    // 邮箱特殊处理
+    if (type === '邮箱') {
+      copyBtn.style.display = 'flex';
+      copyBtn.querySelector('i').className = 'fa fa-copy'; // 重置图标状态
+    } else {
+      copyBtn.style.display = 'none';
+    }
+
+    // 显示模态框
+    overlay.style.display = 'flex';
+    setTimeout(() => overlay.classList.add('active'), 10);
+  };
+
+  // 绑定按钮点击事件
+  contactButtons.forEach(btn => {
+    btn.addEventListener('click', function(e) {
+      e.preventDefault();
+      const typeMap = {
+        weixin: '微信',
+        qq: 'QQ',
+        envelope: '邮箱'
+      };
+      const iconClass = this.querySelector('i').className;
+      const type = Object.keys(typeMap).find(key => iconClass.includes(key)) || '联系方式';
+      showContactModal(typeMap[type], this.href);
+    });
+  });
+
+  // 复制功能（防爬虫版）
+  document.querySelector('.copy-button').addEventListener('click', function() {
+    try {
+      // 混淆邮箱地址（反转+Base64）
+      const reversedEmail = 'yhy520@email.swu.edu.cn'.split('').reverse().join('');
+      const realEmail = atob('eWh5NTIwQGVtYWlsLnN3dS5lZHUuY24='); // Base64解码
+      
+      navigator.clipboard.writeText(realEmail).then(() => {
+        this.innerHTML = '<i class="fa fa-check"></i>';
+        setTimeout(() => {
+          this.innerHTML = '<i class="fa fa-copy"></i>';
+        }, 2000);
+      });
+    } catch (error) {
+      console.error('复制失败:', error);
+      this.innerHTML = '<i class="fa fa-times"></i>';
+      setTimeout(() => {
+        this.innerHTML = '<i class="fa fa-copy"></i>';
+      }, 2000);
+    }
+  });
+
+  // 关闭逻辑
+  const closeModal = () => {
+    const overlay = document.querySelector('.contact-modal-overlay');
+    overlay.classList.remove('active');
+    setTimeout(() => {
+      overlay.style.display = 'none';
+    }, 300);
+  };
+
+  document.querySelector('.contact-modal-close').addEventListener('click', closeModal);
+  document.querySelector('.contact-modal-overlay').addEventListener('click', (e) => {
+    if(e.target === e.currentTarget) closeModal();
+  });
+});
+</script>
+</body>
+</html>

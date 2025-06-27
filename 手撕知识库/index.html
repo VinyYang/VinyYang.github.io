@@ -34,7 +34,7 @@
 <meta property="og:image" content="https://vinyyang.github.io/%E6%89%8B%E6%92%95%E7%9F%A5%E8%AF%86%E5%BA%93/image-20250222215408498.png">
 <meta property="og:image" content="https://vinyyang.github.io/%E6%89%8B%E6%92%95%E7%9F%A5%E8%AF%86%E5%BA%93/QianJianTec1740557269940.png">
 <meta property="article:published_time" content="2025-02-18T18:38:36.000Z">
-<meta property="article:modified_time" content="2025-02-27T09:57:36.854Z">
+<meta property="article:modified_time" content="2025-03-04T09:00:43.698Z">
 <meta property="article:author" content="Viny Yang">
 <meta property="article:tag" content="科研知识积累">
 <meta name="twitter:card" content="summary">
@@ -177,18 +177,18 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">4</span>
+          <span class="site-state-item-count">9</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-count">4</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-count">5</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -296,7 +296,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-02-27 17:57:36" itemprop="dateModified" datetime="2025-02-27T17:57:36+08:00">2025-02-27</time>
+      <time title="修改时间：2025-03-04 17:00:43" itemprop="dateModified" datetime="2025-03-04T17:00:43+08:00">2025-03-04</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -329,14 +329,14 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>68k</span>
+      <span>71k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>2:04</span>
+      <span>2:09</span>
     </span>
 </div>
 
@@ -1431,21 +1431,48 @@
 <li><strong>知识图谱</strong>：把图谱中的实体和关系映射为向量，有助于进行知识推理、实体分类等任务。</li>
 </ul>
 <ol start="2">
-<li>
-<p><code>nn.Embedding</code> 词嵌入：nn.Embedding</p>
-</li>
-<li>
-<p><code>nn.Embedding</code> 稀疏嵌入：高效处理变长序列</p>
-</li>
+<li><code>nn.Embedding</code> 词嵌入：nn.Embedding</li>
 </ol>
+<p><code>nn.Embedding</code> 是 PyTorch 中用于实现词嵌入（Word Embedding）的模块。词嵌入是自然语言处理（NLP）中的一项关键技术，它将离散的单词转换为连续的向量表示，使得模型能够更好地理解和处理文本数据。<code>nn.Embedding</code> 通过一个可学习的查找表将单词的索引映射到对应的向量，这些向量在训练过程中会不断更新，以捕捉单词之间的语义关系。</p>
+<p><code>nn.Embedding</code> 本质上是一个矩阵，矩阵的每一行对应一个单词的向量表示。当输入一个单词的索引时，<code>nn.Embedding</code> 会根据该索引从矩阵中取出对应的行向量作为输出。在训练过程中，通过反向传播算法不断调整矩阵中的元素，使得语义相近的单词对应的向量在向量空间中距离较近。</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"><span class="keyword">import</span> torch.nn <span class="keyword">as</span> nn</span><br><span class="line"></span><br><span class="line"><span class="comment"># 定义词汇表大小和嵌入维度</span></span><br><span class="line">vocab_size = <span class="number">10</span>  <span class="comment"># 假设词汇表中有 10 个不同的单词</span></span><br><span class="line">embedding_dim = <span class="number">5</span>  <span class="comment"># 每个单词的嵌入向量维度为 5</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建 Embedding 层</span></span><br><span class="line">embedding = nn.Embedding(num_embeddings=vocab_size, embedding_dim=embedding_dim)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 定义输入的单词索引</span></span><br><span class="line">input_indices = torch.tensor([<span class="number">1</span>, <span class="number">3</span>, <span class="number">5</span>], dtype=torch.long)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 获取嵌入向量</span></span><br><span class="line">embedded_vectors = embedding(input_indices)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;输入的单词索引:&quot;</span>, input_indices)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;嵌入向量的形状:&quot;</span>, embedded_vectors.shape)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;嵌入向量:&quot;</span>, embedded_vectors)</span><br></pre></td></tr></table></figure>
+<ul>
+<li><strong>创建 Embedding 层</strong>：使用 <code>nn.Embedding(num_embeddings = vocab_size, embedding_dim = embedding_dim)</code> 创建一个 <code>Embedding</code> 层，其中 <code>vocab_size</code> 是词汇表的大小，<code>embedding_dim</code> 是每个单词的嵌入向量的维度。</li>
+<li><strong>输入单词索引</strong>：<code>input_indices</code> 是一个包含单词索引的张量，每个索引对应词汇表中的一个单词。</li>
+<li><strong>获取嵌入向量</strong>：将 <code>input_indices</code> 输入到 <code>embedding</code> 层中，得到对应的嵌入向量。嵌入向量的形状为 <code>(batch_size, embedding_dim)</code>，其中 <code>batch_size</code> 是输入索引的数量。</li>
+</ul>
+<ol start="3">
+<li><code>nn.Embedding</code> 稀疏嵌入：高效处理变长序列</li>
+</ol>
+<p>稀疏嵌入（Sparse Embedding）是在 <code>nn.Embedding</code> 基础上的一种特殊应用，它针对大规模数据中大部分元素为零（稀疏性）的特点进行优化，以更高效地处理变长序列。在处理变长序列时，每个序列长度不同，且输入中可能存在大量未使用的类别，稀疏嵌入能够有效利用内存并加速计算。</p>
+<ul>
+<li><strong>稀疏表示</strong>：在大规模的离散数据集中，很多类别出现的频率极低，若使用普通的嵌入层，会导致嵌入矩阵非常大且大部分元素为零。稀疏嵌入通过只存储和更新非零元素，减少内存占用。</li>
+<li><strong>变长序列处理</strong>：对于变长序列，稀疏嵌入可以根据序列的实际长度动态地进行计算，避免对固定长度序列的不必要填充和计算。</li>
+</ul>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"><span class="keyword">import</span> torch.nn <span class="keyword">as</span> nn</span><br><span class="line"></span><br><span class="line"><span class="comment"># 假设有三个变长序列</span></span><br><span class="line">sequences = [</span><br><span class="line">    torch.tensor([<span class="number">1</span>, <span class="number">3</span>, <span class="number">5</span>], dtype=torch.long),</span><br><span class="line">    torch.tensor([<span class="number">2</span>, <span class="number">4</span>], dtype=torch.long),</span><br><span class="line">    torch.tensor([<span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>], dtype=torch.long)</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line">vocab_size = <span class="number">10</span></span><br><span class="line">embedding_dim = <span class="number">5</span></span><br><span class="line"><span class="comment"># 创建稀疏嵌入层</span></span><br><span class="line">sparse_embedding = nn.Embedding(num_embeddings=vocab_size, embedding_dim=embedding_dim, sparse=<span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 对每个序列进行嵌入</span></span><br><span class="line">embedded_sequences = []</span><br><span class="line"><span class="keyword">for</span> seq <span class="keyword">in</span> sequences:</span><br><span class="line">    embedded_seq = sparse_embedding(seq)</span><br><span class="line">    embedded_sequences.append(embedded_seq)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 打印每个嵌入序列的形状</span></span><br><span class="line"><span class="keyword">for</span> i, emb_seq <span class="keyword">in</span> <span class="built_in">enumerate</span>(embedded_sequences):</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;序列 <span class="subst">&#123;i + <span class="number">1</span>&#125;</span> 的嵌入形状: <span class="subst">&#123;emb_seq.shape&#125;</span>&quot;</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">序列 1 的嵌入形状: torch.Size([3, 5])</span><br><span class="line">序列 2 的嵌入形状: torch.Size([2, 5])</span><br><span class="line">序列 3 的嵌入形状: torch.Size([4, 5])</span><br></pre></td></tr></table></figure>
 <h6 id="稀疏层">稀疏层</h6>
 <ol>
-<li>
-<p>什么是稀疏？</p>
-</li>
-<li>
-<p><code>nn.Linear（输入为稀疏张量）</code> 稀疏全连接：稀疏矩阵乘法</p>
-</li>
+<li>什么是稀疏？</li>
+</ol>
+<p><mark>定义</mark></p>
+<ul>
+<li>从数据角度来说，稀疏指的是<mark>数据集中大部分元素为零或接近零</mark>，只有少数元素是非零的。例如一个大规模的文本数据集进行词袋模型表示时，对于一篇具体的文档，在整个词汇表中只有少数词汇会在该文档中出现，其余大量词汇对应的计数为零，这就是一种数据的稀疏性。</li>
+<li>从模型角度来看，稀疏是指模型的参数或连接中大部分为零。比如在神经网络中，稀疏的权重矩阵意味着大部分神经元之间的连接权重为零，只有少量连接具有非零权重。</li>
+</ul>
+<p><mark>表现形式</mark></p>
+<ul>
+<li><strong>稀疏向量</strong>：是最常见的表现形式之一。例如在自然语言处理中对文本进行词向量表示时，可能会得到一个维度很高但只有少数几个位置有非零值的向量。</li>
+<li><strong>稀疏矩阵</strong>：在推荐系统中，用户 - 物品评分矩阵往往是稀疏的。因为大多数用户只对少量物品进行了评分，而对于大量其他物品的评分是缺失的，在矩阵中就表现为大量的零元素。</li>
+</ul>
+<p><mark>产生原因</mark></p>
+<ul>
+<li><strong>数据本身特性</strong>：许多实际数据天然就具有稀疏性。如在医疗数据中，对于某种特定疾病的检测指标，大部分患者可能在多数指标上是正常的，只有少数患者在某些特定指标上会出现异常值，从而导致数据呈现稀疏性。</li>
+<li><strong>特征工程</strong>：在对数据进行特征提取和转换时，可能会产生稀疏特征。例如对图像进行某些特征提取算法处理后，得到的特征向量可能只有少数几个维度能够真正反映图像的关键信息，其余维度为零或接近零。</li>
+<li><strong>模型设计</strong>：为了实现模型的某些特性，如减少过拟合、提高计算效率等，会设计一些稀疏的模型结构或采用使模型参数稀疏化的方法，如 L1 正则化，它会促使模型的一些参数变为零，从而达到模型稀疏的效果。</li>
+</ul>
+<ol start="2">
+<li><code>nn.Linear（输入为稀疏张量）</code> 稀疏全连接：稀疏矩阵乘法</li>
 </ol>
 <h6 id="视觉专用层">视觉专用层</h6>
 <ol>
@@ -1640,6 +1667,9 @@
                 </a>
             </div>
             <div class="post-nav-item">
+                <a href="/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/" rel="next" title="数据库原理与应用">
+                  数据库原理与应用 <i class="fa fa-angle-right"></i>
+                </a>
             </div>
           </div>
     </footer>
@@ -1676,13 +1706,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">139k</span>
+    <span title="站点总字数">340k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">4:13</span>
+    <span title="站点阅读时长">10:19</span>
   </span>
 </div>
 <div class="busuanzi-count">
